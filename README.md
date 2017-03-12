@@ -4,6 +4,11 @@ Time spent: **X** hours spent in total
 
 ## User Stories
 
++ Thinh is a chat application with feature "tha thinh". You have a button to send "tha thinh" (like) someone (maybe include a photo/video). 
+   + If the target users are your friend, they only know that (and get the photo/video) when they also "tha thinh" (like) you.
+   + If the target users are not your friend, they will get a notification. And they get your photo/video when they accept your request (take the "thinh")
+   
+   
 The following **required** functionality is completed:
 
 - [ ] Login page
