@@ -26,11 +26,11 @@ The following **required** functionality is completed:
 - [ ] Find friend page
    - [ ] Contains list of new user
    - [ ] User cell: contain avatar, name, "tha thinh" (like) button
+   - [ ] When user click "tha thinh", there are 2 options to take photo/video to send to target user
 - [ ] Setting page
    - [ ] gender setting
    - [ ] notification setting (optional)
    - [ ] range of age to show in "Find friend page"
-   - [ ] 
 
 The following **optional** features are implemented:
 
