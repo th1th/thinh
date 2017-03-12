@@ -4,49 +4,55 @@ Time spent: **X** hours spent in total
 
 ## User Stories
 
-+ Thinh is a chat application with feature "tha thinh". You have a button to send "tha thinh" (like) someone (maybe include a photo/video). 
++ Thinh is a chat application with feature "tha thinh". You have a button to send "tha thinh" (like) someone (maybe include a photo/video).
    + If the target users are your friend, they only know that (and get the photo/video) when they also "tha thinh" (like) you.
    + If the target users are not your friend, they will get a notification. And they get your photo/video when they accept your request (take the "thinh")
-   
-   
+
+
 The following **required** functionality is completed:
 
-- [ ] Login page
-   - [ ] Login with google+/facebook.
-   - [ ] Sign up with email (optional).
-   - [ ] Import contact from contact/facebook (optional).
+- [ ] Login, signup page
+   - [ ] Login with facebook.
+   - [ ] Sign up with email, google (optional).
+   - [ ] Import contact from contact/facebook.
+   - [ ] After user signup, prompt to get user description
 - [ ] Profile page
    - [ ] Contains the user header view
    - [ ] Contains avatar
    - [ ] Contains user info: email, name, day of birth, gender, phone number
+   - [ ] User can edit their info (optional)
 - [ ] Chat list page
-   - [ ] List friend with avatar, status, "tha thinh" (like) button and online indicator.
+   - [ ] List friend with avatar, status
+   - [ ] "Tha thinh" again button (optional)
+   - [ ] Online indicator (optional)
    - [ ] Tapping on a user image should bring up that user's profile page.
    - [ ] Tapping on user cell should bring up to chat page.
-   - [ ] List waiting for response from who user liked ("tha thinh") (optional).
+   - [ ] List waiting for response from whom user have liked ("tha thinh") (optional).
 - [ ] Chat page
-   - [ ] Contains the user info: avatar, status, online indicator
+   - [ ] Contains the user info: avatar, name
    - [ ] Contains input text field to type messages
    - [ ] Contains sent and received messages with avatar (like iMessages)
-   - [ ] User can send text/images/videos
-- [ ] Find friend page
-   - [ ] Contains list of new user
-   - [ ] User cell: contain avatar, name, "tha thinh" (like) button
+   - [ ] User can send text
+   - [ ] User is typing indicator
+   - [ ] User can send photo, video (optional)
+- [ ] Tha Thinh page
+   - [ ] Contains list of new user and friend who've not yet received "thinh"
+   - [ ] User cell: contain avatar, name, description, "tha thinh" (like) button
 - [ ] Setting page
    - [ ] gender setting
    - [ ] notification setting (optional)
    - [ ] range of age to show in "Find friend page" (optional)
    - [ ] time out for "tha thinh" (optional).
 - [ ] When user click "tha thinh" to:
-   - [ ] new user (target user) (not in friend list): 
-      - [ ] there are 2 options to take photo/video to send to target user
+   - [ ] new user (target user) (not in friend list):
+      - [ ] send user id to target user
       - [ ] a notification is sent to target user (optional)
-      - [ ] if target user accepts "tha thinh", he/she can see the photo/video
-   - [ ] friend (target user) (in friend list): 
-      - [ ] there are 2 options to take photo/video to send to target user
+      - [ ] if target user "dop thinh", he/she can see the avatar and start to chat
+   - [ ] friend (target user) (in friend list):
+      - [ ] send user id to target user
       - [ ] there is no notification to target user
-      - [ ] if target user also "tha thinh", he/she can see the photo/video
-   
+      - [ ] if target user also "tha thinh", he/she can start to chat
+
 
 The following **optional** features are implemented:
 
