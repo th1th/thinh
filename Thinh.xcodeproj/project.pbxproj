@@ -12,9 +12,13 @@
 		94C71F061E7444E400D63A95 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94C71F041E7444E400D63A95 /* Main.storyboard */; };
 		94C71F081E7444E400D63A95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94C71F071E7444E400D63A95 /* Assets.xcassets */; };
 		94C71F0B1E7444E400D63A95 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94C71F091E7444E400D63A95 /* LaunchScreen.storyboard */; };
+		C8263355D1140BCE9AFEE195 /* Pods_Thinh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B511A829B8797A0E0B0FD21 /* Pods_Thinh.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		72B5C06EECD187D2F8E9B840 /* Pods-Thinh.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Thinh.release.xcconfig"; path = "Pods/Target Support Files/Pods-Thinh/Pods-Thinh.release.xcconfig"; sourceTree = "<group>"; };
+		75B3FD42645CC32F317309D3 /* Pods-Thinh.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Thinh.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Thinh/Pods-Thinh.debug.xcconfig"; sourceTree = "<group>"; };
+		8B511A829B8797A0E0B0FD21 /* Pods_Thinh.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Thinh.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94C71EFD1E7444E400D63A95 /* Thinh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Thinh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94C71F001E7444E400D63A95 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		94C71F021E7444E400D63A95 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -29,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8263355D1140BCE9AFEE195 /* Pods_Thinh.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +45,8 @@
 			children = (
 				94C71EFF1E7444E400D63A95 /* Thinh */,
 				94C71EFE1E7444E400D63A95 /* Products */,
+				B78E57204AFA4356146B95B2 /* Pods */,
+				E91F839E610D906F29C478C7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +71,23 @@
 			path = Thinh;
 			sourceTree = "<group>";
 		};
+		B78E57204AFA4356146B95B2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				75B3FD42645CC32F317309D3 /* Pods-Thinh.debug.xcconfig */,
+				72B5C06EECD187D2F8E9B840 /* Pods-Thinh.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		E91F839E610D906F29C478C7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8B511A829B8797A0E0B0FD21 /* Pods_Thinh.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +95,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 94C71F0F1E7444E400D63A95 /* Build configuration list for PBXNativeTarget "Thinh" */;
 			buildPhases = (
+				79539952EE1EDEA9ECC18079 /* [CP] Check Pods Manifest.lock */,
 				94C71EF91E7444E300D63A95 /* Sources */,
 				94C71EFA1E7444E300D63A95 /* Frameworks */,
 				94C71EFB1E7444E300D63A95 /* Resources */,
+				C2851D7D3DEE2333B607B4DE /* [CP] Embed Pods Frameworks */,
+				29AC579ACD6AE88AEC0A91D5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -131,6 +158,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		29AC579ACD6AE88AEC0A91D5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Thinh/Pods-Thinh-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		79539952EE1EDEA9ECC18079 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C2851D7D3DEE2333B607B4DE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Thinh/Pods-Thinh-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		94C71EF91E7444E300D63A95 /* Sources */ = {
@@ -259,6 +334,7 @@
 		};
 		94C71F101E7444E400D63A95 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 75B3FD42645CC32F317309D3 /* Pods-Thinh.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = A2S8X674GE;
@@ -272,6 +348,7 @@
 		};
 		94C71F111E7444E400D63A95 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 72B5C06EECD187D2F8E9B840 /* Pods-Thinh.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = A2S8X674GE;
