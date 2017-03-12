@@ -27,11 +27,21 @@ The following **required** functionality is completed:
 - [ ] Find friend page
    - [ ] Contains list of new user
    - [ ] User cell: contain avatar, name, "tha thinh" (like) button
-   - [ ] When user click "tha thinh", there are 2 options to take photo/video to send to target user
 - [ ] Setting page
    - [ ] gender setting
    - [ ] notification setting (optional)
-   - [ ] range of age to show in "Find friend page"
+   - [ ] range of age to show in "Find friend page" (optional)
+   - [ ] time out for "tha thinh" (optional).
+- [ ] When user click "tha thinh" to:
+   - [ ] new user (target user) (not in friend list): 
+      - [ ] there are 2 options to take photo/video to send to target user
+      - [ ] a notification is sent to target user (optional)
+      - [ ] if target user accepts "tha thinh", he/she can see the photo/video
+   - [ ] friend (target user) (in friend list): 
+      - [ ] there are 2 options to take photo/video to send to target user
+      - [ ] there is no notification to target user
+      - [ ] if target user also "tha thinh", he/she can see the photo/video
+   
 
 The following **optional** features are implemented:
 
