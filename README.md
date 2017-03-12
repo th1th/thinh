@@ -9,20 +9,21 @@ The following **required** functionality is completed:
 - [ ] Login page
    - [ ] Login with google+/facebook.
    - [ ] Sign up with email (optional).
-   - [ ] Import contact from
+   - [ ] Import contact from contact/facebook (optional).
 - [ ] Profile page
    - [ ] Contains the user header view
    - [ ] Contains avatar
    - [ ] Contains user info: email, name, day of birth, gender, phone number
 - [ ] Chat list page
-   - [ ] List friend with avatar, status, "tha thinh" (like) button and online indicator
-   - [ ] Tapping on a user image should bring up that user's profile page
-   - [ ] Tapping on user cell should bring up to chat page
-   - [ ] List 
+   - [ ] List friend with avatar, status, "tha thinh" (like) button and online indicator.
+   - [ ] Tapping on a user image should bring up that user's profile page.
+   - [ ] Tapping on user cell should bring up to chat page.
+   - [ ] List waiting for response from who user liked ("tha thinh") (optional).
 - [ ] Chat page
    - [ ] Contains the user info: avatar, status, online indicator
    - [ ] Contains input text field to type messages
    - [ ] Contains sent and received messages with avatar (like iMessages)
+   - [ ] User can send text/images/videos
 - [ ] Find friend page
    - [ ] Contains list of new user
    - [ ] User cell: contain avatar, name, "tha thinh" (like) button
