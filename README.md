@@ -2,6 +2,9 @@
 
 Time spent: **X** hours spent in total
 
+## Survey Results:
+https://docs.google.com/forms/d/1NV0Az2d02ZF9v5xA7GPLP9MKz0k1BroJig1uO6tT4jA/viewanalytics
+
 ## User Stories
 
 + Thinh is a chat application with feature "tha thinh". You have a button to send "tha thinh" (like) someone (maybe include a photo/video). 
