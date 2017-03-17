@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		055024151E7C331700175FED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 055024141E7C331700175FED /* GoogleService-Info.plist */; };
+		055024231E7C467900175FED /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055024221E7C467900175FED /* LoginViewController.swift */; };
 		94C71F011E7444E400D63A95 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C71F001E7444E400D63A95 /* AppDelegate.swift */; };
-		94C71F031E7444E400D63A95 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C71F021E7444E400D63A95 /* ViewController.swift */; };
 		94C71F061E7444E400D63A95 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94C71F041E7444E400D63A95 /* Main.storyboard */; };
 		94C71F081E7444E400D63A95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94C71F071E7444E400D63A95 /* Assets.xcassets */; };
 		94C71F0B1E7444E400D63A95 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94C71F091E7444E400D63A95 /* LaunchScreen.storyboard */; };
@@ -16,12 +17,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		055024141E7C331700175FED /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		055024221E7C467900175FED /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		72B5C06EECD187D2F8E9B840 /* Pods-Thinh.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Thinh.release.xcconfig"; path = "Pods/Target Support Files/Pods-Thinh/Pods-Thinh.release.xcconfig"; sourceTree = "<group>"; };
 		75B3FD42645CC32F317309D3 /* Pods-Thinh.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Thinh.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Thinh/Pods-Thinh.debug.xcconfig"; sourceTree = "<group>"; };
 		8B511A829B8797A0E0B0FD21 /* Pods_Thinh.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Thinh.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94C71EFD1E7444E400D63A95 /* Thinh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Thinh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94C71F001E7444E400D63A95 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		94C71F021E7444E400D63A95 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		94C71F051E7444E400D63A95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		94C71F071E7444E400D63A95 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		94C71F0A1E7444E400D63A95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -61,12 +63,13 @@
 		94C71EFF1E7444E400D63A95 /* Thinh */ = {
 			isa = PBXGroup;
 			children = (
+				055024141E7C331700175FED /* GoogleService-Info.plist */,
 				94C71F001E7444E400D63A95 /* AppDelegate.swift */,
-				94C71F021E7444E400D63A95 /* ViewController.swift */,
 				94C71F041E7444E400D63A95 /* Main.storyboard */,
 				94C71F071E7444E400D63A95 /* Assets.xcassets */,
 				94C71F091E7444E400D63A95 /* LaunchScreen.storyboard */,
 				94C71F0C1E7444E400D63A95 /* Info.plist */,
+				055024221E7C467900175FED /* LoginViewController.swift */,
 			);
 			path = Thinh;
 			sourceTree = "<group>";
@@ -123,7 +126,7 @@
 				TargetAttributes = {
 					94C71EFC1E7444E300D63A95 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = A2S8X674GE;
+						DevelopmentTeam = 8D5SZ9A5H3;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -153,6 +156,7 @@
 			files = (
 				94C71F0B1E7444E400D63A95 /* LaunchScreen.storyboard in Resources */,
 				94C71F081E7444E400D63A95 /* Assets.xcassets in Resources */,
+				055024151E7C331700175FED /* GoogleService-Info.plist in Resources */,
 				94C71F061E7444E400D63A95 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -212,7 +216,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94C71F031E7444E400D63A95 /* ViewController.swift in Sources */,
+				055024231E7C467900175FED /* LoginViewController.swift in Sources */,
 				94C71F011E7444E400D63A95 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -337,7 +341,11 @@
 			baseConfigurationReference = 75B3FD42645CC32F317309D3 /* Pods-Thinh.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = A2S8X674GE;
+				DEVELOPMENT_TEAM = 8D5SZ9A5H3;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Thinh/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coderschool.Thinh;
@@ -351,7 +359,11 @@
 			baseConfigurationReference = 72B5C06EECD187D2F8E9B840 /* Pods-Thinh.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = A2S8X674GE;
+				DEVELOPMENT_TEAM = 8D5SZ9A5H3;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Thinh/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coderschool.Thinh;
@@ -379,6 +391,7 @@
 				94C71F111E7444E400D63A95 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

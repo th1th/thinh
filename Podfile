@@ -7,5 +7,11 @@ target 'Thinh' do
 
   # Pods for Thinh
   pod 'JSQMessagesViewController'
+  pod 'AFNetworking'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Core'
+  pod 'FacebookCore'
+  pod 'FacebookLogin'
+  pod 'FacebookShare'
   
 end
