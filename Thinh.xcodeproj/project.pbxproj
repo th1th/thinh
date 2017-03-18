@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		055024151E7C331700175FED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 055024141E7C331700175FED /* GoogleService-Info.plist */; };
 		055024231E7C467900175FED /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055024221E7C467900175FED /* LoginViewController.swift */; };
+		055024281E7CFA3700175FED /* utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055024271E7CFA3700175FED /* utilities.swift */; };
+		0550242D1E7D278500175FED /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0550242C1E7D278500175FED /* User.swift */; };
+		0550242F1E7D2D3900175FED /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0550242E1E7D2D3900175FED /* ChatListViewController.swift */; };
 		94C71F011E7444E400D63A95 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C71F001E7444E400D63A95 /* AppDelegate.swift */; };
 		94C71F061E7444E400D63A95 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94C71F041E7444E400D63A95 /* Main.storyboard */; };
 		94C71F081E7444E400D63A95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94C71F071E7444E400D63A95 /* Assets.xcassets */; };
@@ -19,6 +22,9 @@
 /* Begin PBXFileReference section */
 		055024141E7C331700175FED /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		055024221E7C467900175FED /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		055024271E7CFA3700175FED /* utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = utilities.swift; sourceTree = "<group>"; };
+		0550242C1E7D278500175FED /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		0550242E1E7D2D3900175FED /* ChatListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
 		72B5C06EECD187D2F8E9B840 /* Pods-Thinh.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Thinh.release.xcconfig"; path = "Pods/Target Support Files/Pods-Thinh/Pods-Thinh.release.xcconfig"; sourceTree = "<group>"; };
 		75B3FD42645CC32F317309D3 /* Pods-Thinh.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Thinh.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Thinh/Pods-Thinh.debug.xcconfig"; sourceTree = "<group>"; };
 		8B511A829B8797A0E0B0FD21 /* Pods_Thinh.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Thinh.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -42,6 +48,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		055024241E7CF77200175FED /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0550242C1E7D278500175FED /* User.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		055024291E7D070D00175FED /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
 		94C71EF41E7444E300D63A95 = {
 			isa = PBXGroup;
 			children = (
@@ -63,13 +84,17 @@
 		94C71EFF1E7444E400D63A95 /* Thinh */ = {
 			isa = PBXGroup;
 			children = (
+				055024291E7D070D00175FED /* API */,
+				055024241E7CF77200175FED /* Model */,
 				055024141E7C331700175FED /* GoogleService-Info.plist */,
 				94C71F001E7444E400D63A95 /* AppDelegate.swift */,
 				94C71F041E7444E400D63A95 /* Main.storyboard */,
+				0550242E1E7D2D3900175FED /* ChatListViewController.swift */,
 				94C71F071E7444E400D63A95 /* Assets.xcassets */,
 				94C71F091E7444E400D63A95 /* LaunchScreen.storyboard */,
 				94C71F0C1E7444E400D63A95 /* Info.plist */,
 				055024221E7C467900175FED /* LoginViewController.swift */,
+				055024271E7CFA3700175FED /* utilities.swift */,
 			);
 			path = Thinh;
 			sourceTree = "<group>";
@@ -218,6 +243,9 @@
 			files = (
 				055024231E7C467900175FED /* LoginViewController.swift in Sources */,
 				94C71F011E7444E400D63A95 /* AppDelegate.swift in Sources */,
+				0550242D1E7D278500175FED /* User.swift in Sources */,
+				055024281E7CFA3700175FED /* utilities.swift in Sources */,
+				0550242F1E7D2D3900175FED /* ChatListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
