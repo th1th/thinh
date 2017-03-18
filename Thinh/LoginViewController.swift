@@ -18,6 +18,8 @@ class LoginViewController: UIViewController {
     var accessToken: AccessToken?
     var user: FIRUser?
     var loginState = false
+    var fbUserID: String?
+    
     
     let defaults = UserDefaults.standard
     
@@ -57,7 +59,9 @@ extension LoginViewController{
                 print(error)
                 return
             }
-            self.updateAvatar((user?.photoURL)!)
+            if let fbUserID = self.defaults.string(forKey: "Thinh_FBuserID"){
+                self.updateAvatar(fbUserID)
+            }
             self.blurEffect()
         }
     }
@@ -75,20 +79,24 @@ extension LoginViewController{
             case .success(let grantedPermissions, let declinedPermissions, let accessToken):
                 print("[fb]: \(grantedPermissions)  \(declinedPermissions)")
                 print("[fb] Logged in!")
-                
+                print("[xx]\(accessToken.userId)")
+                self.defaults.set(accessToken.userId, forKey: "Thinh_FBuserID")
                 self.defaults.set(accessToken.authenticationToken, forKey: "Thinh_CurrentUser")
                 self.firebaseSigin(accessToken.authenticationToken)
             }
         }
     }
-    func updateAvatar(_ photoUrl: URL)  {
+    func updateAvatar(_ fbid: String?)  {
+        let photoUrl = URL(string: "https://graph.facebook.com/\(fbid!)/picture?type=large")
+        print("[xx]\(photoUrl)")
+
         self.avatarHeighContrain.constant = 100
         self.avatarWidthContrain.constant = 100
         self.avatarImage.layer.masksToBounds = true
         self.avatarImage.layer.cornerRadius = CGFloat(50)
         
-        self.avatarImage.setImageWith(photoUrl)
-        
+        self.avatarImage.setImageWith(photoUrl!)
+        self.avatarImage.sizeToFit()
         UIView.animate(withDuration: 1.5, delay: 0, usingSpringWithDamping: 0.1, initialSpringVelocity: 2, options: [], animations: { () -> Void in
             self.avatarImage.transform = self.avatarImage.transform.scaledBy(x: 1.1, y: 1.1)
         },completion: { (Bool) -> Void in

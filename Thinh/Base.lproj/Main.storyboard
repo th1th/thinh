@@ -31,7 +31,7 @@
                                     <action selector="onClickedLoginButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Cnz-mh-4E0"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IPd-fN-nrw">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IPd-fN-nrw">
                                 <rect key="frame" x="110" y="220" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="8yY-LQ-pbG"/>
