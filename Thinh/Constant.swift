@@ -30,6 +30,7 @@ struct FirebaseKey {
     static let phone = "phone"
     static let prefer = "prefer"
     static let name = "name"
+    static let id = "id"
     
     // conversation
     static let from = "from"
@@ -46,5 +47,5 @@ struct FirebaseKey {
     static let lastTime = "lastTime"
     static let lastMessage = "lastMessage"
     
-    let dics = ["first": "dat", "last": "tran"]
+    static let botMessage = "Congra! Everyone shold love thinh"
 }

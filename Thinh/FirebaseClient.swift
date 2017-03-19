@@ -10,6 +10,8 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 import FacebookLogin
+import FacebookCore
+import RxSwift
 
 class Api: NSObject {
     
@@ -20,6 +22,7 @@ class Api: NSObject {
     private var userFriendDb: FIRDatabaseReference
     private var userThinhDb: FIRDatabaseReference
     private var userConversationDb: FIRDatabaseReference
+    private let botId = "fuckFirebase"
     
     static private var _shared: Api!
     
@@ -39,14 +42,35 @@ class Api: NSObject {
         userThinhDb = database.child(FirebaseKey.userThinh)
         userConversationDb = database.child(FirebaseKey.userConversation)
     }
+    
+    private func userId() -> String? {
+        return FIRAuth.auth()?.currentUser?.uid
+    }
    
 
-    func login() {
-        // TODO
+    func login(accessToken: String) {
+        loginWithFacebook(accessToken: accessToken)
+            .observeOn(MainScheduler.instance)
+        
+    }
+
+    private func loginWithFacebook(accessToken: String) -> Observable<Bool> {
+        return Observable<Bool>.create({ (obsever) -> Disposable in
+            let credential = FIRFacebookAuthProvider.credential(withAccessToken: accessToken)
+            FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) in
+                guard error == nil else {
+                    obsever.onError(error!)
+                    return
+                }
+                obsever.onNext(true)
+                obsever.on(.next(true))
+            })
+            return Disposables.create()
+        })
     }
     
     func isLogin() -> Bool {
-        return FIRAuth.auth()?.currentUser != nil
+        return userId() != nil
     }
     
     func logout() {
@@ -56,20 +80,51 @@ class Api: NSObject {
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }
-//        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "didLogOut"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "didLogOut"), object: nil)
     }
     
-    
-    func getAllConversation() {
-        
+    func getAllConversation() -> Observable<[Conversation]> {
+       return Observable<[Conversation]>.create({ subcriber -> Disposable in
+            self.userConversationDb.child(self.userId()!).observe(.value, with: { snapshot in
+                print(snapshot)
+                
+            })
+            return Disposables.create()
+       })
     }
     
-    func getConversationById(id: ConversationId) {
-        
+    func createNewConversation(forUser: UserId, andUser: UserId) -> ConversationId {
+        let key = conversationDb.childByAutoId().key
+        sendBotMessage(id: key, user1: forUser, user2: andUser)
+        return key
     }
     
-    func sendMessage(id: ConversationId, message: String) {
-        
+    func getMessageOfConversation(id: ConversationId) -> Observable<[Message]> {
+        return Observable<[Message]>.create { (subcriber) -> Disposable in
+            self.conversationDb.child(id).observe(.value, with: { snapshot in
+                print(snapshot)
+            })
+            return Disposables.create()
+        }
+    }
+    
+    func sendBotMessage(id: ConversationId, user1: UserId, user2: UserId) -> MessageId {
+        let message = Message(from: botId, to: user1, message: FirebaseKey.botMessage)
+        // set this for bot message only
+        message.user1 = user1
+        message.user2 = user2
+        return sendMessage(id: id, message: message)
+    }
+    
+    func sendMessage(id: ConversationId, message: Message) -> MessageId {
+        let key = conversationDb.child(id).childByAutoId().key
+        // create new message
+        conversationDb.child(id).child(key).setValue(message.toJSON())
+        // update user conversation
+        let conversation = Conversation(id: id, message: message.message, time: message.date)
+        userConversationDb.child(message.user1!).child(message.user2!).setValue(conversation.toJSON())
+        userConversationDb.child(message.user2!).child(message.user2!).setValue(conversation.toJSON())
+        return key
     }
     
     func getStrangerList() {
@@ -80,8 +135,40 @@ class Api: NSObject {
         
     }
     
+    func createMockData() {
+        deleteDb()
+        let users = createMockUser()
+        let id = createMockConversation(users: users)
+        createMockMessage(users: users, id: id)
+    }
     
+    private func deleteDb() {
+        database.setValue(nil)
+    }
     
+    private func createMockUser()  -> [User] {
+        let users = User.mock()
+        for user in users {
+            let key = userDb.childByAutoId().key
+            user.withId(id: key)
+            userDb.child(key).setValue(user.toJSON()!)
+        }
+        return users
+    }
     
-
+    private func createMockConversation(users: [User]) -> ConversationId {
+        return createNewConversation(forUser: users[0].id!, andUser: users[1].id!)
+        
+    }
+    
+    private func createMockMessage(users: [User], id: ConversationId) {
+        let messages = Message.mock(from: users[0].id!, to: users[1].id!)
+        for message in messages {
+            sendMessage(id: id, message: message)
+        }
+    }
+    
+    private func createMockThinh() {
+        
+    }
 }

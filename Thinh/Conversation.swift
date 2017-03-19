@@ -10,7 +10,7 @@ import UIKit
 import Gloss
 
 public typealias ConversationId = String
-class Conversation: NSObject, Decodable {
+class Conversation: NSObject, Glossy {
     
     var conversation: ConversationId?
     var lastMessage: String?
@@ -21,5 +21,30 @@ class Conversation: NSObject, Decodable {
         lastMessage = FirebaseKey.lastMessage <~~ json
         lastTime = FirebaseKey.lastTime <~~ json
     }
+    
+    func toJSON() -> JSON? {
+        return jsonify([
+            FirebaseKey.conversation ~~> conversation,
+            FirebaseKey.lastMessage ~~> lastMessage,
+            FirebaseKey.lastTime ~~> lastTime
+    ])
+    }
+    
+    init(id: ConversationId?, message: String?, time: TimeInterval?) {
+        self.conversation = id
+        self.lastMessage = message
+        self.lastTime = time
+    }
+    
+    
+//    func withLastMessage(_ message: String) -> Conversation {
+//        self.lastMessage = message
+//        return self
+//    }
+//    
+//    func withLastTime(_ time: TimeInterval) -> Conversation {
+//        self.lastTime = time
+//        return self
+//    }
 }
 

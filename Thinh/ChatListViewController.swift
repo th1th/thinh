@@ -18,7 +18,7 @@ class ChatListViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        Api.shared().createMockData()
         // Do any additional setup after loading the view.
     }
 
@@ -54,4 +54,5 @@ extension ChatListViewController{
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "didLogOut"), object: nil)
         
     }
+    
 }
