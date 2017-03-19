@@ -123,7 +123,7 @@ class Api: NSObject {
         // update user conversation
         let conversation = Conversation(id: id, message: message.message, time: message.date)
         userConversationDb.child(message.user1!).child(message.user2!).setValue(conversation.toJSON())
-        userConversationDb.child(message.user2!).child(message.user2!).setValue(conversation.toJSON())
+        userConversationDb.child(message.user2!).child(message.user1!).setValue(conversation.toJSON())
         return key
     }
     

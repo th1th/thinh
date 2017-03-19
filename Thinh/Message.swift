@@ -37,7 +37,7 @@ class Message: NSObject, Glossy {
     }
     
     init(from: UserId, to: UserId, message: String) {
-        date = NSDate().timeIntervalSince1970
+        date = NSDate().timeIntervalSince1970  * 1000
         self.from = from
         self.user1 = from
         self.to = to
