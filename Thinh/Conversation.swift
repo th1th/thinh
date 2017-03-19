@@ -15,18 +15,21 @@ class Conversation: NSObject, Glossy {
     var conversation: ConversationId?
     var lastMessage: String?
     var lastTime: TimeInterval?
+    var toUser: UserId?
     
     required init?(json: JSON) {
         conversation = FirebaseKey.conversation <~~ json
         lastMessage = FirebaseKey.lastMessage <~~ json
         lastTime = FirebaseKey.lastTime <~~ json
+        toUser = FirebaseKey.user <~~ json
     }
     
     func toJSON() -> JSON? {
         return jsonify([
             FirebaseKey.conversation ~~> conversation,
             FirebaseKey.lastMessage ~~> lastMessage,
-            FirebaseKey.lastTime ~~> lastTime
+            FirebaseKey.lastTime ~~> lastTime,
+            FirebaseKey.user ~~> toUser
     ])
     }
     
@@ -36,15 +39,9 @@ class Conversation: NSObject, Glossy {
         self.lastTime = time
     }
     
-    
-//    func withLastMessage(_ message: String) -> Conversation {
-//        self.lastMessage = message
-//        return self
-//    }
-//    
-//    func withLastTime(_ time: TimeInterval) -> Conversation {
-//        self.lastTime = time
-//        return self
-//    }
+    func withUser(_ user: UserId) -> Conversation {
+        self.toUser = user
+        return self
+    }
 }
 
