@@ -41,7 +41,8 @@ class User: NSObject, Glossy {
             FirebaseKey.gender ~~> gender,
             FirebaseKey.name ~~> name,
             FirebaseKey.phone ~~> phone,
-            FirebaseKey.prefer ~~> prefer])
+            FirebaseKey.prefer ~~> prefer,
+            FirebaseKey.id ~~> id])
     }
     
     override init() {

@@ -12,17 +12,18 @@ import FirebaseDatabase
 import FacebookLogin
 import FacebookCore
 import RxSwift
+import Gloss
 
 class Api: NSObject {
     
-    private var database: FIRDatabaseReference
-    private var userDb: FIRDatabaseReference
-    private var thinhDb: FIRDatabaseReference
-    private var conversationDb: FIRDatabaseReference
-    private var userFriendDb: FIRDatabaseReference
-    private var userThinhDb: FIRDatabaseReference
-    private var userConversationDb: FIRDatabaseReference
-    private let botId = "fuckFirebase"
+    fileprivate var database: FIRDatabaseReference
+    fileprivate var userDb: FIRDatabaseReference
+    fileprivate var thinhDb: FIRDatabaseReference
+    fileprivate var conversationDb: FIRDatabaseReference
+    fileprivate var userFriendDb: FIRDatabaseReference
+    fileprivate var userThinhDb: FIRDatabaseReference
+    fileprivate var userConversationDb: FIRDatabaseReference
+    fileprivate let botId = "fuckFirebase"
     
     static private var _shared: Api!
     
@@ -43,7 +44,7 @@ class Api: NSObject {
         userConversationDb = database.child(FirebaseKey.userConversation)
     }
     
-    private func userId() -> String? {
+    fileprivate func userId() -> String? {
         return FIRAuth.auth()?.currentUser?.uid
     }
    
@@ -54,7 +55,7 @@ class Api: NSObject {
         
     }
 
-    private func loginWithFacebook(accessToken: String) -> Observable<Bool> {
+    fileprivate func loginWithFacebook(accessToken: String) -> Observable<Bool> {
         return Observable<Bool>.create({ (obsever) -> Disposable in
             let credential = FIRFacebookAuthProvider.credential(withAccessToken: accessToken)
             FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) in
@@ -83,6 +84,30 @@ class Api: NSObject {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "didLogOut"), object: nil)
     }
     
+    func getUser(id: UserId) -> Observable<User> {
+        return Observable.create({ (subcriber) -> Disposable in
+            self.userDb.child(id).observeSingleEvent(of: .value, with: { (snapshot) in
+                guard let json = snapshot.value as? JSON else {
+                    subcriber.onError(ThinhError.unknownUser)
+                    return
+                }
+                
+                guard let user = User(json: json) else {
+                    subcriber.onError(ThinhError.unknownUser)
+                    return
+                }
+                
+                subcriber.onNext(user)
+                
+            })
+            return Disposables.create()
+        })
+    }
+    
+    func getCurrentUser() -> Observable<User> {
+        return getUser(id: userId()!)
+    }
+    
     func getAllConversation() -> Observable<[Conversation]> {
        return Observable<[Conversation]>.create({ subcriber -> Disposable in
             self.userConversationDb.child(self.userId()!).observe(.value, with: { snapshot in
@@ -96,6 +121,7 @@ class Api: NSObject {
     func createNewConversation(forUser: UserId, andUser: UserId) -> ConversationId {
         let key = conversationDb.childByAutoId().key
         sendBotMessage(id: key, user1: forUser, user2: andUser)
+        createFriendRelationship(between: forUser, and: andUser)
         return key
     }
     
@@ -127,24 +153,112 @@ class Api: NSObject {
         return key
     }
     
-    func getStrangerList() {
+//    func getStrangerList() -> Observable<[UserId]> {
+//        all.filter({ (user) -> Bool in
+//            var result = true
+//            friends.forEach({ (friend) in
+//                if user == friend {
+//                    result = false
+//                }
+//                
+//            })
+//            return result
+//            
+//        })
+        
+//    }
+    
+    func getAllUser() -> Observable<[UserId]> {
+        return Observable<[UserId]>.create({ (subcriber) -> Disposable in
+            self.userFriendDb.observeSingleEvent(of: .value, with: { (snapshot) in
+                guard let data = snapshot.value as? [UserId: Any] else {
+                    subcriber.onError(ThinhError.unknownUser) // FIXME
+                    return
+                }
+                var users = [UserId]()
+                for datum in data {
+                    users.append(datum.key)
+                }
+                subcriber.onNext(users)
+                
+            })
+            return Disposables.create()
+        })
+    }
+    
+    func getMyFriendList() -> Observable<[UserId]> {
+       return getFriendList(id: userId()!)
+    }
+    
+    func getFriendList(id: UserId) -> Observable<[UserId]> {
+        return Observable<[UserId]>.create { (subcriber) -> Disposable in
+            self.userFriendDb.child(id).observeSingleEvent(of: .value, with: { (snapshot) in
+                guard let data = snapshot.value as? [UserId: TimeInterval] else {
+                    subcriber.onError(ThinhError.unknownUser)   // FIXME
+                    return
+                }
+                var users = [UserId]()
+                for datum in data {
+                    users.append(datum.key)
+                }
+                subcriber.onNext(users)
+            })
+            
+            return Disposables.create()
+        }
         
     }
     
-    func getFriendList() {
-        
+    fileprivate func createFriendRelationship(between user1: UserId, and user2: UserId) {
+        let current = Date.currentTimeInMillis()
+        userFriendDb.child(user1).child(user2).setValue(current)
+        userFriendDb.child(user2).child(user1).setValue(current)
     }
     
+    fileprivate func checkFriendRelationship(between user1: UserId, and user2: UserId) -> Observable<Bool> {
+        return Observable<Bool>.create { (subcriber) -> Disposable in
+            self.userFriendDb.child(user1).observeSingleEvent(of: .value, with: { (snapshot) in
+                subcriber.onNext(snapshot.hasChild(user2))
+            })
+            return Disposables.create()
+        }
+    }
+    
+    func stop() {
+        database.removeAllObservers()
+    }
+    
+    
+}
+
+
+extension Api {
     func createMockData() {
         deleteDb()
         let users = createMockUser()
-        let id = createMockConversation(users: users)
-        createMockMessage(users: users, id: id)
+        for i in 0..<users.count - 1 {
+            let id = createMockConversation(users: users, i: i, j: i + 1)
+            createMockMessage(users: users, id: id, i: i, j: i + 1)
+        }
+        getFriendList(id: users[1].id!)
+        checkFriendRelationship(between: users[1].id!, and: users[0].id!)
+            .subscribe(onNext: { (friend) in
+                if !friend {
+                    print("This should be friend")
+                }
+            })
+        checkFriendRelationship(between: users[1].id!, and: users[3].id!)
+            .subscribe(onNext: { (friend) in
+                if friend {
+                    print("This should not be friend")
+                }
+            })
     }
     
     private func deleteDb() {
         database.setValue(nil)
     }
+    
     
     private func createMockUser()  -> [User] {
         let users = User.mock()
@@ -156,19 +270,23 @@ class Api: NSObject {
         return users
     }
     
-    private func createMockConversation(users: [User]) -> ConversationId {
-        return createNewConversation(forUser: users[0].id!, andUser: users[1].id!)
-        
+    
+    private func createMockConversation(users: [User], i: Int, j: Int) -> ConversationId {
+        return createNewConversation(forUser: users[i].id!, andUser: users[j].id!)
     }
     
-    private func createMockMessage(users: [User], id: ConversationId) {
-        let messages = Message.mock(from: users[0].id!, to: users[1].id!)
+    private func createMockMessage(users: [User], id: ConversationId, i: Int, j: Int) {
+        let messages = Message.mock(from: users[i].id!, to: users[j].id!)
         for message in messages {
             sendMessage(id: id, message: message)
         }
     }
     
     private func createMockThinh() {
+        
+    }
+    
+    private func test() {
         
     }
 }

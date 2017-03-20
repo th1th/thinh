@@ -49,3 +49,8 @@ struct FirebaseKey {
     
     static let botMessage = "Congra! Everyone shold love thinh"
 }
+
+enum ThinhError: Error {
+    case unknownUser
+    // TODO: more error
+}
