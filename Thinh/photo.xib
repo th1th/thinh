@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PhotoView">
+            <connections>
+                <outlet property="contentView" destination="iN0-l3-epB" id="lIe-Jr-sXm"/>
+                <outlet property="imageView" destination="xG6-8C-dS8" id="lo9-Xe-HIm"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xG6-8C-dS8">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="597"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2h2-j7-ioX">
+                    <rect key="frame" x="112" y="607" width="150" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="R24-HN-a7V"/>
+                        <constraint firstAttribute="width" constant="150" id="eva-dA-V84"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <connections>
+                        <action selector="onClickedThinh:" destination="-1" eventType="touchUpInside" id="7bw-Da-cQ7"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="xG6-8C-dS8" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="0pA-eC-wSH"/>
+                <constraint firstItem="2h2-j7-ioX" firstAttribute="top" secondItem="xG6-8C-dS8" secondAttribute="bottom" constant="10" id="3nb-Fn-Lox"/>
+                <constraint firstAttribute="trailing" secondItem="xG6-8C-dS8" secondAttribute="trailing" id="85g-q2-PrI"/>
+                <constraint firstAttribute="bottom" secondItem="2h2-j7-ioX" secondAttribute="bottom" constant="10" id="Pgf-Zs-yAi"/>
+                <constraint firstItem="xG6-8C-dS8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="f1F-xb-7Fg"/>
+                <constraint firstItem="2h2-j7-ioX" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="mHU-IR-qkd"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

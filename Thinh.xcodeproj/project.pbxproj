@@ -12,6 +12,9 @@
 		055024281E7CFA3700175FED /* utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055024271E7CFA3700175FED /* utilities.swift */; };
 		0550242D1E7D278500175FED /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0550242C1E7D278500175FED /* User.swift */; };
 		0550242F1E7D2D3900175FED /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0550242E1E7D2D3900175FED /* ChatListViewController.swift */; };
+		055024311E7EE65A00175FED /* photo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 055024301E7EE65A00175FED /* photo.xib */; };
+		055024331E7EE81B00175FED /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055024321E7EE81B00175FED /* PhotoView.swift */; };
+		055024351E7EE9F700175FED /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055024341E7EE9F700175FED /* DetailViewController.swift */; };
 		948C1F2B1E7E267C000F20E5 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948C1F2A1E7E267C000F20E5 /* Constant.swift */; };
 		948C1F2D1E7E2A88000F20E5 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948C1F2C1E7E2A88000F20E5 /* Message.swift */; };
 		948C1F2F1E7E2C7D000F20E5 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948C1F2E1E7E2C7D000F20E5 /* Conversation.swift */; };
@@ -29,6 +32,9 @@
 		055024271E7CFA3700175FED /* utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = utilities.swift; sourceTree = "<group>"; };
 		0550242C1E7D278500175FED /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0550242E1E7D2D3900175FED /* ChatListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
+		055024301E7EE65A00175FED /* photo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = photo.xib; sourceTree = "<group>"; };
+		055024321E7EE81B00175FED /* PhotoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
+		055024341E7EE9F700175FED /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		72B5C06EECD187D2F8E9B840 /* Pods-Thinh.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Thinh.release.xcconfig"; path = "Pods/Target Support Files/Pods-Thinh/Pods-Thinh.release.xcconfig"; sourceTree = "<group>"; };
 		75B3FD42645CC32F317309D3 /* Pods-Thinh.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Thinh.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Thinh/Pods-Thinh.debug.xcconfig"; sourceTree = "<group>"; };
 		8B511A829B8797A0E0B0FD21 /* Pods_Thinh.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Thinh.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +99,9 @@
 			children = (
 				055024221E7C467900175FED /* LoginViewController.swift */,
 				94C71F041E7444E400D63A95 /* Main.storyboard */,
+				055024341E7EE9F700175FED /* DetailViewController.swift */,
+				055024301E7EE65A00175FED /* photo.xib */,
+				055024321E7EE81B00175FED /* PhotoView.swift */,
 				0550242E1E7D2D3900175FED /* ChatListViewController.swift */,
 			);
 			name = Views;
@@ -210,6 +219,7 @@
 				94C71F0B1E7444E400D63A95 /* LaunchScreen.storyboard in Resources */,
 				94C71F081E7444E400D63A95 /* Assets.xcassets in Resources */,
 				055024151E7C331700175FED /* GoogleService-Info.plist in Resources */,
+				055024311E7EE65A00175FED /* photo.xib in Resources */,
 				94C71F061E7444E400D63A95 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -269,9 +279,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				055024351E7EE9F700175FED /* DetailViewController.swift in Sources */,
 				948C1F2F1E7E2C7D000F20E5 /* Conversation.swift in Sources */,
 				055024231E7C467900175FED /* LoginViewController.swift in Sources */,
 				94C71F011E7444E400D63A95 /* AppDelegate.swift in Sources */,
+				055024331E7EE81B00175FED /* PhotoView.swift in Sources */,
 				0550242D1E7D278500175FED /* User.swift in Sources */,
 				055024281E7CFA3700175FED /* utilities.swift in Sources */,
 				948C1F311E7E2E69000F20E5 /* FirebaseClient.swift in Sources */,
