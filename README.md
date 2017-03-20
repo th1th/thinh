@@ -17,7 +17,7 @@ The following **required** functionality is completed:
 - [ ] Login, signup page
    - [ ] Login with facebook.
    - [ ] Sign up with email, google (optional).
-   - [ ] Import contact from contact/facebook.
+   - [ ] Import contact from contact/facebook (optional).
    - [ ] After user signup, prompt to get user description
 - [ ] Profile page
    - [ ] Contains the user header view
