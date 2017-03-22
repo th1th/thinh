@@ -191,7 +191,7 @@
 				TargetAttributes = {
 					94C71EFC1E7444E300D63A95 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = A2S8X674GE;
+						DevelopmentTeam = 3ZZSFA3SW7;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -417,14 +417,15 @@
 			baseConfigurationReference = 75B3FD42645CC32F317309D3 /* Pods-Thinh.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = A2S8X674GE;
+				DEVELOPMENT_TEAM = 3ZZSFA3SW7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Thinh/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.coderschool.Thinh;
+				PRODUCT_BUNDLE_IDENTIFIER = com.coderschool.Thinh123;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -435,14 +436,15 @@
 			baseConfigurationReference = 72B5C06EECD187D2F8E9B840 /* Pods-Thinh.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = A2S8X674GE;
+				DEVELOPMENT_TEAM = 3ZZSFA3SW7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Thinh/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.coderschool.Thinh;
+				PRODUCT_BUNDLE_IDENTIFIER = com.coderschool.Thinh123;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
