@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Login View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="Thinh" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Sign In  #1" translatesAutoresizingMaskIntoConstraints="NO" id="s6l-K2-f5z">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yzw-wm-kSc">
+                                <rect key="frame" x="22" y="406" width="276" height="50"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <connections>
+                                    <action selector="onClickedLoginButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Cnz-mh-4E0"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IPd-fN-nrw">
+                                <rect key="frame" x="110" y="220" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="8yY-LQ-pbG"/>
+                                    <constraint firstAttribute="width" constant="100" id="xnC-wd-tyn"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="s6l-K2-f5z" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="3vY-jp-Mp5"/>
+                            <constraint firstItem="s6l-K2-f5z" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="7KW-6h-nZx"/>
+                            <constraint firstItem="s6l-K2-f5z" firstAttribute="top" secondItem="IPd-fN-nrw" secondAttribute="bottom" constant="-300" id="BW7-xS-abz"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="s6l-K2-f5z" secondAttribute="bottom" id="MGW-3j-D16"/>
+                            <constraint firstAttribute="trailing" secondItem="s6l-K2-f5z" secondAttribute="trailing" id="mIK-ra-AgG"/>
+                            <constraint firstItem="IPd-fN-nrw" firstAttribute="centerX" secondItem="s6l-K2-f5z" secondAttribute="centerX" id="x4M-6i-zDt"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="avatarHeighContrain" destination="8yY-LQ-pbG" id="evQ-Dm-yfe"/>
+                        <outlet property="avatarImage" destination="IPd-fN-nrw" id="0w8-sK-W5M"/>
+                        <outlet property="avatarWidthContrain" destination="xnC-wd-tyn" id="iin-JY-rag"/>
+                        <outlet property="backgroundImage" destination="s6l-K2-f5z" id="d2D-ai-rGH"/>
+                        <segue destination="sbT-7v-pef" kind="presentation" identifier="logedIn" id="TsO-c5-qK4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="86.25" y="34.859154929577464"/>
+        </scene>
+        <!--Chat List View Controller-->
+        <scene sceneID="dAU-LM-B4W">
+            <objects>
+                <viewController id="m1F-B3-tqS" customClass="ChatListViewController" customModule="Thinh" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZG2-ew-iLo"/>
+                        <viewControllerLayoutGuide type="bottom" id="TDB-2e-ak9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mg6-J5-g0Y">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Vj3-Ap-vU2">
+                        <barButtonItem key="leftBarButtonItem" title="Sign Out" id="vaM-7f-1C9">
+                            <connections>
+                                <action selector="onClickedSignOut:" destination="m1F-B3-tqS" id="3Jk-Ki-OnV"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kMa-WO-h0L" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1946.25" y="-65.492957746478879"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="q0M-Vz-y3A">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sbT-7v-pef" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="A09-Kg-Stj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="m1F-B3-tqS" kind="relationship" relationship="rootViewController" id="PiM-B8-o88"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="isI-iY-RPc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="948.75" y="-65.492957746478879"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Sign In  #1" width="750" height="1334"/>
+    </resources>
+</document>
