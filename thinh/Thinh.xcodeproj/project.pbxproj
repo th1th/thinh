@@ -14,20 +14,17 @@
 		055024281E7CFA3700175FED /* utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055024271E7CFA3700175FED /* utilities.swift */; };
 		0550242D1E7D278500175FED /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0550242C1E7D278500175FED /* User.swift */; };
 		0550242F1E7D2D3900175FED /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0550242E1E7D2D3900175FED /* ChatListViewController.swift */; };
-<<<<<<< HEAD
 		0555D5B71E82CAF60058F9CD /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0555D5B61E82CAF60058F9CD /* UserDetailViewController.swift */; };
 		0555D5BB1E82CB520058F9CD /* ThinhList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0555D5BA1E82CB520058F9CD /* ThinhList.storyboard */; };
 		0555D5BD1E82CB710058F9CD /* ThinhListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0555D5BC1E82CB710058F9CD /* ThinhListViewController.swift */; };
 		0555D5BF1E82DE1C0058F9CD /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0555D5BE1E82DE1C0058F9CD /* Setting.storyboard */; };
 		0555D5C11E82DE390058F9CD /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0555D5C01E82DE390058F9CD /* SettingViewController.swift */; };
-=======
 
 		1534E6B11E82CA4400E62BAD /* Conversation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1534E6B01E82CA4400E62BAD /* Conversation.storyboard */; };
 		1534E6B51E82D25900E62BAD /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1534E6B41E82D25900E62BAD /* Chat.storyboard */; };
 		1534E6B91E82D2A000E62BAD /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1534E6B81E82D2A000E62BAD /* ConversationViewController.swift */; };
 		1534E6BB1E82D2B700E62BAD /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1534E6BA1E82D2B700E62BAD /* ChatViewController.swift */; };
 
->>>>>>> 66718512e78d4a57da04cbf799d014959e30b866
 		05B03C8F1E82BFDA00106C08 /* UserDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05B03C8E1E82BFDA00106C08 /* UserDetail.storyboard */; };
 
 		941469B91E7F542C00CB3732 /* Date_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941469B81E7F542C00CB3732 /* Date_extension.swift */; };
@@ -50,20 +47,17 @@
 		055024271E7CFA3700175FED /* utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = utilities.swift; sourceTree = "<group>"; };
 		0550242C1E7D278500175FED /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0550242E1E7D2D3900175FED /* ChatListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
-<<<<<<< HEAD
 		0555D5B61E82CAF60058F9CD /* UserDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
 		0555D5BA1E82CB520058F9CD /* ThinhList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ThinhList.storyboard; sourceTree = "<group>"; };
 		0555D5BC1E82CB710058F9CD /* ThinhListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThinhListViewController.swift; sourceTree = "<group>"; };
 		0555D5BE1E82DE1C0058F9CD /* Setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		0555D5C01E82DE390058F9CD /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
-=======
 
 		1534E6B01E82CA4400E62BAD /* Conversation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Conversation.storyboard; sourceTree = "<group>"; };
 		1534E6B41E82D25900E62BAD /* Chat.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
 		1534E6B81E82D2A000E62BAD /* ConversationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		1534E6BA1E82D2B700E62BAD /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 
->>>>>>> 66718512e78d4a57da04cbf799d014959e30b866
 		05B03C8E1E82BFDA00106C08 /* UserDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserDetail.storyboard; sourceTree = "<group>"; };
 
 		72B5C06EECD187D2F8E9B840 /* Pods-Thinh.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Thinh.release.xcconfig"; path = "Pods/Target Support Files/Pods-Thinh/Pods-Thinh.release.xcconfig"; sourceTree = "<group>"; };
@@ -148,13 +142,11 @@
 		948C1F331E7E3623000F20E5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
+
 				0555D5BA1E82CB520058F9CD /* ThinhList.storyboard */,
 				0555D5BC1E82CB710058F9CD /* ThinhListViewController.swift */,
-=======
 				1534E6AF1E82CA3400E62BAD /* Conversation */,
 				1534E6AE1E82CA2900E62BAD /* Chat */,
->>>>>>> 66718512e78d4a57da04cbf799d014959e30b866
 				055024221E7C467900175FED /* LoginViewController.swift */,
 				94C71F041E7444E400D63A95 /* Main.storyboard */,
 				0550242E1E7D2D3900175FED /* ChatListViewController.swift */,
@@ -348,11 +340,8 @@
 				0555D5BD1E82CB710058F9CD /* ThinhListViewController.swift in Sources */,
 				948C1F2F1E7E2C7D000F20E5 /* Conversation.swift in Sources */,
 				055024231E7C467900175FED /* LoginViewController.swift in Sources */,
-<<<<<<< HEAD
 				0555D5B71E82CAF60058F9CD /* UserDetailViewController.swift in Sources */,
-=======
 				1534E6B91E82D2A000E62BAD /* ConversationViewController.swift in Sources */,
->>>>>>> 66718512e78d4a57da04cbf799d014959e30b866
 				941469B91E7F542C00CB3732 /* Date_extension.swift in Sources */,
 				0555D5C11E82DE390058F9CD /* SettingViewController.swift in Sources */,
 				94C71F011E7444E400D63A95 /* AppDelegate.swift in Sources */,
