@@ -412,7 +412,7 @@
 				);
 				INFOPLIST_FILE = Thinh/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.coderschool.Thinh;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codee.Thinh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -430,7 +430,7 @@
 				);
 				INFOPLIST_FILE = Thinh/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.coderschool.Thinh;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codee.Thinh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

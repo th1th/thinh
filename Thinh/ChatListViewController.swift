@@ -18,8 +18,11 @@ class ChatListViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        Api.shared().createMockData()
         // Do any additional setup after loading the view.
+        let disposable = Api.shared().getAllConversation().subscribe(onNext: { (conversations) in
+            print(conversations)
+        })
+        disposable.dispose()
     }
 
     override func didReceiveMemoryWarning() {

@@ -110,8 +110,18 @@ class Api: NSObject {
     
     func getAllConversation() -> Observable<[Conversation]> {
        return Observable<[Conversation]>.create({ subcriber -> Disposable in
+            // TODO: child event
             self.userConversationDb.child(self.userId()!).observe(.value, with: { snapshot in
                 print(snapshot)
+                guard let data = snapshot.value as? [JSON] else {
+                    subcriber.onError(ThinhError.unknownUser)
+                    return
+                }
+                var conversations = [Conversation]()
+                for datum in data {
+                    conversations.append(Conversation(json: datum)!)
+                }
+                subcriber.onNext(conversations)
                 
             })
             return Disposables.create()
@@ -127,6 +137,7 @@ class Api: NSObject {
     
     func getMessageOfConversation(id: ConversationId) -> Observable<[Message]> {
         return Observable<[Message]>.create { (subcriber) -> Disposable in
+            // TODO: child event
             self.conversationDb.child(id).observe(.value, with: { snapshot in
                 print(snapshot)
             })
@@ -153,20 +164,20 @@ class Api: NSObject {
         return key
     }
     
-//    func getStrangerList() -> Observable<[UserId]> {
-//        all.filter({ (user) -> Bool in
-//            var result = true
-//            friends.forEach({ (friend) in
-//                if user == friend {
-//                    result = false
-//                }
-//                
-//            })
-//            return result
-//            
-//        })
+    func getStrangerList() -> Observable<[UserId]> {
+        all.filter({ (user) -> Bool in
+            var result = true
+            friends.forEach({ (friend) in
+                if user == friend {
+                    result = false
+                }
+                
+            })
+            return result
+            
+        })
         
-//    }
+    }
     
     func getAllUser() -> Observable<[UserId]> {
         return Observable<[UserId]>.create({ (subcriber) -> Disposable in
@@ -206,7 +217,7 @@ class Api: NSObject {
             
             return Disposables.create()
         }
-        
+       
     }
     
     fileprivate func createFriendRelationship(between user1: UserId, and user2: UserId) {
