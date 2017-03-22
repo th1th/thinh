@@ -14,6 +14,10 @@
 		055024281E7CFA3700175FED /* utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055024271E7CFA3700175FED /* utilities.swift */; };
 		0550242D1E7D278500175FED /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0550242C1E7D278500175FED /* User.swift */; };
 		0550242F1E7D2D3900175FED /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0550242E1E7D2D3900175FED /* ChatListViewController.swift */; };
+		1534E6B11E82CA4400E62BAD /* Conversation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1534E6B01E82CA4400E62BAD /* Conversation.storyboard */; };
+		1534E6B51E82D25900E62BAD /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1534E6B41E82D25900E62BAD /* Chat.storyboard */; };
+		1534E6B91E82D2A000E62BAD /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1534E6B81E82D2A000E62BAD /* ConversationViewController.swift */; };
+		1534E6BB1E82D2B700E62BAD /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1534E6BA1E82D2B700E62BAD /* ChatViewController.swift */; };
 		941469B91E7F542C00CB3732 /* Date_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941469B81E7F542C00CB3732 /* Date_extension.swift */; };
 		948C1F2B1E7E267C000F20E5 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948C1F2A1E7E267C000F20E5 /* Constant.swift */; };
 		948C1F2D1E7E2A88000F20E5 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948C1F2C1E7E2A88000F20E5 /* Message.swift */; };
@@ -34,6 +38,10 @@
 		055024271E7CFA3700175FED /* utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = utilities.swift; sourceTree = "<group>"; };
 		0550242C1E7D278500175FED /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0550242E1E7D2D3900175FED /* ChatListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
+		1534E6B01E82CA4400E62BAD /* Conversation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Conversation.storyboard; sourceTree = "<group>"; };
+		1534E6B41E82D25900E62BAD /* Chat.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
+		1534E6B81E82D2A000E62BAD /* ConversationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
+		1534E6BA1E82D2B700E62BAD /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		72B5C06EECD187D2F8E9B840 /* Pods-Thinh.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Thinh.release.xcconfig"; path = "Pods/Target Support Files/Pods-Thinh/Pods-Thinh.release.xcconfig"; sourceTree = "<group>"; };
 		75B3FD42645CC32F317309D3 /* Pods-Thinh.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Thinh.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Thinh/Pods-Thinh.debug.xcconfig"; sourceTree = "<group>"; };
 		8B511A829B8797A0E0B0FD21 /* Pods_Thinh.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Thinh.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,6 +88,24 @@
 			name = API;
 			sourceTree = "<group>";
 		};
+		1534E6AE1E82CA2900E62BAD /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				1534E6B41E82D25900E62BAD /* Chat.storyboard */,
+				1534E6BA1E82D2B700E62BAD /* ChatViewController.swift */,
+			);
+			name = Chat;
+			sourceTree = "<group>";
+		};
+		1534E6AF1E82CA3400E62BAD /* Conversation */ = {
+			isa = PBXGroup;
+			children = (
+				1534E6B01E82CA4400E62BAD /* Conversation.storyboard */,
+				1534E6B81E82D2A000E62BAD /* ConversationViewController.swift */,
+			);
+			name = Conversation;
+			sourceTree = "<group>";
+		};
 		948C1F321E7E360A000F20E5 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +124,8 @@
 		948C1F331E7E3623000F20E5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1534E6AF1E82CA3400E62BAD /* Conversation */,
+				1534E6AE1E82CA2900E62BAD /* Chat */,
 				055024221E7C467900175FED /* LoginViewController.swift */,
 				94C71F041E7444E400D63A95 /* Main.storyboard */,
 				0550242E1E7D2D3900175FED /* ChatListViewController.swift */,
@@ -188,7 +216,7 @@
 				TargetAttributes = {
 					94C71EFC1E7444E300D63A95 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 3ZZSFA3SW7;
+						DevelopmentTeam = WC64T22ANZ;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -216,9 +244,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1534E6B51E82D25900E62BAD /* Chat.storyboard in Resources */,
 				94C71F0B1E7444E400D63A95 /* LaunchScreen.storyboard in Resources */,
 				053E816C1E8032E50002B224 /* UserDetailView.xib in Resources */,
 				94C71F081E7444E400D63A95 /* Assets.xcassets in Resources */,
+				1534E6B11E82CA4400E62BAD /* Conversation.storyboard in Resources */,
 				055024151E7C331700175FED /* GoogleService-Info.plist in Resources */,
 				94C71F061E7444E400D63A95 /* Main.storyboard in Resources */,
 			);
@@ -281,12 +311,14 @@
 			files = (
 				948C1F2F1E7E2C7D000F20E5 /* Conversation.swift in Sources */,
 				055024231E7C467900175FED /* LoginViewController.swift in Sources */,
+				1534E6B91E82D2A000E62BAD /* ConversationViewController.swift in Sources */,
 				941469B91E7F542C00CB3732 /* Date_extension.swift in Sources */,
 				94C71F011E7444E400D63A95 /* AppDelegate.swift in Sources */,
 				0550242D1E7D278500175FED /* User.swift in Sources */,
 				055024281E7CFA3700175FED /* utilities.swift in Sources */,
 				948C1F311E7E2E69000F20E5 /* FirebaseClient.swift in Sources */,
 				0550242F1E7D2D3900175FED /* ChatListViewController.swift in Sources */,
+				1534E6BB1E82D2B700E62BAD /* ChatViewController.swift in Sources */,
 				948C1F2B1E7E267C000F20E5 /* Constant.swift in Sources */,
 				948C1F2D1E7E2A88000F20E5 /* Message.swift in Sources */,
 				053E816E1E80337D0002B224 /* UserDetailView.swift in Sources */,
@@ -413,7 +445,8 @@
 			baseConfigurationReference = 75B3FD42645CC32F317309D3 /* Pods-Thinh.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 3ZZSFA3SW7;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = WC64T22ANZ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -432,7 +465,8 @@
 			baseConfigurationReference = 72B5C06EECD187D2F8E9B840 /* Pods-Thinh.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 3ZZSFA3SW7;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = WC64T22ANZ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
