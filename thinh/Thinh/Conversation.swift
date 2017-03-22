@@ -15,13 +15,28 @@ class Conversation: NSObject, Glossy {
     var conversation: ConversationId?
     var lastMessage: String?
     var lastTime: TimeInterval?
-    var toUser: UserId?
+    var partnerID: UserId? {
+        didSet{
+            let disposable = Api.shared().getUser(id: partnerID!).subscribe(onNext: { (user) in
+                self.partnerName = user.name
+                self.partnerAvatar = URL(string: user.avatar!)
+                
+                // TODO: Get parter online/offline status
+                self.partnerOnline = true
+            })
+            disposable.dispose()
+        }
+    }
+    
+    var partnerName: String?
+    var partnerAvatar: URL?
+    var partnerOnline: Bool?
     
     required init?(json: JSON) {
         conversation = FirebaseKey.conversation <~~ json
         lastMessage = FirebaseKey.lastMessage <~~ json
         lastTime = FirebaseKey.lastTime <~~ json
-        toUser = FirebaseKey.user <~~ json
+        partnerID = FirebaseKey.user <~~ json
     }
     
     func toJSON() -> JSON? {
@@ -29,8 +44,8 @@ class Conversation: NSObject, Glossy {
             FirebaseKey.conversation ~~> conversation,
             FirebaseKey.lastMessage ~~> lastMessage,
             FirebaseKey.lastTime ~~> lastTime,
-            FirebaseKey.user ~~> toUser
-    ])
+            FirebaseKey.user ~~> partnerID
+            ])
     }
     
     init(id: ConversationId?, message: String?, time: TimeInterval?) {
@@ -40,7 +55,7 @@ class Conversation: NSObject, Glossy {
     }
     
     func withUser(_ user: UserId) -> Conversation {
-        self.toUser = user
+        self.partnerID = user
         return self
     }
 }
