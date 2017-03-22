@@ -1,5 +1,5 @@
 //
-//  UserDetailViewController.swift
+//  SettingViewController.swift
 //  Thinh
 //
 //  Created by Linh Le on 3/22/17.
@@ -8,25 +8,8 @@
 
 import UIKit
 
-class UserDetailViewController: UIViewController {
+class SettingViewController: UIViewController {
 
-    
-    @IBOutlet weak var UserBackgroundImage: UIImageView!
-    @IBOutlet weak var AvatarImage: UIImageView!
-    
-    @IBOutlet weak var UserNameLabel: UILabel!
-    @IBOutlet weak var UserCaptionLabel: UILabel!
-    @IBOutlet weak var UserInfoLabel: UILabel!
-    
-    
-    
-    
-    @IBAction func onClickThaThinhButton(_ sender: UIButton) {
-    }
-    
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -48,9 +31,5 @@ class UserDetailViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    func addMockInfo() {
-        //
-        
-    }
 
 }
