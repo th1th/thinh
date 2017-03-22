@@ -164,20 +164,20 @@ class Api: NSObject {
         return key
     }
     
-    func getStrangerList() -> Observable<[UserId]> {
-        all.filter({ (user) -> Bool in
-            var result = true
-            friends.forEach({ (friend) in
-                if user == friend {
-                    result = false
-                }
-                
-            })
-            return result
-            
-        })
-        
-    }
+//    func getStrangerList() -> Observable<[UserId]> {
+//        all.filter({ (user) -> Bool in
+//            var result = true
+//            friends.forEach({ (friend) in
+//                if user == friend {
+//                    result = false
+//                }
+//                
+//            })
+//            return result
+//            
+//        })
+//        
+//    }
     
     func getAllUser() -> Observable<[UserId]> {
         return Observable<[UserId]>.create({ (subcriber) -> Disposable in
