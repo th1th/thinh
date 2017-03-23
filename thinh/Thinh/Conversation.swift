@@ -21,7 +21,7 @@ class Conversation: NSObject, Glossy {
                 self.partnerName = user.name
                 self.partnerAvatar = URL(string: user.avatar!)
                 
-                // TODO: Get parter online/offline status
+                // TODO: Get partner online/offline status
                 self.partnerOnline = true
             })
             disposable.dispose()
