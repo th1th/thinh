@@ -19,14 +19,11 @@
 		0555D5BD1E82CB710058F9CD /* ThinhListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0555D5BC1E82CB710058F9CD /* ThinhListViewController.swift */; };
 		0555D5BF1E82DE1C0058F9CD /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0555D5BE1E82DE1C0058F9CD /* Setting.storyboard */; };
 		0555D5C11E82DE390058F9CD /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0555D5C01E82DE390058F9CD /* SettingViewController.swift */; };
-
+		05B03C8F1E82BFDA00106C08 /* UserDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05B03C8E1E82BFDA00106C08 /* UserDetail.storyboard */; };
 		1534E6B11E82CA4400E62BAD /* Conversation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1534E6B01E82CA4400E62BAD /* Conversation.storyboard */; };
 		1534E6B51E82D25900E62BAD /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1534E6B41E82D25900E62BAD /* Chat.storyboard */; };
 		1534E6B91E82D2A000E62BAD /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1534E6B81E82D2A000E62BAD /* ConversationViewController.swift */; };
 		1534E6BB1E82D2B700E62BAD /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1534E6BA1E82D2B700E62BAD /* ChatViewController.swift */; };
-
-		05B03C8F1E82BFDA00106C08 /* UserDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05B03C8E1E82BFDA00106C08 /* UserDetail.storyboard */; };
-
 		941469B91E7F542C00CB3732 /* Date_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941469B81E7F542C00CB3732 /* Date_extension.swift */; };
 		948C1F2B1E7E267C000F20E5 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948C1F2A1E7E267C000F20E5 /* Constant.swift */; };
 		948C1F2D1E7E2A88000F20E5 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948C1F2C1E7E2A88000F20E5 /* Message.swift */; };
@@ -52,14 +49,11 @@
 		0555D5BC1E82CB710058F9CD /* ThinhListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThinhListViewController.swift; sourceTree = "<group>"; };
 		0555D5BE1E82DE1C0058F9CD /* Setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		0555D5C01E82DE390058F9CD /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
-
+		05B03C8E1E82BFDA00106C08 /* UserDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserDetail.storyboard; sourceTree = "<group>"; };
 		1534E6B01E82CA4400E62BAD /* Conversation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Conversation.storyboard; sourceTree = "<group>"; };
 		1534E6B41E82D25900E62BAD /* Chat.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
 		1534E6B81E82D2A000E62BAD /* ConversationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		1534E6BA1E82D2B700E62BAD /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
-
-		05B03C8E1E82BFDA00106C08 /* UserDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserDetail.storyboard; sourceTree = "<group>"; };
-
 		72B5C06EECD187D2F8E9B840 /* Pods-Thinh.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Thinh.release.xcconfig"; path = "Pods/Target Support Files/Pods-Thinh/Pods-Thinh.release.xcconfig"; sourceTree = "<group>"; };
 		75B3FD42645CC32F317309D3 /* Pods-Thinh.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Thinh.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Thinh/Pods-Thinh.debug.xcconfig"; sourceTree = "<group>"; };
 		8B511A829B8797A0E0B0FD21 /* Pods_Thinh.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Thinh.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,7 +136,6 @@
 		948C1F331E7E3623000F20E5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-
 				0555D5BA1E82CB520058F9CD /* ThinhList.storyboard */,
 				0555D5BC1E82CB710058F9CD /* ThinhListViewController.swift */,
 				1534E6AF1E82CA3400E62BAD /* Conversation */,
@@ -241,7 +234,7 @@
 				TargetAttributes = {
 					94C71EFC1E7444E300D63A95 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = WC64T22ANZ;
+						DevelopmentTeam = 8D5SZ9A5H3;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -477,7 +470,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = WC64T22ANZ;
+				DEVELOPMENT_TEAM = 8D5SZ9A5H3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -485,7 +478,7 @@
 				INFOPLIST_FILE = Thinh/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.coderschool.Thinh123;
+				PRODUCT_BUNDLE_IDENTIFIER = com.coderschool.Thinh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -497,7 +490,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = WC64T22ANZ;
+				DEVELOPMENT_TEAM = 8D5SZ9A5H3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -505,7 +498,7 @@
 				INFOPLIST_FILE = Thinh/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.coderschool.Thinh123;
+				PRODUCT_BUNDLE_IDENTIFIER = com.coderschool.Thinh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
