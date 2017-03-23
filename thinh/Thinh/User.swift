@@ -19,6 +19,7 @@ class User: NSObject, Glossy {
     var phone: String?
     var prefer: Sex?
     var id: UserId?
+    var status: Bool?
     
     enum Sex: String {
         case male = "male"
@@ -33,6 +34,7 @@ class User: NSObject, Glossy {
         self.phone = FirebaseKey.phone <~~ json
         self.prefer = FirebaseKey.prefer <~~ json
         self.id = FirebaseKey.id <~~ json
+        self.status = FirebaseKey.status <~~ json
     }
     
     func toJSON() -> JSON? {
@@ -42,7 +44,8 @@ class User: NSObject, Glossy {
             FirebaseKey.name ~~> name,
             FirebaseKey.phone ~~> phone,
             FirebaseKey.prefer ~~> prefer,
-            FirebaseKey.id ~~> id])
+            FirebaseKey.id ~~> id,
+            FirebaseKey.status ~~> status])
     }
     
     override init() {
@@ -75,8 +78,13 @@ class User: NSObject, Glossy {
         return self
     }
     
-    func withId(id: UserId) -> User {
+    func withId(_ id: UserId) -> User {
         self.id = id
+        return self
+    }
+    
+    func withStatus(_ status: Bool) -> User {
+        self.status = status
         return self
     }
     

@@ -31,6 +31,7 @@ struct FirebaseKey {
     static let prefer = "prefer"
     static let name = "name"
     static let id = "id"
+    static let status = "status"
     
     // conversation
     static let from = "from"
