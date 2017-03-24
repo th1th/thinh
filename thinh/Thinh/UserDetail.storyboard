@@ -4,10 +4,20 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="OpenSans-Bold.ttf">
+            <string>OpenSans-Bold</string>
+        </array>
+        <array key="OpenSans-Italic.ttf">
+            <string>OpenSans-Italic</string>
+        </array>
+        <array key="ProximaNovaSoft-Bold.otf">
+            <string>ProximaNovaSoft-Bold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--User Detail View Controller-->
         <scene sceneID="x9P-nk-f9h">
@@ -27,48 +37,48 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WQu-ep-sPB">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="m2z-2R-wM1">
+                                            <imageView userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="m2z-2R-wM1">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="300" id="wgg-kA-3GR"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name of User" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rqH-5r-L4W">
-                                                <rect key="frame" x="20" y="165" width="250" height="47.5"/>
+                                                <rect key="frame" x="20" y="165" width="250" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="219" id="7bz-vT-jN4"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="40"/>
-                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" name="ProximaNovaSoft-Bold" family="Proxima Nova Soft" pointSize="40"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nx7-hX-d5r">
-                                                <rect key="frame" x="160" y="237.5" width="150" height="40"/>
+                                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nx7-hX-d5r">
+                                                <rect key="frame" x="184" y="230" width="126" height="45"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="150" id="jda-hs-tnU"/>
-                                                    <constraint firstAttribute="height" constant="40" id="lkR-UM-L3K"/>
+                                                    <constraint firstAttribute="width" constant="126" id="jda-hs-tnU"/>
+                                                    <constraint firstAttribute="height" constant="45" id="lkR-UM-L3K"/>
                                                 </constraints>
+                                                <state key="normal" backgroundImage="ThaThinh"/>
                                                 <connections>
                                                     <action selector="onClickThaThinhButton:" destination="6v9-iF-bBI" eventType="touchUpInside" id="KRn-AT-0AM"/>
                                                 </connections>
                                             </button>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iy9-6R-K78">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iy9-6R-K78">
                                                 <rect key="frame" x="30" y="270" width="60" height="60"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="60" id="VnL-Lu-IPC"/>
                                                     <constraint firstAttribute="width" constant="60" id="ciS-UG-3kD"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hS2-KN-pXF">
-                                                <rect key="frame" x="8" y="429.5" width="304" height="122"/>
-                                                <string key="text">User info User info User info User info User info User info User info User info User info User info User info User info User info User info User info User info User info User info User info User info User info </string>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="user" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hS2-KN-pXF">
+                                                <rect key="frame" x="8" y="456" width="304" height="23.5"/>
+                                                <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="caption user caption user caption user caption user caption user caption user caption user caption user caption user caption " textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Dfv-0c-HVz">
-                                                <rect key="frame" x="98" y="308" width="214" height="101.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <rect key="frame" x="105" y="320" width="207" height="116"/>
+                                                <fontDescription key="fontDescription" name="OpenSans-Italic" family="Open Sans" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -83,11 +93,12 @@
                                             <constraint firstItem="iy9-6R-K78" firstAttribute="leading" secondItem="WQu-ep-sPB" secondAttribute="leading" constant="30" id="CYT-M7-3ax"/>
                                             <constraint firstAttribute="trailing" secondItem="rqH-5r-L4W" secondAttribute="trailing" constant="50" id="DLJ-jY-vJ7"/>
                                             <constraint firstItem="m2z-2R-wM1" firstAttribute="top" secondItem="WQu-ep-sPB" secondAttribute="top" id="FSd-fP-Hn6"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="hS2-KN-pXF" secondAttribute="bottom" id="HRW-wO-nlT"/>
                                             <constraint firstItem="hS2-KN-pXF" firstAttribute="top" secondItem="Dfv-0c-HVz" secondAttribute="bottom" constant="20" id="IQU-cQ-wlm"/>
                                             <constraint firstItem="nx7-hX-d5r" firstAttribute="top" secondItem="rqH-5r-L4W" secondAttribute="bottom" constant="25" id="Ptd-cE-43d"/>
-                                            <constraint firstItem="Dfv-0c-HVz" firstAttribute="top" secondItem="m2z-2R-wM1" secondAttribute="bottom" constant="8" id="R0z-ym-Q8e"/>
+                                            <constraint firstItem="Dfv-0c-HVz" firstAttribute="top" secondItem="m2z-2R-wM1" secondAttribute="bottom" constant="20" id="R0z-ym-Q8e"/>
                                             <constraint firstAttribute="trailing" secondItem="Dfv-0c-HVz" secondAttribute="trailing" constant="8" id="adP-i0-1EQ"/>
-                                            <constraint firstItem="Dfv-0c-HVz" firstAttribute="leading" secondItem="iy9-6R-K78" secondAttribute="trailing" constant="8" id="j7T-fM-xRW"/>
+                                            <constraint firstItem="Dfv-0c-HVz" firstAttribute="leading" secondItem="iy9-6R-K78" secondAttribute="trailing" constant="15" id="j7T-fM-xRW"/>
                                             <constraint firstAttribute="trailing" secondItem="hS2-KN-pXF" secondAttribute="trailing" constant="8" id="kBL-MB-hEi"/>
                                             <constraint firstItem="m2z-2R-wM1" firstAttribute="leading" secondItem="WQu-ep-sPB" secondAttribute="leading" id="nPZ-7C-GHG"/>
                                             <constraint firstAttribute="trailing" secondItem="m2z-2R-wM1" secondAttribute="trailing" id="rC7-5Q-lvd"/>
@@ -125,4 +136,7 @@
             <point key="canvasLocation" x="1906.875" y="-648.5915492957746"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ThaThinh" width="558" height="200"/>
+    </resources>
 </document>

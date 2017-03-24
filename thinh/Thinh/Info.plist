@@ -2,6 +2,19 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>OpenSans-LightItalic</string>
+		<string>OpenSans-Light</string>
+		<string>OpenSans-Italic</string>
+		<string>OpenSans-Bold</string>
+		<string>ProximaNovaSoft-Semibold</string>
+		<string>ProximaNovaSoft-Regular</string>
+		<string>ProximaNovaSoft-Medium</string>
+		<string>ProximaNovaSoft-Bold</string>
+	</array>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>

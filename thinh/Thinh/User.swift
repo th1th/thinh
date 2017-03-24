@@ -82,7 +82,7 @@ class User: NSObject, Glossy {
     
     
     static func mock() -> [User] {
-        let names = ["Dat", "Viet", "Linh", "Dave", "Harley"]
+        let names = ["Dat Tran", "Viet Dang", "Linh Le", "Dave Vo", "Harley Trung"]
         let link = "https://scontent.fsgn1-1.fna.fbcdn.net/v/t1.0-9/15622573_1085371901571808_5746077286281389946_n.jpg?oh=a4940622ada3ec2e2a47d5040158e464&oe=5972472E"
         var users = [User]()
         for name in names {

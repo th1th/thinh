@@ -7,30 +7,30 @@
 //
 
 import UIKit
+import AFNetworking
 
 class UserDetailViewController: UIViewController {
 
     
     @IBOutlet weak var UserBackgroundImage: UIImageView!
-    @IBOutlet weak var AvatarImage: UIImageView!
-    
+    @IBOutlet weak var AvatarImage: UIImageView!    
     @IBOutlet weak var UserNameLabel: UILabel!
     @IBOutlet weak var UserCaptionLabel: UILabel!
     @IBOutlet weak var UserInfoLabel: UILabel!
     
-    
+    var user:User? = nil
     
     
     @IBAction func onClickThaThinhButton(_ sender: UIButton) {
     }
     
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        loadMockInfo()
+        loadInfo()
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,9 +48,22 @@ class UserDetailViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    func addMockInfo() {
-        //
+    func loadInfo() {
+        //UserBackgroundImage.setImageWith(URL(string: (user?.avatar)!)!)
+        AvatarImage.setImageWith(URL(string: (user?.avatar)!)!)
+        UserNameLabel.text = user?.name
+        UserCaptionLabel.text = user?.phone
+        UserInfoLabel.text = user?.name
         
+        UserBackgroundImage.image = #imageLiteral(resourceName: "Background")
+        
+        AvatarImage.layer.cornerRadius = AvatarImage.frame.height/2
+        AvatarImage.clipsToBounds = true
+        AvatarImage.layer.borderColor = UIColor( red: 255/255, green: 255/255, blue:255/255, alpha: 0.5).cgColor
+        AvatarImage.layer.borderWidth = 1.0
+    }
+    func loadMockInfo() {
+        user = User.mock()[0]
     }
 
 }

@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "ThaThinh.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "decline.png",
       "scale" : "2x"
     },
     {

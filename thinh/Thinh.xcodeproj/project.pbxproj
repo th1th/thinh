@@ -18,6 +18,7 @@
 		0555D5BF1E82DE1C0058F9CD /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0555D5BE1E82DE1C0058F9CD /* Setting.storyboard */; };
 		0555D5C11E82DE390058F9CD /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0555D5C01E82DE390058F9CD /* SettingViewController.swift */; };
 		05B03C8F1E82BFDA00106C08 /* UserDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05B03C8E1E82BFDA00106C08 /* UserDetail.storyboard */; };
+		05F8ACC01E85609F00A9B281 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 05F8ACBF1E85609F00A9B281 /* Fonts */; };
 		1534E6B11E82CA4400E62BAD /* Conversation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1534E6B01E82CA4400E62BAD /* Conversation.storyboard */; };
 		1534E6B51E82D25900E62BAD /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1534E6B41E82D25900E62BAD /* Chat.storyboard */; };
 		1534E6B91E82D2A000E62BAD /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1534E6B81E82D2A000E62BAD /* ConversationViewController.swift */; };
@@ -47,6 +48,7 @@
 		0555D5BE1E82DE1C0058F9CD /* Setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		0555D5C01E82DE390058F9CD /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		05B03C8E1E82BFDA00106C08 /* UserDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserDetail.storyboard; sourceTree = "<group>"; };
+		05F8ACBF1E85609F00A9B281 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fonts; sourceTree = "<group>"; };
 		1534E6B01E82CA4400E62BAD /* Conversation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Conversation.storyboard; sourceTree = "<group>"; };
 		1534E6B41E82D25900E62BAD /* Chat.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
 		1534E6B81E82D2A000E62BAD /* ConversationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 		948C1F321E7E360A000F20E5 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				05F8ACBF1E85609F00A9B281 /* Fonts */,
 				94C71F0C1E7444E400D63A95 /* Info.plist */,
 				055024271E7CFA3700175FED /* utilities.swift */,
 				94C71F071E7444E400D63A95 /* Assets.xcassets */,
@@ -288,6 +291,7 @@
 				05B03C8F1E82BFDA00106C08 /* UserDetail.storyboard in Resources */,
 				94C71F081E7444E400D63A95 /* Assets.xcassets in Resources */,
 				1534E6B11E82CA4400E62BAD /* Conversation.storyboard in Resources */,
+				05F8ACC01E85609F00A9B281 /* Fonts in Resources */,
 				055024151E7C331700175FED /* GoogleService-Info.plist in Resources */,
 				0555D5BB1E82CB520058F9CD /* ThinhList.storyboard in Resources */,
 				94C71F061E7444E400D63A95 /* Main.storyboard in Resources */,

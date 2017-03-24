@@ -30,7 +30,7 @@
                                 <state key="normal" backgroundImage="green-tick-icon-0"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qD5-IY-zuX">
-                                <rect key="frame" x="114" y="72" width="55" height="55"/>
+                                <rect key="frame" x="119" y="76" width="45" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="decline-1"/>
                             </button>
@@ -44,7 +44,7 @@
                                 <state key="normal" backgroundImage="green-tick-icon-0"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D1p-iE-y5J">
-                                <rect key="frame" x="254" y="180" width="55" height="55"/>
+                                <rect key="frame" x="261" y="186" width="45" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="decline-1"/>
                             </button>
@@ -58,7 +58,7 @@
                                 <state key="normal" backgroundImage="green-tick-icon-0"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="clj-ft-iHc">
-                                <rect key="frame" x="104" y="249" width="55" height="55"/>
+                                <rect key="frame" x="108" y="254" width="45" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="decline-1"/>
                             </button>
@@ -72,7 +72,7 @@
                                 <state key="normal" backgroundImage="green-tick-icon-0"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kvy-x2-NcN">
-                                <rect key="frame" x="238" y="358" width="55" height="55"/>
+                                <rect key="frame" x="245" y="362" width="45" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="decline-1"/>
                             </button>
@@ -143,7 +143,7 @@
     <resources>
         <image name="14494601_177404746951l3484_2482115257403382069_n" width="720" height="618"/>
         <image name="Background" width="375" height="375"/>
-        <image name="decline-1" width="262" height="262"/>
+        <image name="decline-1" width="113" height="115"/>
         <image name="green-tick-icon-0" width="500" height="500"/>
         <image name="hot-girl-han-quoc-xinh-dep-song-o-sai-gon-gay-sot" width="639" height="633"/>
         <image name="photo-36-1465292669338" width="650" height="649"/>
