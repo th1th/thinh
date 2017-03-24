@@ -11,7 +11,7 @@
         <!--Thinh List View Controller-->
         <scene sceneID="yT2-YZ-zyb">
             <objects>
-                <viewController id="2pd-gV-jad" customClass="ThinhListViewController" customModule="Thinh" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ThinhListViewController" id="2pd-gV-jad" customClass="ThinhListViewController" customModule="Thinh" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4f5-aH-FMm"/>
                         <viewControllerLayoutGuide type="bottom" id="SKh-3z-OM1"/>

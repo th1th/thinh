@@ -11,7 +11,7 @@
         <!--Setting View Controller-->
         <scene sceneID="uHs-Cc-FGT">
             <objects>
-                <viewController id="AHc-Ad-Hft" customClass="SettingViewController" customModule="Thinh" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingViewController" id="AHc-Ad-Hft" customClass="SettingViewController" customModule="Thinh" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Pj4-MM-kfW"/>
                         <viewControllerLayoutGuide type="bottom" id="RHZ-5G-Mvg"/>

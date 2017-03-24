@@ -22,7 +22,7 @@
         <!--User Detail View Controller-->
         <scene sceneID="x9P-nk-f9h">
             <objects>
-                <viewController id="6v9-iF-bBI" customClass="UserDetailViewController" customModule="Thinh" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UserDetailViewController" id="6v9-iF-bBI" customClass="UserDetailViewController" customModule="Thinh" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dNq-tZ-dFG"/>
                         <viewControllerLayoutGuide type="bottom" id="Bag-UF-19w"/>
@@ -93,6 +93,14 @@
                                                     <action selector="onClickClose:" destination="6v9-iF-bBI" eventType="touchUpInside" id="7qu-Jl-AId"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xoL-wV-Is8">
+                                                <rect key="frame" x="253" y="32" width="49" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Setting"/>
+                                                <connections>
+                                                    <segue destination="JD3-Bo-65h" kind="presentation" id="Amw-mF-cRv"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -147,6 +155,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="te6-hx-K5Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1906.875" y="-648.5915492957746"/>
+        </scene>
+        <!--Setting-->
+        <scene sceneID="23q-8N-tzd">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="SettingViewController" storyboardName="Setting" id="JD3-Bo-65h" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="egx-mG-QnH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2696" y="-799"/>
         </scene>
     </scenes>
     <resources>

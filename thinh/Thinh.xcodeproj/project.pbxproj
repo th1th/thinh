@@ -19,6 +19,7 @@
 		0555D5C11E82DE390058F9CD /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0555D5C01E82DE390058F9CD /* SettingViewController.swift */; };
 		05B03C8F1E82BFDA00106C08 /* UserDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05B03C8E1E82BFDA00106C08 /* UserDetail.storyboard */; };
 		05F8ACC01E85609F00A9B281 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 05F8ACBF1E85609F00A9B281 /* Fonts */; };
+		05F8ACC61E8583CE00A9B281 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F8ACC51E8583CE00A9B281 /* TabBarViewController.swift */; };
 		1534E6B11E82CA4400E62BAD /* Conversation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1534E6B01E82CA4400E62BAD /* Conversation.storyboard */; };
 		1534E6B51E82D25900E62BAD /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1534E6B41E82D25900E62BAD /* Chat.storyboard */; };
 		1534E6B91E82D2A000E62BAD /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1534E6B81E82D2A000E62BAD /* ConversationViewController.swift */; };
@@ -49,6 +50,7 @@
 		0555D5C01E82DE390058F9CD /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		05B03C8E1E82BFDA00106C08 /* UserDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserDetail.storyboard; sourceTree = "<group>"; };
 		05F8ACBF1E85609F00A9B281 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fonts; sourceTree = "<group>"; };
+		05F8ACC51E8583CE00A9B281 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		1534E6B01E82CA4400E62BAD /* Conversation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Conversation.storyboard; sourceTree = "<group>"; };
 		1534E6B41E82D25900E62BAD /* Chat.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
 		1534E6B81E82D2A000E62BAD /* ConversationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				1534E6AE1E82CA2900E62BAD /* Chat */,
 				055024221E7C467900175FED /* LoginViewController.swift */,
 				94C71F041E7444E400D63A95 /* Main.storyboard */,
+				05F8ACC51E8583CE00A9B281 /* TabBarViewController.swift */,
 				0550242E1E7D2D3900175FED /* ChatListViewController.swift */,
 			);
 			name = Views;
@@ -363,6 +366,7 @@
 				0555D5C11E82DE390058F9CD /* SettingViewController.swift in Sources */,
 				94C71F011E7444E400D63A95 /* AppDelegate.swift in Sources */,
 				0550242D1E7D278500175FED /* User.swift in Sources */,
+				05F8ACC61E8583CE00A9B281 /* TabBarViewController.swift in Sources */,
 				055024281E7CFA3700175FED /* utilities.swift in Sources */,
 				1534E6BF1E836F7900E62BAD /* ConversationViewCell.swift in Sources */,
 				948C1F311E7E2E69000F20E5 /* FirebaseClient.swift in Sources */,
