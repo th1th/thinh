@@ -13,6 +13,12 @@ class ThinhListViewController: UIViewController {
     
     
     @IBOutlet weak var UserImage: UIImageView!
+    @IBAction func onClickedAccept(_ sender: UIButton) {
+        print("clicked:")
+        print(sender.restorationIdentifier)
+    }
+    
+    
     @IBOutlet weak var UserImage2: UIImageView!
     @IBOutlet weak var UserImage3: UIImageView!
     @IBOutlet weak var UserImage4: UIImageView!

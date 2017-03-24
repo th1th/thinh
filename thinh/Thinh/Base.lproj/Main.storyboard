@@ -73,11 +73,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RJt-1n-0ta">
-                                <rect key="frame" x="105" y="279" width="110" height="30"/>
+                                <rect key="frame" x="106" y="174" width="109" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Test Storyboard"/>
+                                <state key="normal" title="Test User Detail"/>
                                 <connections>
                                     <segue destination="BfZ-CT-1hM" kind="presentation" id="6fp-qv-Zi0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rUG-2E-5M6">
+                                <rect key="frame" x="110" y="253" width="101" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Test Thinh List"/>
+                                <connections>
+                                    <segue destination="ba7-Qs-ILw" kind="presentation" id="MbD-M7-qtR"/>
                                 </connections>
                             </button>
                         </subviews>

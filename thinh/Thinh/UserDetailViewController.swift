@@ -52,15 +52,24 @@ class UserDetailViewController: UIViewController {
         //UserBackgroundImage.setImageWith(URL(string: (user?.avatar)!)!)
         AvatarImage.setImageWith(URL(string: (user?.avatar)!)!)
         UserNameLabel.text = user?.name
-        UserCaptionLabel.text = user?.phone
+        UserCaptionLabel.text = user?.caption
         UserInfoLabel.text = user?.name
         
         UserBackgroundImage.image = #imageLiteral(resourceName: "Background")
         
+        
+        //
         AvatarImage.layer.cornerRadius = AvatarImage.frame.height/2
         AvatarImage.clipsToBounds = true
         AvatarImage.layer.borderColor = UIColor( red: 255/255, green: 255/255, blue:255/255, alpha: 0.5).cgColor
         AvatarImage.layer.borderWidth = 1.0
+        //
+        
+        UserCaptionLabel.clipsToBounds = true
+        UserCaptionLabel.layer.cornerRadius = 8
+        UserCaptionLabel.layer.borderColor = UIColor( red: 255/255, green: 0/255, blue:255/255, alpha: 0.5).cgColor
+        UserCaptionLabel.layer.borderWidth = 1.0
+        
     }
     func loadMockInfo() {
         user = User.mock()[0]

@@ -71,12 +71,12 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="user" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hS2-KN-pXF">
-                                                <rect key="frame" x="8" y="456" width="304" height="23.5"/>
-                                                <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="17"/>
+                                                <rect key="frame" x="20" y="456" width="280" height="29"/>
+                                                <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="21"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="caption user caption user caption user caption user caption user caption user caption user caption user caption user caption " textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Dfv-0c-HVz">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="caption user caption user caption user caption user caption user caption user caption user caption user caption user caption " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Dfv-0c-HVz">
                                                 <rect key="frame" x="105" y="320" width="207" height="116"/>
                                                 <fontDescription key="fontDescription" name="OpenSans-Italic" family="Open Sans" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -89,7 +89,7 @@
                                             <constraint firstItem="rqH-5r-L4W" firstAttribute="leading" secondItem="WQu-ep-sPB" secondAttribute="leading" constant="20" id="3Cr-Q7-EOj"/>
                                             <constraint firstItem="rqH-5r-L4W" firstAttribute="top" secondItem="WQu-ep-sPB" secondAttribute="top" constant="165" id="7h2-CW-c9U"/>
                                             <constraint firstItem="iy9-6R-K78" firstAttribute="top" secondItem="m2z-2R-wM1" secondAttribute="bottom" constant="-30" id="8LB-BH-ekC"/>
-                                            <constraint firstItem="hS2-KN-pXF" firstAttribute="leading" secondItem="WQu-ep-sPB" secondAttribute="leading" constant="8" id="9ho-aI-ako"/>
+                                            <constraint firstItem="hS2-KN-pXF" firstAttribute="leading" secondItem="WQu-ep-sPB" secondAttribute="leading" constant="20" id="9ho-aI-ako"/>
                                             <constraint firstItem="iy9-6R-K78" firstAttribute="leading" secondItem="WQu-ep-sPB" secondAttribute="leading" constant="30" id="CYT-M7-3ax"/>
                                             <constraint firstAttribute="trailing" secondItem="rqH-5r-L4W" secondAttribute="trailing" constant="50" id="DLJ-jY-vJ7"/>
                                             <constraint firstItem="m2z-2R-wM1" firstAttribute="top" secondItem="WQu-ep-sPB" secondAttribute="top" id="FSd-fP-Hn6"/>
@@ -99,7 +99,7 @@
                                             <constraint firstItem="Dfv-0c-HVz" firstAttribute="top" secondItem="m2z-2R-wM1" secondAttribute="bottom" constant="20" id="R0z-ym-Q8e"/>
                                             <constraint firstAttribute="trailing" secondItem="Dfv-0c-HVz" secondAttribute="trailing" constant="8" id="adP-i0-1EQ"/>
                                             <constraint firstItem="Dfv-0c-HVz" firstAttribute="leading" secondItem="iy9-6R-K78" secondAttribute="trailing" constant="15" id="j7T-fM-xRW"/>
-                                            <constraint firstAttribute="trailing" secondItem="hS2-KN-pXF" secondAttribute="trailing" constant="8" id="kBL-MB-hEi"/>
+                                            <constraint firstAttribute="trailing" secondItem="hS2-KN-pXF" secondAttribute="trailing" constant="20" id="kBL-MB-hEi"/>
                                             <constraint firstItem="m2z-2R-wM1" firstAttribute="leading" secondItem="WQu-ep-sPB" secondAttribute="leading" id="nPZ-7C-GHG"/>
                                             <constraint firstAttribute="trailing" secondItem="m2z-2R-wM1" secondAttribute="trailing" id="rC7-5Q-lvd"/>
                                             <constraint firstAttribute="trailing" secondItem="nx7-hX-d5r" secondAttribute="trailing" constant="10" id="xEr-C4-9w9"/>

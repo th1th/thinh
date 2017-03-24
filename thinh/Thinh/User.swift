@@ -19,6 +19,8 @@ class User: NSObject, Glossy {
     var phone: String?
     var prefer: Sex?
     var id: UserId?
+    var caption: String?
+    
     
     enum Sex: String {
         case male = "male"
@@ -33,6 +35,7 @@ class User: NSObject, Glossy {
         self.phone = FirebaseKey.phone <~~ json
         self.prefer = FirebaseKey.prefer <~~ json
         self.id = FirebaseKey.id <~~ json
+        self.caption = FirebaseKey.caption <~~ json
     }
     
     func toJSON() -> JSON? {
@@ -42,7 +45,8 @@ class User: NSObject, Glossy {
             FirebaseKey.name ~~> name,
             FirebaseKey.phone ~~> phone,
             FirebaseKey.prefer ~~> prefer,
-            FirebaseKey.id ~~> id])
+            FirebaseKey.id ~~> id,
+            FirebaseKey.caption ~~> caption])
     }
     
     override init() {
@@ -81,6 +85,8 @@ class User: NSObject, Glossy {
     }
     
     
+    
+    
     static func mock() -> [User] {
         let names = ["Dat Tran", "Viet Dang", "Linh Le", "Dave Vo", "Harley Trung"]
         let link = "https://scontent.fsgn1-1.fna.fbcdn.net/v/t1.0-9/15622573_1085371901571808_5746077286281389946_n.jpg?oh=a4940622ada3ec2e2a47d5040158e464&oe=5972472E"
@@ -92,6 +98,7 @@ class User: NSObject, Glossy {
                  FirebaseKey.avatar: link,
                  FirebaseKey.phone: "0938481680",
                  FirebaseKey.prefer: Sex.female.rawValue,
+                 FirebaseKey.caption: "Sống nội tâm, yêu màu tím, thích thể hiện. Đàn ông đích thực"
                 ])
             users.append(user!)
         }
