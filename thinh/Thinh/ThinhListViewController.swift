@@ -13,17 +13,70 @@ class ThinhListViewController: UIViewController {
     
     
     @IBOutlet weak var UserImage: UIImageView!
-    @IBAction func onClickedAccept(_ sender: UIButton) {
-        print("clicked:")
-        print(sender.restorationIdentifier)
-    }
-    
-    
     @IBOutlet weak var UserImage2: UIImageView!
     @IBOutlet weak var UserImage3: UIImageView!
     @IBOutlet weak var UserImage4: UIImageView!
     @IBOutlet weak var UserImage5: UIImageView!
     @IBOutlet weak var UserImage6: UIImageView!
+    
+    
+    @IBAction func onClickedAccept(_ sender: UIButton) {
+        if let buttonId = sender.restorationIdentifier{
+            switch buttonId {
+            case "acceptForImage":
+                print(buttonId)
+                break
+            case "acceptForImage2":
+                print(buttonId)
+                break
+            case "acceptForImage3":
+                print(buttonId)
+                break
+            case "acceptForImage4":
+                print(buttonId)
+                break
+            case "acceptForImage5":
+                print(buttonId)
+                break
+            case "acceptForImage6":
+                print(buttonId)
+                break
+            default:
+                break
+            }
+        }
+    }
+    @IBAction func onClickedDeline(_ sender: UIButton) {
+        if let buttonId = sender.restorationIdentifier{
+            switch buttonId {
+            case "declineForImage":
+                print(buttonId)
+                break
+            case "declineForImage2":
+                print(buttonId)
+                break
+            case "declineForImage3":
+                print(buttonId)
+                break
+            case "declineForImage4":
+                print(buttonId)
+                break
+            case "declineForImage5":
+                print(buttonId)
+                break
+            case "declineForImage6":
+                print(buttonId)
+                break
+            default:
+                break
+            }
+        }
+    }
+    
+    
+    @IBAction func onClickClose(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
     
     
     override func viewDidLoad() {
