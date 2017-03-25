@@ -24,10 +24,6 @@ class UserDetailViewController: UIViewController {
     @IBAction func onClickThaThinhButton(_ sender: UIButton) {
     }
     
-    @IBAction func onClickClose(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 

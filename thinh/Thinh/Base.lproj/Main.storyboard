@@ -146,78 +146,86 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0kE-pr-Yop">
                                 <rect key="frame" x="0.0" y="518" width="320" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dl5-tV-vd4">
-                                        <rect key="frame" x="7" y="0.0" width="50" height="50"/>
+                                    <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dl5-tV-vd4">
+                                        <rect key="frame" x="0.0" y="0.0" width="64" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="3Jr-FO-1VS"/>
-                                            <constraint firstAttribute="width" constant="50" id="uwY-dh-WK0"/>
+                                            <constraint firstAttribute="width" constant="64" id="uwY-dh-WK0"/>
                                         </constraints>
-                                        <state key="normal" title="Home"/>
+                                        <state key="normal" title="Home" image="ContactTabBar"/>
                                         <connections>
                                             <action selector="onClickTab:" destination="UfO-6T-d9d" eventType="touchUpInside" id="J42-IH-WOK"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YA9-A6-kXy">
-                                        <rect key="frame" x="263" y="0.0" width="50" height="50"/>
+                                    <button opaque="NO" tag="4" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YA9-A6-kXy">
+                                        <rect key="frame" x="256" y="0.0" width="64" height="50"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="50" id="4ai-1V-cS4"/>
+                                            <constraint firstAttribute="width" constant="64" id="4ai-1V-cS4"/>
                                             <constraint firstAttribute="height" constant="50" id="bWw-IO-G0c"/>
                                         </constraints>
-                                        <state key="normal" title="User"/>
+                                        <state key="normal" title="Me" image="MeTabBar"/>
                                         <connections>
                                             <action selector="onClickTab:" destination="UfO-6T-d9d" eventType="touchUpInside" id="fBq-41-USX"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wvD-8z-d6s">
-                                        <rect key="frame" x="199" y="0.0" width="50" height="50"/>
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wvD-8z-d6s">
+                                        <rect key="frame" x="192" y="0.0" width="64" height="50"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="50" id="j2K-oy-8pK"/>
+                                            <constraint firstAttribute="width" constant="64" id="j2K-oy-8pK"/>
                                             <constraint firstAttribute="height" constant="50" id="yTb-rb-zio"/>
                                         </constraints>
-                                        <state key="normal" title="Thinh"/>
+                                        <state key="normal" title="Thinh" image="ChatSelectedTabBar"/>
                                         <connections>
                                             <action selector="onClickTab:" destination="UfO-6T-d9d" eventType="touchUpInside" id="b3m-ND-a0r"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K4U-LQ-meR">
-                                        <rect key="frame" x="135" y="0.0" width="50" height="50"/>
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K4U-LQ-meR">
+                                        <rect key="frame" x="128" y="0.0" width="64" height="50"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="50" id="ST8-HC-7JM"/>
+                                            <constraint firstAttribute="width" constant="64" id="ST8-HC-7JM"/>
                                             <constraint firstAttribute="height" constant="50" id="dQE-Ou-YGA"/>
                                         </constraints>
-                                        <state key="normal" title="Tha"/>
+                                        <state key="normal" title="Tha" image="ChatSelectedTabBar"/>
                                         <connections>
                                             <action selector="onClickTab:" destination="UfO-6T-d9d" eventType="touchUpInside" id="Aq3-jw-SUW"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AkF-8N-sCg">
-                                        <rect key="frame" x="71" y="0.0" width="50" height="50"/>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AkF-8N-sCg">
+                                        <rect key="frame" x="64" y="0.0" width="64" height="50"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="50" id="H8c-FH-a6N"/>
+                                            <constraint firstAttribute="width" constant="64" id="H8c-FH-a6N"/>
                                             <constraint firstAttribute="height" constant="50" id="TBP-w9-hxC"/>
                                         </constraints>
-                                        <state key="normal" title="chat"/>
+                                        <state key="normal" title="Chat" image="ChatTabBar"/>
                                         <connections>
                                             <action selector="onClickTab:" destination="UfO-6T-d9d" eventType="touchUpInside" id="Tgm-3m-rld"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="12" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="opq-3q-2b0">
+                                        <rect key="frame" x="100" y="3" width="25" height="16"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="1" green="0.0" blue="0.018721711901257265" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <color key="textColor" red="0.99417658399630371" green="0.96498742627418987" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="dl5-tV-vd4" firstAttribute="top" secondItem="0kE-pr-Yop" secondAttribute="top" id="0LX-fY-Ysa"/>
                                     <constraint firstAttribute="bottom" secondItem="YA9-A6-kXy" secondAttribute="bottom" id="894-sc-6Rw"/>
-                                    <constraint firstItem="dl5-tV-vd4" firstAttribute="leading" secondItem="0kE-pr-Yop" secondAttribute="leading" constant="7" id="AeJ-to-ukV"/>
-                                    <constraint firstItem="YA9-A6-kXy" firstAttribute="leading" secondItem="wvD-8z-d6s" secondAttribute="trailing" constant="14" id="Cec-Pq-BgO"/>
+                                    <constraint firstItem="dl5-tV-vd4" firstAttribute="leading" secondItem="0kE-pr-Yop" secondAttribute="leading" id="AeJ-to-ukV"/>
+                                    <constraint firstItem="YA9-A6-kXy" firstAttribute="leading" secondItem="wvD-8z-d6s" secondAttribute="trailing" id="Cec-Pq-BgO"/>
                                     <constraint firstAttribute="bottom" secondItem="dl5-tV-vd4" secondAttribute="bottom" id="DKt-ND-S8P"/>
                                     <constraint firstAttribute="bottom" secondItem="K4U-LQ-meR" secondAttribute="bottom" id="LKO-MU-ubn"/>
                                     <constraint firstItem="AkF-8N-sCg" firstAttribute="top" secondItem="0kE-pr-Yop" secondAttribute="top" id="O2q-ZO-Rsv"/>
-                                    <constraint firstItem="AkF-8N-sCg" firstAttribute="leading" secondItem="dl5-tV-vd4" secondAttribute="trailing" constant="14" id="Rlr-DT-jLi"/>
+                                    <constraint firstItem="AkF-8N-sCg" firstAttribute="leading" secondItem="dl5-tV-vd4" secondAttribute="trailing" id="Rlr-DT-jLi"/>
                                     <constraint firstItem="wvD-8z-d6s" firstAttribute="top" secondItem="0kE-pr-Yop" secondAttribute="top" id="XmW-la-7ah"/>
-                                    <constraint firstItem="K4U-LQ-meR" firstAttribute="leading" secondItem="AkF-8N-sCg" secondAttribute="trailing" constant="14" id="b11-FT-hv0"/>
+                                    <constraint firstItem="K4U-LQ-meR" firstAttribute="leading" secondItem="AkF-8N-sCg" secondAttribute="trailing" id="b11-FT-hv0"/>
                                     <constraint firstAttribute="bottom" secondItem="wvD-8z-d6s" secondAttribute="bottom" id="bI6-HE-bcQ"/>
                                     <constraint firstAttribute="bottom" secondItem="wvD-8z-d6s" secondAttribute="bottom" id="bet-gv-GGf"/>
                                     <constraint firstItem="YA9-A6-kXy" firstAttribute="top" secondItem="0kE-pr-Yop" secondAttribute="top" id="ePS-IS-LR9"/>
-                                    <constraint firstItem="wvD-8z-d6s" firstAttribute="leading" secondItem="K4U-LQ-meR" secondAttribute="trailing" constant="14" id="obH-yX-yWn"/>
+                                    <constraint firstItem="wvD-8z-d6s" firstAttribute="leading" secondItem="K4U-LQ-meR" secondAttribute="trailing" id="obH-yX-yWn"/>
                                     <constraint firstAttribute="height" constant="50" id="qFw-3M-aCE"/>
                                     <constraint firstAttribute="bottom" secondItem="AkF-8N-sCg" secondAttribute="bottom" id="rVq-Ux-KAP"/>
                                     <constraint firstItem="wvD-8z-d6s" firstAttribute="top" secondItem="0kE-pr-Yop" secondAttribute="top" id="ykU-wO-Zz7"/>
@@ -237,6 +245,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="chatBagde" destination="opq-3q-2b0" id="ifS-4v-d89"/>
                         <outlet property="contentView" destination="qaT-gV-SNI" id="ZTa-wb-DVn"/>
                         <outletCollection property="buttons" destination="dl5-tV-vd4" collectionClass="NSMutableArray" id="5Ed-zI-FWT"/>
                         <outletCollection property="buttons" destination="AkF-8N-sCg" collectionClass="NSMutableArray" id="9ms-Dt-QKU"/>
@@ -269,6 +278,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ChatSelectedTabBar" width="251" height="195"/>
+        <image name="ChatTabBar" width="250" height="195"/>
+        <image name="ContactTabBar" width="250" height="195"/>
+        <image name="MeTabBar" width="250" height="195"/>
         <image name="Sign In  #1" width="750" height="1334"/>
     </resources>
 </document>

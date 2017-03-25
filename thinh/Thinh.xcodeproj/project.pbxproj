@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		051EBECD1E864BB6002BA6B7 /* PopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 051EBECC1E864BB6002BA6B7 /* PopupView.xib */; };
+		051EBED11E864F87002BA6B7 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051EBED01E864F87002BA6B7 /* PopupView.swift */; };
 		055024151E7C331700175FED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 055024141E7C331700175FED /* GoogleService-Info.plist */; };
 		055024231E7C467900175FED /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055024221E7C467900175FED /* LoginViewController.swift */; };
 		055024281E7CFA3700175FED /* utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055024271E7CFA3700175FED /* utilities.swift */; };
@@ -38,6 +40,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		051EBECC1E864BB6002BA6B7 /* PopupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopupView.xib; sourceTree = "<group>"; };
+		051EBED01E864F87002BA6B7 /* PopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
 		055024141E7C331700175FED /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		055024221E7C467900175FED /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		055024271E7CFA3700175FED /* utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = utilities.swift; sourceTree = "<group>"; };
@@ -125,6 +129,8 @@
 			children = (
 				0555D5BE1E82DE1C0058F9CD /* Setting.storyboard */,
 				0555D5C01E82DE390058F9CD /* SettingViewController.swift */,
+				051EBECC1E864BB6002BA6B7 /* PopupView.xib */,
+				051EBED01E864F87002BA6B7 /* PopupView.swift */,
 			);
 			name = Setting;
 			sourceTree = "<group>";
@@ -290,6 +296,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1534E6B51E82D25900E62BAD /* Chat.storyboard in Resources */,
+				051EBECD1E864BB6002BA6B7 /* PopupView.xib in Resources */,
 				94C71F0B1E7444E400D63A95 /* LaunchScreen.storyboard in Resources */,
 				05B03C8F1E82BFDA00106C08 /* UserDetail.storyboard in Resources */,
 				94C71F081E7444E400D63A95 /* Assets.xcassets in Resources */,
@@ -366,6 +373,7 @@
 				0555D5C11E82DE390058F9CD /* SettingViewController.swift in Sources */,
 				94C71F011E7444E400D63A95 /* AppDelegate.swift in Sources */,
 				0550242D1E7D278500175FED /* User.swift in Sources */,
+				051EBED11E864F87002BA6B7 /* PopupView.swift in Sources */,
 				05F8ACC61E8583CE00A9B281 /* TabBarViewController.swift in Sources */,
 				055024281E7CFA3700175FED /* utilities.swift in Sources */,
 				1534E6BF1E836F7900E62BAD /* ConversationViewCell.swift in Sources */,
