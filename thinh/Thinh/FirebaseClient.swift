@@ -188,7 +188,14 @@ class Api: NSObject {
         return Observable<[Message]>.create { (subcriber) -> Disposable in
             // TODO: child event
             self.conversationDb.child(id).observe(.value, with: { snapshot in
-                print(snapshot)
+                var messages = [Message]()
+                for child in snapshot.children {
+                    guard let data = child as? FIRDataSnapshot else {
+                        return
+                    }
+                    messages.append(Message(json: data.value as! JSON)!)
+                }
+                subcriber.onNext(messages)
             })
             return Disposables.create()
         }
@@ -313,7 +320,7 @@ class Api: NSObject {
 
 extension Api {
     func createMockData() {
-        deleteDb()
+//        deleteDb()
         let users = User.mock()
         for i in 0..<users.count - 1 {
             let id = createMockConversation(user1: users[i], user2: users[i+1])
