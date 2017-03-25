@@ -107,10 +107,7 @@ class Api: NSObject {
         }
     }
     
-    /*
-     create user after first login
-    */
-    fileprivate func createUser(_ id: UserId, user: User)  {
+    func createUser(_ id: UserId, user: User)  {
         userDb.child(id).setValue(user.toJSON()) { (error, reference) in
             guard error == nil else {
                 print(error!.localizedDescription)
@@ -320,11 +317,12 @@ class Api: NSObject {
 
 extension Api {
     func createMockData() {
-//        deleteDb()
-        let users = User.mock()
+        deleteDb()
+        let users = createMockUser()
         for i in 0..<users.count - 1 {
-            let id = createMockConversation(user1: users[i], user2: users[i+1])
-            createMockMessage(user1: users[i], user2: users[i+1], id: id)
+            let id = createMockConversation(user1: users[i].id!, user2: users[i+1].id!)
+            createMockMessage(user1: users[i].id!, user2: users[i+1].id!
+                , id: id)
         }
 //        getFriendList(id: users[1].id!)
 //        checkFriendRelationship(between: users[1].id!, and: users[0].id!)
@@ -346,16 +344,17 @@ extension Api {
     }
     
     
-//    private func createMockUser()  -> [User] {
-//        let users = User.mock()
-//        for user in users {
+    private func createMockUser()  -> [User] {
+        let users = User.mock()
+        for user in users {
 //            let key = userDb.childByAutoId().key
 //            user.withId(key)
-//            userDb.child(key).setValue(user.toJSON()!)
-//            createUser(key, user: user)
-//        }
-//        return users
-//    }
+            userDb.child(user.id!).setValue(user.toJSON()!)
+            createUser(user.id!,
+                       user: user)
+        }
+        return users
+    }
     
     
     private func createMockConversation(user1: UserId, user2: UserId) -> ConversationId {
