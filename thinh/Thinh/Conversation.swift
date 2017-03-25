@@ -54,6 +54,16 @@ class Conversation: NSObject, Glossy {
         self.lastTime = time
     }
     
+    // For Testing
+    init(message: String?, time: TimeInterval?, name: String?, avatar:String?, online:Bool?) {
+        self.lastMessage = message
+        self.lastTime = time
+        self.partnerName = name
+        self.partnerAvatar = URL(string: avatar!)
+        
+        self.partnerOnline = online
+    }
+    
     func withUser(_ user: UserId) -> Conversation {
         self.partnerID = user
         return self

@@ -24,20 +24,35 @@ class ChatViewController: JSQMessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Api.shared().getCurrentUser().subscribe(onNext: { (user) in
-            self.senderDisplayName = user.name
-            self.senderAvatar = URL(string: user.avatar!)
-            self.senderId = user.id
-        })
+//        Api.shared().getCurrentUser().subscribe(onNext: { (user) in
+//            self.senderDisplayName = user.name
+//            self.senderAvatar = URL(string: user.avatar!)
+//            self.senderId = user.id
+//        })
+        self.senderId = "MOCK"
+        self.senderDisplayName = "anything"
         
         collectionView?.collectionViewLayout.incomingAvatarViewSize = CGSize(width: kJSQMessagesCollectionViewAvatarSizeDefault, height:kJSQMessagesCollectionViewAvatarSizeDefault )
         collectionView?.collectionViewLayout.outgoingAvatarViewSize = CGSize(width: kJSQMessagesCollectionViewAvatarSizeDefault, height:kJSQMessagesCollectionViewAvatarSizeDefault )
     }
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         self.title = conversation?.partnerName
+        
         observeMessages()
         
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        // messages from someone else
+        addMessage(withId: "foo", name: "Mr.Bolt", text: "I am so fast!")
+        // messages sent from local sender
+        addMessage(withId: senderId, name: "Me", text: "I bet I can run faster than you!")
+        addMessage(withId: senderId, name: "Me", text: "I like to run!")
+        // animates the receiving of a new message on the view
+        finishReceivingMessage()
     }
     
     private func addMessage(withId id: String, name: String, text: String) {
@@ -118,5 +133,8 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     
+    @IBAction func onBack(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
 }

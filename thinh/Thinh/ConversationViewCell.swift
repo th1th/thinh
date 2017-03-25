@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import NSDate_TimeAgo
 
 class ConversationViewCell: UITableViewCell {
 
