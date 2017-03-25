@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="2pd-gV-jad">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Thinh List View Controller-->
+        <scene sceneID="yT2-YZ-zyb">
+            <objects>
+                <viewController storyboardIdentifier="ThinhListViewController" id="2pd-gV-jad" customClass="ThinhListViewController" customModule="Thinh" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4f5-aH-FMm"/>
+                        <viewControllerLayoutGuide type="bottom" id="SKh-3z-OM1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="H8l-Tn-Ku7">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tulinh" translatesAutoresizingMaskIntoConstraints="NO" id="Pjs-ag-GUJ">
+                                <rect key="frame" x="14" y="61" width="150" height="150"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="acceptForImage2" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cub-fi-36e">
+                                <rect key="frame" x="13" y="61" width="45" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="green-tick-icon-0"/>
+                                <connections>
+                                    <action selector="onClickedAccept:" destination="2pd-gV-jad" eventType="touchUpInside" id="33b-KA-MOX"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="declineForImage2" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qD5-IY-zuX">
+                                <rect key="frame" x="119" y="60" width="45" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="decline-1"/>
+                                <connections>
+                                    <action selector="onClickedDeline:" destination="2pd-gV-jad" eventType="touchUpInside" id="XeJ-av-f7Y"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hot-girl-han-quoc-xinh-dep-song-o-sai-gon-gay-sot" translatesAutoresizingMaskIntoConstraints="NO" id="Mr4-2V-wwl">
+                                <rect key="frame" x="155" y="185" width="150" height="150"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="acceptForImage3" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aME-LT-Qeb">
+                                <rect key="frame" x="155" y="185" width="45" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="green-tick-icon-0"/>
+                                <connections>
+                                    <action selector="onClickedAccept:" destination="2pd-gV-jad" eventType="touchUpInside" id="vJN-HZ-Zfm"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="declineForImage3" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D1p-iE-y5J">
+                                <rect key="frame" x="261" y="186" width="45" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="decline-1"/>
+                                <connections>
+                                    <action selector="onClickedDeline:" destination="2pd-gV-jad" eventType="touchUpInside" id="7Nl-Yr-EKz"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="14494601_177404746951l3484_2482115257403382069_n" translatesAutoresizingMaskIntoConstraints="NO" id="LKW-KM-9bU">
+                                <rect key="frame" x="4" y="254" width="150" height="150"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="acceptForImage4" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="57w-YC-Oru">
+                                <rect key="frame" x="4" y="254" width="45" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="green-tick-icon-0"/>
+                                <connections>
+                                    <action selector="onClickedAccept:" destination="2pd-gV-jad" eventType="touchUpInside" id="ppC-SI-dxq"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="declineForImage4" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="clj-ft-iHc">
+                                <rect key="frame" x="108" y="254" width="45" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="decline-1"/>
+                                <connections>
+                                    <action selector="onClickedDeline:" destination="2pd-gV-jad" eventType="touchUpInside" id="BrZ-V4-cR0"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="photo-36-1465292669338" translatesAutoresizingMaskIntoConstraints="NO" id="aTB-1Y-mif">
+                                <rect key="frame" x="151" y="357" width="150" height="150"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="acceptForImage5" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7p5-J9-wPn">
+                                <rect key="frame" x="151" y="357" width="45" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="green-tick-icon-0"/>
+                                <connections>
+                                    <action selector="onClickedAccept:" destination="2pd-gV-jad" eventType="touchUpInside" id="KWs-yv-ne2"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="declineForImage5" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kvy-x2-NcN">
+                                <rect key="frame" x="257" y="357" width="45" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="decline-1"/>
+                                <connections>
+                                    <action selector="onClickedDeline:" destination="2pd-gV-jad" eventType="touchUpInside" id="hEe-GV-UiG"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="N42-rq-DoK">
+                                <rect key="frame" x="19" y="422" width="90" height="90"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="acceptForImage6" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Syr-pg-EPJ">
+                                <rect key="frame" x="19" y="422" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="green-tick-icon-0"/>
+                                <connections>
+                                    <action selector="onClickedAccept:" destination="2pd-gV-jad" eventType="touchUpInside" id="NJc-7W-gOi"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="declineForImage6" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I7e-Hr-oBb">
+                                <rect key="frame" x="79" y="422" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="decline-1"/>
+                                <connections>
+                                    <action selector="onClickedDeline:" destination="2pd-gV-jad" eventType="touchUpInside" id="egB-0u-5Kh"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tulinh2_1" translatesAutoresizingMaskIntoConstraints="NO" id="vx1-2M-8Is">
+                                <rect key="frame" x="203" y="71" width="90" height="90"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="acceptForImage" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MMq-Ws-0wi">
+                                <rect key="frame" x="203" y="71" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="green-tick-icon-0"/>
+                                <connections>
+                                    <action selector="onClickedAccept:" destination="2pd-gV-jad" eventType="touchUpInside" id="pA2-rS-8Dt"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="declineForImage" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FgH-eh-CjA">
+                                <rect key="frame" x="263" y="71" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="decline-1"/>
+                                <connections>
+                                    <action selector="onClickedDeline:" destination="2pd-gV-jad" eventType="touchUpInside" id="hkZ-j2-ggg"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.16792091630031256" green="0.23014208695990976" blue="0.48601762820512817" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="IWn-Kf-Pon">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="5oe-Lh-0hj"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="UserImage" destination="vx1-2M-8Is" id="eQp-H6-zc0"/>
+                        <outlet property="UserImage2" destination="Pjs-ag-GUJ" id="z6Y-5R-ho8"/>
+                        <outlet property="UserImage3" destination="Mr4-2V-wwl" id="Sx1-56-xI5"/>
+                        <outlet property="UserImage4" destination="LKW-KM-9bU" id="f7k-qX-iaJ"/>
+                        <outlet property="UserImage5" destination="aTB-1Y-mif" id="FvL-Jx-KUE"/>
+                        <outlet property="UserImage6" destination="N42-rq-DoK" id="TLg-39-OLF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uzY-YB-XRM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1115.625" y="140.49295774647888"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="14494601_177404746951l3484_2482115257403382069_n" width="720" height="618"/>
+        <image name="Background" width="375" height="375"/>
+        <image name="decline-1" width="113" height="115"/>
+        <image name="green-tick-icon-0" width="500" height="500"/>
+        <image name="hot-girl-han-quoc-xinh-dep-song-o-sai-gon-gay-sot" width="639" height="633"/>
+        <image name="photo-36-1465292669338" width="650" height="649"/>
+        <image name="tulinh" width="660" height="690"/>
+        <image name="tulinh2_1" width="660" height="495"/>
+    </resources>
+</document>

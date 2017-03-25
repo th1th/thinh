@@ -15,7 +15,7 @@ https://docs.google.com/forms/d/1NV0Az2d02ZF9v5xA7GPLP9MKz0k1BroJig1uO6tT4jA/vie
 The following **required** functionality is completed:
 
 - [ ] Login, signup page
-   - [ ] Login with facebook.
+   - [x] Login with facebook.
    - [ ] Sign up with email, google (optional).
    - [ ] Import contact from contact/facebook (optional).
    - [ ] After user signup, prompt to get user description
