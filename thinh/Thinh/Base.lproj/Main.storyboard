@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -72,6 +71,32 @@
                     <view key="view" contentMode="scaleToFill" id="mg6-J5-g0Y">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RJt-1n-0ta">
+                                <rect key="frame" x="106" y="174" width="109" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Test User Detail"/>
+                                <connections>
+                                    <segue destination="BfZ-CT-1hM" kind="presentation" id="6fp-qv-Zi0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rUG-2E-5M6">
+                                <rect key="frame" x="110" y="253" width="101" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Test Thinh List"/>
+                                <connections>
+                                    <segue destination="ba7-Qs-ILw" kind="presentation" id="MbD-M7-qtR"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gpk-Nf-vVm">
+                                <rect key="frame" x="103" y="424" width="115" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="test tab bar view"/>
+                                <connections>
+                                    <segue destination="UfO-6T-d9d" kind="presentation" id="EIb-aG-lpA"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Vj3-Ap-vU2">
@@ -84,7 +109,154 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kMa-WO-h0L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1946.25" y="-65.492957746478879"/>
+            <point key="canvasLocation" x="1839" y="-77"/>
+        </scene>
+        <!--UserDetail-->
+        <scene sceneID="EV1-dH-bSj">
+            <objects>
+                <viewControllerPlaceholder storyboardName="UserDetail" id="BfZ-CT-1hM" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VbQ-w8-rq1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2499" y="-250"/>
+        </scene>
+        <!--ThinhList-->
+        <scene sceneID="0iW-Kh-Atw">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ThinhList" id="ba7-Qs-ILw" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="djO-S6-arE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2504" y="208"/>
+        </scene>
+        <!--Tab Bar View Controller-->
+        <scene sceneID="zlc-mf-M9b">
+            <objects>
+                <viewController id="UfO-6T-d9d" customClass="TabBarViewController" customModule="Thinh" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EPd-0V-XxX"/>
+                        <viewControllerLayoutGuide type="bottom" id="spS-Kv-YZa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Dr8-Di-Ahc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qaT-gV-SNI">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0kE-pr-Yop">
+                                <rect key="frame" x="0.0" y="518" width="320" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dl5-tV-vd4">
+                                        <rect key="frame" x="0.0" y="0.0" width="64" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="3Jr-FO-1VS"/>
+                                            <constraint firstAttribute="width" constant="64" id="uwY-dh-WK0"/>
+                                        </constraints>
+                                        <state key="normal" title="Home" image="ContactTabBar"/>
+                                        <connections>
+                                            <action selector="onClickTab:" destination="UfO-6T-d9d" eventType="touchUpInside" id="J42-IH-WOK"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="4" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YA9-A6-kXy">
+                                        <rect key="frame" x="256" y="0.0" width="64" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="64" id="4ai-1V-cS4"/>
+                                            <constraint firstAttribute="height" constant="50" id="bWw-IO-G0c"/>
+                                        </constraints>
+                                        <state key="normal" title="Me" image="MeTabBar"/>
+                                        <connections>
+                                            <action selector="onClickTab:" destination="UfO-6T-d9d" eventType="touchUpInside" id="fBq-41-USX"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="3" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wvD-8z-d6s">
+                                        <rect key="frame" x="192" y="0.0" width="64" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="64" id="j2K-oy-8pK"/>
+                                            <constraint firstAttribute="height" constant="50" id="yTb-rb-zio"/>
+                                        </constraints>
+                                        <state key="normal" title="Thinh" image="ThinhTabBar"/>
+                                        <connections>
+                                            <action selector="onClickTab:" destination="UfO-6T-d9d" eventType="touchUpInside" id="b3m-ND-a0r"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="2" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K4U-LQ-meR">
+                                        <rect key="frame" x="128" y="0.0" width="64" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="64" id="ST8-HC-7JM"/>
+                                            <constraint firstAttribute="height" constant="50" id="dQE-Ou-YGA"/>
+                                        </constraints>
+                                        <state key="normal" title="Tha" image="ThaTabBar"/>
+                                        <connections>
+                                            <action selector="onClickTab:" destination="UfO-6T-d9d" eventType="touchUpInside" id="Aq3-jw-SUW"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AkF-8N-sCg">
+                                        <rect key="frame" x="64" y="0.0" width="64" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="64" id="H8c-FH-a6N"/>
+                                            <constraint firstAttribute="height" constant="50" id="TBP-w9-hxC"/>
+                                        </constraints>
+                                        <state key="normal" title="Chat" image="ChatTabBar"/>
+                                        <connections>
+                                            <action selector="onClickTab:" destination="UfO-6T-d9d" eventType="touchUpInside" id="Tgm-3m-rld"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="12" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="opq-3q-2b0">
+                                        <rect key="frame" x="100" y="3" width="25" height="16"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="1" green="0.0" blue="0.018721711901257265" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <color key="textColor" red="0.99417658399630371" green="0.96498742627418987" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="dl5-tV-vd4" firstAttribute="top" secondItem="0kE-pr-Yop" secondAttribute="top" id="0LX-fY-Ysa"/>
+                                    <constraint firstAttribute="bottom" secondItem="YA9-A6-kXy" secondAttribute="bottom" id="894-sc-6Rw"/>
+                                    <constraint firstItem="dl5-tV-vd4" firstAttribute="leading" secondItem="0kE-pr-Yop" secondAttribute="leading" id="AeJ-to-ukV"/>
+                                    <constraint firstItem="YA9-A6-kXy" firstAttribute="leading" secondItem="wvD-8z-d6s" secondAttribute="trailing" id="Cec-Pq-BgO"/>
+                                    <constraint firstAttribute="bottom" secondItem="dl5-tV-vd4" secondAttribute="bottom" id="DKt-ND-S8P"/>
+                                    <constraint firstAttribute="bottom" secondItem="K4U-LQ-meR" secondAttribute="bottom" id="LKO-MU-ubn"/>
+                                    <constraint firstItem="AkF-8N-sCg" firstAttribute="top" secondItem="0kE-pr-Yop" secondAttribute="top" id="O2q-ZO-Rsv"/>
+                                    <constraint firstItem="AkF-8N-sCg" firstAttribute="leading" secondItem="dl5-tV-vd4" secondAttribute="trailing" id="Rlr-DT-jLi"/>
+                                    <constraint firstItem="wvD-8z-d6s" firstAttribute="top" secondItem="0kE-pr-Yop" secondAttribute="top" id="XmW-la-7ah"/>
+                                    <constraint firstItem="K4U-LQ-meR" firstAttribute="leading" secondItem="AkF-8N-sCg" secondAttribute="trailing" id="b11-FT-hv0"/>
+                                    <constraint firstAttribute="bottom" secondItem="wvD-8z-d6s" secondAttribute="bottom" id="bI6-HE-bcQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="wvD-8z-d6s" secondAttribute="bottom" id="bet-gv-GGf"/>
+                                    <constraint firstItem="YA9-A6-kXy" firstAttribute="top" secondItem="0kE-pr-Yop" secondAttribute="top" id="ePS-IS-LR9"/>
+                                    <constraint firstItem="wvD-8z-d6s" firstAttribute="leading" secondItem="K4U-LQ-meR" secondAttribute="trailing" id="obH-yX-yWn"/>
+                                    <constraint firstAttribute="height" constant="50" id="qFw-3M-aCE"/>
+                                    <constraint firstAttribute="bottom" secondItem="AkF-8N-sCg" secondAttribute="bottom" id="rVq-Ux-KAP"/>
+                                    <constraint firstItem="wvD-8z-d6s" firstAttribute="top" secondItem="0kE-pr-Yop" secondAttribute="top" id="ykU-wO-Zz7"/>
+                                    <constraint firstItem="K4U-LQ-meR" firstAttribute="top" secondItem="0kE-pr-Yop" secondAttribute="top" id="zLC-5N-gvS"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="0kE-pr-Yop" firstAttribute="leading" secondItem="Dr8-Di-Ahc" secondAttribute="leading" id="Dp2-kv-qLi"/>
+                            <constraint firstItem="qaT-gV-SNI" firstAttribute="top" secondItem="EPd-0V-XxX" secondAttribute="bottom" constant="-20" id="FNY-JK-AUp"/>
+                            <constraint firstItem="0kE-pr-Yop" firstAttribute="top" secondItem="qaT-gV-SNI" secondAttribute="bottom" id="RgX-uu-kKL"/>
+                            <constraint firstAttribute="trailing" secondItem="qaT-gV-SNI" secondAttribute="trailing" id="UvS-0s-4eL"/>
+                            <constraint firstItem="qaT-gV-SNI" firstAttribute="leading" secondItem="Dr8-Di-Ahc" secondAttribute="leading" id="cYc-kn-wrs"/>
+                            <constraint firstAttribute="trailing" secondItem="0kE-pr-Yop" secondAttribute="trailing" id="nfp-yv-hvv"/>
+                            <constraint firstItem="spS-Kv-YZa" firstAttribute="top" secondItem="0kE-pr-Yop" secondAttribute="bottom" id="zWn-bn-egV"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="chatBagde" destination="opq-3q-2b0" id="ifS-4v-d89"/>
+                        <outlet property="contentView" destination="qaT-gV-SNI" id="ZTa-wb-DVn"/>
+                        <outletCollection property="buttons" destination="dl5-tV-vd4" collectionClass="NSMutableArray" id="5Ed-zI-FWT"/>
+                        <outletCollection property="buttons" destination="AkF-8N-sCg" collectionClass="NSMutableArray" id="9ms-Dt-QKU"/>
+                        <outletCollection property="buttons" destination="K4U-LQ-meR" collectionClass="NSMutableArray" id="XWu-kP-kiL"/>
+                        <outletCollection property="buttons" destination="wvD-8z-d6s" collectionClass="NSMutableArray" id="p0q-mv-06U"/>
+                        <outletCollection property="buttons" destination="YA9-A6-kXy" collectionClass="NSMutableArray" id="0cw-GK-YuK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iFw-OO-d1e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3127.5" y="-77.112676056338032"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="q0M-Vz-y3A">
@@ -106,6 +278,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ChatTabBar" width="250" height="195"/>
+        <image name="ContactTabBar" width="250" height="195"/>
+        <image name="MeTabBar" width="250" height="195"/>
         <image name="Sign In  #1" width="750" height="1334"/>
+        <image name="ThaTabBar" width="250" height="195"/>
+        <image name="ThinhTabBar" width="250" height="195"/>
     </resources>
 </document>

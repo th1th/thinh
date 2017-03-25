@@ -1,0 +1,8 @@
+
+App Thinning Size Report for All Variants of DataCollection
+
+Variant: DataCollection-iPhone 6.ipa
+Supported devices: iPhone 6
+App + On Demand Resources size: 17.2 MB compressed, 24.1 MB uncompressed
+App size: 17.2 MB compressed, 24.1 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
