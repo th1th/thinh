@@ -56,6 +56,12 @@ class User: NSObject, Glossy {
         
     }
     
+    init(user: FIRUser) {
+        self.avatar = user.photoURL?.absoluteString
+        self.name = user.displayName
+        self.id = user.uid
+    }
+    
     func withAvatar(_ avatar: String) -> User {
         self.avatar = avatar
         return self

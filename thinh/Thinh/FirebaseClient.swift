@@ -66,8 +66,11 @@ class Api: NSObject {
                     obsever.onError(error!)
                     return
                 }
-                obsever.onNext(true)
-//                obsever.on(.next(true))
+                guard let user = user else {
+                    obsever.onNext(false)
+                    return
+                }
+                self.createUser(user.uid, user: User(user: user))
             })
             return Disposables.create()
         })
@@ -111,8 +114,9 @@ class Api: NSObject {
     */
     fileprivate func createUser(_ id: UserId, user: User)  {
         userDb.child(id).setValue(user.toJSON()) { (error, reference) in
-            if error == nil {
+            guard error != nil else {
                 print(error!.localizedDescription)
+                return
             }
         }
     }
