@@ -101,22 +101,28 @@ class User: NSObject, Glossy {
     
     
     
-    static func mock() -> [User] {
-        let names = ["Dat Tran", "Viet Dang", "Linh Le", "Dave Vo", "Harley Trung"]
-        let link = "https://scontent.fsgn1-1.fna.fbcdn.net/v/t1.0-9/15622573_1085371901571808_5746077286281389946_n.jpg?oh=a4940622ada3ec2e2a47d5040158e464&oe=5972472E"
-        var users = [User]()
-        for name in names {
-            let user = User(json:
-                [FirebaseKey.name: name,
-                 FirebaseKey.gender: Sex.male.rawValue,
-                 FirebaseKey.avatar: link,
-                 FirebaseKey.phone: "0938481680",
-                 FirebaseKey.prefer: Sex.female.rawValue,
-                 FirebaseKey.caption: "Sống nội tâm, yêu màu tím, thích thể hiện. Đàn ông đích thực"
-                ])
-            users.append(user!)
-        }
-        return users
+    static func mock() -> [UserId] {
+//        let names = ["Dat Tran", "Viet Dang", "Linh Le", "Dave Vo", "Harley Trung"]
+//        let link = "https://scontent.fsgn1-1.fna.fbcdn.net/v/t1.0-9/15622573_1085371901571808_5746077286281389946_n.jpg?oh=a4940622ada3ec2e2a47d5040158e464&oe=5972472E"
+//        var users = [User]()
+//        for name in names {
+//            let user = User(json:
+//                [FirebaseKey.name: name,
+//                 FirebaseKey.gender: Sex.male.rawValue,
+//                 FirebaseKey.avatar: link,
+//                 FirebaseKey.phone: "0938481680",
+//                 FirebaseKey.prefer: Sex.female.rawValue,
+//                 FirebaseKey.caption: "Sống nội tâm, yêu màu tím, thích thể hiện. Đàn ông đích thực"
+//                ])
+//            users.append(user!)
+//        }
+//        return users
+        return [user1, user2, user3, user4]
     }
+    
+    static let user1 = "S5cirBWXUiOGnareVEEWbjaIJN02"
+    static let user2 = "WR3OioP6R0UTPUoWItWyJX5g4p62"
+    static let user3 = "WhEZVoiMDpTA4QkdI8dHCZFyG752"
+    static let user4 = "cdP7J0LNP2gUG3BeEq29N8JHDt72"
     
 }

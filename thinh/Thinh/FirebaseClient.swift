@@ -52,10 +52,8 @@ class Api: NSObject {
     /*
      login with facebook
     */
-    func login(accessToken: String) {
-        loginWithFacebook(accessToken: accessToken)
-            .observeOn(MainScheduler.instance)
-        
+    func login(accessToken: String) -> Observable<Bool> {
+        return loginWithFacebook(accessToken: accessToken)
     }
 
     fileprivate func loginWithFacebook(accessToken: String) -> Observable<Bool> {
@@ -114,7 +112,7 @@ class Api: NSObject {
     */
     fileprivate func createUser(_ id: UserId, user: User)  {
         userDb.child(id).setValue(user.toJSON()) { (error, reference) in
-            guard error != nil else {
+            guard error == nil else {
                 print(error!.localizedDescription)
                 return
             }
@@ -157,17 +155,14 @@ class Api: NSObject {
        return Observable<[Conversation]>.create({ subcriber -> Disposable in
             // TODO: child event
             self.userConversationDb.child(self.userId()!).observe(.value, with: { snapshot in
-                print(snapshot)
-                guard let data = snapshot.value as? [JSON] else {
-                    subcriber.onError(ThinhError.unknownUser)
-                    return
-                }
                 var conversations = [Conversation]()
-                for datum in data {
-                    conversations.append(Conversation(json: datum)!)
+                for child in snapshot.children {
+                    guard let data = child as? FIRDataSnapshot else {
+                        return
+                    }
+                    conversations.append(Conversation(json: data.value as! JSON)!)
                 }
                 subcriber.onNext(conversations)
-                
             })
             return Disposables.create()
        })
@@ -319,24 +314,24 @@ class Api: NSObject {
 extension Api {
     func createMockData() {
         deleteDb()
-        let users = createMockUser()
+        let users = User.mock()
         for i in 0..<users.count - 1 {
-            let id = createMockConversation(users: users, i: i, j: i + 1)
-            createMockMessage(users: users, id: id, i: i, j: i + 1)
+            let id = createMockConversation(user1: users[i], user2: users[i+1])
+            createMockMessage(user1: users[i], user2: users[i+1], id: id)
         }
-        getFriendList(id: users[1].id!)
-        checkFriendRelationship(between: users[1].id!, and: users[0].id!)
-            .subscribe(onNext: { (friend) in
-                if !friend {
-                    print("This should be friend")
-                }
-            })
-        checkFriendRelationship(between: users[1].id!, and: users[3].id!)
-            .subscribe(onNext: { (friend) in
-                if friend {
-                    print("This should not be friend")
-                }
-            })
+//        getFriendList(id: users[1].id!)
+//        checkFriendRelationship(between: users[1].id!, and: users[0].id!)
+//            .subscribe(onNext: { (friend) in
+//                if !friend {
+//                    print("This should be friend")
+//                }
+//            })
+//        checkFriendRelationship(between: users[1].id!, and: users[3].id!)
+//            .subscribe(onNext: { (friend) in
+//                if friend {
+//                    print("This should not be friend")
+//                }
+//            })
     }
     
     private func deleteDb() {
@@ -344,24 +339,24 @@ extension Api {
     }
     
     
-    private func createMockUser()  -> [User] {
-        let users = User.mock()
-        for user in users {
-            let key = userDb.childByAutoId().key
-            user.withId(key)
-            userDb.child(key).setValue(user.toJSON()!)
-            createUser(key, user: user)
-        }
-        return users
+//    private func createMockUser()  -> [User] {
+//        let users = User.mock()
+//        for user in users {
+//            let key = userDb.childByAutoId().key
+//            user.withId(key)
+//            userDb.child(key).setValue(user.toJSON()!)
+//            createUser(key, user: user)
+//        }
+//        return users
+//    }
+    
+    
+    private func createMockConversation(user1: UserId, user2: UserId) -> ConversationId {
+        return createNewConversation(forUser: user1, andUser: user2)
     }
     
-    
-    private func createMockConversation(users: [User], i: Int, j: Int) -> ConversationId {
-        return createNewConversation(forUser: users[i].id!, andUser: users[j].id!)
-    }
-    
-    private func createMockMessage(users: [User], id: ConversationId, i: Int, j: Int) {
-        let messages = Message.mock(from: users[i].id!, to: users[j].id!)
+    private func createMockMessage(user1: UserId, user2: UserId, id: ConversationId) {
+        let messages = Message.mock(from: user1, to: user2)
         for message in messages {
             sendMessage(id: id, message: message)
         }
