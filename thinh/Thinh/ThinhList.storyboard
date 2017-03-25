@@ -140,14 +140,6 @@
                                     <action selector="onClickedDeline:" destination="2pd-gV-jad" eventType="touchUpInside" id="hkZ-j2-ggg"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PHt-Jh-nmr">
-                                <rect key="frame" x="12" y="25" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" backgroundImage="close"/>
-                                <connections>
-                                    <action selector="onClickClose:" destination="2pd-gV-jad" eventType="touchUpInside" id="uud-Dy-PSG"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.16792091630031256" green="0.23014208695990976" blue="0.48601762820512817" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -171,7 +163,6 @@
     <resources>
         <image name="14494601_177404746951l3484_2482115257403382069_n" width="720" height="618"/>
         <image name="Background" width="375" height="375"/>
-        <image name="close" width="48" height="48"/>
         <image name="decline-1" width="113" height="115"/>
         <image name="green-tick-icon-0" width="500" height="500"/>
         <image name="hot-girl-han-quoc-xinh-dep-song-o-sai-gon-gay-sot" width="639" height="633"/>

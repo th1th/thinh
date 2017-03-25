@@ -168,24 +168,24 @@
                                             <action selector="onClickTab:" destination="UfO-6T-d9d" eventType="touchUpInside" id="fBq-41-USX"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wvD-8z-d6s">
+                                    <button opaque="NO" tag="3" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wvD-8z-d6s">
                                         <rect key="frame" x="192" y="0.0" width="64" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="64" id="j2K-oy-8pK"/>
                                             <constraint firstAttribute="height" constant="50" id="yTb-rb-zio"/>
                                         </constraints>
-                                        <state key="normal" title="Thinh" image="ChatSelectedTabBar"/>
+                                        <state key="normal" title="Thinh" image="ThinhTabBar"/>
                                         <connections>
                                             <action selector="onClickTab:" destination="UfO-6T-d9d" eventType="touchUpInside" id="b3m-ND-a0r"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K4U-LQ-meR">
+                                    <button opaque="NO" tag="2" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K4U-LQ-meR">
                                         <rect key="frame" x="128" y="0.0" width="64" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="64" id="ST8-HC-7JM"/>
                                             <constraint firstAttribute="height" constant="50" id="dQE-Ou-YGA"/>
                                         </constraints>
-                                        <state key="normal" title="Tha" image="ChatSelectedTabBar"/>
+                                        <state key="normal" title="Tha" image="ThaTabBar"/>
                                         <connections>
                                             <action selector="onClickTab:" destination="UfO-6T-d9d" eventType="touchUpInside" id="Aq3-jw-SUW"/>
                                         </connections>
@@ -278,10 +278,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ChatSelectedTabBar" width="251" height="195"/>
         <image name="ChatTabBar" width="250" height="195"/>
         <image name="ContactTabBar" width="250" height="195"/>
         <image name="MeTabBar" width="250" height="195"/>
         <image name="Sign In  #1" width="750" height="1334"/>
+        <image name="ThaTabBar" width="250" height="195"/>
+        <image name="ThinhTabBar" width="250" height="195"/>
     </resources>
 </document>

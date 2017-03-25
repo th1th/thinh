@@ -16,21 +16,24 @@ class SettingViewController: UIViewController {
     var constX:NSLayoutConstraint?
     var constY:NSLayoutConstraint?
     
+    @IBOutlet weak var UserBackgroundImage: UIImageView!
+    @IBOutlet weak var AvatarImage: UIImageView!
+    @IBOutlet weak var UserNameLabel: UILabel!
+    @IBOutlet weak var UserCaptionLabel: UILabel!
+    @IBOutlet weak var UserInfoLabel: UILabel!
+    
+    var user:User? = nil
+
     
     @IBAction func showPopUp(_ sender: UIButton) {
         self.showPopupView()
     }
-    
-    @IBAction func Back(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
-    }
     @IBAction func Done(_ sender: UIButton) {
+        hidePopupView()
     }
     
     @IBAction func close(_ sender: UIButton) {
-    
         hidePopupView()
-        
     }
     
     
@@ -38,25 +41,49 @@ class SettingViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        loadMockInfo()
+        loadInfo()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+
+//load user info
+extension SettingViewController{
+    func loadInfo() {
+        //UserBackgroundImage.setImageWith(URL(string: (user?.avatar)!)!)
+        AvatarImage.setImageWith(URL(string: (user?.avatar)!)!)
+        UserNameLabel.text = user?.name
+        UserCaptionLabel.text = user?.caption
+        UserInfoLabel.text = user?.name
+        
+        UserBackgroundImage.image = #imageLiteral(resourceName: "Background")
+        
+        
+        //
+        AvatarImage.layer.cornerRadius = AvatarImage.frame.height/2
+        AvatarImage.clipsToBounds = true
+        AvatarImage.layer.borderColor = UIColor( red: 255/255, green: 255/255, blue:255/255, alpha: 0.5).cgColor
+        AvatarImage.layer.borderWidth = 1.0
+        //
+        
+        UserCaptionLabel.clipsToBounds = true
+        UserCaptionLabel.layer.cornerRadius = 8
+        UserCaptionLabel.layer.borderColor = UIColor( red: 255/255, green: 0/255, blue:255/255, alpha: 0.5).cgColor
+        UserCaptionLabel.layer.borderWidth = 1.0
+        
+    }
+    func loadMockInfo() {
+        user = User.mock()[0]
+    }
+    
+}
+
+
+
 //setting pop up view
 extension SettingViewController{
     
@@ -112,8 +139,8 @@ extension SettingViewController{
     //Gray bg view configuration
     func showGrayBGView(viewController:UIViewController,grayView:UIView){
         
-        var viewController:UIViewController = viewController
-        var GrayView:UIView = grayView
+        let viewController:UIViewController = viewController
+        let GrayView:UIView = grayView
         
         viewController.view.addSubview(GrayView)
         
@@ -128,10 +155,10 @@ extension SettingViewController{
             GrayView.alpha = 0.75
         })
         
-        var h_Pin = NSLayoutConstraint.constraints(withVisualFormat: "H:|-(-16)-[GrayView]-(-16)-|", options: .alignAllTop, metrics: nil, views: dView)
+        let h_Pin = NSLayoutConstraint.constraints(withVisualFormat: "H:|-(-16)-[GrayView]-(-16)-|", options: .alignAllTop, metrics: nil, views: dView)
         viewController.view.addConstraints(h_Pin)
         
-        var v_Pin = NSLayoutConstraint.constraints(withVisualFormat: "V:|-(-16)-[GrayView]-(-16)-|", options: .alignAllTop, metrics: nil, views: dView)
+        let v_Pin = NSLayoutConstraint.constraints(withVisualFormat: "V:|-(-16)-[GrayView]-(-16)-|", options: .alignAllTop, metrics: nil, views: dView)
         viewController.view.addConstraints(v_Pin)
         
     }

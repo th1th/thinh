@@ -46,7 +46,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="Close"/>
                             <connections>
-                                <action selector="close:" destination="-1" eventType="touchUpInside" id="Dws-7R-9sr"/>
+                                <action selector="close:" destination="-1" eventType="touchUpInside" id="4h9-pE-tRD"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RLI-zC-Yvq">
@@ -54,7 +54,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="Done"/>
                             <connections>
-                                <action selector="Done:" destination="-1" eventType="touchUpInside" id="vaX-40-Rps"/>
+                                <action selector="Done:" destination="-1" eventType="touchUpInside" id="Xsq-i0-zjd"/>
                             </connections>
                         </button>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="gbi-qZ-n6K">

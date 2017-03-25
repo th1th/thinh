@@ -72,7 +72,7 @@ class TabBarViewController: UIViewController {
         
         thinhListViewController = UIStoryboard(name: "ThinhList", bundle: nil).instantiateViewController(withIdentifier: "ThinhListViewController")
         
-        userViewController = UIStoryboard(name: "UserDetail", bundle: nil).instantiateViewController(withIdentifier: "UserDetailViewController")
+        userViewController = UIStoryboard(name: "Setting", bundle: nil).instantiateViewController(withIdentifier: "SettingViewController")
         
         viewControllers = [homeViewController, conversationViewController, thaThinhViewController,thinhListViewController, userViewController]
 
@@ -122,10 +122,10 @@ extension TabBarViewController{
             buttons[previousIndex].setImage(UIImage(named: "ChatTabBar"), for: UIControlState.normal)
             break
         case 2:
-            buttons[previousIndex].setImage(UIImage(named: "ContactTabBar"), for: UIControlState.normal)
+            buttons[previousIndex].setImage(UIImage(named: "ThaTabBar"), for: UIControlState.normal)
             break
         case 3:
-            buttons[previousIndex].setImage(UIImage(named: "ContactTabBar"), for: UIControlState.normal)
+            buttons[previousIndex].setImage(UIImage(named: "ThinhTabBar"), for: UIControlState.normal)
             break
         case 4:
             buttons[previousIndex].setImage(UIImage(named: "MeTabBar"), for: UIControlState.normal)
@@ -140,10 +140,10 @@ extension TabBarViewController{
             buttons[selectedIndex].setImage(UIImage(named: "ChatSelectedTabBar"), for: UIControlState.normal)
             break
         case 2:
-            buttons[selectedIndex].setImage(UIImage(named: "ContactsSelectedTabBar"), for: UIControlState.normal)
+            buttons[selectedIndex].setImage(UIImage(named: "ThaSelectedTabBar"), for: UIControlState.normal)
             break
         case 3:
-            buttons[selectedIndex].setImage(UIImage(named: "ContactsSelectedTabBar"), for: UIControlState.normal)
+            buttons[selectedIndex].setImage(UIImage(named: "ThinhSelectedTabBar"), for: UIControlState.normal)
             break
         case 4:
             buttons[selectedIndex].setImage(UIImage(named: "MeSelectedTabBar"), for: UIControlState.normal)
