@@ -86,9 +86,6 @@
                                                 <rect key="frame" x="280" y="28" width="30" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" image="Settings Icon"/>
-                                                <connections>
-                                                    <segue destination="JD3-Bo-65h" kind="presentation" id="Amw-mF-cRv"/>
-                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qmk-mm-9tG">
                                                 <rect key="frame" x="16" y="14" width="39" height="30"/>
@@ -150,14 +147,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="te6-hx-K5Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1886" y="-618"/>
-        </scene>
-        <!--Setting-->
-        <scene sceneID="23q-8N-tzd">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="SettingViewController" storyboardName="Setting" id="JD3-Bo-65h" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="egx-mG-QnH" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2696" y="-799"/>
         </scene>
     </scenes>
     <resources>
