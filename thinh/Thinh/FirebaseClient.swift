@@ -217,31 +217,51 @@ class Api: NSObject {
         }
     }
     
+    
+    
+    /*
+     create new text for conversationId
+    */
+    fileprivate func sendMessage(id: ConversationId, message: Message) -> MessageId {
+        let key = conversationDb.child(id).childByAutoId().key
+        // create new message
+        conversationDb.child(id).child(key).setValue(message.toJSON())
+        // update user conversation
+        if (message.message != nil) {
+            // update last message
+            let conversation = Conversation(id: id, message: message.message, time: message.date)
+            userConversationDb.child(message.user1!).child(message.user2!).setValue(conversation.withUser(message.user2!).toJSON())
+            userConversationDb.child(message.user2!).child(message.user1!).setValue(conversation.withUser(message.user1!).toJSON())
+        }   // photo message don't update last message
+        return key
+    }
+    
+    /*
+     send message with image
+    */
+    func sendMessage(to A: UserId, conversation: ConversationId, image: UIImage) {
+//        let message
+    }
+    
+    /*
+     send message with text
+    */
+    func sendMessage(to A: UserId, conversation: ConversationId, text: String) {
+        let message = Message(from: userId()!, to: A, message: text)
+        sendMessage(id: conversation, message: message)
+    }
+    
     /*
      the bot will send message when 2 user match:
-        - stranger dop thinh
-        - both friend tha thinh
-    */
+     - stranger dop thinh
+     - both friend tha thinh
+     */
     fileprivate func sendBotMessage(id: ConversationId, user1: UserId, user2: UserId) -> MessageId {
         let message = Message(from: botId, to: user1, message: FirebaseKey.botMessage)
         // set this for bot message only
         message.user1 = user1
         message.user2 = user2
         return sendMessage(id: id, message: message)
-    }
-    
-    /*
-     create new message for conversationId
-    */
-    func sendMessage(id: ConversationId, message: Message) -> MessageId {
-        let key = conversationDb.child(id).childByAutoId().key
-        // create new message
-        conversationDb.child(id).child(key).setValue(message.toJSON())
-        // update user conversation
-        let conversation = Conversation(id: id, message: message.message, time: message.date)
-        userConversationDb.child(message.user1!).child(message.user2!).setValue(conversation.withUser(message.user2!).toJSON())
-        userConversationDb.child(message.user2!).child(message.user1!).setValue(conversation.withUser(message.user1!).toJSON())
-        return key
     }
     
     /*
@@ -352,9 +372,9 @@ class Api: NSObject {
     }
     
     /*
-     current user tha thinh user A
+     current user tha thinh user A with message
     */
-    func thathinh(_ A: UserId) {
+    func thathinh(_ A: UserId, message: String) {
 //        hasRecieveThinhFrom(A).subscribe(onNext: { (recieved) in
 //            if recieved {
 //                self.checkIfConversationExist(with: A).subscribe(onNext: { (conversationId) in
@@ -365,6 +385,13 @@ class Api: NSObject {
 //            }
 //        })
 //        hasRecieveThinhFrom(A).)
+    }
+    
+    /*
+     current user tha thinh user A with image
+    */
+    func thathinh(_ A: UserId, image: UIImage) {
+        
     }
     
     /*
