@@ -12,7 +12,7 @@ import Gloss
 public typealias ConversationId = String
 class Conversation: NSObject, Glossy {
     
-    var conversation: ConversationId?
+    var id: ConversationId?
     var lastMessage: String?
     var lastTime: TimeInterval?
     var partnerID: UserId? {
@@ -33,7 +33,7 @@ class Conversation: NSObject, Glossy {
     var partnerOnline: Bool?
     
     required init?(json: JSON) {
-        conversation = FirebaseKey.conversation <~~ json
+        id = FirebaseKey.conversation <~~ json
         lastMessage = FirebaseKey.lastMessage <~~ json
         lastTime = FirebaseKey.lastTime <~~ json
         partnerID = FirebaseKey.user <~~ json
@@ -41,7 +41,7 @@ class Conversation: NSObject, Glossy {
     
     func toJSON() -> JSON? {
         return jsonify([
-            FirebaseKey.conversation ~~> conversation,
+            FirebaseKey.conversation ~~> id,
             FirebaseKey.lastMessage ~~> lastMessage,
             FirebaseKey.lastTime ~~> lastTime,
             FirebaseKey.user ~~> partnerID
@@ -49,7 +49,7 @@ class Conversation: NSObject, Glossy {
     }
     
     init(id: ConversationId?, message: String?, time: TimeInterval?) {
-        self.conversation = id
+        self.id = id
         self.lastMessage = message
         self.lastTime = time
     }

@@ -32,6 +32,7 @@
 		948C1F2D1E7E2A88000F20E5 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948C1F2C1E7E2A88000F20E5 /* Message.swift */; };
 		948C1F2F1E7E2C7D000F20E5 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948C1F2E1E7E2C7D000F20E5 /* Conversation.swift */; };
 		948C1F311E7E2E69000F20E5 /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948C1F301E7E2E69000F20E5 /* FirebaseClient.swift */; };
+		9497178D1E87F3AF00FBD83D /* Thinh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9497178C1E87F3AF00FBD83D /* Thinh.swift */; };
 		94C71F011E7444E400D63A95 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C71F001E7444E400D63A95 /* AppDelegate.swift */; };
 		94C71F061E7444E400D63A95 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94C71F041E7444E400D63A95 /* Main.storyboard */; };
 		94C71F081E7444E400D63A95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94C71F071E7444E400D63A95 /* Assets.xcassets */; };
@@ -68,6 +69,7 @@
 		948C1F2C1E7E2A88000F20E5 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		948C1F2E1E7E2C7D000F20E5 /* Conversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		948C1F301E7E2E69000F20E5 /* FirebaseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
+		9497178C1E87F3AF00FBD83D /* Thinh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thinh.swift; sourceTree = "<group>"; };
 		94C71EFD1E7444E400D63A95 /* Thinh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Thinh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94C71F001E7444E400D63A95 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		94C71F051E7444E400D63A95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 				0550242C1E7D278500175FED /* User.swift */,
 				948C1F2C1E7E2A88000F20E5 /* Message.swift */,
 				948C1F2E1E7E2C7D000F20E5 /* Conversation.swift */,
+				9497178C1E87F3AF00FBD83D /* Thinh.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -267,7 +270,7 @@
 				TargetAttributes = {
 					94C71EFC1E7444E300D63A95 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 8D5SZ9A5H3;
+						DevelopmentTeam = A2S8X674GE;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -369,6 +372,7 @@
 				055024231E7C467900175FED /* LoginViewController.swift in Sources */,
 				0555D5B71E82CAF60058F9CD /* UserDetailViewController.swift in Sources */,
 				1534E6B91E82D2A000E62BAD /* ConversationViewController.swift in Sources */,
+				9497178D1E87F3AF00FBD83D /* Thinh.swift in Sources */,
 				941469B91E7F542C00CB3732 /* Date_extension.swift in Sources */,
 				0555D5C11E82DE390058F9CD /* SettingViewController.swift in Sources */,
 				94C71F011E7444E400D63A95 /* AppDelegate.swift in Sources */,
@@ -506,7 +510,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 8D5SZ9A5H3;
+				DEVELOPMENT_TEAM = A2S8X674GE;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -526,7 +530,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 8D5SZ9A5H3;
+				DEVELOPMENT_TEAM = A2S8X674GE;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

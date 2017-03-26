@@ -44,7 +44,7 @@ class Api: NSObject {
         userConversationDb = database.child(FirebaseKey.userConversation)
     }
     
-    fileprivate func userId() -> String? {
+    func userId() -> String? {
         return FIRAuth.auth()?.currentUser?.uid
     }
    
@@ -107,10 +107,7 @@ class Api: NSObject {
         }
     }
     
-    /*
-     create user after first login
-    */
-    fileprivate func createUser(_ id: UserId, user: User)  {
+    func createUser(_ id: UserId, user: User)  {
         userDb.child(id).setValue(user.toJSON()) { (error, reference) in
             guard error == nil else {
                 print(error!.localizedDescription)
@@ -118,6 +115,7 @@ class Api: NSObject {
             }
         }
     }
+    
     /*
      get user info using userId
     */
@@ -173,11 +171,29 @@ class Api: NSObject {
         - stranger dop thinh
         - both friend tha thinh
     */
+    // FIXME: create new conversation between current user and user A
     func createNewConversation(forUser: UserId, andUser: UserId) -> ConversationId {
         let key = conversationDb.childByAutoId().key
         sendBotMessage(id: key, user1: forUser, user2: andUser)
         createFriendRelationship(between: forUser, and: andUser)
         return key
+    }
+    
+    /*
+     check if conversation between current user and user A has exist
+    */
+    fileprivate func checkIfConversationExist(with A: UserId) -> Observable<ConversationId?> {
+       return Observable<ConversationId?>.create({ (subcriber) -> Disposable in
+        self.userConversationDb.child(self.userId()!).observeSingleEvent(of: .value, with: { (snapshot) in
+            if snapshot.hasChild(A) {
+                let conversation = Conversation(json: snapshot.childSnapshot(forPath: A).value as! JSON)
+                subcriber.onNext(conversation?.id)
+            } else {
+                subcriber.onNext(nil)
+            }
+        })
+        return Disposables.create()
+       })
     }
     
     /*
@@ -201,11 +217,45 @@ class Api: NSObject {
         }
     }
     
+    
+    
+    /*
+     create new text for conversationId
+    */
+    fileprivate func sendMessage(id: ConversationId, message: Message) -> MessageId {
+        let key = conversationDb.child(id).childByAutoId().key
+        // create new message
+        conversationDb.child(id).child(key).setValue(message.toJSON())
+        // update user conversation
+        if (message.message != nil) {
+            // update last message
+            let conversation = Conversation(id: id, message: message.message, time: message.date)
+            userConversationDb.child(message.user1!).child(message.user2!).setValue(conversation.withUser(message.user2!).toJSON())
+            userConversationDb.child(message.user2!).child(message.user1!).setValue(conversation.withUser(message.user1!).toJSON())
+        }   // photo message don't update last message
+        return key
+    }
+    
+    /*
+     send message with image
+    */
+    func sendMessage(to A: UserId, conversation: ConversationId, image: UIImage) {
+//        let message
+    }
+    
+    /*
+     send message with text
+    */
+    func sendMessage(to A: UserId, conversation: ConversationId, text: String) {
+        let message = Message(from: userId()!, to: A, message: text)
+        sendMessage(id: conversation, message: message)
+    }
+    
     /*
      the bot will send message when 2 user match:
-        - stranger dop thinh
-        - both friend tha thinh
-    */
+     - stranger dop thinh
+     - both friend tha thinh
+     */
     fileprivate func sendBotMessage(id: ConversationId, user1: UserId, user2: UserId) -> MessageId {
         let message = Message(from: botId, to: user1, message: FirebaseKey.botMessage)
         // set this for bot message only
@@ -215,70 +265,72 @@ class Api: NSObject {
     }
     
     /*
-     create new message for conversationId
+     return a list of all user except myself, one at the time
     */
-    func sendMessage(id: ConversationId, message: Message) -> MessageId {
-        let key = conversationDb.child(id).childByAutoId().key
-        // create new message
-        conversationDb.child(id).child(key).setValue(message.toJSON())
-        // update user conversation
-        let conversation = Conversation(id: id, message: message.message, time: message.date)
-        userConversationDb.child(message.user1!).child(message.user2!).setValue(conversation.withUser(message.user2!).toJSON())
-        userConversationDb.child(message.user2!).child(message.user1!).setValue(conversation.withUser(message.user1!).toJSON())
-        return key
-    }
-    
-    /*
-     return a list of all user except myself
-    */
-    func getAllUser() -> Observable<[UserId]> {
-        return Observable<[UserId]>.create({ (subcriber) -> Disposable in
-            self.userFriendDb.observeSingleEvent(of: .value, with: { (snapshot) in
-                guard let data = snapshot.value as? [UserId: Any] else {
-                    subcriber.onError(ThinhError.unknownUser) // FIXME
-                    return
-                }
-                var users = [UserId]()
-                let currentUser = self.userId()
-                for datum in data {
-                    if datum.key != currentUser {
-                       users.append(datum.key)
+    func getAllUser() -> Observable<User> {
+        return Observable<User>.create({ (subcriber) -> Disposable in
+            self.userDb.observeSingleEvent(of: .value, with: { (snapshot) in
+//                var users = [User]()
+                for child in snapshot.children {
+                    guard let data = child as? FIRDataSnapshot else {
+                        return
+                    }
+                    let user = User(json: data.value as! JSON)
+                    if user?.id != self.userId() {
+                        subcriber.onNext(user!)
                     }
                 }
-                subcriber.onNext(users)
-                
+//                subcriber.onNext(users)
             })
             return Disposables.create()
         })
     }
     
     /*
-     get friend list of current user
+     get friend list of current user, one at the time
     */
-    func getMyFriendList() -> Observable<[UserId]> {
+    func getMyFriendList() -> Observable<User> {
        return getFriendList(id: userId()!)
     }
     
     /*
      get friend list of specific user, maybe public in the future
     */
-    fileprivate func getFriendList(id: UserId) -> Observable<[UserId]> {
-        return Observable<[UserId]>.create { (subcriber) -> Disposable in
-            self.userFriendDb.child(id).observeSingleEvent(of: .value, with: { (snapshot) in
+    fileprivate func getFriendList(id: UserId) -> Observable<User> {
+        return Observable<User>.create({ (subcriber) -> Disposable in
+            self.getFriendsIdOf(user: id).subscribe(onNext: { (id) in
+                self.userDb.child(id).observeSingleEvent(of: .value, with: { (snapshot) in
+                    guard let user = User(json: snapshot.value as! JSON) else {
+                        subcriber.onError(ThinhError.unknownUser)
+                        return
+                    }
+                    subcriber.onNext(user)
+                })
+            })
+        
+            return Disposables.create()
+        })
+       
+       
+    }
+    
+    /*
+     get all friend id one at the time
+    */
+    fileprivate func getFriendsIdOf(user: UserId) -> Observable<UserId> {
+        return Observable<UserId>.create { (subcriber) -> Disposable in
+            self.userFriendDb.child(user).observeSingleEvent(of: .value, with: { (snapshot) in
                 guard let data = snapshot.value as? [UserId: TimeInterval] else {
                     subcriber.onError(ThinhError.unknownUser)   // FIXME
                     return
                 }
-                var users = [UserId]()
                 for datum in data {
-                    users.append(datum.key)
+                    subcriber.onNext(datum.key)
                 }
-                subcriber.onNext(users)
             })
             
             return Disposables.create()
         }
-       
     }
     
     /*
@@ -302,6 +354,78 @@ class Api: NSObject {
         }
     }
     
+    func getStrangerThinh() -> Observable<[Thinh]> {
+        return Observable<[Thinh]>.create({ (subcriber) -> Disposable in
+            let currentUser = self.userId()!
+            self.thinhDb.queryEqual(toValue: currentUser, childKey: FirebaseKey.to).queryEqual(toValue: false, childKey: FirebaseKey.friend).queryOrdered(byChild: FirebaseKey.date).observe(.value, with: { (snapshot) in
+                var thinhs = [Thinh]()
+                for child in snapshot.children {
+                    guard let data = child as? FIRDataSnapshot else {
+                        return
+                    }
+                    thinhs.append(Thinh(json: data.value as! JSON)!)
+                }
+                subcriber.onNext(thinhs)
+            })
+            return Disposables.create()
+        })
+    }
+    
+    /*
+     current user tha thinh user A with message
+    */
+    func thathinh(_ A: UserId, message: String) {
+//        hasRecieveThinhFrom(A).subscribe(onNext: { (recieved) in
+//            if recieved {
+//                self.checkIfConversationExist(with: A).subscribe(onNext: { (conversationId) in
+//                    if
+//                })
+//            } else {
+//                // TODO
+//            }
+//        })
+//        hasRecieveThinhFrom(A).)
+    }
+    
+    /*
+     current user tha thinh user A with image
+    */
+    func thathinh(_ A: UserId, image: UIImage) {
+        
+    }
+    
+    /*
+     check if current have recieve thinh from user A
+    */
+    fileprivate func hasRecieveThinhFrom(_ user: UserId) -> Observable<Bool> {
+        return Observable<Bool>.create({ (subcriber) -> Disposable in
+            self.userThinhDb.child(self.userId()!).observeSingleEvent(of: .value, with: { (snapshot) in
+                subcriber.onNext(snapshot.hasChild(user))
+            })
+            return Disposables.create()
+        })
+    }
+    
+    /*
+     create thinh package from current user to user A
+    */
+    func createThinhPackage(for A: UserId, with message: String = "", with media: String = "") {
+        let key = thinhDb.childByAutoId().key
+        let thinh = Thinh().withTo(A).withMessage(message).withMedia(media).withId(key)
+        thinhDb.child(key).setValue(thinh.toJSON())
+        userThinhDb.child(A).child(userId()!).setValue(thinh.date)
+    }
+    
+    /*
+     delete thinh package with id 
+    */
+    fileprivate func deleteThinh(_ id: ThinhId) {
+        self.thinhDb.child(id).setValue(nil)
+        self.userThinhDb.child(userId()!).child(id).setValue(nil)
+    }
+    
+//    fileprivate
+    
     /*
      call this when close the app
     */
@@ -320,11 +444,12 @@ class Api: NSObject {
 
 extension Api {
     func createMockData() {
-//        deleteDb()
-        let users = User.mock()
+        deleteDb()
+        let users = createMockUser()
         for i in 0..<users.count - 1 {
-            let id = createMockConversation(user1: users[i], user2: users[i+1])
-            createMockMessage(user1: users[i], user2: users[i+1], id: id)
+            let id = createMockConversation(user1: users[i].id!, user2: users[i+1].id!)
+            createMockMessage(user1: users[i].id!, user2: users[i+1].id!
+                , id: id)
         }
 //        getFriendList(id: users[1].id!)
 //        checkFriendRelationship(between: users[1].id!, and: users[0].id!)
@@ -346,16 +471,17 @@ extension Api {
     }
     
     
-//    private func createMockUser()  -> [User] {
-//        let users = User.mock()
-//        for user in users {
+    private func createMockUser()  -> [User] {
+        let users = User.mock()
+        for user in users {
 //            let key = userDb.childByAutoId().key
 //            user.withId(key)
-//            userDb.child(key).setValue(user.toJSON()!)
-//            createUser(key, user: user)
-//        }
-//        return users
-//    }
+            userDb.child(user.id!).setValue(user.toJSON()!)
+            createUser(user.id!,
+                       user: user)
+        }
+        return users
+    }
     
     
     private func createMockConversation(user1: UserId, user2: UserId) -> ConversationId {

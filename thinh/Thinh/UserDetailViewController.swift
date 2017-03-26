@@ -70,7 +70,7 @@ class UserDetailViewController: UIViewController {
         
     }
     func loadMockInfo() {
-        user = User.mock2()[0]
+//        user = User.mock2()[0]
     }
 
 }
