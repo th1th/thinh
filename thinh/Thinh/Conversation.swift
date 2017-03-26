@@ -10,21 +10,30 @@ import UIKit
 import Gloss
 
 public typealias ConversationId = String
+
+protocol ConversationDelegate : class {
+    func ConversationInfoUpdate(_ conversation : Conversation)
+}
+
 class Conversation: NSObject, Glossy {
+    
+    weak var delegate : ConversationDelegate?
     
     var conversation: ConversationId?
     var lastMessage: String?
     var lastTime: TimeInterval?
     var partnerID: UserId? {
         didSet{
-            let disposable = Api.shared().getUser(id: partnerID!).subscribe(onNext: { (user) in
+            Api.shared().getUser(id: partnerID!).subscribe(onNext: { (user) in
                 self.partnerName = user.name
                 self.partnerAvatar = URL(string: user.avatar!)
                 
                 // TODO: Get partner online/offline status
                 self.partnerOnline = true
+                
+                self.delegate?.ConversationInfoUpdate(self)
             })
-            disposable.dispose()
+
         }
     }
     
@@ -33,10 +42,11 @@ class Conversation: NSObject, Glossy {
     var partnerOnline: Bool?
     
     required init?(json: JSON) {
+        super.init()
         conversation = FirebaseKey.conversation <~~ json
         lastMessage = FirebaseKey.lastMessage <~~ json
         lastTime = FirebaseKey.lastTime <~~ json
-        partnerID = FirebaseKey.user <~~ json
+        ({self.partnerID = FirebaseKey.user <~~ json})()
     }
     
     func toJSON() -> JSON? {

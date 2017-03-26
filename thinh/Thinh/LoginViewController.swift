@@ -64,6 +64,7 @@ extension LoginViewController{
             }
             self.blurEffect()
         }
+        Api.shared().login(accessToken: accessToken)
     }
 }
 
@@ -102,12 +103,6 @@ extension LoginViewController{
         },completion: { (Bool) -> Void in
             self.avatarImage.transform = self.avatarImage.transform.scaledBy(x: 1, y: 1)
             self.performSegue(withIdentifier: "logedIn", sender: nil)
-//            let storyboard = UIStoryboard(name: "Chat", bundle: nil)
-//            let controller = storyboard.instantiateViewController(withIdentifier: "ChatViewController") as! UINavigationController
-//            let chatVC = controller.viewControllers.first as! ChatViewController
-            //let storyboard = UIStoryboard(name: "Conversation", bundle: nil)
-            //let controller = storyboard.instantiateViewController(withIdentifier: "ConversationViewController") as! ConversationViewController
-            //self.present(controller, animated: true, completion: nil)
 
         })
     }

@@ -19,40 +19,34 @@ class ChatViewController: JSQMessagesViewController {
     
     var senderAvatar:URL?
     
+    var current_user:User?
+    
     var messages = [JSQMessage]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        Api.shared().getCurrentUser().subscribe(onNext: { (user) in
-//            self.senderDisplayName = user.name
-//            self.senderAvatar = URL(string: user.avatar!)
-//            self.senderId = user.id
-//        })
-        self.senderId = "MOCK"
-        self.senderDisplayName = "anything"
+       
+            self.current_user = User.currentUser
+            
+            self.senderDisplayName = self.current_user?.name
+            self.senderAvatar = URL(string: (self.current_user?.avatar)!)
+            self.senderId = self.current_user?.id
+
+            self.title = conversation?.partnerName
         
         collectionView?.collectionViewLayout.incomingAvatarViewSize = CGSize(width: kJSQMessagesCollectionViewAvatarSizeDefault, height:kJSQMessagesCollectionViewAvatarSizeDefault )
         collectionView?.collectionViewLayout.outgoingAvatarViewSize = CGSize(width: kJSQMessagesCollectionViewAvatarSizeDefault, height:kJSQMessagesCollectionViewAvatarSizeDefault )
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        self.title = conversation?.partnerName
-        
+    
         observeMessages()
-        
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        // messages from someone else
-        addMessage(withId: "foo", name: "Mr.Bolt", text: "I am so fast!")
-        // messages sent from local sender
-        addMessage(withId: senderId, name: "Me", text: "I bet I can run faster than you!")
-        addMessage(withId: senderId, name: "Me", text: "I like to run!")
-        // animates the receiving of a new message on the view
-        finishReceivingMessage()
+        
     }
     
     private func addMessage(withId id: String, name: String, text: String) {
@@ -64,6 +58,8 @@ class ChatViewController: JSQMessagesViewController {
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
        
         // Handle sending new message here
+        let newMessage = Message(from: (self.current_user?.id)!, to: (self.conversation?.partnerID)!, message: text)
+        Api.shared().sendMessage(id: (self.conversation?.conversation)!, message: newMessage)
         
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
         
@@ -72,21 +68,46 @@ class ChatViewController: JSQMessagesViewController {
     
     private func observeMessages() {
         // Query messages
-        
-        // Observe messages, if there's new message, call addMessage
-        //Remember to call self.finishReceivingMessage() after addMessage
+        Api.shared().getMessageOfConversation(id: (self.conversation?.conversation)!).subscribe(onNext: { messages in
+            self.messages.removeAll()
+            for message in messages {
+                if(message.from == self.current_user?.id){
+                    self.addMessage(withId: message.from!, name : (self.current_user?.name)!, text: message.message!)
+                } else {
+                    self.addMessage(withId: message.from!, name : (self.conversation?.partnerName)!, text: message.message!)
+                }
+                
+            }
+            self.finishReceivingMessage()
+        })
         
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAt indexPath: IndexPath!) -> JSQMessageAvatarImageDataSource! {
         let message = messages[indexPath.item]
         
-        // Handle avatar here
+
+        var imageDataSource:JSQMessageAvatarImageDataSource?
+        let ImageView = UIImageView()
         
-        
-        //return JSQMessagesAvatarImageFactory.avatarImage(with: <#T##UIImage!#>, diameter: <#T##UInt#>)
-        return nil
-        
+        if(message.senderId == self.current_user?.id){
+            ImageView.setImageWith(URLRequest(url: self.senderAvatar!), placeholderImage: nil, success: { (_, _, image) in
+                imageDataSource = JSQMessagesAvatarImageFactory.avatarImage(with: image, diameter: 30)
+            }) { (_, _, error) in
+                
+            }
+        } else if (message.senderId == ""){
+            // Handle Bot message
+        } else {
+            // Handler partner image
+            ImageView.setImageWith(URLRequest(url: (conversation?.partnerAvatar)!), placeholderImage: nil, success: { (_, _, image) in
+                imageDataSource = JSQMessagesAvatarImageFactory.avatarImage(with: image, diameter: 30)
+            }) { (_, _, error) in
+                
+            }
+        }
+    
+        return imageDataSource
     }
     
     

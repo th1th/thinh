@@ -8,6 +8,7 @@
 
 import UIKit
 import NSDate_TimeAgo
+import JSQMessagesViewController
 
 class ConversationViewCell: UITableViewCell {
 
@@ -19,12 +20,25 @@ class ConversationViewCell: UITableViewCell {
     
     var conversation : Conversation? {
         didSet{
-            partnerImg.setImageWith((conversation?.partnerAvatar)!)
-            nameLabel.text = conversation?.partnerName
+            if conversation?.partnerAvatar != nil {
+                partnerImg.setImageWith(URLRequest(url: (conversation?.partnerAvatar)!), placeholderImage: nil, success: { (_, _, image) in
+                    self.partnerImg.image = JSQMessagesAvatarImageFactory.avatarImage(with: image, diameter: 60).avatarImage
+                    self.nameLabel.text = self.conversation?.partnerName
+                    
+                    // Handle online/offline
+                }) { (_, _, error) in
+                    
+                }
+            } else {
+                self.nameLabel.text = ""
+            }
+            
+
             lastMessageLabel.text = conversation?.lastMessage
             
             // Handle time interval
-            //timeLabel.text = conversation?.lastTime
+            let timeAgo = NSDate(timeIntervalSince1970: (conversation?.lastTime)!)
+            timeLabel.text = timeAgo.dateTimeAgo()
         }
     }
     
