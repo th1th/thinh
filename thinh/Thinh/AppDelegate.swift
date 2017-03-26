@@ -28,7 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.rootViewController = vc
         }
         
-       Api.shared().createMockData()
+       Api.shared().getAllUser().subscribe(onNext: { (user) in
+        print(user)
+       })
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 

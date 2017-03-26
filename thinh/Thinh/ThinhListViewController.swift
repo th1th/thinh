@@ -19,7 +19,29 @@ class ThinhListViewController: UIViewController {
     @IBOutlet weak var UserImage5: UIImageView!
     @IBOutlet weak var UserImage6: UIImageView!
     
+    var contentView: UIView! = nil
+    var users: [User] = []
     
+    
+    @IBAction func onClickGetDetail(_ sender: UITapGestureRecognizer) {
+        sender.numberOfTapsRequired = 1
+        sender.numberOfTouchesRequired = 1
+        print("[xx]tap")
+        //Remove the Previous ViewController
+        let previousVC = UIStoryboard(name: "ThinhList", bundle: nil).instantiateViewController(withIdentifier: "ThinhListViewController")
+        previousVC.willMove(toParentViewController: nil)
+        previousVC.view.removeFromSuperview()
+        previousVC.removeFromParentViewController()
+        
+        //Add the New ViewController
+        let vc = UIStoryboard(name: "UserDetail", bundle: nil).instantiateViewController(withIdentifier: "UserDetailViewController")
+        addChildViewController(vc)
+        vc.view.frame = view.bounds
+        view.addSubview(vc.view)
+        vc.didMove(toParentViewController: self)
+    }
+    
+
     @IBAction func onClickedAccept(_ sender: UIButton) {
         if let buttonId = sender.restorationIdentifier{
             switch buttonId {
@@ -77,6 +99,7 @@ class ThinhListViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
         initView()
     }
 
@@ -86,20 +109,43 @@ class ThinhListViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+}
+
+extension ThinhListViewController{
+    func getThinhList() {
+        //GET ALL THINH HERE:
+
+        //////////////
+        //users += User.mock2()
     }
-    */
+    func loadUserToView()  {
+        //UserImage.setImageWith(URL(string: users[0].avatar!)!)
+        //UserImage2.setImageWith(URL(string: users[1].avatar!)!)
+        //UserImage3.setImageWith(URL(string: users[2].avatar!)!)
+        //UserImage4.setImageWith(URL(string: users[3].avatar!)!)
+        //UserImage5.setImageWith(URL(string: users[4].avatar!)!)
+        //UserImage6.setImageWith(URL(string: users[5].avatar!)!)
+    }
     func initView() {
         for image in [UserImage,UserImage2,UserImage3,UserImage4,UserImage5,UserImage6] {
             image?.layer.cornerRadius = (image?.frame.height)!/2 //set corner for image here
             image?.clipsToBounds = true
         }
+        getThinhList()
+        loadUserToView()
     }
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

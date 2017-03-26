@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class TabBarViewController: UIViewController {
 
     @IBOutlet weak var contentView: UIView!
@@ -33,6 +34,7 @@ class TabBarViewController: UIViewController {
         //Get Access to the Previous and Current Tab Button.
         let previousIndex = selectedIndex
         selectedIndex = sender.tag
+        
         //Remove the Previous ViewController and Set Button State.
         buttons[previousIndex].isSelected = false
         let previousVC = viewControllers[previousIndex]
@@ -50,7 +52,6 @@ class TabBarViewController: UIViewController {
 
         //
         updateTabBarImage(selectselectedIndex: selectedIndex, previousIndex: previousIndex)
-
     }
     
     
@@ -99,7 +100,7 @@ class TabBarViewController: UIViewController {
     */
 }
 
-//View config
+//Tab Bar View config
 extension TabBarViewController{
     func initView() {
         updateChatCount()

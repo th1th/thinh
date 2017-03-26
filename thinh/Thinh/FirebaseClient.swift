@@ -228,22 +228,20 @@ class Api: NSObject {
     /*
      return a list of all user except myself
     */
-    func getAllUser() -> Observable<[UserId]> {
-        return Observable<[UserId]>.create({ (subcriber) -> Disposable in
-            self.userFriendDb.observeSingleEvent(of: .value, with: { (snapshot) in
-                guard let data = snapshot.value as? [UserId: Any] else {
-                    subcriber.onError(ThinhError.unknownUser) // FIXME
-                    return
-                }
-                var users = [UserId]()
-                let currentUser = self.userId()
-                for datum in data {
-                    if datum.key != currentUser {
-                       users.append(datum.key)
+    func getAllUser() -> Observable<[User]> {
+        return Observable<[User]>.create({ (subcriber) -> Disposable in
+            self.userDb.observeSingleEvent(of: .value, with: { (snapshot) in
+                var users = [User]()
+                for child in snapshot.children {
+                    guard let data = child as? FIRDataSnapshot else {
+                        return
+                    }
+                    let user = User(json: data.value as! JSON)
+                    if user?.id != self.userId() {
+                        users.append(user!)
                     }
                 }
                 subcriber.onNext(users)
-                
             })
             return Disposables.create()
         })

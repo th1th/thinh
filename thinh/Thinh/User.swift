@@ -21,7 +21,8 @@ class User: NSObject, Glossy {
     var id: UserId?
     var status: Bool?
     var caption: String?
-
+    
+    static var currentUser = User.init(user: (FIRAuth.auth()?.currentUser)!)
     
     enum Sex: String {
         case male = "male"
@@ -125,5 +126,6 @@ class User: NSObject, Glossy {
     static let user2 = "WR3OioP6R0UTPUoWItWyJX5g4p62"
     static let user4 = "WhEZVoiMDpTA4QkdI8dHCZFyG752"
     static let user3 = "cdP7J0LNP2gUG3BeEq29N8JHDt72"
+
     
 }

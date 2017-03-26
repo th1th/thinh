@@ -19,9 +19,17 @@ class UserDetailViewController: UIViewController {
     @IBOutlet weak var UserInfoLabel: UILabel!
     
     var user:User? = nil
+    @IBAction func closeView(_ sender: UIButton) {
+        //Remove the Previous ViewController and Set Button State.
+        let vc = self
+        vc.willMove(toParentViewController: nil)
+        vc.view.removeFromSuperview()
+        vc.removeFromParentViewController()
+    }
     
     
     @IBAction func onClickThaThinhButton(_ sender: UIButton) {
+        print("[xx]thathinh")
     }
     
     override func viewDidLoad() {
@@ -71,7 +79,7 @@ class UserDetailViewController: UIViewController {
         
     }
     func loadMockInfo() {
-//        user = User.mock()[0]
+//        user = User.mock2()[0]
     }
 
 }
