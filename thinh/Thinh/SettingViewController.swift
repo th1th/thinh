@@ -27,21 +27,28 @@ class SettingViewController: UIViewController {
     
     @IBAction func showPopUp(_ sender: UIButton) {
         self.showPopupView()
+        configContentPopupView()
+
     }
     @IBAction func Done(_ sender: UIButton) {
+        updateUserInfo()
+        loadInfo()
         hidePopupView()
     }
     
     @IBAction func close(_ sender: UIButton) {
         hidePopupView()
     }
-    
+    //Popup View outlet
+    @IBOutlet weak var captionTextView: UITextView!
+    @IBOutlet weak var phoneTextView: UITextView!
+    @IBOutlet weak var genderSegment: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        loadMockInfo()
+        loadUser()
         loadInfo()
     }
 
@@ -53,6 +60,11 @@ class SettingViewController: UIViewController {
 
 //load user info
 extension SettingViewController{
+    
+    func loadUser() {
+        user = User.currentUser
+    }
+
     func loadInfo() {
         //UserBackgroundImage.setImageWith(URL(string: (user?.avatar)!)!)
         AvatarImage.setImageWith(URL(string: (user?.avatar)!)!)
@@ -76,18 +88,28 @@ extension SettingViewController{
         UserCaptionLabel.layer.borderWidth = 1.0
         
     }
-    func loadMockInfo() {
-//        user = User.mock()[0]
+    func updateUserInfo() {
+        user?.caption = captionTextView.text
+        user?.gender = User.Sex(rawValue: genderSegment.titleForSegment(at: genderSegment.selectedSegmentIndex)!)
+        user?.phone = phoneTextView.text
     }
-    
 }
 
 
 
 //setting pop up view
 extension SettingViewController{
-    
-    
+    func configContentPopupView() {
+        if let tempUser = user {
+            captionTextView.text = tempUser.caption ?? "Unknown"
+            phoneTextView.text = tempUser.phone ?? "Unknown"
+            //genderSegment.selectedSegmentIndex = (tempUser.gender?.hashValue)! ?? 2
+        }else{
+            captionTextView.text = "song noi tam yeu mau tim"
+            phoneTextView.text = "unknown"
+            genderSegment.selectedSegmentIndex = 2
+        }
+    }
     func showPopupView(){
         
         //Show GrayView Behind popup view
