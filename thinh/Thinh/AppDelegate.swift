@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.rootViewController = vc
         }
         
-       Api.shared().getAllUser().subscribe(onNext: { (user) in
+       Api.shared().getMyFriendList().subscribe(onNext: { (user) in
         print(user)
        })
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)

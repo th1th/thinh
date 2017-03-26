@@ -228,20 +228,20 @@ class Api: NSObject {
     /*
      return a list of all user except myself
     */
-    func getAllUser() -> Observable<[User]> {
-        return Observable<[User]>.create({ (subcriber) -> Disposable in
+    func getAllUser() -> Observable<User> {
+        return Observable<User>.create({ (subcriber) -> Disposable in
             self.userDb.observeSingleEvent(of: .value, with: { (snapshot) in
-                var users = [User]()
+//                var users = [User]()
                 for child in snapshot.children {
                     guard let data = child as? FIRDataSnapshot else {
                         return
                     }
                     let user = User(json: data.value as! JSON)
                     if user?.id != self.userId() {
-                        users.append(user!)
+                        subcriber.onNext(user!)
                     }
                 }
-                subcriber.onNext(users)
+//                subcriber.onNext(users)
             })
             return Disposables.create()
         })
@@ -250,30 +250,48 @@ class Api: NSObject {
     /*
      get friend list of current user
     */
-    func getMyFriendList() -> Observable<[UserId]> {
+    func getMyFriendList() -> Observable<User> {
        return getFriendList(id: userId()!)
     }
     
     /*
      get friend list of specific user, maybe public in the future
     */
-    fileprivate func getFriendList(id: UserId) -> Observable<[UserId]> {
-        return Observable<[UserId]>.create { (subcriber) -> Disposable in
-            self.userFriendDb.child(id).observeSingleEvent(of: .value, with: { (snapshot) in
+    fileprivate func getFriendList(id: UserId) -> Observable<User> {
+        return Observable<User>.create({ (subcriber) -> Disposable in
+            self.getFriendsIdOf(user: id).subscribe(onNext: { (id) in
+                self.userDb.child(id).observeSingleEvent(of: .value, with: { (snapshot) in
+                    guard let user = User(json: snapshot.value as! JSON) else {
+                        subcriber.onError(ThinhError.unknownUser)
+                        return
+                    }
+                    subcriber.onNext(user)
+                })
+            })
+        
+            return Disposables.create()
+        })
+       
+       
+    }
+    
+    /*
+     get all friend id one at the time
+    */
+    fileprivate func getFriendsIdOf(user: UserId) -> Observable<UserId> {
+        return Observable<UserId>.create { (subcriber) -> Disposable in
+            self.userFriendDb.child(user).observeSingleEvent(of: .value, with: { (snapshot) in
                 guard let data = snapshot.value as? [UserId: TimeInterval] else {
                     subcriber.onError(ThinhError.unknownUser)   // FIXME
                     return
                 }
-                var users = [UserId]()
                 for datum in data {
-                    users.append(datum.key)
+                    subcriber.onNext(datum.key)
                 }
-                subcriber.onNext(users)
             })
             
             return Disposables.create()
         }
-       
     }
     
     /*
