@@ -27,10 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let vc = storyboard.instantiateInitialViewController()
             self.window?.rootViewController = vc
         }
-        
-       Api.shared().getMyFriendList().subscribe(onNext: { (user) in
-        print(user)
-       })
+        Api.shared().enableDatabasePersistence()
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 
@@ -52,6 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+       Api.shared().stop() 
     }
     func applicationDidBecomeActive(application: UIApplication) {
         // Call the 'activate' method to log an app event for use

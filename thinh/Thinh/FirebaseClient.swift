@@ -44,7 +44,7 @@ class Api: NSObject {
         userConversationDb = database.child(FirebaseKey.userConversation)
     }
     
-    fileprivate func userId() -> String? {
+    func userId() -> String? {
         return FIRAuth.auth()?.currentUser?.uid
     }
    
@@ -115,6 +115,7 @@ class Api: NSObject {
             }
         }
     }
+    
     /*
      get user info using userId
     */
@@ -170,11 +171,29 @@ class Api: NSObject {
         - stranger dop thinh
         - both friend tha thinh
     */
+    // FIXME: create new conversation between current user and user A
     func createNewConversation(forUser: UserId, andUser: UserId) -> ConversationId {
         let key = conversationDb.childByAutoId().key
         sendBotMessage(id: key, user1: forUser, user2: andUser)
         createFriendRelationship(between: forUser, and: andUser)
         return key
+    }
+    
+    /*
+     check if conversation between current user and user A has exist
+    */
+    fileprivate func checkIfConversationExist(with A: UserId) -> Observable<ConversationId?> {
+       return Observable<ConversationId?>.create({ (subcriber) -> Disposable in
+        self.userConversationDb.child(self.userId()!).observeSingleEvent(of: .value, with: { (snapshot) in
+            if snapshot.hasChild(A) {
+                let conversation = Conversation(json: snapshot.childSnapshot(forPath: A).value as! JSON)
+                subcriber.onNext(conversation?.id)
+            } else {
+                subcriber.onNext(nil)
+            }
+        })
+        return Disposables.create()
+       })
     }
     
     /*
@@ -226,7 +245,7 @@ class Api: NSObject {
     }
     
     /*
-     return a list of all user except myself
+     return a list of all user except myself, one at the time
     */
     func getAllUser() -> Observable<User> {
         return Observable<User>.create({ (subcriber) -> Disposable in
@@ -248,7 +267,7 @@ class Api: NSObject {
     }
     
     /*
-     get friend list of current user
+     get friend list of current user, one at the time
     */
     func getMyFriendList() -> Observable<User> {
        return getFriendList(id: userId()!)
@@ -314,6 +333,71 @@ class Api: NSObject {
             return Disposables.create()
         }
     }
+    
+    func getStrangerThinh() -> Observable<[Thinh]> {
+        return Observable<[Thinh]>.create({ (subcriber) -> Disposable in
+            let currentUser = self.userId()!
+            self.thinhDb.queryEqual(toValue: currentUser, childKey: FirebaseKey.to).queryEqual(toValue: false, childKey: FirebaseKey.friend).queryOrdered(byChild: FirebaseKey.date).observe(.value, with: { (snapshot) in
+                var thinhs = [Thinh]()
+                for child in snapshot.children {
+                    guard let data = child as? FIRDataSnapshot else {
+                        return
+                    }
+                    thinhs.append(Thinh(json: data.value as! JSON)!)
+                }
+                subcriber.onNext(thinhs)
+            })
+            return Disposables.create()
+        })
+    }
+    
+    /*
+     current user tha thinh user A
+    */
+    func thathinh(_ A: UserId) {
+//        hasRecieveThinhFrom(A).subscribe(onNext: { (recieved) in
+//            if recieved {
+//                self.checkIfConversationExist(with: A).subscribe(onNext: { (conversationId) in
+//                    if
+//                })
+//            } else {
+//                // TODO
+//            }
+//        })
+//        hasRecieveThinhFrom(A).)
+    }
+    
+    /*
+     check if current have recieve thinh from user A
+    */
+    fileprivate func hasRecieveThinhFrom(_ user: UserId) -> Observable<Bool> {
+        return Observable<Bool>.create({ (subcriber) -> Disposable in
+            self.userThinhDb.child(self.userId()!).observeSingleEvent(of: .value, with: { (snapshot) in
+                subcriber.onNext(snapshot.hasChild(user))
+            })
+            return Disposables.create()
+        })
+    }
+    
+    /*
+     create thinh package from current user to user A
+    */
+    func createThinhPackage(for A: UserId, with message: String = "", with media: String = "") {
+        let key = thinhDb.childByAutoId().key
+        let thinh = Thinh().withTo(A).withMessage(message).withMedia(media).withId(key)
+        thinhDb.child(key).setValue(thinh.toJSON())
+        userThinhDb.child(A).child(userId()!).setValue(thinh.date)
+    }
+    
+    /*
+     delete thinh package with id 
+    */
+    fileprivate func deleteThinh(_ id: ThinhId) {
+        self.thinhDb.child(id).setValue(nil)
+        self.userThinhDb.child(userId()!).child(id).setValue(nil)
+    }
+    
+//    fileprivate
     
     /*
      call this when close the app
