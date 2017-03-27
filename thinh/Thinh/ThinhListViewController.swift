@@ -150,7 +150,6 @@ extension ThinhListViewController{
 //        }) { 
 //            //
 //        }
-        //////////////
         users += User.mock()
         indexTracking = User.mock().count
     }

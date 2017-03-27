@@ -13,6 +13,7 @@ target 'Thinh' do
   pod 'Firebase/Auth'
   pod 'Firebase/Core'
   pod 'Firebase/Database'
+  pod 'Firebase/Storage'
 
   pod 'FacebookCore'
   pod 'FacebookLogin'
@@ -26,4 +27,7 @@ target 'Thinh' do
   pod 'RxCocoa'
 
   pod 'NSDate+TimeAgo'
+  pod 'ImagePicker'
+  pod 'DGElasticPullToRefresh'
+  pod 'DZNEmptyDataSet'
 end

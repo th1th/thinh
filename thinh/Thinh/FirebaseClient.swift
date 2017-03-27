@@ -13,6 +13,7 @@ import FacebookLogin
 import FacebookCore
 import RxSwift
 import Gloss
+import FirebaseStorage
 
 class Api: NSObject {
     
@@ -24,6 +25,8 @@ class Api: NSObject {
     fileprivate var userThinhDb: FIRDatabaseReference
     fileprivate var userConversationDb: FIRDatabaseReference
     fileprivate let botId = "fuckFirebase"
+    fileprivate var storage: FIRStorageReference
+    fileprivate var conversationStorage: FIRStorageReference
     
     static private var _shared: Api!
     
@@ -42,6 +45,8 @@ class Api: NSObject {
         userFriendDb = database.child(FirebaseKey.userFriend)
         userThinhDb = database.child(FirebaseKey.userThinh)
         userConversationDb = database.child(FirebaseKey.userConversation)
+        storage = FIRStorage.storage().reference()
+        conversationStorage = storage.child(FirebaseKey.conversation)
     }
     
     func userId() -> String? {
@@ -52,8 +57,10 @@ class Api: NSObject {
     /*
      login with facebook
     */
+
     func login(accessToken: String) -> Observable<Bool> {
         return loginWithFacebook(accessToken: accessToken)
+
     }
 
     fileprivate func loginWithFacebook(accessToken: String) -> Observable<Bool> {
@@ -144,11 +151,14 @@ class Api: NSObject {
     */
     func getCurrentUser() -> Observable<User> {
         return getUser(id: userId()!)
+        
     }
     
     /*
      get all conversation of current login user
+     FIXME: Change to child_added event in future?
     */
+    
     func getAllConversation() -> Observable<[Conversation]> {
        return Observable<[Conversation]>.create({ subcriber -> Disposable in
             // TODO: child event
@@ -161,6 +171,7 @@ class Api: NSObject {
                     conversations.append(Conversation(json: data.value as! JSON)!)
                 }
                 subcriber.onNext(conversations)
+
             })
             return Disposables.create()
        })
@@ -241,6 +252,11 @@ class Api: NSObject {
     */
     func sendMessage(to A: UserId, conversation: ConversationId, image: UIImage) {
 //        let message
+        // TODO: Upload image to storage
+        uploadImage(image).subscribe(onNext: { (url) in
+            let message = Message(from: self.userId()!, to: A, media: url)
+            self.sendMessage(id: conversation, message: message)
+        })
     }
     
     /*
@@ -265,7 +281,7 @@ class Api: NSObject {
     }
     
     /*
-     return a list of all user except myself, one at the time
+     return a list of all user except myself, as stream
     */
     func getAllUser() -> Observable<User> {
         return Observable<User>.create({ (subcriber) -> Disposable in
@@ -354,18 +370,20 @@ class Api: NSObject {
         }
     }
     
-    func getStrangerThinh() -> Observable<[Thinh]> {
-        return Observable<[Thinh]>.create({ (subcriber) -> Disposable in
-            let currentUser = self.userId()!
-            self.thinhDb.queryEqual(toValue: currentUser, childKey: FirebaseKey.to).queryEqual(toValue: false, childKey: FirebaseKey.friend).queryOrdered(byChild: FirebaseKey.date).observe(.value, with: { (snapshot) in
-                var thinhs = [Thinh]()
-                for child in snapshot.children {
-                    guard let data = child as? FIRDataSnapshot else {
-                        return
-                    }
-                    thinhs.append(Thinh(json: data.value as! JSON)!)
+    /*
+     get stranger thinh stream
+    */
+    func getStrangerThinh() -> Observable<Thinh> {
+        return Observable<Thinh>.create({ (subcriber) -> Disposable in
+            self.thinhDb.queryEqual(toValue: self.userId()!, childKey: FirebaseKey.to).observe(.childAdded, with: { (snapshot) in
+                guard let data = snapshot.value as? JSON else {
+                    subcriber.onError(ThinhError.unknownUser)
+                    return
                 }
-                subcriber.onNext(thinhs)
+                let thinh = Thinh(json: data)!
+                if !thinh.friend! {
+                   subcriber.onNext(thinh)
+                }
             })
             return Disposables.create()
         })
@@ -375,32 +393,51 @@ class Api: NSObject {
      current user tha thinh user A with message
     */
     func thathinh(_ A: UserId, message: String) {
-//        hasRecieveThinhFrom(A).subscribe(onNext: { (recieved) in
-//            if recieved {
-//                self.checkIfConversationExist(with: A).subscribe(onNext: { (conversationId) in
-//                    if
-//                })
-//            } else {
-//                // TODO
-//            }
-//        })
-//        hasRecieveThinhFrom(A).)
+        hasRecieveThinhFrom(A).subscribe(onNext: { (thinh) in
+            if let thinh = thinh {
+                self.checkIfConversationExist(with: A).subscribe(onNext: { (conversationId) in
+                    var id: ConversationId!
+                    let A = thinh.to!
+                    let B = thinh.from!
+                    if conversationId != nil {
+                        id = conversationId
+                    } else {
+                        id = self.createNewConversation(forUser: A, andUser: B)
+                    }
+                    self.sendBotMessage(id: id, user1: A, user2: B)
+//                    self.sendMess
+                })
+            } else {
+                // TODO
+            }
+        })
     }
     
     /*
      current user tha thinh user A with image
     */
     func thathinh(_ A: UserId, image: UIImage) {
-        
+        // TODO: Implement in the future
+//        uploadImage(image).subscribe(onNext: { (url) in
+//            createThin
+//        })
     }
     
+    
     /*
-     check if current have recieve thinh from user A
+     check if current have recieve thinh from user A, return that thinh
     */
-    fileprivate func hasRecieveThinhFrom(_ user: UserId) -> Observable<Bool> {
-        return Observable<Bool>.create({ (subcriber) -> Disposable in
+    fileprivate func hasRecieveThinhFrom(_ A: UserId) -> Observable<Thinh?> {
+        return Observable<Thinh?>.create({ (subcriber) -> Disposable in
             self.userThinhDb.child(self.userId()!).observeSingleEvent(of: .value, with: { (snapshot) in
-                subcriber.onNext(snapshot.hasChild(user))
+                if snapshot.hasChild(A) {
+                    let id = snapshot.childSnapshot(forPath: A).value as! ThinhId
+                    self.thinhDb.child(id).observeSingleEvent(of: .value, with: { (snapshot) in
+                        subcriber.onNext(Thinh(json: snapshot.value as! JSON))
+                    })
+                } else {
+                    subcriber.onNext(nil)
+                }
             })
             return Disposables.create()
         })
@@ -409,15 +446,41 @@ class Api: NSObject {
     /*
      create thinh package from current user to user A
     */
-    func createThinhPackage(for A: UserId, with message: String = "", with media: String = "") {
+    func createThinhPackage(for A: UserId, with message: String?, with media: URL?) -> Thinh {
         let key = thinhDb.childByAutoId().key
         let thinh = Thinh().withTo(A).withMessage(message).withMedia(media).withId(key)
-        thinhDb.child(key).setValue(thinh.toJSON())
-        userThinhDb.child(A).child(userId()!).setValue(thinh.date)
+        return thinh
     }
     
     /*
-     delete thinh package with id 
+     set thinh package to database
+    */
+    fileprivate func setThinhPackage(_ thinh: Thinh) {
+        thinhDb.child(thinh.id!).setValue(thinh.toJSON())
+        userThinhDb.child(thinh.to!).child(userId()!).setValue(thinh.date)
+    }
+    
+    
+    /*
+     upload image and return back an url
+    */
+    fileprivate func uploadImage(_ image: UIImage) -> Observable<URL> {
+        return Observable<URL>.create({ (subcriber) -> Disposable in
+            let data = UIImageJPEGRepresentation(image, 0.2)
+            let name = "\(Date.currentTimeInMillis()).jpg"
+            self.storage.child(name).put(data!, metadata: nil, completion: { (metadata, error) in
+                guard error == nil else {
+                    return
+                }
+                subcriber.onNext((metadata?.downloadURL())!)
+            })
+            return Disposables.create()
+        })
+        
+    }
+    
+    /*
+     delete current user's thinh package with id
     */
     fileprivate func deleteThinh(_ id: ThinhId) {
         self.thinhDb.child(id).setValue(nil)
@@ -433,24 +496,19 @@ class Api: NSObject {
         database.removeAllObservers()
     }
     
-    /*
-     enable offline capabilities
-    */
-    func enableDatabasePersistence() {
-        FIRDatabase.database().persistenceEnabled = true
-    }
 }
 
 
 extension Api {
-    func createMockData() {
-        deleteDb()
-        let users = createMockUser()
-        for i in 0..<users.count - 1 {
-            let id = createMockConversation(user1: users[i].id!, user2: users[i+1].id!)
-            createMockMessage(user1: users[i].id!, user2: users[i+1].id!
-                , id: id)
-        }
+//    func createMockData() {
+//        deleteDb()
+//        let users = User.mock()
+//        for i in 0..<users.count - 1 {
+//            let id = createMockConversation(user1: users[i], user2: users[i+1])
+//            createMockMessage(user1: users[i], user2: users[i+1], id: id)
+//        }
+//
+//
 //        getFriendList(id: users[1].id!)
 //        checkFriendRelationship(between: users[1].id!, and: users[0].id!)
 //            .subscribe(onNext: { (friend) in
@@ -464,7 +522,9 @@ extension Api {
 //                    print("This should not be friend")
 //                }
 //            })
-    }
+//
+//    }
+
     
     private func deleteDb() {
         database.setValue(nil)
@@ -484,16 +544,16 @@ extension Api {
     }
     
     
-    private func createMockConversation(user1: UserId, user2: UserId) -> ConversationId {
-        return createNewConversation(forUser: user1, andUser: user2)
-    }
-    
-    private func createMockMessage(user1: UserId, user2: UserId, id: ConversationId) {
-        let messages = Message.mock(from: user1, to: user2)
-        for message in messages {
-            sendMessage(id: id, message: message)
-        }
-    }
+//    private func createMockConversation(user1: UserId, user2: UserId) -> ConversationId {
+//        return createNewConversation(forUser: user1, andUser: user2)
+//    }
+//    
+//    private func createMockMessage(user1: UserId, user2: UserId, id: ConversationId) {
+//        let messages = Message.mock(from: user1, to: user2)
+//        for message in messages {
+//            sendMessage(id: id, message: message)
+//        }
+//    }
     
     private func createMockThinh() {
         

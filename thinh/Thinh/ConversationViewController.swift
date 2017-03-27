@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import DGElasticPullToRefresh
+import DZNEmptyDataSet
 
 class ConversationViewController: UIViewController {
 
@@ -19,16 +21,45 @@ class ConversationViewController: UIViewController {
         conversationTable.delegate = self
         conversationTable.dataSource = self
         
-        let disposable = Api.shared().getAllConversation().subscribe(onNext: { (conversations) in
+        conversationTable.emptyDataSetSource = self
+        conversationTable.emptyDataSetDelegate = self
+        
+        // Initialize tableView
+        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
+        loadingView.tintColor = UIColor(red: 78/255.0, green: 221/255.0, blue: 200/255.0, alpha: 1.0)
+        conversationTable.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
+            
+            Api.shared().getAllConversation().subscribe(onNext: { (conversations) in
+                self?.conversationList = conversations
+                
+                for conversation in (self?.conversationList)! {
+                    conversation.delegate = self
+                }
+                self?.conversationTable.reloadData()
+                self?.conversationTable.dg_stopLoading()
+                
+            }, onError: { (error) in
+                self?.conversationTable.dg_stopLoading()
+            }, onCompleted: { 
+                self?.conversationTable.dg_stopLoading()
+            }, onDisposed: nil)
+        
+            }, loadingView: loadingView)
+        conversationTable.dg_setPullToRefreshFillColor(UIColor(red: 57/255.0, green: 67/255.0, blue: 89/255.0, alpha: 1.0))
+        conversationTable.dg_setPullToRefreshBackgroundColor(conversationTable.backgroundColor!)
+        
+        let disposable = Api.shared().getAllConversation().subscribe(onNext: { conversations in
             self.conversationList = conversations
+            
+            for conversation in (self.conversationList) {
+                conversation.delegate = self
+            }
             self.conversationTable.reloadData()
         })
-        disposable.dispose()
-        
-        let fakeConversation1 = Conversation(message: "Alo Alo 1234", time: 1490325105.0, name: "Dat Tran", avatar: "https://scontent.fsgn1-1.fna.fbcdn.net/v/t1.0-9/15622573_1085371901571808_5746077286281389946_n.jpg?oh=a4940622ada3ec2e2a47d5040158e464&oe=5972472E", online: true)
-        let fakeConversation2 = Conversation(message: "Alo Alo 4321", time: 1490325111.0, name: "Linh Le", avatar: "https://scontent.fsgn1-1.fna.fbcdn.net/v/t1.0-9/15622573_1085371901571808_5746077286281389946_n.jpg?oh=a4940622ada3ec2e2a47d5040158e464&oe=5972472E", online: false)
-        conversationList.append(contentsOf: [fakeConversation1, fakeConversation2])
-        conversationTable.reloadData()
+    }
+    
+    deinit {
+        self.conversationTable.dg_removePullToRefresh()
     }
 
  
@@ -53,6 +84,57 @@ extension ConversationViewController: UITableViewDelegate, UITableViewDataSource
         chatVC.conversation = self.conversationList[indexPath.row]
         
         self.present(controller, animated: true, completion: nil)
+    }
+
+}
+
+extension ConversationViewController: ConversationDelegate{
+    func ConversationInfoUpdate(_ conversation: Conversation) {
+        self.conversationTable.reloadData()
+    }
+}
+
+extension ConversationViewController : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        let text = "GETTING NO MESSAGE IS ALSO A MESSAGE"
+        let attribs = [
+            NSFontAttributeName: UIFont.boldSystemFont(ofSize: 18),
+            NSForegroundColorAttributeName: UIColor.darkGray
+        ]
+        
+        return NSAttributedString(string: text, attributes: attribs)
+    }
+    
+    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+//        let text = "Tha Thinh Plz"
+//        
+//        let para = NSMutableParagraphStyle()
+//        para.lineBreakMode = NSLineBreakMode.byWordWrapping
+//        para.alignment = NSTextAlignment.center
+//        
+//        let attribs = [
+//            NSFontAttributeName: UIFont.systemFont(ofSize: 14),
+//            NSForegroundColorAttributeName: UIColor.lightGray,
+//            NSParagraphStyleAttributeName: para
+//        ]
+//        
+//        return NSAttributedString(string: text, attributes: attribs)
+        return nil
+    }
+    
+    func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> NSAttributedString! {
+//        let text = "Click here to tha thinh"
+//        let attribs = [
+//            NSFontAttributeName: UIFont.boldSystemFont(ofSize: 16),
+//            NSForegroundColorAttributeName: view.tintColor
+//        ] as [String : Any]
+//        
+//        return NSAttributedString(string: text, attributes: attribs)
+        return nil
+    }
+    
+    func emptyDataSetDidTapButton(_ scrollView: UIScrollView!) {
+        print("Tapped")
     }
 
 }

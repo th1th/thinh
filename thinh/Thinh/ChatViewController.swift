@@ -9,6 +9,10 @@
 import UIKit
 import JSQMessagesViewController
 import AFNetworking
+import Photos
+import ImagePicker
+
+
 
 class ChatViewController: JSQMessagesViewController {
     
@@ -19,40 +23,70 @@ class ChatViewController: JSQMessagesViewController {
     
     var senderAvatar:URL?
     
+    var current_user:User?
+    
     var messages = [JSQMessage]()
+    
+    private var localTyping = false
+    var isTyping: Bool {
+        get {
+            return localTyping
+        }
+        set {
+            localTyping = newValue
+            // Update isTyping field in database
+            
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        Api.shared().getCurrentUser().subscribe(onNext: { (user) in
-//            self.senderDisplayName = user.name
-//            self.senderAvatar = URL(string: user.avatar!)
-//            self.senderId = user.id
-//        })
-        self.senderId = "MOCK"
-        self.senderDisplayName = "anything"
+        
+        self.current_user = User.currentUser
+        
+        self.senderDisplayName = self.current_user?.name
+        self.senderAvatar = URL(string: (self.current_user?.avatar)!)
+        self.senderId = self.current_user?.id
+        
+        self.title = conversation?.partnerName
+        
+        self.automaticallyScrollsToMostRecentMessage = true
+        self.inputToolbar.contentView.textView.becomeFirstResponder()
+       
         
         collectionView?.collectionViewLayout.incomingAvatarViewSize = CGSize(width: kJSQMessagesCollectionViewAvatarSizeDefault, height:kJSQMessagesCollectionViewAvatarSizeDefault )
         collectionView?.collectionViewLayout.outgoingAvatarViewSize = CGSize(width: kJSQMessagesCollectionViewAvatarSizeDefault, height:kJSQMessagesCollectionViewAvatarSizeDefault )
+        
+        
+        let imgBackground:UIImageView = UIImageView(frame: self.view.bounds)
+        imgBackground.contentMode = UIViewContentMode.scaleAspectFill
+        imgBackground.clipsToBounds = true
+        imgBackground.setImageWith(self.senderAvatar!)
+        self.collectionView?.backgroundView = imgBackground
+        
+        self.navigationController?.navigationBar.tintColor = UIColor(red: 78/255.0, green: 221/255.0, blue: 200/255.0, alpha: 1.0)
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 57/255.0, green: 67/255.0, blue: 89/255.0, alpha: 1.0)
+
+        
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        self.title = conversation?.partnerName
         
         observeMessages()
-        
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        // messages from someone else
-        addMessage(withId: "foo", name: "Mr.Bolt", text: "I am so fast!")
-        // messages sent from local sender
-        addMessage(withId: senderId, name: "Me", text: "I bet I can run faster than you!")
-        addMessage(withId: senderId, name: "Me", text: "I like to run!")
-        // animates the receiving of a new message on the view
-        finishReceivingMessage()
+        //self.inputToolbar.contentView.textView.becomeFirstResponder()
+        observeTyping()
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        self.inputToolbar.contentView.textView.resignFirstResponder()
     }
     
     private func addMessage(withId id: String, name: String, text: String) {
@@ -61,32 +95,89 @@ class ChatViewController: JSQMessagesViewController {
         }
     }
     
+    private func addPhotoMessage(withId id: String, name: String, mediaItem: JSQPhotoMediaItem) {
+        if let message = JSQMessage(senderId: id, displayName: "", media: mediaItem) {
+            messages.append(message)
+            collectionView.reloadData()
+        }
+    }
+    
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
-       
-        // Handle sending new message here
+        
+        Api.shared().sendMessage(to: (self.conversation?.partnerID)!, conversation: (self.conversation?.id)!, text: text)
         
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
         
         finishSendingMessage()
+        isTyping = false
     }
     
     private func observeMessages() {
         // Query messages
+        Api.shared().getMessageOfConversation(id: (self.conversation?.id)!).subscribe(onNext: { messages in
+            self.messages.removeAll()
+            
+            var messsage_sender_name : String?
+            for message in messages {
+                if(message.from == self.current_user?.id){
+                    messsage_sender_name = self.current_user?.name
+                } else {
+                    
+                    messsage_sender_name = self.conversation?.partnerName
+                }
+                
+                // handle media message here
+                if(true){
+                    self.addMessage(withId: message.from!, name : messsage_sender_name!, text: message.message!)
+                } else {
+                    //self.addPhotoMessage(withId: <#T##String#>, name: <#T##String#>, mediaItem: <#T##JSQPhotoMediaItem#>)
+                }
+                
+            }
+            self.finishReceivingMessage()
+        })
         
-        // Observe messages, if there's new message, call addMessage
-        //Remember to call self.finishReceivingMessage() after addMessage
+    }
+    
+    
+    override func didPressAccessoryButton(_ sender: UIButton) {
+        let picker = ImagePickerController()
+        picker.delegate = self
+        picker.imageLimit = 1
+//        if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera)) {
+//            picker.sourceType = UIImagePickerControllerSourceType.camera
+//        } else {
+//            picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+//        }
         
+        present(picker, animated: true, completion:nil)
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAt indexPath: IndexPath!) -> JSQMessageAvatarImageDataSource! {
         let message = messages[indexPath.item]
         
-        // Handle avatar here
         
+        var imageDataSource:JSQMessageAvatarImageDataSource?
+        let ImageView = UIImageView()
         
-        //return JSQMessagesAvatarImageFactory.avatarImage(with: <#T##UIImage!#>, diameter: <#T##UInt#>)
-        return nil
+        if(message.senderId == self.current_user?.id){
+            ImageView.setImageWith(URLRequest(url: self.senderAvatar!), placeholderImage: nil, success: { (_, _, image) in
+                imageDataSource = JSQMessagesAvatarImageFactory.avatarImage(with: image, diameter: 30)
+            }) { (_, _, error) in
+                
+            }
+        } else if (message.senderId == ""){
+            // Handle Bot message
+        } else {
+            // Handler partner image
+            ImageView.setImageWith(URLRequest(url: (conversation?.partnerAvatar)!), placeholderImage: nil, success: { (_, _, image) in
+                imageDataSource = JSQMessagesAvatarImageFactory.avatarImage(with: image, diameter: 30)
+            }) { (_, _, error) in
+                
+            }
+        }
         
+        return imageDataSource
     }
     
     
@@ -100,12 +191,12 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     private func setupOutgoingBubble() -> JSQMessagesBubbleImage {
-        let bubbleImageFactory = JSQMessagesBubbleImageFactory()
+        let bubbleImageFactory = JSQMessagesBubbleImageFactory(bubble: UIImage.jsq_bubbleCompactTailless(), capInsets: UIEdgeInsets.zero)
         return bubbleImageFactory!.outgoingMessagesBubbleImage(with: UIColor.jsq_messageBubbleBlue())
     }
     
     private func setupIncomingBubble() -> JSQMessagesBubbleImage {
-        let bubbleImageFactory = JSQMessagesBubbleImageFactory()
+        let bubbleImageFactory = JSQMessagesBubbleImageFactory(bubble: UIImage.jsq_bubbleCompactTailless(), capInsets: UIEdgeInsets.zero)
         return bubbleImageFactory!.incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleLightGray())
     }
     
@@ -132,9 +223,95 @@ class ChatViewController: JSQMessagesViewController {
         return cell
     }
     
+    override func collectionView(_ collectionView: JSQMessagesCollectionView, attributedTextForMessageBubbleTopLabelAt indexPath: IndexPath) -> NSAttributedString? {
+        let message = messages[indexPath.item]
+        
+        
+        if message.senderId == self.senderId {
+            return nil
+        }
+        
+        return NSAttributedString(string: message.senderDisplayName)
+    }
+    
+    override func collectionView(_ collectionView: JSQMessagesCollectionView, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout, heightForMessageBubbleTopLabelAt indexPath: IndexPath) -> CGFloat {
+        
+        let currentMessage = self.messages[indexPath.item]
+        
+        if currentMessage.senderId == self.senderId {
+            return 0.0
+        }
+        
+        if indexPath.item - 1 > 0 {
+            let previousMessage = self.messages[indexPath.item - 1]
+            if previousMessage.senderId == currentMessage.senderId {
+                return 0.0
+            }
+        }
+        
+        return kJSQMessagesCollectionViewCellLabelHeightDefault;
+    }
+    
+    override func collectionView(_ collectionView: JSQMessagesCollectionView, attributedTextForCellTopLabelAt indexPath: IndexPath) -> NSAttributedString? {
+
+//        if (indexPath.item % 3 == 0) {
+//            let message = self.messages[indexPath.item]
+//            
+//            return JSQMessagesTimestampFormatter.shared().attributedTimestamp(for: message.date)
+//        }
+        
+        return nil
+    }
+    override func collectionView(_ collectionView: JSQMessagesCollectionView, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout, heightForCellTopLabelAt indexPath: IndexPath) -> CGFloat {
+//        if indexPath.item % 3 == 0 {
+//            return kJSQMessagesCollectionViewCellLabelHeightDefault
+//        }
+        
+        return 0.0
+    }
+
+    
+    // handle isTyping
+    
+    private func observeTyping() {
+
+        // Inside observe block
+        // set self.showTypingIndicator
+        // scroll to bottom self.scrollToBottom(animated: true)
+    
+    }
+    override func textViewDidChange(_ textView: UITextView) {
+        super.textViewDidChange(textView)
+        // If the text is not empty, the user is typing
+        isTyping = textView.text != ""
+    }
+
+    
     
     @IBAction func onBack(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func onTap(_ sender: Any) {
+        view.endEditing(true)
+    }
 }
+
+extension ChatViewController: ImagePickerDelegate {
+    func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]){
+        imagePicker.dismiss(animated: true, completion: nil)
+        let image = images[0]
+        // Send photo message
+        Api.shared().sendMessage(to: (self.conversation?.partnerID)!, conversation: (self.conversation?.id)!, image: image)
+        
+    }
+    func cancelButtonDidPress(_ imagePicker: ImagePickerController) {
+    
+    }
+    
+    func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]){
+    
+    }
+    
+}
+
