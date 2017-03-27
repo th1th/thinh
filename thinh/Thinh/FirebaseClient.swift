@@ -128,7 +128,7 @@ class Api: NSObject {
     */
     func getUser(id: UserId) -> Observable<User> {
         return Observable.create({ (subcriber) -> Disposable in
-            self.userDb.child(id).observeSingleEvent(of: .value, with: { (snapshot) in
+            self.userDb.child(id).observe(.value, with: { (snapshot) in
                 guard let json = snapshot.value as? JSON else {
                     subcriber.onError(ThinhError.unknownUser)
                     return
@@ -151,7 +151,6 @@ class Api: NSObject {
     */
     func getCurrentUser() -> Observable<User> {
         return getUser(id: userId()!)
-        
     }
     
     /*
@@ -208,25 +207,55 @@ class Api: NSObject {
     }
     
     /*
+     current user is typing
+     */
+    func isTyping(_ conversation: ConversationId) {
+        conversationDb.child(conversation).child(FirebaseKey.isTyping).setValue(true, forKey: userId()!)
+    }
+    
+    func observeIsTyping(_ conversation: ConversationId) -> Observable<UserId> {
+        return Observable<UserId>.create({ (subcriber) -> Disposable in
+            self.conversationDb.child(conversation).child(FirebaseKey.isTyping).observe(.childChanged, with: { (snapshot) in
+                guard let isTyping = snapshot.value as? Bool else {
+                    return
+                }
+                if isTyping {
+                    subcriber.onNext(snapshot.key)
+                }
+                
+            })
+            return Disposables.create()
+        })
+        
+    }
+    
+    /*
      get the message of conversation
      use to load chat view
     */
-    func getMessageOfConversation(id: ConversationId) -> Observable<[Message]> {
-        return Observable<[Message]>.create { (subcriber) -> Disposable in
-            // TODO: child event
-            self.conversationDb.child(id).observe(.value, with: { snapshot in
-                var messages = [Message]()
-                for child in snapshot.children {
-                    guard let data = child as? FIRDataSnapshot else {
-                        return
-                    }
-                    messages.append(Message(json: data.value as! JSON)!)
+    func getMessageOfConversation(id: ConversationId) -> Observable<Message> {
+        return Observable<Message>.create { (subcriber) -> Disposable in
+            self.conversationDb.child(id).observe(.childAdded, with: { snapshot in
+//                var messages = [Message]()
+//                for child in snapshot.children {
+//                    guard let data = child as? FIRDataSnapshot else {
+//                        return
+//                    }
+//                    messages.append(Message(json: data.value as! JSON)!)
+//                }
+                if let message = Message(json: snapshot.value as! JSON) {
+                    subcriber.onNext(message)
+                } else {
+                   print("Maybe typing")
                 }
-                subcriber.onNext(messages)
             })
             return Disposables.create()
         }
     }
+    
+    
+    
+    
     
     
     

@@ -103,24 +103,24 @@ class ChatViewController: JSQMessagesViewController {
         Api.shared().getMessageOfConversation(id: (self.conversation?.id)!).subscribe(onNext: { messages in
             self.messages.removeAll()
             
-            var messsage_sender_name : String?
-            for message in messages {
-                if(message.from == self.current_user?.id){
-                    messsage_sender_name = self.current_user?.name
-                } else {
-                    
-                    messsage_sender_name = self.conversation?.partnerName
-                }
-                
-                // handle media message here
-                if(true){
-                    self.addMessage(withId: message.from!, name : messsage_sender_name!, text: message.message!)
-                } else {
-                    //self.addPhotoMessage(withId: <#T##String#>, name: <#T##String#>, mediaItem: <#T##JSQPhotoMediaItem#>)
-                }
-                
-            }
-            self.finishReceivingMessage()
+//            var messsage_sender_name : String?
+//            for message in messages {
+//                if(message.from == self.current_user?.id){
+//                    messsage_sender_name = self.current_user?.name
+//                } else {
+//                    
+//                    messsage_sender_name = self.conversation?.partnerName
+//                }
+//                
+//                // handle media message here
+//                if(true){
+//                    self.addMessage(withId: message.from!, name : messsage_sender_name!, text: message.message!)
+//                } else {
+//                    //self.addPhotoMessage(withId: <#T##String#>, name: <#T##String#>, mediaItem: <#T##JSQPhotoMediaItem#>)
+//                }
+//                
+//            }
+//            self.finishReceivingMessage()
         })
         
     }
