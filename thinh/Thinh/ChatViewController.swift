@@ -52,7 +52,7 @@ class ChatViewController: JSQMessagesViewController {
         self.title = conversation?.partnerName
         
         self.automaticallyScrollsToMostRecentMessage = true
-        self.inputToolbar.contentView.textView.becomeFirstResponder()
+        //self.inputToolbar.contentView.textView.becomeFirstResponder()
        
         
         collectionView?.collectionViewLayout.incomingAvatarViewSize = CGSize(width: kJSQMessagesCollectionViewAvatarSizeDefault, height:kJSQMessagesCollectionViewAvatarSizeDefault )
@@ -112,6 +112,13 @@ class ChatViewController: JSQMessagesViewController {
         isTyping = false
     }
     
+    func getDataFromUrl(url: URL, completion: @escaping (_ data: Data?, _  response: URLResponse?, _ error: Error?) -> Void) {
+        URLSession.shared.dataTask(with: url) {
+            (data, response, error) in
+            completion(data, response, error)
+            }.resume()
+    }
+    
     private func observeMessages() {
         // Query messages
         Api.shared().getMessageOfConversation(id: (self.conversation?.id)!).subscribe(onNext: { messages in
@@ -127,10 +134,11 @@ class ChatViewController: JSQMessagesViewController {
                 }
                 
                 // handle media message here
-                if(true){
+                if(message.media == nil){
                     self.addMessage(withId: message.from!, name : messsage_sender_name!, text: message.message!)
                 } else {
-                    //self.addPhotoMessage(withId: <#T##String#>, name: <#T##String#>, mediaItem: <#T##JSQPhotoMediaItem#>)
+                    self.addPhotoMessage(withId: message.from!, name: messsage_sender_name!, mediaItem: AsyncPhotoMediaItem(withURL: message.media! as NSURL, isOperator: true))
+                    
                 }
                 
             }
@@ -144,12 +152,6 @@ class ChatViewController: JSQMessagesViewController {
         let picker = ImagePickerController()
         picker.delegate = self
         picker.imageLimit = 1
-//        if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera)) {
-//            picker.sourceType = UIImagePickerControllerSourceType.camera
-//        } else {
-//            picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
-//        }
-        
         present(picker, animated: true, completion:nil)
     }
     

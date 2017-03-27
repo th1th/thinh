@@ -27,6 +27,7 @@
 		1534E6BF1E836F7900E62BAD /* ConversationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1534E6BE1E836F7900E62BAD /* ConversationViewCell.swift */; };
 		1536760F1E88EA6D007A2FB5 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1536760E1E88EA6D007A2FB5 /* ChatViewController.swift */; };
 		153676111E891641007A2FB5 /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 153676101E891641007A2FB5 /* Chat.storyboard */; };
+		153676131E89547B007A2FB5 /* AsyncPhotoMediaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153676121E89547B007A2FB5 /* AsyncPhotoMediaItem.swift */; };
 		941469B91E7F542C00CB3732 /* Date_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941469B81E7F542C00CB3732 /* Date_extension.swift */; };
 		948C1F2B1E7E267C000F20E5 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948C1F2A1E7E267C000F20E5 /* Constant.swift */; };
 		948C1F2D1E7E2A88000F20E5 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948C1F2C1E7E2A88000F20E5 /* Message.swift */; };
@@ -61,6 +62,7 @@
 		1534E6BE1E836F7900E62BAD /* ConversationViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationViewCell.swift; sourceTree = "<group>"; };
 		1536760E1E88EA6D007A2FB5 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		153676101E891641007A2FB5 /* Chat.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
+		153676121E89547B007A2FB5 /* AsyncPhotoMediaItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncPhotoMediaItem.swift; sourceTree = "<group>"; };
 		72B5C06EECD187D2F8E9B840 /* Pods-Thinh.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Thinh.release.xcconfig"; path = "Pods/Target Support Files/Pods-Thinh/Pods-Thinh.release.xcconfig"; sourceTree = "<group>"; };
 		75B3FD42645CC32F317309D3 /* Pods-Thinh.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Thinh.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Thinh/Pods-Thinh.debug.xcconfig"; sourceTree = "<group>"; };
 		8B511A829B8797A0E0B0FD21 /* Pods_Thinh.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Thinh.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,6 +145,7 @@
 			children = (
 				153676101E891641007A2FB5 /* Chat.storyboard */,
 				1536760E1E88EA6D007A2FB5 /* ChatViewController.swift */,
+				153676121E89547B007A2FB5 /* AsyncPhotoMediaItem.swift */,
 			);
 			name = Chat;
 			sourceTree = "<group>";
@@ -386,6 +389,7 @@
 				0550242F1E7D2D3900175FED /* ChatListViewController.swift in Sources */,
 				948C1F2B1E7E267C000F20E5 /* Constant.swift in Sources */,
 				948C1F2D1E7E2A88000F20E5 /* Message.swift in Sources */,
+				153676131E89547B007A2FB5 /* AsyncPhotoMediaItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

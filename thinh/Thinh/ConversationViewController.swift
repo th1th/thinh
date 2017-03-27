@@ -83,6 +83,8 @@ extension ConversationViewController: UITableViewDelegate, UITableViewDataSource
         
         chatVC.conversation = self.conversationList[indexPath.row]
         
+        self.conversationTable.deselectRow(at: indexPath, animated: false)
+        
         self.present(controller, animated: true, completion: nil)
     }
 
@@ -98,7 +100,7 @@ extension ConversationViewController : DZNEmptyDataSetSource, DZNEmptyDataSetDel
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let text = "GETTING NO MESSAGE IS ALSO A MESSAGE"
         let attribs = [
-            NSFontAttributeName: UIFont.boldSystemFont(ofSize: 18),
+            NSFontAttributeName: UIFont.boldSystemFont(ofSize: 30),
             NSForegroundColorAttributeName: UIColor.darkGray
         ]
         
