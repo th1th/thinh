@@ -522,16 +522,16 @@ extension Api {
     }
     
     
-    private func createMockConversation(user1: UserId, user2: UserId) -> ConversationId {
-        return createNewConversation(forUser: user1, andUser: user2)
-    }
-    
-    private func createMockMessage(user1: UserId, user2: UserId, id: ConversationId) {
-        let messages = Message.mock(from: user1, to: user2)
-        for message in messages {
-            sendMessage(id: id, message: message)
-        }
-    }
+//    private func createMockConversation(user1: UserId, user2: UserId) -> ConversationId {
+//        return createNewConversation(forUser: user1, andUser: user2)
+//    }
+//    
+//    private func createMockMessage(user1: UserId, user2: UserId, id: ConversationId) {
+//        let messages = Message.mock(from: user1, to: user2)
+//        for message in messages {
+//            sendMessage(id: id, message: message)
+//        }
+//    }
     
     private func createMockThinh() {
         

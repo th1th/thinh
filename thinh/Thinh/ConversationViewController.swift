@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DGElasticPullToRefresh
 
 class ConversationViewController: UIViewController {
 
@@ -19,14 +20,42 @@ class ConversationViewController: UIViewController {
         conversationTable.delegate = self
         conversationTable.dataSource = self
         
+        // Initialize tableView
+        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
+        loadingView.tintColor = UIColor(red: 78/255.0, green: 221/255.0, blue: 200/255.0, alpha: 1.0)
+        conversationTable.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
+            
+            Api.shared().getAllConversation().subscribe(onNext: { (conversations) in
+                self?.conversationList = conversations
+                
+                for conversation in (self?.conversationList)! {
+                    conversation.delegate = self
+                }
+                self?.conversationTable.reloadData()
+                self?.conversationTable.dg_stopLoading()
+                
+            }, onError: { (error) in
+                self?.conversationTable.dg_stopLoading()
+            }, onCompleted: { 
+                self?.conversationTable.dg_stopLoading()
+            }, onDisposed: nil)
+        
+            }, loadingView: loadingView)
+        conversationTable.dg_setPullToRefreshFillColor(UIColor(red: 57/255.0, green: 67/255.0, blue: 89/255.0, alpha: 1.0))
+        conversationTable.dg_setPullToRefreshBackgroundColor(conversationTable.backgroundColor!)
+        
         let disposable = Api.shared().getAllConversation().subscribe(onNext: { conversations in
             self.conversationList = conversations
             
-            for conversation in self.conversationList {
+            for conversation in (self.conversationList) {
                 conversation.delegate = self
             }
             self.conversationTable.reloadData()
         })
+    }
+    
+    deinit {
+        self.conversationTable.dg_removePullToRefresh()
     }
 
  

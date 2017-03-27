@@ -27,4 +27,6 @@ target 'Thinh' do
   pod 'RxCocoa'
 
   pod 'NSDate+TimeAgo'
+  pod 'ImagePicker'
+  pod 'DGElasticPullToRefresh'
 end
