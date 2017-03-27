@@ -53,79 +53,12 @@
                         <outlet property="avatarImage" destination="IPd-fN-nrw" id="0w8-sK-W5M"/>
                         <outlet property="avatarWidthContrain" destination="xnC-wd-tyn" id="iin-JY-rag"/>
                         <outlet property="backgroundImage" destination="s6l-K2-f5z" id="d2D-ai-rGH"/>
-                        <segue destination="sbT-7v-pef" kind="presentation" identifier="logedIn" id="TsO-c5-qK4"/>
+                        <segue destination="UfO-6T-d9d" kind="presentation" identifier="logedIn" id="mbi-Em-eQJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="86.25" y="34.859154929577464"/>
-        </scene>
-        <!--Chat List View Controller-->
-        <scene sceneID="dAU-LM-B4W">
-            <objects>
-                <viewController id="m1F-B3-tqS" customClass="ChatListViewController" customModule="Thinh" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ZG2-ew-iLo"/>
-                        <viewControllerLayoutGuide type="bottom" id="TDB-2e-ak9"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="mg6-J5-g0Y">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RJt-1n-0ta">
-                                <rect key="frame" x="106" y="174" width="109" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Test User Detail"/>
-                                <connections>
-                                    <segue destination="BfZ-CT-1hM" kind="presentation" id="6fp-qv-Zi0"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rUG-2E-5M6">
-                                <rect key="frame" x="110" y="253" width="101" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Test Thinh List"/>
-                                <connections>
-                                    <segue destination="ba7-Qs-ILw" kind="presentation" id="MbD-M7-qtR"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gpk-Nf-vVm">
-                                <rect key="frame" x="103" y="424" width="115" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="test tab bar view"/>
-                                <connections>
-                                    <segue destination="UfO-6T-d9d" kind="presentation" id="EIb-aG-lpA"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="Vj3-Ap-vU2">
-                        <barButtonItem key="leftBarButtonItem" title="Sign Out" id="vaM-7f-1C9">
-                            <connections>
-                                <action selector="onClickedSignOut:" destination="m1F-B3-tqS" id="3Jk-Ki-OnV"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kMa-WO-h0L" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1839" y="-77"/>
-        </scene>
-        <!--UserDetail-->
-        <scene sceneID="EV1-dH-bSj">
-            <objects>
-                <viewControllerPlaceholder storyboardName="UserDetail" id="BfZ-CT-1hM" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VbQ-w8-rq1" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2499" y="-250"/>
-        </scene>
-        <!--ThinhList-->
-        <scene sceneID="0iW-Kh-Atw">
-            <objects>
-                <viewControllerPlaceholder storyboardName="ThinhList" id="ba7-Qs-ILw" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="djO-S6-arE" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2504" y="208"/>
         </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="zlc-mf-M9b">
@@ -256,25 +189,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iFw-OO-d1e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3127.5" y="-77.112676056338032"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="q0M-Vz-y3A">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sbT-7v-pef" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="A09-Kg-Stj">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="m1F-B3-tqS" kind="relationship" relationship="rootViewController" id="PiM-B8-o88"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="isI-iY-RPc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="948.75" y="-65.492957746478879"/>
+            <point key="canvasLocation" x="1046" y="35"/>
         </scene>
     </scenes>
     <resources>

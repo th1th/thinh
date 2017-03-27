@@ -51,11 +51,25 @@ class ChatViewController: JSQMessagesViewController {
         
         self.title = conversation?.partnerName
         
-//        self.inputToolbar.contentView.textView.becomeFirstResponder()
-        //self.hideKeyboard()
+        self.automaticallyScrollsToMostRecentMessage = true
+        self.inputToolbar.contentView.textView.becomeFirstResponder()
+       
         
         collectionView?.collectionViewLayout.incomingAvatarViewSize = CGSize(width: kJSQMessagesCollectionViewAvatarSizeDefault, height:kJSQMessagesCollectionViewAvatarSizeDefault )
         collectionView?.collectionViewLayout.outgoingAvatarViewSize = CGSize(width: kJSQMessagesCollectionViewAvatarSizeDefault, height:kJSQMessagesCollectionViewAvatarSizeDefault )
+        
+        
+        let imgBackground:UIImageView = UIImageView(frame: self.view.bounds)
+        imgBackground.contentMode = UIViewContentMode.scaleAspectFill
+        imgBackground.clipsToBounds = true
+        imgBackground.setImageWith(self.senderAvatar!)
+        self.collectionView?.backgroundView = imgBackground
+        
+        self.navigationController?.navigationBar.tintColor = UIColor(red: 78/255.0, green: 221/255.0, blue: 200/255.0, alpha: 1.0)
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 57/255.0, green: 67/255.0, blue: 89/255.0, alpha: 1.0)
+
+        
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -238,6 +252,25 @@ class ChatViewController: JSQMessagesViewController {
         return kJSQMessagesCollectionViewCellLabelHeightDefault;
     }
     
+    override func collectionView(_ collectionView: JSQMessagesCollectionView, attributedTextForCellTopLabelAt indexPath: IndexPath) -> NSAttributedString? {
+
+//        if (indexPath.item % 3 == 0) {
+//            let message = self.messages[indexPath.item]
+//            
+//            return JSQMessagesTimestampFormatter.shared().attributedTimestamp(for: message.date)
+//        }
+        
+        return nil
+    }
+    override func collectionView(_ collectionView: JSQMessagesCollectionView, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout, heightForCellTopLabelAt indexPath: IndexPath) -> CGFloat {
+//        if indexPath.item % 3 == 0 {
+//            return kJSQMessagesCollectionViewCellLabelHeightDefault
+//        }
+        
+        return 0.0
+    }
+
+    
     // handle isTyping
     
     private func observeTyping() {
@@ -282,20 +315,3 @@ extension ChatViewController: ImagePickerDelegate {
     
 }
 
-extension UIViewController
-{
-    func hideKeyboard()
-    {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
-            target: self,
-            action: #selector(UIViewController.dismissKeyboard))
-        
-        view.addGestureRecognizer(tap)
-    }
-    
-    func dismissKeyboard()
-    {
-        print("Hrere ")
-        view.endEditing(true)
-    }
-}

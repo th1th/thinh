@@ -26,7 +26,7 @@ class TabBarViewController: UIViewController {
     //an array to hold the ViewControllers named
     var viewControllers: [UIViewController]!
     //keep track of the tab button that is selected
-    var selectedIndex: Int = 0
+    var selectedIndex: Int = 1
     //count number of new chats
     var chatCount: Int = 7
     
@@ -62,7 +62,7 @@ class TabBarViewController: UIViewController {
         initView()
 
         //instantiate each ViewController by referencing storyboard and the particular ViewController's Storyboard ID
-        homeViewController = UIStoryboard(name: "Conversation", bundle: nil).instantiateViewController(withIdentifier: "ConversationViewController")
+        homeViewController = UIStoryboard(name: "ContactList", bundle: nil).instantiateViewController(withIdentifier: "ContactListViewController")
         
         
         conversationViewController = UIStoryboard(name: "Conversation", bundle: nil).instantiateViewController(withIdentifier: "ConversationViewController")
