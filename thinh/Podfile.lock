@@ -21,6 +21,7 @@ PODS:
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
   - DGElasticPullToRefresh (1.1)
+  - DZNEmptyDataSet (1.8.1)
   - FacebookCore (0.2.0):
     - Bolts (~> 1.8)
     - FBSDKCoreKit (~> 4.15)
@@ -92,6 +93,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking
   - DGElasticPullToRefresh
+  - DZNEmptyDataSet
   - FacebookCore
   - FacebookLogin
   - FacebookShare
@@ -113,6 +115,7 @@ SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   DGElasticPullToRefresh: 28f11a6026302a90f8ffebbc6e24748e584dddd3
+  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   FacebookCore: 2cb3f0fbff218e9d3119cec84bae983b232412de
   FacebookLogin: c9d606504735780a9e3002465a615512e0a691a5
   FacebookShare: 8e9ee8ea06505e6a1d3d719b0cc63e840fb8aaeb
@@ -136,6 +139,6 @@ SPEC CHECKSUMS:
   RxCocoa: 7dcb7a1860fc9cd0e23dae67ab105fc2916670b6
   RxSwift: 8fc9f2de6275a9101d518444e00bf32f1a42caac
 
-PODFILE CHECKSUM: c02e36de59a3e52ad4e9eeb99527e46a99a75a5c
+PODFILE CHECKSUM: 2263ec85f6932432faafc327f56e1d93d92566d5
 
 COCOAPODS: 1.2.0

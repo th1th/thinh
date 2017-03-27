@@ -29,4 +29,5 @@ target 'Thinh' do
   pod 'NSDate+TimeAgo'
   pod 'ImagePicker'
   pod 'DGElasticPullToRefresh'
+  pod 'DZNEmptyDataSet'
 end

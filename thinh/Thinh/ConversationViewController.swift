@@ -8,6 +8,7 @@
 
 import UIKit
 import DGElasticPullToRefresh
+import DZNEmptyDataSet
 
 class ConversationViewController: UIViewController {
 
@@ -19,6 +20,9 @@ class ConversationViewController: UIViewController {
 
         conversationTable.delegate = self
         conversationTable.dataSource = self
+        
+        conversationTable.emptyDataSetSource = self
+        conversationTable.emptyDataSetDelegate = self
         
         // Initialize tableView
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
@@ -88,4 +92,49 @@ extension ConversationViewController: ConversationDelegate{
     func ConversationInfoUpdate(_ conversation: Conversation) {
         self.conversationTable.reloadData()
     }
+}
+
+extension ConversationViewController : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        let text = "GETTING NO MESSAGE IS ALSO A MESSAGE"
+        let attribs = [
+            NSFontAttributeName: UIFont.boldSystemFont(ofSize: 18),
+            NSForegroundColorAttributeName: UIColor.darkGray
+        ]
+        
+        return NSAttributedString(string: text, attributes: attribs)
+    }
+    
+    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+//        let text = "Tha Thinh Plz"
+//        
+//        let para = NSMutableParagraphStyle()
+//        para.lineBreakMode = NSLineBreakMode.byWordWrapping
+//        para.alignment = NSTextAlignment.center
+//        
+//        let attribs = [
+//            NSFontAttributeName: UIFont.systemFont(ofSize: 14),
+//            NSForegroundColorAttributeName: UIColor.lightGray,
+//            NSParagraphStyleAttributeName: para
+//        ]
+//        
+//        return NSAttributedString(string: text, attributes: attribs)
+        return nil
+    }
+    
+    func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> NSAttributedString! {
+//        let text = "Click here to tha thinh"
+//        let attribs = [
+//            NSFontAttributeName: UIFont.boldSystemFont(ofSize: 16),
+//            NSForegroundColorAttributeName: view.tintColor
+//        ] as [String : Any]
+//        
+//        return NSAttributedString(string: text, attributes: attribs)
+        return nil
+    }
+    
+    func emptyDataSetDidTapButton(_ scrollView: UIScrollView!) {
+        print("Tapped")
+    }
+
 }
