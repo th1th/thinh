@@ -17,6 +17,7 @@ class Thinh: NSObject, Glossy  {
     var message: String?
     var media: String?
     var date: TimeInterval?
+    var friend: Bool?
     
     required init?(json: JSON) {
         id = FirebaseKey.id <~~ json
@@ -25,6 +26,7 @@ class Thinh: NSObject, Glossy  {
         message = FirebaseKey.message <~~ json
         media = FirebaseKey.media <~~ json
         date = FirebaseKey.date <~~ json
+        friend = FirebaseKey.friend <~~ json
     }
     
     func toJSON() -> JSON? {
@@ -34,7 +36,8 @@ class Thinh: NSObject, Glossy  {
             FirebaseKey.to ~~> to,
             FirebaseKey.message ~~> message,
             FirebaseKey.media ~~> media,
-            FirebaseKey.date ~~> date])
+            FirebaseKey.date ~~> date,
+            FirebaseKey.friend ~~> friend])
     }
     
     override init() {
@@ -64,6 +67,11 @@ class Thinh: NSObject, Glossy  {
     
     func withMedia(_ media: String) -> Thinh {
         self.media = media
+        return self
+    }
+    
+    func withFriend(_ friend: Bool) -> Thinh {
+        self.friend = friend
         return self
     }
 }

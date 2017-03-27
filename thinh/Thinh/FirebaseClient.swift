@@ -13,6 +13,7 @@ import FacebookLogin
 import FacebookCore
 import RxSwift
 import Gloss
+import FirebaseStorage
 
 class Api: NSObject {
     
@@ -24,6 +25,8 @@ class Api: NSObject {
     fileprivate var userThinhDb: FIRDatabaseReference
     fileprivate var userConversationDb: FIRDatabaseReference
     fileprivate let botId = "fuckFirebase"
+    fileprivate var storage: FIRStorageReference
+    fileprivate var conversationStorage: FIRStorageReference
     
     static private var _shared: Api!
     
@@ -42,6 +45,8 @@ class Api: NSObject {
         userFriendDb = database.child(FirebaseKey.userFriend)
         userThinhDb = database.child(FirebaseKey.userThinh)
         userConversationDb = database.child(FirebaseKey.userConversation)
+        storage = FIRStorage.storage().reference()
+        conversationStorage = storage.child(FirebaseKey.conversation)
     }
     
     func userId() -> String? {
@@ -148,6 +153,7 @@ class Api: NSObject {
     
     /*
      get all conversation of current login user
+     FIXME: Change to child_added event in future?
     */
     func getAllConversation() -> Observable<[Conversation]> {
        return Observable<[Conversation]>.create({ subcriber -> Disposable in
@@ -241,6 +247,7 @@ class Api: NSObject {
     */
     func sendMessage(to A: UserId, conversation: ConversationId, image: UIImage) {
 //        let message
+        // TODO: Upload image to storage
     }
     
     /*
@@ -265,7 +272,7 @@ class Api: NSObject {
     }
     
     /*
-     return a list of all user except myself, one at the time
+     return a list of all user except myself, as stream
     */
     func getAllUser() -> Observable<User> {
         return Observable<User>.create({ (subcriber) -> Disposable in
@@ -354,18 +361,20 @@ class Api: NSObject {
         }
     }
     
-    func getStrangerThinh() -> Observable<[Thinh]> {
-        return Observable<[Thinh]>.create({ (subcriber) -> Disposable in
-            let currentUser = self.userId()!
-            self.thinhDb.queryEqual(toValue: currentUser, childKey: FirebaseKey.to).queryEqual(toValue: false, childKey: FirebaseKey.friend).queryOrdered(byChild: FirebaseKey.date).observe(.value, with: { (snapshot) in
-                var thinhs = [Thinh]()
-                for child in snapshot.children {
-                    guard let data = child as? FIRDataSnapshot else {
-                        return
-                    }
-                    thinhs.append(Thinh(json: data.value as! JSON)!)
+    /*
+     get stranger thinh stream
+    */
+    func getStrangerThinh() -> Observable<Thinh> {
+        return Observable<Thinh>.create({ (subcriber) -> Disposable in
+            self.thinhDb.queryEqual(toValue: self.userId()!, childKey: FirebaseKey.to).observe(.childAdded, with: { (snapshot) in
+                guard let data = snapshot.value as? JSON else {
+                    subcriber.onError(ThinhError.unknownUser)
+                    return
                 }
-                subcriber.onNext(thinhs)
+                let thinh = Thinh(json: data)!
+                if !thinh.friend! {
+                   subcriber.onNext(thinh)
+                }
             })
             return Disposables.create()
         })
@@ -394,6 +403,7 @@ class Api: NSObject {
         
     }
     
+    
     /*
      check if current have recieve thinh from user A
     */
@@ -409,15 +419,41 @@ class Api: NSObject {
     /*
      create thinh package from current user to user A
     */
-    func createThinhPackage(for A: UserId, with message: String = "", with media: String = "") {
+    func createThinhPackage(for A: UserId, with message: String = "", with media: String = "") -> Thinh {
         let key = thinhDb.childByAutoId().key
         let thinh = Thinh().withTo(A).withMessage(message).withMedia(media).withId(key)
-        thinhDb.child(key).setValue(thinh.toJSON())
-        userThinhDb.child(A).child(userId()!).setValue(thinh.date)
+        return thinh
     }
     
     /*
-     delete thinh package with id 
+     set thinh package to database
+    */
+    fileprivate func setThinhPackage(_ thinh: Thinh) {
+        thinhDb.child(thinh.id!).setValue(thinh.toJSON())
+        userThinhDb.child(thinh.to!).child(userId()!).setValue(thinh.date)
+    }
+    
+    
+    /*
+     upload image and return back an url
+    */
+    fileprivate func uploadImage(_ image: UIImage) -> Observable<URL> {
+        return Observable<URL>.create({ (subcriber) -> Disposable in
+            let data = UIImageJPEGRepresentation(image, 0.2)
+            let name = "\(Date.currentTimeInMillis()).jpg"
+            self.storage.child(name).put(data!, metadata: nil, completion: { (metadata, error) in
+                guard error == nil else {
+                    return
+                }
+                subcriber.onNext((metadata?.downloadURL())!)
+            })
+            return Disposables.create()
+        })
+        
+    }
+    
+    /*
+     delete current user's thinh package with id
     */
     fileprivate func deleteThinh(_ id: ThinhId) {
         self.thinhDb.child(id).setValue(nil)
@@ -433,12 +469,6 @@ class Api: NSObject {
         database.removeAllObservers()
     }
     
-    /*
-     enable offline capabilities
-    */
-    func enableDatabasePersistence() {
-        FIRDatabase.database().persistenceEnabled = true
-    }
 }
 
 

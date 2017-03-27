@@ -117,7 +117,7 @@ extension ThinhListViewController{
         //GET ALL THINH HERE:
 
         //////////////
-        users += User.mock2()
+//        users += User.mock2()
     }
     func loadUserToView()  {
         images = [UserImage,UserImage2,UserImage3,UserImage4,UserImage5,UserImage6]
