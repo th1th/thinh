@@ -62,7 +62,7 @@ class TabBarViewController: UIViewController {
         initView()
 
         //instantiate each ViewController by referencing storyboard and the particular ViewController's Storyboard ID
-        homeViewController = UIStoryboard(name: "Conversation", bundle: nil).instantiateViewController(withIdentifier: "ConversationViewController")
+        homeViewController = UIStoryboard(name: "ContactList", bundle: nil).instantiateViewController(withIdentifier: "ContactListViewController")
         
         
         conversationViewController = UIStoryboard(name: "Conversation", bundle: nil).instantiateViewController(withIdentifier: "ConversationViewController")

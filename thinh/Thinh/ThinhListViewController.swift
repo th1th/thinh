@@ -54,10 +54,8 @@ class ThinhListViewController: UIViewController {
     @IBAction func onClickGetDetail(_ sender: UITapGestureRecognizer) {
         sender.numberOfTapsRequired = 1
         sender.numberOfTouchesRequired = 1
-        print(sender.view?.tag)
-        print(users.count)
+        utilities.log((sender.view?.tag)!)
         let user = users[(sender.view?.tag)!]
-        
         
         //Remove the ThinhListViewController
         let previousVC = UIStoryboard(name: "ThinhList", bundle: nil).instantiateViewController(withIdentifier: "ThinhListViewController")
@@ -67,17 +65,12 @@ class ThinhListViewController: UIViewController {
         
         //Add the New UserDetailViewController
         let vc = UIStoryboard(name: "UserDetail", bundle: nil).instantiateViewController(withIdentifier: "UserDetailViewController") as! UserDetailViewController
+        vc.user = user  //Push user data to UserDetailViewController
         addChildViewController(vc)
         vc.view.frame = view.bounds
         view.addSubview(vc.view)
         vc.didMove(toParentViewController: self)
         
-        //Load user data to UserDetailViewController
-        vc.AvatarImage.setImageWith(URL(string: user.avatar!)!)
-        vc.UserBackgroundImage.setImageWith(URL(string: user.avatar!)!)
-        vc.UserCaptionLabel.text = user.caption
-        vc.UserInfoLabel.text = user.name
-        vc.UserNameLabel.text = user.name
     }
     
 
@@ -148,10 +141,18 @@ extension ThinhListViewController{
     //Get Thinh from server and add to list users
     func getThinhList() {
         //GET ALL THINH HERE:
-
+//        Api.shared().getStrangerThinh().subscribe(onNext: { (thinhs:[Thinh]) in
+//            print(thinhs)
+//        }, onError: { (error) in
+//            print(error.localizedDescription)
+//        }, onCompleted: { 
+//            //
+//        }) { 
+//            //
+//        }
         //////////////
-        users += User.mock2()
-        indexTracking = User.mock2().count
+        users += User.mock()
+        indexTracking = User.mock().count
     }
     
     //Load all image of users (when fisrt load Thinh list view)
