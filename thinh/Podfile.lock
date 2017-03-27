@@ -20,6 +20,7 @@ PODS:
   - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
+  - DGElasticPullToRefresh (1.1)
   - FacebookCore (0.2.0):
     - Bolts (~> 1.8)
     - FBSDKCoreKit (~> 4.15)
@@ -79,6 +80,7 @@ PODS:
     - GoogleToolboxForMac/NSString+URLArguments (= 2.1.1)
   - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
   - GTMSessionFetcher/Core (1.1.9)
+  - ImagePicker (2.0.0)
   - JSQMessagesViewController (7.3.4):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
@@ -89,6 +91,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
+  - DGElasticPullToRefresh
   - FacebookCore
   - FacebookLogin
   - FacebookShare
@@ -100,6 +103,7 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Storage
   - Gloss
+  - ImagePicker
   - JSQMessagesViewController
   - NSDate+TimeAgo
   - RxCocoa
@@ -108,6 +112,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  DGElasticPullToRefresh: 28f11a6026302a90f8ffebbc6e24748e584dddd3
   FacebookCore: 2cb3f0fbff218e9d3119cec84bae983b232412de
   FacebookLogin: c9d606504735780a9e3002465a615512e0a691a5
   FacebookShare: 8e9ee8ea06505e6a1d3d719b0cc63e840fb8aaeb
@@ -124,12 +129,13 @@ SPEC CHECKSUMS:
   Gloss: 9ab33b8ede01e4232571d43a6bf9259b85d1de69
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 5c046c76a1f859bc9c187e918f18e4fc7bb57b5e
+  ImagePicker: 81175d36c2852cb543cb4f5d6c19e28f3e8d90eb
   JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   NSDate+TimeAgo: 35601c619b2d59290055e4fe76e61d97677a2360
   RxCocoa: 7dcb7a1860fc9cd0e23dae67ab105fc2916670b6
   RxSwift: 8fc9f2de6275a9101d518444e00bf32f1a42caac
 
-PODFILE CHECKSUM: edf13a28239a7991b6f9a2193b3ee07ca4e87ca7
+PODFILE CHECKSUM: c02e36de59a3e52ad4e9eeb99527e46a99a75a5c
 
 COCOAPODS: 1.2.0

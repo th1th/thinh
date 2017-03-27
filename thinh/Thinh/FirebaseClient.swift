@@ -57,8 +57,10 @@ class Api: NSObject {
     /*
      login with facebook
     */
+
     func login(accessToken: String) -> Observable<Bool> {
         return loginWithFacebook(accessToken: accessToken)
+
     }
 
     fileprivate func loginWithFacebook(accessToken: String) -> Observable<Bool> {
@@ -149,12 +151,14 @@ class Api: NSObject {
     */
     func getCurrentUser() -> Observable<User> {
         return getUser(id: userId()!)
+        
     }
     
     /*
      get all conversation of current login user
      FIXME: Change to child_added event in future?
     */
+    
     func getAllConversation() -> Observable<[Conversation]> {
        return Observable<[Conversation]>.create({ subcriber -> Disposable in
             // TODO: child event
@@ -167,6 +171,7 @@ class Api: NSObject {
                     conversations.append(Conversation(json: data.value as! JSON)!)
                 }
                 subcriber.onNext(conversations)
+
             })
             return Disposables.create()
        })
@@ -495,14 +500,15 @@ class Api: NSObject {
 
 
 extension Api {
-    func createMockData() {
-        deleteDb()
-        let users = createMockUser()
-        for i in 0..<users.count - 1 {
-            let id = createMockConversation(user1: users[i].id!, user2: users[i+1].id!)
-            createMockMessage(user1: users[i].id!, user2: users[i+1].id!
-                , id: id)
-        }
+//    func createMockData() {
+//        deleteDb()
+//        let users = User.mock()
+//        for i in 0..<users.count - 1 {
+//            let id = createMockConversation(user1: users[i], user2: users[i+1])
+//            createMockMessage(user1: users[i], user2: users[i+1], id: id)
+//        }
+//
+//
 //        getFriendList(id: users[1].id!)
 //        checkFriendRelationship(between: users[1].id!, and: users[0].id!)
 //            .subscribe(onNext: { (friend) in
@@ -516,7 +522,9 @@ extension Api {
 //                    print("This should not be friend")
 //                }
 //            })
-    }
+//
+//    }
+
     
     private func deleteDb() {
         database.setValue(nil)
@@ -536,16 +544,16 @@ extension Api {
     }
     
     
-    private func createMockConversation(user1: UserId, user2: UserId) -> ConversationId {
-        return createNewConversation(forUser: user1, andUser: user2)
-    }
-    
-    private func createMockMessage(user1: UserId, user2: UserId, id: ConversationId) {
-        let messages = Message.mock(from: user1, to: user2)
-        for message in messages {
-            sendMessage(id: id, message: message)
-        }
-    }
+//    private func createMockConversation(user1: UserId, user2: UserId) -> ConversationId {
+//        return createNewConversation(forUser: user1, andUser: user2)
+//    }
+//    
+//    private func createMockMessage(user1: UserId, user2: UserId, id: ConversationId) {
+//        let messages = Message.mock(from: user1, to: user2)
+//        for message in messages {
+//            sendMessage(id: id, message: message)
+//        }
+//    }
     
     private func createMockThinh() {
         
