@@ -35,7 +35,6 @@ class Conversation: NSObject, Glossy {
                 
                 self.delegate?.ConversationInfoUpdate(self)
             })
-
         }
     }
     

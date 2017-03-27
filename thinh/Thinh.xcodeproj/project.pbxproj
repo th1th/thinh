@@ -20,6 +20,9 @@
 		0555D5BF1E82DE1C0058F9CD /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0555D5BE1E82DE1C0058F9CD /* Setting.storyboard */; };
 		0555D5C11E82DE390058F9CD /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0555D5C01E82DE390058F9CD /* SettingViewController.swift */; };
 		05B03C8F1E82BFDA00106C08 /* UserDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05B03C8E1E82BFDA00106C08 /* UserDetail.storyboard */; };
+		05F3777C1E881A2800B9890F /* ContactList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05F3777B1E881A2800B9890F /* ContactList.storyboard */; };
+		05F3777E1E881A4000B9890F /* ContactListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F3777D1E881A4000B9890F /* ContactListViewController.swift */; };
+		05F377801E881AAA00B9890F /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F3777F1E881AAA00B9890F /* ContactTableViewCell.swift */; };
 		05F8ACC01E85609F00A9B281 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 05F8ACBF1E85609F00A9B281 /* Fonts */; };
 		05F8ACC61E8583CE00A9B281 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F8ACC51E8583CE00A9B281 /* TabBarViewController.swift */; };
 		1534E6B11E82CA4400E62BAD /* Conversation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1534E6B01E82CA4400E62BAD /* Conversation.storyboard */; };
@@ -29,6 +32,7 @@
 		153676111E891641007A2FB5 /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 153676101E891641007A2FB5 /* Chat.storyboard */; };
 		153676131E89547B007A2FB5 /* AsyncPhotoMediaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153676121E89547B007A2FB5 /* AsyncPhotoMediaItem.swift */; };
 		941469B91E7F542C00CB3732 /* Date_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941469B81E7F542C00CB3732 /* Date_extension.swift */; };
+		9483C28A1E8956ED0092CECE /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9483C2891E8956ED0092CECE /* Image.swift */; };
 		948C1F2B1E7E267C000F20E5 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948C1F2A1E7E267C000F20E5 /* Constant.swift */; };
 		948C1F2D1E7E2A88000F20E5 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948C1F2C1E7E2A88000F20E5 /* Message.swift */; };
 		948C1F2F1E7E2C7D000F20E5 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948C1F2E1E7E2C7D000F20E5 /* Conversation.swift */; };
@@ -55,6 +59,9 @@
 		0555D5BE1E82DE1C0058F9CD /* Setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		0555D5C01E82DE390058F9CD /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		05B03C8E1E82BFDA00106C08 /* UserDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserDetail.storyboard; sourceTree = "<group>"; };
+		05F3777B1E881A2800B9890F /* ContactList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ContactList.storyboard; sourceTree = "<group>"; };
+		05F3777D1E881A4000B9890F /* ContactListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactListViewController.swift; sourceTree = "<group>"; };
+		05F3777F1E881AAA00B9890F /* ContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
 		05F8ACBF1E85609F00A9B281 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fonts; sourceTree = "<group>"; };
 		05F8ACC51E8583CE00A9B281 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		1534E6B01E82CA4400E62BAD /* Conversation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Conversation.storyboard; sourceTree = "<group>"; };
@@ -67,6 +74,7 @@
 		75B3FD42645CC32F317309D3 /* Pods-Thinh.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Thinh.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Thinh/Pods-Thinh.debug.xcconfig"; sourceTree = "<group>"; };
 		8B511A829B8797A0E0B0FD21 /* Pods_Thinh.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Thinh.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		941469B81E7F542C00CB3732 /* Date_extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date_extension.swift; sourceTree = "<group>"; };
+		9483C2891E8956ED0092CECE /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		948C1F2A1E7E267C000F20E5 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		948C1F2C1E7E2A88000F20E5 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		948C1F2E1E7E2C7D000F20E5 /* Conversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
@@ -99,6 +107,7 @@
 				948C1F2C1E7E2A88000F20E5 /* Message.swift */,
 				948C1F2E1E7E2C7D000F20E5 /* Conversation.swift */,
 				9497178C1E87F3AF00FBD83D /* Thinh.swift */,
+				9483C2891E8956ED0092CECE /* Image.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -109,6 +118,16 @@
 				948C1F301E7E2E69000F20E5 /* FirebaseClient.swift */,
 			);
 			name = API;
+			sourceTree = "<group>";
+		};
+		05F3777A1E881A0C00B9890F /* ContactList */ = {
+			isa = PBXGroup;
+			children = (
+				05F3777B1E881A2800B9890F /* ContactList.storyboard */,
+				05F3777F1E881AAA00B9890F /* ContactTableViewCell.swift */,
+				05F3777D1E881A4000B9890F /* ContactListViewController.swift */,
+			);
+			name = ContactList;
 			sourceTree = "<group>";
 		};
 		05F8ACBC1E842C2D00A9B281 /* DetailView */ = {
@@ -179,6 +198,7 @@
 		948C1F331E7E3623000F20E5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				05F3777A1E881A0C00B9890F /* ContactList */,
 				05F8ACBE1E842CFA00A9B281 /* Setting */,
 				05F8ACBD1E842CA300A9B281 /* ThinhList */,
 				05F8ACBC1E842C2D00A9B281 /* DetailView */,
@@ -306,6 +326,7 @@
 				94C71F0B1E7444E400D63A95 /* LaunchScreen.storyboard in Resources */,
 				05B03C8F1E82BFDA00106C08 /* UserDetail.storyboard in Resources */,
 				94C71F081E7444E400D63A95 /* Assets.xcassets in Resources */,
+				05F3777C1E881A2800B9890F /* ContactList.storyboard in Resources */,
 				1534E6B11E82CA4400E62BAD /* Conversation.storyboard in Resources */,
 				05F8ACC01E85609F00A9B281 /* Fonts in Resources */,
 				055024151E7C331700175FED /* GoogleService-Info.plist in Resources */,
@@ -371,6 +392,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0555D5BD1E82CB710058F9CD /* ThinhListViewController.swift in Sources */,
+				05F3777E1E881A4000B9890F /* ContactListViewController.swift in Sources */,
 				948C1F2F1E7E2C7D000F20E5 /* Conversation.swift in Sources */,
 				055024231E7C467900175FED /* LoginViewController.swift in Sources */,
 				0555D5B71E82CAF60058F9CD /* UserDetailViewController.swift in Sources */,
@@ -379,6 +401,7 @@
 				941469B91E7F542C00CB3732 /* Date_extension.swift in Sources */,
 				0555D5C11E82DE390058F9CD /* SettingViewController.swift in Sources */,
 				94C71F011E7444E400D63A95 /* AppDelegate.swift in Sources */,
+				9483C28A1E8956ED0092CECE /* Image.swift in Sources */,
 				0550242D1E7D278500175FED /* User.swift in Sources */,
 				051EBED11E864F87002BA6B7 /* PopupView.swift in Sources */,
 				1536760F1E88EA6D007A2FB5 /* ChatViewController.swift in Sources */,
@@ -387,6 +410,8 @@
 				1534E6BF1E836F7900E62BAD /* ConversationViewCell.swift in Sources */,
 				948C1F311E7E2E69000F20E5 /* FirebaseClient.swift in Sources */,
 				0550242F1E7D2D3900175FED /* ChatListViewController.swift in Sources */,
+				1534E6BB1E82D2B700E62BAD /* ChatViewController.swift in Sources */,
+				05F377801E881AAA00B9890F /* ContactTableViewCell.swift in Sources */,
 				948C1F2B1E7E267C000F20E5 /* Constant.swift in Sources */,
 				948C1F2D1E7E2A88000F20E5 /* Message.swift in Sources */,
 				153676131E89547B007A2FB5 /* AsyncPhotoMediaItem.swift in Sources */,

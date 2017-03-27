@@ -121,28 +121,28 @@ class ChatViewController: JSQMessagesViewController {
     
     private func observeMessages() {
         // Query messages
-        Api.shared().getMessageOfConversation(id: (self.conversation?.id)!).subscribe(onNext: { messages in
-            self.messages.removeAll()
+        Api.shared().getMessageOfConversation(id: (self.conversation?.id)!).subscribe(onNext: { message in
             
-            var messsage_sender_name : String?
-            for message in messages {
-                if(message.from == self.current_user?.id){
-                    messsage_sender_name = self.current_user?.name
-                } else {
-                    
-                    messsage_sender_name = self.conversation?.partnerName
-                }
+            var message_sender_name:String?
+            
+            if(message.from == self.current_user?.id){
+                message_sender_name = self.current_user?.name
+            } else {
                 
-                // handle media message here
-                if(message.media == nil){
-                    self.addMessage(withId: message.from!, name : messsage_sender_name!, text: message.message!)
-                } else {
-                    self.addPhotoMessage(withId: message.from!, name: messsage_sender_name!, mediaItem: AsyncPhotoMediaItem(withURL: message.media! as NSURL, isOperator: true))
-                    
-                }
-                
+                message_sender_name = self.conversation?.partnerName
             }
+            
+            // handle media message here
+            if(message.media == nil){
+                self.addMessage(withId: message.from!, name : message_sender_name!, text: message.message!)
+            } else {
+                self.addPhotoMessage(withId: message.from!, name: message_sender_name!, mediaItem: AsyncPhotoMediaItem(withURL: message.media! as NSURL, isOperator: true))
+
+            }
+            
+            
             self.finishReceivingMessage()
+
         })
         
     }
