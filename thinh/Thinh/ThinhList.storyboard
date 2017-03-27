@@ -104,6 +104,9 @@
                                 <rect key="frame" x="151" y="357" width="45" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="green-tick-icon-0"/>
+                                <connections>
+                                    <action selector="onClickedAccept:" destination="2pd-gV-jad" eventType="touchUpInside" id="0ra-KT-p7h"/>
+                                </connections>
                             </button>
                             <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="declineForImage5" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kvy-x2-NcN">
                                 <rect key="frame" x="257" y="357" width="45" height="45"/>

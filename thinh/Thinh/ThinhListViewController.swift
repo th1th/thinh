@@ -41,6 +41,13 @@ class ThinhListViewController: UIViewController {
     var acceptButtonIDs = ["acceptForImage","acceptForImage2","acceptForImage3","acceptForImage4","acceptForImage5","acceptForImage6"]
     var declineButtonIDs = ["declineForImage","declineForImage2","declineForImage3","declineForImage4","declineForImage5","declineForImage6"]
 
+    //Track the index of loaded user from thinh list
+    //thinh list from server:
+    // *************   *    *********************
+    // \___________/   ^    \___________________/
+    //  loaded user   track        unload user
+    var indexTracking = 0
+    
     
     
     
@@ -78,7 +85,7 @@ class ThinhListViewController: UIViewController {
         if let buttonId = sender.restorationIdentifier{
             for index in 0..<acceptButtonIDs.count {
                 if buttonId == acceptButtonIDs[index] {
-                    acceptThinh(tag: index, user: users[index])
+                    acceptThinh(tag: index)
                     print("index \(index)")
                     break
                 }
@@ -89,7 +96,7 @@ class ThinhListViewController: UIViewController {
         if let buttonId = sender.restorationIdentifier{
             for index in 0..<declineButtonIDs.count {
                 if buttonId == declineButtonIDs[index] {
-                    declineThinh(tag: index, user: users[index])
+                    declineThinh(tag: index)
                     print(index)
                 }
             }
@@ -113,12 +120,41 @@ class ThinhListViewController: UIViewController {
 }
 
 extension ThinhListViewController{
+    func acceptThinh(tag: Int) {
+        //Handle with FRB client
+        //.............waiting for function in client...  ~.~
+        
+        
+        //update view
+        updateImage(tag: tag)
+    }
+    func declineThinh(tag: Int) {
+        //Handle with FRB client
+        //.............waiting for function in client...  ~.~
+        
+        
+        //update view
+        updateImage(tag: tag)
+        //update user
+//        for index in tag..<users.count{
+//            users[index] = users[index+1]
+//        }
+//        loadUserToView()
+    }
+}
+
+extension ThinhListViewController{
+    
+    //Get Thinh from server and add to list users
     func getThinhList() {
         //GET ALL THINH HERE:
 
         //////////////
 //        users += User.mock2()
+//        indexTracking = User.mock2().count
     }
+    
+    //Load all image of users (when fisrt load Thinh list view)
     func loadUserToView()  {
         images = [UserImage,UserImage2,UserImage3,UserImage4,UserImage5,UserImage6]
         acceptButtons = [acceptButton,acceptButton2,acceptButton3,acceptButton4,acceptButton5,acceptButton6]
@@ -127,15 +163,16 @@ extension ThinhListViewController{
             //images[index].setImageWith(URL(string: users[index].avatar!)!)
         }
     }
-    func acceptThinh(tag: Int,user: User) {
-        //
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.1, initialSpringVelocity: 2, options: [], animations: {
+    
+    //Function is used to change image when user accept/decline, after load new user and remove old user
+    func updateImage(tag: Int) {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 2, options: [], animations: {
             self.images[tag].transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
             self.acceptButtons[tag].alpha = 0
             self.declineButtons[tag].alpha = 0
         }) { (result) in
             self.images[tag].setImageWith(URL(string: self.users[tag].avatar!)!)
-            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.1, initialSpringVelocity: 2, options: [], animations: {
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 2, options: [], animations: {
                 self.images[tag].transform = CGAffineTransform(scaleX: 1, y: 1)
             }, completion: {(result) in
                 self.acceptButtons[tag].alpha = 1
@@ -143,10 +180,7 @@ extension ThinhListViewController{
             })
         }
     }
-    func declineThinh(tag: Int, user: User) {
-        //
-        images[tag].setImageWith(URL(string: users[tag].avatar!)!)
-    }
+
     func initView() {
         for image in [UserImage,UserImage2,UserImage3,UserImage4,UserImage5,UserImage6] {
             image?.layer.cornerRadius = (image?.frame.height)!/2 //set corner for image here
