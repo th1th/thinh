@@ -193,9 +193,9 @@ class Api: NSObject {
     /*
      check if conversation between current user and user A has exist
     */
-    fileprivate func checkIfConversationExist(with A: UserId) -> Observable<ConversationId?> {
+    fileprivate func checkIfConversationExist(between A: UserId, B: UserId) -> Observable<ConversationId?> {
        return Observable<ConversationId?>.create({ (subcriber) -> Disposable in
-        self.userConversationDb.child(self.userId()!).observeSingleEvent(of: .value, with: { (snapshot) in
+        self.userConversationDb.child(B).observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.hasChild(A) {
                 let conversation = Conversation(json: snapshot.childSnapshot(forPath: A).value as! JSON)
                 subcriber.onNext(conversation?.id)
@@ -323,11 +323,8 @@ class Api: NSObject {
                     subcriber.onNext(user)
                 })
             })
-        
             return Disposables.create()
         })
-       
-       
     }
     
     /*
@@ -390,12 +387,19 @@ class Api: NSObject {
     }
     
     /*
-     current user tha thinh user A with message
+     current user tha thinh user A
     */
-    func thathinh(_ A: UserId, message: String) {
+    func thathinh(_ A: UserId) {
+        thathinh(A: A, B: userId()!)
+    }
+    
+    /*
+     user B tha thinh user A, also for test
+    */
+    fileprivate func thathinh(A: UserId, B: UserId) {
         hasRecieveThinhFrom(A).subscribe(onNext: { (thinh) in
             if let thinh = thinh {
-                self.checkIfConversationExist(with: A).subscribe(onNext: { (conversationId) in
+                self.checkIfConversationExist(between: A, B: B).subscribe(onNext: { (conversationId) in
                     var id: ConversationId!
                     let A = thinh.to!
                     let B = thinh.from!
@@ -405,10 +409,14 @@ class Api: NSObject {
                         id = self.createNewConversation(forUser: A, andUser: B)
                     }
                     self.sendBotMessage(id: id, user1: A, user2: B)
-//                    self.sendMess
+                    self.sendMessage(id: id, message: Message(thinh: thinh))
                 })
             } else {
-                // TODO
+                let thinh = self.createThinhPackage(for: A, with: nil, with: nil)
+                self.checkFriendRelationship(between: self.userId()!, and: A).subscribe(onNext: { (friend) in
+                    thinh.friend = friend
+                    self.setThinhPackage(thinh)
+                })
             }
         })
     }
@@ -500,42 +508,48 @@ class Api: NSObject {
 
 
 extension Api {
-//    func createMockData() {
-//        deleteDb()
-//        let users = User.mock()
-//        for i in 0..<users.count - 1 {
-//            let id = createMockConversation(user1: users[i], user2: users[i+1])
-//            createMockMessage(user1: users[i], user2: users[i+1], id: id)
-//        }
-//
-//
-//        getFriendList(id: users[1].id!)
-//        checkFriendRelationship(between: users[1].id!, and: users[0].id!)
-//            .subscribe(onNext: { (friend) in
-//                if !friend {
-//                    print("This should be friend")
-//                }
-//            })
-//        checkFriendRelationship(between: users[1].id!, and: users[3].id!)
-//            .subscribe(onNext: { (friend) in
-//                if friend {
-//                    print("This should not be friend")
-//                }
-//            })
-//
-//    }
+    func createMockData() {
+        deleteDb()
+        let users = createMockUser()
+        for i in 0..<users.count - 1 {
+            let id = createMockConversation(user1: users[i].id!, user2: users[i+1].id!)
+            createMockMessage(user1: users[i].id!, user2: users[i+1].id!, id: id)
+        }
+        
+        // friend: 0 - 1, 1 - 2, 2 - 3, 3 - 4
+        
+        // case not friend, tha thinh each other
+        createMockThinh(users[0].id!, users[3].id!)
+        // case friend, one tha
+        createMockThinh(users[0].id!, users[1].id!)
+        // case friend, both tha
+        createMockThinh(users[1].id!, users[2].id!)
+        createMockThinh(users[2].id!, users[1].id!)
+
+        getFriendList(id: users[1].id!)
+        checkFriendRelationship(between: users[1].id!, and: users[0].id!)
+            .subscribe(onNext: { (friend) in
+                if !friend {
+                    print("This should be friend")
+                }
+            })
+        checkFriendRelationship(between: users[1].id!, and: users[3].id!)
+            .subscribe(onNext: { (friend) in
+                if friend {
+                    print("This should not be friend")
+                }
+            })
+
+    }
 
     
     private func deleteDb() {
         database.setValue(nil)
     }
     
-    
     private func createMockUser()  -> [User] {
         let users = User.mock()
         for user in users {
-//            let key = userDb.childByAutoId().key
-//            user.withId(key)
             userDb.child(user.id!).setValue(user.toJSON()!)
             createUser(user.id!,
                        user: user)
@@ -544,18 +558,19 @@ extension Api {
     }
     
     
-//    private func createMockConversation(user1: UserId, user2: UserId) -> ConversationId {
-//        return createNewConversation(forUser: user1, andUser: user2)
-//    }
-//    
-//    private func createMockMessage(user1: UserId, user2: UserId, id: ConversationId) {
-//        let messages = Message.mock(from: user1, to: user2)
-//        for message in messages {
-//            sendMessage(id: id, message: message)
-//        }
-//    }
+    private func createMockConversation(user1: UserId, user2: UserId) -> ConversationId {
+        return createNewConversation(forUser: user1, andUser: user2)
+    }
     
-    private func createMockThinh() {
+    private func createMockMessage(user1: UserId, user2: UserId, id: ConversationId) {
+        let messages = Message.mock(from: user1, to: user2)
+        for message in messages {
+            sendMessage(id: id, message: message)
+        }
+    }
+    
+    private func createMockThinh(_ from: UserId, _ to: UserId) {
+        thathinh(A: to, B: from)
         
     }
     
