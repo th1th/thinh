@@ -26,9 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let vc = storyboard.instantiateInitialViewController()
             self.window?.rootViewController = vc
         }
-//        Api.shared().getStrangerThinh().subscribe(onNext: { (thinhs) in
-//            print(thinhs)
-//        })
+
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 

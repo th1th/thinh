@@ -15,7 +15,7 @@ class Thinh: NSObject, Glossy  {
     var from: UserId?
     var to: UserId?
     var message: String?
-    var media: String?
+    var media: URL?
     var date: TimeInterval?
     var friend: Bool?
     
@@ -60,12 +60,12 @@ class Thinh: NSObject, Glossy  {
         return self
     }
     
-    func withMessage(_ message: String) -> Thinh {
+    func withMessage(_ message: String?) -> Thinh {
         self.message = message
         return self
     }
     
-    func withMedia(_ media: String) -> Thinh {
+    func withMedia(_ media: URL?) -> Thinh {
         self.media = media
         return self
     }
