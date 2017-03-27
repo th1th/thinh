@@ -236,13 +236,6 @@ class Api: NSObject {
     func getMessageOfConversation(id: ConversationId) -> Observable<Message> {
         return Observable<Message>.create { (subcriber) -> Disposable in
             self.conversationDb.child(id).observe(.childAdded, with: { snapshot in
-//                var messages = [Message]()
-//                for child in snapshot.children {
-//                    guard let data = child as? FIRDataSnapshot else {
-//                        return
-//                    }
-//                    messages.append(Message(json: data.value as! JSON)!)
-//                }
                 if let message = Message(json: snapshot.value as! JSON) {
                     subcriber.onNext(message)
                 } else {
@@ -252,13 +245,7 @@ class Api: NSObject {
             return Disposables.create()
         }
     }
-    
-    
-    
-    
-    
-    
-    
+
     /*
      create new text for conversationId
     */
@@ -280,8 +267,6 @@ class Api: NSObject {
      send message with image
     */
     func sendMessage(to A: UserId, conversation: ConversationId, image: UIImage) {
-//        let message
-        // TODO: Upload image to storage
         uploadImage(image).subscribe(onNext: { (url) in
             let message = Message(from: self.userId()!, to: A, media: url)
             self.sendMessage(id: conversation, message: message)
@@ -543,6 +528,9 @@ extension Api {
         for i in 0..<users.count - 1 {
             let id = createMockConversation(user1: users[i].id!, user2: users[i+1].id!)
             createMockMessage(user1: users[i].id!, user2: users[i+1].id!, id: id)
+            if i != 1 {
+               createMockThinh(users[i].id!, users[1].id!)
+            }
         }
         
         // friend: 0 - 1, 1 - 2, 2 - 3, 3 - 4
@@ -550,10 +538,12 @@ extension Api {
         // case not friend, tha thinh each other
         createMockThinh(users[0].id!, users[3].id!)
         // case friend, one tha
-        createMockThinh(users[0].id!, users[1].id!)
+        createMockThinh(users[2].id!, users[3].id!)
         // case friend, both tha
-        createMockThinh(users[1].id!, users[2].id!)
-        createMockThinh(users[2].id!, users[1].id!)
+        createMockThinh(users[3].id!, users[4].id!)
+        createMockThinh(users[4].id!, users[3].id!)
+        
+        
 
         getFriendList(id: users[1].id!)
         checkFriendRelationship(between: users[1].id!, and: users[0].id!)

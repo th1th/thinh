@@ -124,7 +124,7 @@ class User: NSObject, Glossy {
     
     // mock user data
     static let user1 = "S5cirBWXUiOGnareVEEWbjaIJN02"
-    static let user2 = "WR3OioP6R0UTPUoWItWyJX5g4p62"
+    static let user2 = "WR3OioP6R0UTPUoWItWyJX5g4p62"   // Mr.Linh
     static let user3 = "WhEZVoiMDpTA4QkdI8dHCZFyG752"
     static let user4 = "cdP7J0LNP2gUG3BeEq29N8JHDt72"
     static let user5 = "7ufjet2By0UHMVtf0MINZ4gC63H3"
