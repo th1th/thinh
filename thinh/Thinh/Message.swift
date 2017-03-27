@@ -16,7 +16,7 @@ class Message: NSObject, Glossy {
     var from: UserId?
     var to: UserId?
     var message: String?
-    var media: String?
+    var media: URL?
     
     // for bot message
     var user1: UserId?
@@ -46,6 +46,15 @@ class Message: NSObject, Glossy {
         self.to = to
         self.user2 = to
         self.message = message
+    }
+    
+    init(from: UserId, to:UserId, media: URL) {
+        date = Date.currentTimeInMillis()
+        self.from = from
+        self.to = to
+        self.user1 = from
+        self.user2 = to
+        self.media = media
     }
     
     

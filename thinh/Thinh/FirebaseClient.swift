@@ -248,6 +248,10 @@ class Api: NSObject {
     func sendMessage(to A: UserId, conversation: ConversationId, image: UIImage) {
 //        let message
         // TODO: Upload image to storage
+        uploadImage(image).subscribe(onNext: { (url) in
+            let message = Message(from: self.userId()!, to: A, media: url)
+            self.sendMessage(id: conversation, message: message)
+        })
     }
     
     /*
@@ -384,33 +388,51 @@ class Api: NSObject {
      current user tha thinh user A with message
     */
     func thathinh(_ A: UserId, message: String) {
-//        hasRecieveThinhFrom(A).subscribe(onNext: { (recieved) in
-//            if recieved {
-//                self.checkIfConversationExist(with: A).subscribe(onNext: { (conversationId) in
-//                    if
-//                })
-//            } else {
-//                // TODO
-//            }
-//        })
-//        hasRecieveThinhFrom(A).)
+        hasRecieveThinhFrom(A).subscribe(onNext: { (thinh) in
+            if let thinh = thinh {
+                self.checkIfConversationExist(with: A).subscribe(onNext: { (conversationId) in
+                    var id: ConversationId!
+                    let A = thinh.to!
+                    let B = thinh.from!
+                    if conversationId != nil {
+                        id = conversationId
+                    } else {
+                        id = self.createNewConversation(forUser: A, andUser: B)
+                    }
+                    self.sendBotMessage(id: id, user1: A, user2: B)
+//                    self.sendMess
+                })
+            } else {
+                // TODO
+            }
+        })
     }
     
     /*
      current user tha thinh user A with image
     */
     func thathinh(_ A: UserId, image: UIImage) {
-        
+        // TODO: Implement in the future
+//        uploadImage(image).subscribe(onNext: { (url) in
+//            createThin
+//        })
     }
     
     
     /*
-     check if current have recieve thinh from user A
+     check if current have recieve thinh from user A, return that thinh
     */
-    fileprivate func hasRecieveThinhFrom(_ user: UserId) -> Observable<Bool> {
-        return Observable<Bool>.create({ (subcriber) -> Disposable in
+    fileprivate func hasRecieveThinhFrom(_ A: UserId) -> Observable<Thinh?> {
+        return Observable<Thinh?>.create({ (subcriber) -> Disposable in
             self.userThinhDb.child(self.userId()!).observeSingleEvent(of: .value, with: { (snapshot) in
-                subcriber.onNext(snapshot.hasChild(user))
+                if snapshot.hasChild(A) {
+                    let id = snapshot.childSnapshot(forPath: A).value as! ThinhId
+                    self.thinhDb.child(id).observeSingleEvent(of: .value, with: { (snapshot) in
+                        subcriber.onNext(Thinh(json: snapshot.value as! JSON))
+                    })
+                } else {
+                    subcriber.onNext(nil)
+                }
             })
             return Disposables.create()
         })
@@ -419,7 +441,7 @@ class Api: NSObject {
     /*
      create thinh package from current user to user A
     */
-    func createThinhPackage(for A: UserId, with message: String = "", with media: String = "") -> Thinh {
+    func createThinhPackage(for A: UserId, with message: String?, with media: URL?) -> Thinh {
         let key = thinhDb.childByAutoId().key
         let thinh = Thinh().withTo(A).withMessage(message).withMedia(media).withId(key)
         return thinh
