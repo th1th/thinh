@@ -34,6 +34,8 @@ class ThinhListViewController: UIViewController {
     
     var contentView: UIView! = nil
     var users: [User] = []
+    var thinhs: [Thinh] = []
+    
     var images: [UIImageView]!
     var acceptButtons: [UIButton]!
     var declineButtons: [UIButton]!
@@ -141,17 +143,23 @@ extension ThinhListViewController{
     //Get Thinh from server and add to list users
     func getThinhList() {
         //GET ALL THINH HERE:
-//        Api.shared().getStrangerThinh().subscribe(onNext: { (thinhs:[Thinh]) in
-//            print(thinhs)
+//        Api.shared().getStrangerThinh().subscribe(onNext: { (thinh:Thinh) in
+//            print(thinh)
+//            if thinh.friend! {return}
+//            Api.shared().getUser(id: thinh.from!).subscribe(onNext: { (user) in
+//                self.thinhs.append(thinh)
+//                self.users.append(user)
+//                self.loadUserToView()
+//            }, onError: nil, onCompleted: nil, onDisposed: nil)
+////            self.indexTracking = 
 //        }, onError: { (error) in
 //            print(error.localizedDescription)
-//        }, onCompleted: { 
+//        }, onCompleted: {
 //            //
-//        }) { 
+//        }) {
 //            //
 //        }
         users += User.mock()
-        indexTracking = User.mock().count
     }
     
     //Load all image of users (when fisrt load Thinh list view)
@@ -160,7 +168,7 @@ extension ThinhListViewController{
         acceptButtons = [acceptButton,acceptButton2,acceptButton3,acceptButton4,acceptButton5,acceptButton6]
         declineButtons = [declineButton,declineButton2,declineButton3,declineButton4,declineButton5,declineButton6]
         for index in 0..<users.count {
-            //images[index].setImageWith(URL(string: users[index].avatar!)!)
+            images[index].setImageWith(URL(string: users[index].avatar!)!)
         }
     }
     

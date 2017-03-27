@@ -13,7 +13,8 @@ class ContactListViewController: UIViewController {
     @IBOutlet weak var contactListTable: UITableView!
 
     var contactList = [User]()
-    
+    let refreshController = UIRefreshControl()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,16 +23,22 @@ class ContactListViewController: UIViewController {
         
         loadContactList()
         contactListTable.reloadData()
+        
+        //Add refresh database
+        refreshController.addTarget(self, action: #selector(refreshControlAction(refreshController:)), for: UIControlEvents.valueChanged)
+        contactListTable.insertSubview(refreshController, at: 0)
     }
     
     
 }
 extension ContactListViewController{
     func loadContactList() {
-        ////
-        //.......waiting for api
-        contactList = User.mock()
-
+        Api.shared().getMyFriendList().subscribe(onNext: { (User) in
+            self.contactList.append(User)
+            self.contactListTable.reloadData()
+        }, onError: { (Error) in
+            print(Error.localizedDescription)
+        }, onCompleted: nil, onDisposed: nil)
     }
 }
 
@@ -39,15 +46,17 @@ extension ContactListViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = contactListTable.dequeueReusableCell(withIdentifier: "contactTableViewCell") as! ContactTableViewCell
         let user = contactList[indexPath.row]
+        var statusImage = #imageLiteral(resourceName: "offline")
         
         cell.avatarImage.setImageWith(URL(string: user.avatar!)!, placeholderImage: nil)
         cell.nameLabel.text = user.name
         cell.captionLabel.text = user.caption
         
         
-        let statusImage = #imageLiteral(resourceName: "offline")
+        if user.status == true {
+            statusImage = #imageLiteral(resourceName: "online")
+        }
         cell.statusImage.image = statusImage
-
         cell.avatarImage.layer.cornerRadius = cell.avatarImage.frame.height/2
         cell.avatarImage.clipsToBounds = true
         
@@ -76,6 +85,10 @@ extension ContactListViewController: UITableViewDelegate, UITableViewDataSource 
         view.addSubview(vc.view)
         vc.didMove(toParentViewController: self)
 
+    }
+    // Hides the RefreshControl
+    func refreshControlAction(refreshController: UIRefreshControl) {
+        self.refreshController.endRefreshing()
     }
 }
 
