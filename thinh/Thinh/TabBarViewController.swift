@@ -26,7 +26,7 @@ class TabBarViewController: UIViewController {
     //an array to hold the ViewControllers named
     var viewControllers: [UIViewController]!
     //keep track of the tab button that is selected
-    var selectedIndex: Int = 0
+    var selectedIndex: Int = 1
     //count number of new chats
     var chatCount: Int = 7
     
