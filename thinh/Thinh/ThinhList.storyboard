@@ -105,7 +105,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="green-tick-icon-0"/>
                                 <connections>
-                                    <action selector="onClickedAccept:" destination="2pd-gV-jad" eventType="touchUpInside" id="KWs-yv-ne2"/>
+                                    <action selector="onClickedAccept:" destination="2pd-gV-jad" eventType="touchUpInside" id="0ra-KT-p7h"/>
                                 </connections>
                             </button>
                             <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="declineForImage5" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kvy-x2-NcN">
@@ -177,6 +177,18 @@
                         <outlet property="UserImage4" destination="LKW-KM-9bU" id="f7k-qX-iaJ"/>
                         <outlet property="UserImage5" destination="aTB-1Y-mif" id="FvL-Jx-KUE"/>
                         <outlet property="UserImage6" destination="N42-rq-DoK" id="TLg-39-OLF"/>
+                        <outlet property="acceptButton" destination="MMq-Ws-0wi" id="cNS-8l-aOS"/>
+                        <outlet property="acceptButton2" destination="cub-fi-36e" id="NRW-Pp-zoI"/>
+                        <outlet property="acceptButton3" destination="aME-LT-Qeb" id="pjo-jS-fVT"/>
+                        <outlet property="acceptButton4" destination="57w-YC-Oru" id="hd1-7C-G8B"/>
+                        <outlet property="acceptButton5" destination="7p5-J9-wPn" id="Eau-CD-hvN"/>
+                        <outlet property="acceptButton6" destination="Syr-pg-EPJ" id="lkA-8l-3hH"/>
+                        <outlet property="declineButton" destination="FgH-eh-CjA" id="5YS-VT-GLI"/>
+                        <outlet property="declineButton2" destination="qD5-IY-zuX" id="97O-Yg-Bx0"/>
+                        <outlet property="declineButton3" destination="D1p-iE-y5J" id="TQ2-Or-2fr"/>
+                        <outlet property="declineButton4" destination="clj-ft-iHc" id="h9F-dG-EFs"/>
+                        <outlet property="declineButton5" destination="kvy-x2-NcN" id="God-en-SPP"/>
+                        <outlet property="declineButton6" destination="I7e-Hr-oBb" id="vAV-1r-q0X"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uzY-YB-XRM" userLabel="First Responder" sceneMemberID="firstResponder"/>

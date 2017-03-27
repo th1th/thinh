@@ -58,8 +58,9 @@ class ChatViewController: JSQMessagesViewController {
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
        
         // Handle sending new message here
-        let newMessage = Message(from: (self.current_user?.id)!, to: (self.conversation?.partnerID)!, message: text)
-        Api.shared().sendMessage(id: (self.conversation?.conversation)!, message: newMessage)
+        //let newMessage = Message(from: (self.current_user?.id)!, to: (self.conversation?.partnerID)!, message: text)
+        //Api.shared().sendMessage(id: (self.conversation?.id)!, message: newMessage)
+        Api.shared().sendMessage(to: (self.conversation?.partnerID)!, conversation: (self.conversation?.id)!, text: text)
         
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
         
@@ -68,7 +69,7 @@ class ChatViewController: JSQMessagesViewController {
     
     private func observeMessages() {
         // Query messages
-        Api.shared().getMessageOfConversation(id: (self.conversation?.conversation)!).subscribe(onNext: { messages in
+        Api.shared().getMessageOfConversation(id: (self.conversation?.id)!).subscribe(onNext: { messages in
             self.messages.removeAll()
             for message in messages {
                 if(message.from == self.current_user?.id){

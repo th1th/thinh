@@ -10,8 +10,6 @@ import UIKit
 
 class ThinhListViewController: UIViewController {
 
-    
-    
     @IBOutlet weak var UserImage: UIImageView!
     @IBOutlet weak var UserImage2: UIImageView!
     @IBOutlet weak var UserImage3: UIImageView!
@@ -19,78 +17,88 @@ class ThinhListViewController: UIViewController {
     @IBOutlet weak var UserImage5: UIImageView!
     @IBOutlet weak var UserImage6: UIImageView!
     
+    @IBOutlet weak var acceptButton: UIButton!
+    @IBOutlet weak var acceptButton2: UIButton!
+    @IBOutlet weak var acceptButton3: UIButton!
+    @IBOutlet weak var acceptButton4: UIButton!
+    @IBOutlet weak var acceptButton5: UIButton!
+    @IBOutlet weak var acceptButton6: UIButton!
+    
+    @IBOutlet weak var declineButton: UIButton!
+    @IBOutlet weak var declineButton2: UIButton!
+    @IBOutlet weak var declineButton3: UIButton!
+    @IBOutlet weak var declineButton4: UIButton!
+    @IBOutlet weak var declineButton5: UIButton!
+    @IBOutlet weak var declineButton6: UIButton!
+    
+    
     var contentView: UIView! = nil
     var users: [User] = []
+    var images: [UIImageView]!
+    var acceptButtons: [UIButton]!
+    var declineButtons: [UIButton]!
+
+    var acceptButtonIDs = ["acceptForImage","acceptForImage2","acceptForImage3","acceptForImage4","acceptForImage5","acceptForImage6"]
+    var declineButtonIDs = ["declineForImage","declineForImage2","declineForImage3","declineForImage4","declineForImage5","declineForImage6"]
+
+    //Track the index of loaded user from thinh list
+    //thinh list from server:
+    // *************   *    *********************
+    // \___________/   ^    \___________________/
+    //  loaded user   track        unload user
+    var indexTracking = 0
+    
+    
     
     
     @IBAction func onClickGetDetail(_ sender: UITapGestureRecognizer) {
         sender.numberOfTapsRequired = 1
         sender.numberOfTouchesRequired = 1
-        print("[xx]tap")
-        //Remove the Previous ViewController
+        print(sender.view?.tag)
+        print(users.count)
+        let user = users[(sender.view?.tag)!]
+        
+        
+        //Remove the ThinhListViewController
         let previousVC = UIStoryboard(name: "ThinhList", bundle: nil).instantiateViewController(withIdentifier: "ThinhListViewController")
         previousVC.willMove(toParentViewController: nil)
         previousVC.view.removeFromSuperview()
         previousVC.removeFromParentViewController()
         
-        //Add the New ViewController
-        let vc = UIStoryboard(name: "UserDetail", bundle: nil).instantiateViewController(withIdentifier: "UserDetailViewController")
+        //Add the New UserDetailViewController
+        let vc = UIStoryboard(name: "UserDetail", bundle: nil).instantiateViewController(withIdentifier: "UserDetailViewController") as! UserDetailViewController
         addChildViewController(vc)
         vc.view.frame = view.bounds
         view.addSubview(vc.view)
         vc.didMove(toParentViewController: self)
+        
+        //Load user data to UserDetailViewController
+        vc.AvatarImage.setImageWith(URL(string: user.avatar!)!)
+        vc.UserBackgroundImage.setImageWith(URL(string: user.avatar!)!)
+        vc.UserCaptionLabel.text = user.caption
+        vc.UserInfoLabel.text = user.name
+        vc.UserNameLabel.text = user.name
     }
     
 
     @IBAction func onClickedAccept(_ sender: UIButton) {
         if let buttonId = sender.restorationIdentifier{
-            switch buttonId {
-            case "acceptForImage":
-                print(buttonId)
-                break
-            case "acceptForImage2":
-                print(buttonId)
-                break
-            case "acceptForImage3":
-                print(buttonId)
-                break
-            case "acceptForImage4":
-                print(buttonId)
-                break
-            case "acceptForImage5":
-                print(buttonId)
-                break
-            case "acceptForImage6":
-                print(buttonId)
-                break
-            default:
-                break
+            for index in 0..<acceptButtonIDs.count {
+                if buttonId == acceptButtonIDs[index] {
+                    acceptThinh(tag: index)
+                    print("index \(index)")
+                    break
+                }
             }
         }
     }
     @IBAction func onClickedDeline(_ sender: UIButton) {
         if let buttonId = sender.restorationIdentifier{
-            switch buttonId {
-            case "declineForImage":
-                print(buttonId)
-                break
-            case "declineForImage2":
-                print(buttonId)
-                break
-            case "declineForImage3":
-                print(buttonId)
-                break
-            case "declineForImage4":
-                print(buttonId)
-                break
-            case "declineForImage5":
-                print(buttonId)
-                break
-            case "declineForImage6":
-                print(buttonId)
-                break
-            default:
-                break
+            for index in 0..<declineButtonIDs.count {
+                if buttonId == declineButtonIDs[index] {
+                    declineThinh(tag: index)
+                    print(index)
+                }
             }
         }
     }
@@ -99,7 +107,6 @@ class ThinhListViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
         initView()
     }
 
@@ -113,20 +120,67 @@ class ThinhListViewController: UIViewController {
 }
 
 extension ThinhListViewController{
+    func acceptThinh(tag: Int) {
+        //Handle with FRB client
+        //.............waiting for function in client...  ~.~
+        
+        
+        //update view
+        updateImage(tag: tag)
+    }
+    func declineThinh(tag: Int) {
+        //Handle with FRB client
+        //.............waiting for function in client...  ~.~
+        
+        
+        //update view
+        updateImage(tag: tag)
+        //update user
+//        for index in tag..<users.count{
+//            users[index] = users[index+1]
+//        }
+//        loadUserToView()
+    }
+}
+
+extension ThinhListViewController{
+    
+    //Get Thinh from server and add to list users
     func getThinhList() {
         //GET ALL THINH HERE:
 
         //////////////
-        //users += User.mock2()
+//        users += User.mock2()
+//        indexTracking = User.mock2().count
     }
+    
+    //Load all image of users (when fisrt load Thinh list view)
     func loadUserToView()  {
-        //UserImage.setImageWith(URL(string: users[0].avatar!)!)
-        //UserImage2.setImageWith(URL(string: users[1].avatar!)!)
-        //UserImage3.setImageWith(URL(string: users[2].avatar!)!)
-        //UserImage4.setImageWith(URL(string: users[3].avatar!)!)
-        //UserImage5.setImageWith(URL(string: users[4].avatar!)!)
-        //UserImage6.setImageWith(URL(string: users[5].avatar!)!)
+        images = [UserImage,UserImage2,UserImage3,UserImage4,UserImage5,UserImage6]
+        acceptButtons = [acceptButton,acceptButton2,acceptButton3,acceptButton4,acceptButton5,acceptButton6]
+        declineButtons = [declineButton,declineButton2,declineButton3,declineButton4,declineButton5,declineButton6]
+        for index in 0..<users.count {
+            //images[index].setImageWith(URL(string: users[index].avatar!)!)
+        }
     }
+    
+    //Function is used to change image when user accept/decline, after load new user and remove old user
+    func updateImage(tag: Int) {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 2, options: [], animations: {
+            self.images[tag].transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+            self.acceptButtons[tag].alpha = 0
+            self.declineButtons[tag].alpha = 0
+        }) { (result) in
+            self.images[tag].setImageWith(URL(string: self.users[tag].avatar!)!)
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 2, options: [], animations: {
+                self.images[tag].transform = CGAffineTransform(scaleX: 1, y: 1)
+            }, completion: {(result) in
+                self.acceptButtons[tag].alpha = 1
+                self.declineButtons[tag].alpha = 1
+            })
+        }
+    }
+
     func initView() {
         for image in [UserImage,UserImage2,UserImage3,UserImage4,UserImage5,UserImage6] {
             image?.layer.cornerRadius = (image?.frame.height)!/2 //set corner for image here

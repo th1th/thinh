@@ -16,19 +16,19 @@ import FBSDKLoginKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FIRApp.configure()
-        
+        FIRDatabase.database().persistenceEnabled = true
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "didLogOut"), object: nil, queue: OperationQueue.main){ (Notification) -> Void in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateInitialViewController()
             self.window?.rootViewController = vc
         }
-        
-//       Api.shared().createMockData()
+//        Api.shared().getStrangerThinh().subscribe(onNext: { (thinhs) in
+//            print(thinhs)
+//        })
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 
@@ -50,6 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+       Api.shared().stop() 
     }
     func applicationDidBecomeActive(application: UIApplication) {
         // Call the 'activate' method to log an app event for use

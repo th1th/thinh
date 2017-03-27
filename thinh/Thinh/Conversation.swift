@@ -17,9 +17,11 @@ protocol ConversationDelegate : class {
 
 class Conversation: NSObject, Glossy {
     
+
     weak var delegate : ConversationDelegate?
     
-    var conversation: ConversationId?
+    var id: ConversationId?
+
     var lastMessage: String?
     var lastTime: TimeInterval?
     var partnerID: UserId? {
@@ -43,7 +45,7 @@ class Conversation: NSObject, Glossy {
     
     required init?(json: JSON) {
         super.init()
-        conversation = FirebaseKey.conversation <~~ json
+        id = FirebaseKey.conversation <~~ json
         lastMessage = FirebaseKey.lastMessage <~~ json
         lastTime = FirebaseKey.lastTime <~~ json
         ({self.partnerID = FirebaseKey.user <~~ json})()
@@ -51,7 +53,7 @@ class Conversation: NSObject, Glossy {
     
     func toJSON() -> JSON? {
         return jsonify([
-            FirebaseKey.conversation ~~> conversation,
+            FirebaseKey.conversation ~~> id,
             FirebaseKey.lastMessage ~~> lastMessage,
             FirebaseKey.lastTime ~~> lastTime,
             FirebaseKey.user ~~> partnerID
@@ -59,7 +61,7 @@ class Conversation: NSObject, Glossy {
     }
     
     init(id: ConversationId?, message: String?, time: TimeInterval?) {
-        self.conversation = id
+        self.id = id
         self.lastMessage = message
         self.lastTime = time
     }

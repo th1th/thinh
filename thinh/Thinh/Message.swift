@@ -16,6 +16,7 @@ class Message: NSObject, Glossy {
     var from: UserId?
     var to: UserId?
     var message: String?
+    var media: String?
     
     // for bot message
     var user1: UserId?
@@ -26,6 +27,7 @@ class Message: NSObject, Glossy {
         from = FirebaseKey.from <~~ json
         to = FirebaseKey.to <~~ json
         message = FirebaseKey.message <~~ json
+        media = FirebaseKey.media <~~ json
     }
     
     func toJSON() -> JSON? {
@@ -33,7 +35,8 @@ class Message: NSObject, Glossy {
             FirebaseKey.date ~~> date,
             FirebaseKey.from ~~> from,
             FirebaseKey.to ~~> to,
-            FirebaseKey.message ~~> message])
+            FirebaseKey.message ~~> message,
+            FirebaseKey.media ~~> media])
     }
     
     init(from: UserId, to: UserId, message: String) {

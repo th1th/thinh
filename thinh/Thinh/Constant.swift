@@ -39,6 +39,7 @@ struct FirebaseKey {
     static let to = "to"
     static let message = "message"
     static let date = "date"
+    static let media = "media"
     
     // thinh
     static let friend = "friend"
