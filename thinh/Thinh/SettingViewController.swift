@@ -43,6 +43,10 @@ class SettingViewController: UIViewController {
     @IBAction func close(_ sender: UIButton) {
         hidePopupView()
     }
+    @IBAction func signoutButton(_ sender: UIButton) {
+        signOut()
+    }
+    
     //Popup View outlet
     @IBOutlet weak var captionTextView: UITextView!
     @IBOutlet weak var phoneTextView: UITextView!

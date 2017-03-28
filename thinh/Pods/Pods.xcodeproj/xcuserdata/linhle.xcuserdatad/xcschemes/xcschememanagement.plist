@@ -11,6 +11,16 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
+		<key>Alamofire.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>22</integer>
+		</dict>
+		<key>AlamofireImage.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>23</integer>
+		</dict>
 		<key>Bolts.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -138,6 +148,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>05EB9FEC13E617BCC603C8FEDC16BE57</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>0681231B48B1294873857D401238569C</key>
 		<dict>
 			<key>primary</key>
@@ -154,6 +169,11 @@
 			<true/>
 		</dict>
 		<key>107A9565F9DF88517DFD3E28C05B2B96</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>223D1D75852C65722D63D450486B1F5D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -208,6 +228,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>991DE5842796BBD5893F4EA2CE589C6B</key>
 		<dict>
 			<key>primary</key>
@@ -219,6 +244,11 @@
 			<true/>
 		</dict>
 		<key>9A664FD395EC4C1AFB9459F3A6BFF753</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9EFE4C70245EE2857D336B8B9FA4E825</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -254,6 +284,11 @@
 			<true/>
 		</dict>
 		<key>D0581AF7BF4A6DA140D280B19ECC7BFF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D1D460F38E9390CDB761D3C7011A181F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

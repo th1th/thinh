@@ -2,25 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSAppleMusicUsageDescription</key>
-	<string>Select media</string>
-	<key>NSCameraUsageDescription</key>
-	<string>Select camera</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Select photo library</string>
-	<key>UIAppFonts</key>
-	<array>
-		<string>OpenSans-LightItalic</string>
-		<string>OpenSans-Light</string>
-		<string>OpenSans-Italic</string>
-		<string>OpenSans-Bold</string>
-		<string>ProximaNovaSoft-Semibold</string>
-		<string>ProximaNovaSoft-Regular</string>
-		<string>ProximaNovaSoft-Medium</string>
-		<string>ProximaNovaSoft-Bold</string>
-	</array>
-	<key>LSApplicationCategoryType</key>
-	<string></string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -58,6 +39,8 @@
 	<string>1324155217633608</string>
 	<key>FacebookDisplayName</key>
 	<string>Thinh</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
@@ -67,6 +50,23 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Select media</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Select camera</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Select photo library</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>OpenSans-LightItalic</string>
+		<string>OpenSans-Light</string>
+		<string>OpenSans-Italic</string>
+		<string>OpenSans-Bold</string>
+		<string>ProximaNovaSoft-Semibold</string>
+		<string>ProximaNovaSoft-Regular</string>
+		<string>ProximaNovaSoft-Medium</string>
+		<string>ProximaNovaSoft-Bold</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

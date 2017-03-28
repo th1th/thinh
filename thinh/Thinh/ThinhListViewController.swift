@@ -118,7 +118,7 @@ extension ThinhListViewController{
     func acceptThinh(tag: Int) {
         //Handle with FRB client
         //.............waiting for function in client...  ~.~
-        
+        Api.shared().thathinh(users[tag].id!)
         
         //update view
         updateImage(tag: tag)
@@ -126,7 +126,6 @@ extension ThinhListViewController{
     func declineThinh(tag: Int) {
         //Handle with FRB client
         //.............waiting for function in client...  ~.~
-        
         
         //update view
         updateImage(tag: tag)
@@ -139,27 +138,30 @@ extension ThinhListViewController{
 }
 
 extension ThinhListViewController{
-    
+    func initView() {
+        for image in [UserImage,UserImage2,UserImage3,UserImage4,UserImage5,UserImage6] {
+            image?.layer.cornerRadius = (image?.frame.height)!/2 //set corner for image here
+            image?.clipsToBounds = true
+        }
+        getThinhList()
+        loadUserToView()
+    }
     //Get Thinh from server and add to list users
     func getThinhList() {
         //GET ALL THINH HERE:
-        print(User.currentUser.id)
-        Api.shared().getStrangerThinh().subscribe(onNext: { (thinh:Thinh) in
-            print(thinh)
-            Api.shared().getUser(id: thinh.from!).subscribe(onNext: { (user) in
-                self.thinhs.append(thinh)
-                self.users.append(user)
-                self.loadUserToView()
-            }, onError: nil, onCompleted: nil, onDisposed: nil)
-//            self.indexTracking = 
-        }, onError: { (error) in
-            print(error.localizedDescription)
-        }, onCompleted: {
-            //
-        }) {
-            //
-        }
-//        users += User.mock()
+//        print(User.currentUser.id)
+//        Api.shared().getStrangerThinh().subscribe(onNext: { (thinh:Thinh) in
+//            print(thinh)
+//            Api.shared().getUser(id: thinh.from!).subscribe(onNext: { (user) in
+//                self.thinhs.append(thinh)
+//                self.users.append(user)
+//                self.loadUserToView()
+//            }, onError: nil, onCompleted: nil, onDisposed: nil)
+////            self.indexTracking = 
+//        }, onError: { (error) in
+//            print(error.localizedDescription)
+//        }, onCompleted: nil, onDisposed: nil)
+        users += User.mock()
     }
     
     //Load all image of users (when fisrt load Thinh list view)
@@ -167,8 +169,14 @@ extension ThinhListViewController{
         images = [UserImage,UserImage2,UserImage3,UserImage4,UserImage5,UserImage6]
         acceptButtons = [acceptButton,acceptButton2,acceptButton3,acceptButton4,acceptButton5,acceptButton6]
         declineButtons = [declineButton,declineButton2,declineButton3,declineButton4,declineButton5,declineButton6]
-        for index in 0..<users.count {
+        var counter = 6
+        if (users.count - indexTracking)<6 {
+            counter = users.count - indexTracking
+        }
+        
+        for index in 0..<counter {
             images[index].setImageWith(URL(string: users[index].avatar!)!)
+            indexTracking += 1
         }
     }
     
@@ -189,14 +197,7 @@ extension ThinhListViewController{
         }
     }
 
-    func initView() {
-        for image in [UserImage,UserImage2,UserImage3,UserImage4,UserImage5,UserImage6] {
-            image?.layer.cornerRadius = (image?.frame.height)!/2 //set corner for image here
-            image?.clipsToBounds = true
-        }
-        getThinhList()
-        loadUserToView()
-    }
+
 }
 
 

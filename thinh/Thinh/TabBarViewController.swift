@@ -68,7 +68,7 @@ class TabBarViewController: UIViewController {
         conversationViewController = UIStoryboard(name: "Conversation", bundle: nil).instantiateViewController(withIdentifier: "ConversationViewController")
         
         
-        thaThinhViewController = UIStoryboard(name: "Chat", bundle: nil).instantiateViewController(withIdentifier: "ChatViewController")
+        thaThinhViewController = UIStoryboard(name: "ThaThinh", bundle: nil).instantiateViewController(withIdentifier: "ThaThinhViewController")
         
         
         thinhListViewController = UIStoryboard(name: "ThinhList", bundle: nil).instantiateViewController(withIdentifier: "ThinhListViewController")
