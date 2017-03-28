@@ -30,7 +30,9 @@
 		1534E6BF1E836F7900E62BAD /* ConversationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1534E6BE1E836F7900E62BAD /* ConversationViewCell.swift */; };
 		1536760F1E88EA6D007A2FB5 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1536760E1E88EA6D007A2FB5 /* ChatViewController.swift */; };
 		153676111E891641007A2FB5 /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 153676101E891641007A2FB5 /* Chat.storyboard */; };
+		153676131E89547B007A2FB5 /* AsyncPhotoMediaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153676121E89547B007A2FB5 /* AsyncPhotoMediaItem.swift */; };
 		941469B91E7F542C00CB3732 /* Date_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941469B81E7F542C00CB3732 /* Date_extension.swift */; };
+		9483C28A1E8956ED0092CECE /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9483C2891E8956ED0092CECE /* Image.swift */; };
 		948C1F2B1E7E267C000F20E5 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948C1F2A1E7E267C000F20E5 /* Constant.swift */; };
 		948C1F2D1E7E2A88000F20E5 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948C1F2C1E7E2A88000F20E5 /* Message.swift */; };
 		948C1F2F1E7E2C7D000F20E5 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948C1F2E1E7E2C7D000F20E5 /* Conversation.swift */; };
@@ -67,10 +69,12 @@
 		1534E6BE1E836F7900E62BAD /* ConversationViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationViewCell.swift; sourceTree = "<group>"; };
 		1536760E1E88EA6D007A2FB5 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		153676101E891641007A2FB5 /* Chat.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
+		153676121E89547B007A2FB5 /* AsyncPhotoMediaItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncPhotoMediaItem.swift; sourceTree = "<group>"; };
 		72B5C06EECD187D2F8E9B840 /* Pods-Thinh.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Thinh.release.xcconfig"; path = "Pods/Target Support Files/Pods-Thinh/Pods-Thinh.release.xcconfig"; sourceTree = "<group>"; };
 		75B3FD42645CC32F317309D3 /* Pods-Thinh.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Thinh.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Thinh/Pods-Thinh.debug.xcconfig"; sourceTree = "<group>"; };
 		8B511A829B8797A0E0B0FD21 /* Pods_Thinh.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Thinh.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		941469B81E7F542C00CB3732 /* Date_extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date_extension.swift; sourceTree = "<group>"; };
+		9483C2891E8956ED0092CECE /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		948C1F2A1E7E267C000F20E5 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		948C1F2C1E7E2A88000F20E5 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		948C1F2E1E7E2C7D000F20E5 /* Conversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
@@ -103,6 +107,7 @@
 				948C1F2C1E7E2A88000F20E5 /* Message.swift */,
 				948C1F2E1E7E2C7D000F20E5 /* Conversation.swift */,
 				9497178C1E87F3AF00FBD83D /* Thinh.swift */,
+				9483C2891E8956ED0092CECE /* Image.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -159,6 +164,7 @@
 			children = (
 				153676101E891641007A2FB5 /* Chat.storyboard */,
 				1536760E1E88EA6D007A2FB5 /* ChatViewController.swift */,
+				153676121E89547B007A2FB5 /* AsyncPhotoMediaItem.swift */,
 			);
 			name = Chat;
 			sourceTree = "<group>";
@@ -288,6 +294,7 @@
 					94C71EFC1E7444E300D63A95 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 8D5SZ9A5H3;
+						DevelopmentTeam = KWJRSE4QEK;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -395,6 +402,7 @@
 				941469B91E7F542C00CB3732 /* Date_extension.swift in Sources */,
 				0555D5C11E82DE390058F9CD /* SettingViewController.swift in Sources */,
 				94C71F011E7444E400D63A95 /* AppDelegate.swift in Sources */,
+				9483C28A1E8956ED0092CECE /* Image.swift in Sources */,
 				0550242D1E7D278500175FED /* User.swift in Sources */,
 				051EBED11E864F87002BA6B7 /* PopupView.swift in Sources */,
 				1536760F1E88EA6D007A2FB5 /* ChatViewController.swift in Sources */,
@@ -406,6 +414,7 @@
 				05F377801E881AAA00B9890F /* ContactTableViewCell.swift in Sources */,
 				948C1F2B1E7E267C000F20E5 /* Constant.swift in Sources */,
 				948C1F2D1E7E2A88000F20E5 /* Message.swift in Sources */,
+				153676131E89547B007A2FB5 /* AsyncPhotoMediaItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,6 +541,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 8D5SZ9A5H3;
+				DEVELOPMENT_TEAM = KWJRSE4QEK;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -540,6 +550,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coderschool.Thinh;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codee.Thinh1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -553,6 +564,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 8D5SZ9A5H3;
+				DEVELOPMENT_TEAM = KWJRSE4QEK;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -561,6 +573,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coderschool.Thinh;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codee.Thinh1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

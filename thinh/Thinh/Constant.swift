@@ -20,6 +20,7 @@ struct FirebaseKey {
     static let userConversation = "user-conversation"
     static let userFriend = "user-friend"
     static let userThinh = "user-thinh"
+    static let isTyping = "isTyping"
     
     // user key
     static let avatar = "avatar"
@@ -44,6 +45,12 @@ struct FirebaseKey {
     // thinh
     static let friend = "friend"
     // from, to, date
+    
+    // media
+    static let width = "width"
+    static let heigh = "heigh"
+    static let url = "url"
+    
     
     // user conversation
     // conversation
