@@ -18,6 +18,7 @@ class ConversationViewCell: UITableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var thinhImg: UIImageView!
     
+    @IBOutlet weak var statusImage: UIImageView!
     var conversation : Conversation? {
         didSet{
             if conversation?.partnerAvatar != nil {
