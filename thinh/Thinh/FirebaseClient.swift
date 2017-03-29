@@ -213,15 +213,16 @@ class Api: NSObject {
         conversationDb.child(conversation).child(FirebaseKey.isTyping).child(userId()!).setValue(typing)
     }
     
-    func observeIsTyping(_ conversation: ConversationId) -> Observable<UserId> {
-        return Observable<UserId>.create({ (subcriber) -> Disposable in
+    /*
+     send the userId of typing user
+    */
+    func observeIsTyping(_ conversation: ConversationId) -> Observable<(UserId, Bool)> {
+        return Observable<(UserId, Bool)>.create({ (subcriber) -> Disposable in
             self.conversationDb.child(conversation).child(FirebaseKey.isTyping).observe(.childChanged, with: { (snapshot) in
                 guard let isTyping = snapshot.value as? Bool else {
                     return
                 }
-                if isTyping {
-                    subcriber.onNext(snapshot.key)
-                }
+                subcriber.onNext((snapshot.key, isTyping))
                 
             })
             return Disposables.create()

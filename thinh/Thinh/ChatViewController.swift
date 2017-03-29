@@ -284,9 +284,9 @@ class ChatViewController: JSQMessagesViewController {
         // Inside observe block
         // set self.showTypingIndicator
         // scroll to bottom
-        Api.shared().observeIsTyping((self.conversation?.id!)!).subscribe(onNext: { (userID) in
-            if(userID == self.conversation?.partnerID){
-                self.showTypingIndicator = true
+        Api.shared().observeIsTyping((self.conversation?.id!)!).subscribe(onNext: { (user, typing) in
+            if(user == self.conversation?.partnerID){
+                self.showTypingIndicator = typing
                 self.scrollToBottom(animated: true)
             }
         })
