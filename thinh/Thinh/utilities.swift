@@ -10,6 +10,6 @@ import UIKit
 
 class utilities: NSObject {
     static func log(_ input: Any){
-        print("[thinh] \(input)")
+        print("[thinh:] \(input)")
     }
 }

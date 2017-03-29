@@ -56,7 +56,7 @@ class ThinhListViewController: UIViewController {
     @IBAction func onClickGetDetail(_ sender: UITapGestureRecognizer) {
         sender.numberOfTapsRequired = 1
         sender.numberOfTouchesRequired = 1
-        utilities.log((sender.view?.tag)!)
+        utilities.log("get detail of user at: \((sender.view?.tag)!)-----number of users: \(users.count)")
         let user = users[(sender.view?.tag)!]
         
         //Remove the ThinhListViewController
@@ -104,7 +104,6 @@ class ThinhListViewController: UIViewController {
         // Do any additional setup after loading the view.
         initView()
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -114,12 +113,102 @@ class ThinhListViewController: UIViewController {
 
 }
 
+//MARK: VIEW
 extension ThinhListViewController{
+    func initView() {
+        images = [UserImage,UserImage2,UserImage3,UserImage4,UserImage5,UserImage6]
+        acceptButtons = [acceptButton,acceptButton2,acceptButton3,acceptButton4,acceptButton5,acceptButton6]
+        declineButtons = [declineButton,declineButton2,declineButton3,declineButton4,declineButton5,declineButton6]
+        for image in [UserImage,UserImage2,UserImage3,UserImage4,UserImage5,UserImage6] {
+            image?.layer.cornerRadius = (image?.frame.height)!/2 //set corner for image here
+            image?.clipsToBounds = true
+        }
+
+        
+        getThinhList()
+        hideUnuseThinhView()
+    }
+
+    //Load all image of users (when fisrt load Thinh list view)
+    func loadUserToView()  {
+        var counter = 6
+        if (users.count - indexTracking)<6 {
+            counter = users.count - indexTracking
+            utilities.log("loadUserToView-- users: \(users.count)")
+            utilities.log("loadUserToView--        \(users)")
+            utilities.log("loadUserToView--        \(counter)")
+        }
+        
+        for index in 0..<counter {
+            images[index].setImageWith(URL(string: users[index].avatar!)!)
+            indexTracking += 1
+        }
+        hideUnuseThinhView()
+    }
+    
+    //Function is used to change image when user accept/decline, after load new user and remove old user
+    func updateImage(tag: Int) {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 2, options: [], animations: {
+            self.images[tag].transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+            self.acceptButtons[tag].alpha = 0
+            self.declineButtons[tag].alpha = 0
+        }) { (result) in
+            self.images[tag].setImageWith(URL(string: self.users[tag+1].avatar!)!)
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 2, options: [], animations: {
+                self.images[tag].transform = CGAffineTransform(scaleX: 1, y: 1)
+                self.loadUserToView()
+            }, completion: {(result) in
+                self.acceptButtons[tag].alpha = 1
+                self.declineButtons[tag].alpha = 1
+            })
+        }
+    }
+    func hideUnuseThinhView() {
+        for index in 0..<6 {
+            images[index].isHidden = true
+            acceptButtons[index].isHidden = true
+            declineButtons[index].isHidden = true
+        }
+        for index in 0..<users.count {
+            if index == 6 {
+                return
+            }
+            images[index].isHidden = false
+            acceptButtons[index].isHidden = false
+            declineButtons[index].isHidden = false
+        }
+    }
+}
+
+
+//MARK: LOGIC
+extension ThinhListViewController{
+    //Get Thinh from server and add to list users
+    func getThinhList() {
+        //GET ALL THINH HERE:
+        utilities.log("getThinhList---   \(User.currentUser.id)")
+        Api.shared().getMyStrangerThinh().subscribe(onNext: { (thinh:Thinh) in
+            utilities.log("getThinhList--\(thinh)")
+            Api.shared().getUser(id: thinh.from!).subscribe(onNext: { (user) in
+                self.thinhs.append(thinh)
+                self.users.append(user)
+                utilities.log("getThinhList--- number of thinh:\(self.users.count)")
+                self.loadUserToView()
+            }, onError: nil, onCompleted: nil, onDisposed: nil)
+            //            self.indexTracking =
+        }, onError: { (error) in
+            print(error.localizedDescription)
+        }, onCompleted: nil, onDisposed: nil)
+    }
+    
     func acceptThinh(tag: Int) {
         //Handle with FRB client
         //.............waiting for function in client...  ~.~
+        utilities.log("getThinhList----accept thinh from user: \(users[tag].id!) -- tag=\(tag)")
         Api.shared().thathinh(users[tag].id!)
         
+        //update thinh list (users list)
+        updateThinhList(index: tag)
         //update view
         updateImage(tag: tag)
     }
@@ -135,70 +224,20 @@ extension ThinhListViewController{
 //        }
 //        loadUserToView()
     }
-}
-
-extension ThinhListViewController{
-    func initView() {
-        for image in [UserImage,UserImage2,UserImage3,UserImage4,UserImage5,UserImage6] {
-            image?.layer.cornerRadius = (image?.frame.height)!/2 //set corner for image here
-            image?.clipsToBounds = true
-        }
-        getThinhList()
-        loadUserToView()
-    }
-    //Get Thinh from server and add to list users
-    func getThinhList() {
-        //GET ALL THINH HERE:
-//        print(User.currentUser.id)
-//        Api.shared().getStrangerThinh().subscribe(onNext: { (thinh:Thinh) in
-//            print(thinh)
-//            Api.shared().getUser(id: thinh.from!).subscribe(onNext: { (user) in
-//                self.thinhs.append(thinh)
-//                self.users.append(user)
-//                self.loadUserToView()
-//            }, onError: nil, onCompleted: nil, onDisposed: nil)
-////            self.indexTracking = 
-//        }, onError: { (error) in
-//            print(error.localizedDescription)
-//        }, onCompleted: nil, onDisposed: nil)
-        users += User.mock()
-    }
-    
-    //Load all image of users (when fisrt load Thinh list view)
-    func loadUserToView()  {
-        images = [UserImage,UserImage2,UserImage3,UserImage4,UserImage5,UserImage6]
-        acceptButtons = [acceptButton,acceptButton2,acceptButton3,acceptButton4,acceptButton5,acceptButton6]
-        declineButtons = [declineButton,declineButton2,declineButton3,declineButton4,declineButton5,declineButton6]
-        var counter = 6
-        if (users.count - indexTracking)<6 {
-            counter = users.count - indexTracking
+    func updateThinhList(index:Int) {
+        for count in index..<6 {
+            if index == 5 {
+                getThinhList()
+                break
+            }
+            users[count]=users[count+1]
         }
         
-        for index in 0..<counter {
-            images[index].setImageWith(URL(string: users[index].avatar!)!)
-            indexTracking += 1
-        }
+        utilities.log("updateThinhList--  \(users.count)")
     }
-    
-    //Function is used to change image when user accept/decline, after load new user and remove old user
-    func updateImage(tag: Int) {
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 2, options: [], animations: {
-            self.images[tag].transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-            self.acceptButtons[tag].alpha = 0
-            self.declineButtons[tag].alpha = 0
-        }) { (result) in
-            self.images[tag].setImageWith(URL(string: self.users[tag].avatar!)!)
-            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 2, options: [], animations: {
-                self.images[tag].transform = CGAffineTransform(scaleX: 1, y: 1)
-            }, completion: {(result) in
-                self.acceptButtons[tag].alpha = 1
-                self.declineButtons[tag].alpha = 1
-            })
-        }
-    }
-
-
 }
+
+
 
 
 
