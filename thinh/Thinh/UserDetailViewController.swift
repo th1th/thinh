@@ -30,6 +30,7 @@ class UserDetailViewController: UIViewController {
     
     @IBAction func onClickThaThinhButton(_ sender: UIButton) {
         print("[xx]thathinh")
+        Api.shared().thathinh((user?.id)!)
     }
     
     override func viewDidLoad() {

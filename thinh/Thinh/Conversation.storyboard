@@ -64,11 +64,20 @@
                                                         <constraint firstAttribute="width" constant="30" id="k50-Ri-Ze7"/>
                                                     </constraints>
                                                 </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="red_offline_icon" translatesAutoresizingMaskIntoConstraints="NO" id="cSu-gF-dhe">
+                                                    <rect key="frame" x="45" y="45" width="10" height="10"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="10" id="Kjp-WY-663"/>
+                                                        <constraint firstAttribute="width" constant="10" id="QAp-f4-yPD"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="b4F-HI-8WJ" firstAttribute="leading" secondItem="9Vi-6X-y0H" secondAttribute="leading" constant="8" id="5Ka-X6-Y5g"/>
                                                 <constraint firstItem="Nyk-h2-XaX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="eHd-SO-SA9" secondAttribute="trailing" constant="8" id="BJ8-mi-Hhx"/>
                                                 <constraint firstAttribute="trailing" secondItem="Nyk-h2-XaX" secondAttribute="trailing" constant="8" id="CNg-Ea-eAJ"/>
+                                                <constraint firstItem="cSu-gF-dhe" firstAttribute="trailing" secondItem="b4F-HI-8WJ" secondAttribute="trailing" constant="-3" id="NjY-px-bNQ"/>
+                                                <constraint firstItem="cSu-gF-dhe" firstAttribute="bottom" secondItem="b4F-HI-8WJ" secondAttribute="bottom" constant="-3" id="Ntg-NG-URs"/>
                                                 <constraint firstItem="FXZ-A9-Rzg" firstAttribute="leading" secondItem="b4F-HI-8WJ" secondAttribute="trailing" constant="8" id="OaB-nh-txd"/>
                                                 <constraint firstItem="b4F-HI-8WJ" firstAttribute="top" secondItem="9Vi-6X-y0H" secondAttribute="top" constant="8" id="PYp-it-Mze"/>
                                                 <constraint firstItem="eHd-SO-SA9" firstAttribute="leading" secondItem="FXZ-A9-Rzg" secondAttribute="leading" id="T2H-6m-SxS"/>
@@ -85,6 +94,7 @@
                                             <outlet property="lastMessageLabel" destination="eHd-SO-SA9" id="XId-sz-vTm"/>
                                             <outlet property="nameLabel" destination="FXZ-A9-Rzg" id="yde-o7-tGV"/>
                                             <outlet property="partnerImg" destination="b4F-HI-8WJ" id="wWO-Cg-DVC"/>
+                                            <outlet property="statusImage" destination="cSu-gF-dhe" id="JLZ-KX-qGc"/>
                                             <outlet property="thinhImg" destination="Nyk-h2-XaX" id="sAh-HZ-lcv"/>
                                             <outlet property="timeLabel" destination="lzt-lg-rpV" id="Vqr-3p-CnR"/>
                                         </connections>
@@ -109,4 +119,7 @@
             <point key="canvasLocation" x="243.75" y="158.45070422535213"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="red_offline_icon" width="205" height="203"/>
+    </resources>
 </document>

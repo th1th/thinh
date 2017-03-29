@@ -11,7 +11,11 @@ import UIKit
 class ContactListViewController: UIViewController {
 
     @IBOutlet weak var contactListTable: UITableView!
-
+    
+    
+    @IBAction func onClickThaThinhButton(_ sender: UIButton) {
+        print("[xx]thathinh")
+    }
     var contactList = [User]()
     let refreshController = UIRefreshControl()
 
@@ -24,9 +28,16 @@ class ContactListViewController: UIViewController {
         loadContactList()
         contactListTable.reloadData()
         
+        contactListTable.estimatedRowHeight = 100
+        contactListTable.rowHeight = UITableViewAutomaticDimension
+        
+        
+        
         //Add refresh database
         refreshController.addTarget(self, action: #selector(refreshControlAction(refreshController:)), for: UIControlEvents.valueChanged)
         contactListTable.insertSubview(refreshController, at: 0)
+        
+        
     }
     
     
@@ -58,8 +69,9 @@ extension ContactListViewController: UITableViewDelegate, UITableViewDataSource 
         }
         cell.statusImage.image = statusImage
         cell.avatarImage.layer.cornerRadius = cell.avatarImage.frame.height/2
+        cell.statusImage.layer.zPosition = 1
+        cell.avatarImage.layer.zPosition = 0
         cell.avatarImage.clipsToBounds = true
-        
         
         return cell
     }

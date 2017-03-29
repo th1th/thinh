@@ -35,6 +35,7 @@ class ChatViewController: JSQMessagesViewController {
         set {
             localTyping = newValue
             // Update isTyping field in database
+            Api.shared().isTyping((self.conversation?.id)!)
             
         }
     }
@@ -52,7 +53,8 @@ class ChatViewController: JSQMessagesViewController {
         self.title = conversation?.partnerName
         
         self.automaticallyScrollsToMostRecentMessage = true
-        self.inputToolbar.contentView.textView.becomeFirstResponder()
+        //self.inputToolbar.contentView.textView.becomeFirstResponder()
+        
        
         
         collectionView?.collectionViewLayout.incomingAvatarViewSize = CGSize(width: kJSQMessagesCollectionViewAvatarSizeDefault, height:kJSQMessagesCollectionViewAvatarSizeDefault )
@@ -62,7 +64,8 @@ class ChatViewController: JSQMessagesViewController {
         let imgBackground:UIImageView = UIImageView(frame: self.view.bounds)
         imgBackground.contentMode = UIViewContentMode.scaleAspectFill
         imgBackground.clipsToBounds = true
-        imgBackground.setImageWith(self.senderAvatar!)
+        //imgBackground.setImageWith(self.senderAvatar!)
+        imgBackground.image = #imageLiteral(resourceName: "food")
         self.collectionView?.backgroundView = imgBackground
         
         self.navigationController?.navigationBar.tintColor = UIColor(red: 78/255.0, green: 221/255.0, blue: 200/255.0, alpha: 1.0)
@@ -112,29 +115,37 @@ class ChatViewController: JSQMessagesViewController {
         isTyping = false
     }
     
+    func getDataFromUrl(url: URL, completion: @escaping (_ data: Data?, _  response: URLResponse?, _ error: Error?) -> Void) {
+        URLSession.shared.dataTask(with: url) {
+            (data, response, error) in
+            completion(data, response, error)
+            }.resume()
+    }
+    
     private func observeMessages() {
         // Query messages
-        Api.shared().getMessageOfConversation(id: (self.conversation?.id)!).subscribe(onNext: { messages in
-            self.messages.removeAll()
+        Api.shared().getMessageOfConversation(id: (self.conversation?.id)!).subscribe(onNext: { message in
             
-//            var messsage_sender_name : String?
-//            for message in messages {
-//                if(message.from == self.current_user?.id){
-//                    messsage_sender_name = self.current_user?.name
-//                } else {
-//                    
-//                    messsage_sender_name = self.conversation?.partnerName
-//                }
-//                
-//                // handle media message here
-//                if(true){
-//                    self.addMessage(withId: message.from!, name : messsage_sender_name!, text: message.message!)
-//                } else {
-//                    //self.addPhotoMessage(withId: <#T##String#>, name: <#T##String#>, mediaItem: <#T##JSQPhotoMediaItem#>)
-//                }
-//                
-//            }
-//            self.finishReceivingMessage()
+            var message_sender_name:String?
+            
+            if(message.from == self.current_user?.id){
+                message_sender_name = self.current_user?.name
+            } else {
+                
+                message_sender_name = self.conversation?.partnerName
+            }
+            
+            // handle media message here
+            if(message.media == nil){
+                self.addMessage(withId: message.from!, name : message_sender_name!, text: message.message!)
+            } else {
+                self.addPhotoMessage(withId: message.from!, name: message_sender_name!, mediaItem: AsyncPhotoMediaItem(withURL: message.media! as NSURL, isOperator: (message.from == self.current_user?.id)))
+
+            }
+            
+            
+            self.finishReceivingMessage()
+
         })
         
     }
@@ -144,12 +155,6 @@ class ChatViewController: JSQMessagesViewController {
         let picker = ImagePickerController()
         picker.delegate = self
         picker.imageLimit = 1
-//        if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera)) {
-//            picker.sourceType = UIImagePickerControllerSourceType.camera
-//        } else {
-//            picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
-//        }
-        
         present(picker, animated: true, completion:nil)
     }
     
@@ -277,7 +282,13 @@ class ChatViewController: JSQMessagesViewController {
 
         // Inside observe block
         // set self.showTypingIndicator
-        // scroll to bottom self.scrollToBottom(animated: true)
+        // scroll to bottom
+        Api.shared().observeIsTyping((self.conversation?.id!)!).subscribe(onNext: { (userID) in
+            if(userID == self.conversation?.partnerID){
+                self.showTypingIndicator = true
+                self.scrollToBottom(animated: true)
+            }
+        })
     
     }
     override func textViewDidChange(_ textView: UITextView) {
@@ -313,5 +324,26 @@ extension ChatViewController: ImagePickerDelegate {
     
     }
     
+}
+
+extension ChatViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+    
+    func addTapGestures() {
+        let gesture = UITapGestureRecognizer(target: self, action: Selector("tapAndHideKeyboard:"))
+        gesture.delegate = self
+        self.collectionView.addGestureRecognizer(gesture)
+    }
+    
+    func tapAndHideKeyboard(gesture: UITapGestureRecognizer) {
+        print("Tap")
+        if(gesture.state == UIGestureRecognizerState.ended) {
+            if(self.inputToolbar.contentView.textView.isFirstResponder) {
+                self.inputToolbar.contentView.textView.resignFirstResponder()
+            }
+        }
+    }
 }
 
