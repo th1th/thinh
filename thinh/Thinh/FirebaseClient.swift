@@ -455,9 +455,6 @@ class Api: NSObject {
                         id = self.createNewConversation(forUser: A, andUser: B)
                     }
                     self.sendBotMessage(id: id, user1: A, user2: B)
-                    // TODO: send message of both thinh
-//                    self.sendMessage(id: id, message: Message(thinh: thinh))
-//                    self.sendMessage
                     if (thinh.media != nil || thinh.message != nil) {
                         self.sendMessage(id: id, message: Message(thinh: thinh))
                     }
@@ -555,15 +552,19 @@ class Api: NSObject {
 
 extension Api {
     func createMockData() {
-//        deleteDb()
+        deleteDb()
         let users = createMockUser()
-//        for i in 0..<users.count - 1 {
-//            let id = createMockConversation(user1: users[i].id!, user2: users[i+1].id!)
-//            createMockMessage(user1: users[i].id!, user2: users[i+1].id!, id: id)
-//            if i != 1 {
-//               createMockThinh(users[i].id!, users[1].id!)
-//            }
-//        }
+        for i in 0..<users.count - 10 {
+            for j in i..<i+10 {
+                let id = createMockConversation(user1: users[i].id!, user2: users[j].id!)
+                createMockMessage(user1: users[i].id!, user2: users[j].id!, id: id)
+            }
+            if i != 11 {
+               createMockThinh(users[i].id!, users[11].id!)
+                createMockThinh(users[11].id!, users[i].id!)
+            
+            }
+        }
     
         // both friend tha each other, has conversation
 //        createMockThinh(users[1].id!, users[2].id!)
@@ -618,7 +619,7 @@ extension Api {
     }
     
     private func createMockThinh(_ from: UserId, _ to: UserId) {
-//        thathinh(A: to, B: from)
+        thathinh(A: to, B: from, message: nil)
         
     }
     
