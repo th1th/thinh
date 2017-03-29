@@ -27,9 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.rootViewController = vc
         }
 //        Api.shared().createMockData()
-        Api.shared().getStrangerThinh("WR3OioP6R0UTPUoWItWyJX5g4p62").subscribe(onNext: { (thinh) in
-            print(thinh)
-        })
+      
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 

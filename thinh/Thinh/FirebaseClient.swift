@@ -209,8 +209,8 @@ class Api: NSObject {
     /*
      current user is typing
      */
-    func isTyping(_ conversation: ConversationId) {
-        conversationDb.child(conversation).child(FirebaseKey.isTyping).setValue(true, forKey: userId()!)
+    func setTyping(_ conversation: ConversationId, typing: Bool) {
+        conversationDb.child(conversation).child(FirebaseKey.isTyping).child(userId()!).setValue(typing)
     }
     
     func observeIsTyping(_ conversation: ConversationId) -> Observable<UserId> {
@@ -235,7 +235,7 @@ class Api: NSObject {
     */
     func getMessageOfConversation(id: ConversationId) -> Observable<Message> {
         return Observable<Message>.create { (subcriber) -> Disposable in
-            self.conversationDb.child(id).observe(.childAdded, with: { snapshot in
+            self.conversationDb.child(id).child(FirebaseKey.messages).observe(.childAdded, with: { snapshot in
                 if let message = Message(json: snapshot.value as! JSON) {
                     subcriber.onNext(message)
                 } else {
@@ -250,9 +250,9 @@ class Api: NSObject {
      create new text for conversationId
     */
     fileprivate func sendMessage(id: ConversationId, message: Message) -> MessageId {
-        let key = conversationDb.child(id).childByAutoId().key
+        let key = conversationDb.child(id).child(FirebaseKey.messages).childByAutoId().key
         // create new message
-        conversationDb.child(id).child(key).setValue(message.toJSON())
+        conversationDb.child(id).child(FirebaseKey.messages).child(key).setValue(message.toJSON())
         // update user conversation
         if (message.message != nil) {
             // update last message
@@ -530,19 +530,19 @@ class Api: NSObject {
 
 extension Api {
     func createMockData() {
-//        deleteDb()
+        deleteDb()
         let users = createMockUser()
-//        for i in 0..<users.count - 1 {
-//            let id = createMockConversation(user1: users[i].id!, user2: users[i+1].id!)
-//            createMockMessage(user1: users[i].id!, user2: users[i+1].id!, id: id)
-//            if i != 1 {
-//               createMockThinh(users[i].id!, users[1].id!)
-//            }
-//        }
+        for i in 0..<users.count - 1 {
+            let id = createMockConversation(user1: users[i].id!, user2: users[i+1].id!)
+            createMockMessage(user1: users[i].id!, user2: users[i+1].id!, id: id)
+            if i != 1 {
+               createMockThinh(users[i].id!, users[1].id!)
+            }
+        }
     
         // 1, 2 friend, tha each other
-        createMockThinh(users[1].id!, users[2].id!)
-        createMockThinh(users[1].id!, users[6].id!)
+//        createMockThinh(users[1].id!, users[2].id!)
+//        createMockThinh(users[1].id!, users[6].id!)
         
 //        // case not friend, tha thinh each other
 //        createMockThinh(users[0].id!, users[3].id!)

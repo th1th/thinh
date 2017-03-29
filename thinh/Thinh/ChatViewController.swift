@@ -35,7 +35,8 @@ class ChatViewController: JSQMessagesViewController {
         set {
             localTyping = newValue
             // Update isTyping field in database
-            Api.shared().isTyping((self.conversation?.id)!)
+//            Api.shared().isTyping((self.conversation?.id)!, i
+            Api.shared().setTyping((self.conversation?.id)!, typing: localTyping)
             
         }
     }
