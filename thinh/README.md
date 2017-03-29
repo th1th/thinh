@@ -20,24 +20,24 @@ The following **required** functionality is completed:
    - [ ] Import contact from contact/facebook (optional).
    - [ ] After user signup, prompt to get user description
 - [ ] Profile page
-   - [ ] Contains the user header view
-   - [ ] Contains avatar
-   - [ ] Contains user info: email, name, day of birth, gender, phone number
+   - [x] Contains the user header view
+   - [x] Contains avatar
+   - [x] Contains user info: email, name, day of birth, gender, phone number
    - [ ] User can edit their info (optional)
 - [ ] Chat list page
-   - [ ] List friend with avatar, status
+   - [x] List friend with avatar, status
    - [ ] "Tha thinh" again button (optional)
    - [ ] Online indicator (optional)
    - [ ] Tapping on a user image should bring up that user's profile page.
-   - [ ] Tapping on user cell should bring up to chat page.
+   - [x] Tapping on user cell should bring up to chat page.
    - [ ] List waiting for response from whom user have liked ("tha thinh") (optional).
 - [ ] Chat page
-   - [ ] Contains the user info: avatar, name
-   - [ ] Contains input text field to type messages
-   - [ ] Contains sent and received messages with avatar (like iMessages)
-   - [ ] User can send text
-   - [ ] User is typing indicator
-   - [ ] User can send photo, video (optional)
+   - [x] Contains the user info: avatar, name
+   - [x] Contains input text field to type messages
+   - [x] Contains sent and received messages with avatar (like iMessages)
+   - [x] User can send text
+   - [x] User is typing indicator
+   - [x] User can send photo, video (optional)
 - [ ] Tha Thinh page
    - [ ] Contains list of new user and friend who've not yet received "thinh"
    - [ ] User cell: contain avatar, name, description, "tha thinh" (like) button
@@ -48,13 +48,13 @@ The following **required** functionality is completed:
    - [ ] time out for "tha thinh" (optional).
 - [ ] When user click "tha thinh" to:
    - [ ] new user (target user) (not in friend list):
-      - [ ] send user id to target user
-      - [ ] a notification is sent to target user (optional)
-      - [ ] if target user "dop thinh", he/she can see the avatar and start to chat
+      - [x] send user id to target user
+      - [x] a notification is sent to target user (optional)
+      - [x] if target user "dop thinh", he/she can see the avatar and start to chat
    - [ ] friend (target user) (in friend list):
-      - [ ] send user id to target user
-      - [ ] there is no notification to target user
-      - [ ] if target user also "tha thinh", he/she can start to chat
+      - [x] send user id to target user
+      - [x] there is no notification to target user
+      - [x] if target user also "tha thinh", he/she can start to chat
 
 
 The following **optional** features are implemented:

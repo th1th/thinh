@@ -67,6 +67,11 @@ class Message: NSObject, Glossy {
         self.media = thinh.media 
     }
     
+    func refreshTime() -> Message {
+        self.date = Date.currentTimeInMillis()
+        return self
+    }
+    
     
     static func mock(from: UserId, to: UserId) -> [Message] {
         let texts = ["Hello, Dat", "Hello, Dave", "How're you", "I'm fine", "How abt your final project", "We're doing it well", "What's your guy finished?"]
