@@ -381,19 +381,23 @@ class Api: NSObject {
         }
     }
     
+    func getMyStrangerThinh() -> Observable<Thinh> {
+        return getStrangerThinh(userId()!)
+    }
+    
     /*
      get stranger thinh stream
     */
-    func getStrangerThinh() -> Observable<Thinh> {
+    func getStrangerThinh(_ id: UserId) -> Observable<Thinh> {
         return Observable<Thinh>.create({ (subcriber) -> Disposable in
-            self.thinhDb.queryEqual(toValue: self.userId()!, childKey: FirebaseKey.to).observe(.childAdded, with: { (snapshot) in
+            self.thinhDb.child(id).observe(.childAdded, with: { (snapshot) in
                 guard let data = snapshot.value as? JSON else {
                     subcriber.onError(ThinhError.unknownUser)
                     return
                 }
                 let thinh = Thinh(json: data)!
                 if !thinh.friend! {
-                   subcriber.onNext(thinh)
+                    subcriber.onNext(thinh)
                 }
             })
             return Disposables.create()
@@ -411,7 +415,7 @@ class Api: NSObject {
      user B tha thinh user A, also for test
     */
     fileprivate func thathinh(A: UserId, B: UserId) {
-        hasRecieveThinhFrom(A).subscribe(onNext: { (thinh) in
+        has(B, recievedThinhFrom: A).subscribe(onNext: { (thinh) in
             if let thinh = thinh {
                 self.checkIfConversationExist(between: A, B: B).subscribe(onNext: { (conversationId) in
                     var id: ConversationId!
@@ -426,8 +430,8 @@ class Api: NSObject {
                     self.sendMessage(id: id, message: Message(thinh: thinh))
                 })
             } else {
-                let thinh = self.createThinhPackage(for: A, with: nil, with: nil)
-                self.checkFriendRelationship(between: self.userId()!, and: A).subscribe(onNext: { (friend) in
+                let thinh = self.createThinhPackage(from: B, to: A, with: nil, with: nil)
+                self.checkFriendRelationship(between: B, and: A).subscribe(onNext: { (friend) in
                     thinh.friend = friend
                     self.setThinhPackage(thinh)
                 })
@@ -449,17 +453,16 @@ class Api: NSObject {
     /*
      check if current have recieve thinh from user A, return that thinh
     */
-    fileprivate func hasRecieveThinhFrom(_ A: UserId) -> Observable<Thinh?> {
+    fileprivate func has(_ B: UserId, recievedThinhFrom A: UserId) -> Observable<Thinh?> {
         return Observable<Thinh?>.create({ (subcriber) -> Disposable in
-            self.userThinhDb.child(self.userId()!).observeSingleEvent(of: .value, with: { (snapshot) in
+            self.thinhDb.child(B).observeSingleEvent(of: .value, with: { (snapshot) in
                 if snapshot.hasChild(A) {
-                    let id = snapshot.childSnapshot(forPath: A).value as! ThinhId
-                    self.thinhDb.child(id).observeSingleEvent(of: .value, with: { (snapshot) in
-                        subcriber.onNext(Thinh(json: snapshot.value as! JSON))
-                    })
+                    let data = snapshot.childSnapshot(forPath: A).value as! FIRDataSnapshot
+                    subcriber.onNext(Thinh(json: data.value as! JSON))
                 } else {
                     subcriber.onNext(nil)
                 }
+
             })
             return Disposables.create()
         })
@@ -468,9 +471,9 @@ class Api: NSObject {
     /*
      create thinh package from current user to user A
     */
-    func createThinhPackage(for A: UserId, with message: String?, with media: URL?) -> Thinh {
-        let key = thinhDb.childByAutoId().key
-        let thinh = Thinh().withTo(A).withMessage(message).withMedia(media).withId(key)
+    fileprivate func createThinhPackage(from B: UserId, to A: UserId, with message: String?, with media: URL?) -> Thinh {
+//        let key = thinhDb.childByAutoId().key
+        let thinh = Thinh().withFrom(B).withTo(A).withMessage(message).withMedia(media)
         return thinh
     }
     
@@ -478,8 +481,8 @@ class Api: NSObject {
      set thinh package to database
     */
     fileprivate func setThinhPackage(_ thinh: Thinh) {
-        thinhDb.child(thinh.id!).setValue(thinh.toJSON())
-        userThinhDb.child(thinh.to!).child(userId()!).setValue(thinh.date)
+        thinhDb.child(thinh.to!).child(thinh.from!).setValue(thinh.toJSON())
+//        userThinhDb.child(thinh.to!).child(thinh.from!).setValue(thinh.date)
     }
     
     
@@ -502,11 +505,15 @@ class Api: NSObject {
     }
     
     /*
-     delete current user's thinh package with id
-    */
-    fileprivate func deleteThinh(_ id: ThinhId) {
-        self.thinhDb.child(id).setValue(nil)
-        self.userThinhDb.child(userId()!).child(id).setValue(nil)
+     delete current user's thinh from User
+     */
+    func dropThinh(_ from: UserId) {
+        deleteThinh(from, to: userId()!)
+    }
+    
+    
+    fileprivate func deleteThinh(_ from: UserId, to:UserId) {
+        self.thinhDb.child(to).child(from).setValue(nil)
     }
     
 //    fileprivate
@@ -523,42 +530,41 @@ class Api: NSObject {
 
 extension Api {
     func createMockData() {
-        deleteDb()
+//        deleteDb()
         let users = createMockUser()
-        for i in 0..<users.count - 1 {
-            let id = createMockConversation(user1: users[i].id!, user2: users[i+1].id!)
-            createMockMessage(user1: users[i].id!, user2: users[i+1].id!, id: id)
-            if i != 1 {
-               createMockThinh(users[i].id!, users[1].id!)
-            }
-        }
+//        for i in 0..<users.count - 1 {
+//            let id = createMockConversation(user1: users[i].id!, user2: users[i+1].id!)
+//            createMockMessage(user1: users[i].id!, user2: users[i+1].id!, id: id)
+//            if i != 1 {
+//               createMockThinh(users[i].id!, users[1].id!)
+//            }
+//        }
+    
+        // 1, 2 friend, tha each other
+        createMockThinh(users[1].id!, users[2].id!)
+        createMockThinh(users[1].id!, users[6].id!)
         
-        // friend: 0 - 1, 1 - 2, 2 - 3, 3 - 4
+//        // case not friend, tha thinh each other
+//        createMockThinh(users[0].id!, users[3].id!)
+//        // case friend, one tha
+//        createMockThinh(users[2].id!, users[3].id!)
+//        // case friend, both tha
+//        createMockThinh(users[3].id!, users[4].id!)
+//        createMockThinh(users[4].id!, users[3].id!)
         
-        // case not friend, tha thinh each other
-        createMockThinh(users[0].id!, users[3].id!)
-        // case friend, one tha
-        createMockThinh(users[2].id!, users[3].id!)
-        // case friend, both tha
-        createMockThinh(users[3].id!, users[4].id!)
-        createMockThinh(users[4].id!, users[3].id!)
-        
-        
-
-        getFriendList(id: users[1].id!)
-        checkFriendRelationship(between: users[1].id!, and: users[0].id!)
-            .subscribe(onNext: { (friend) in
-                if !friend {
-                    print("This should be friend")
-                }
-            })
-        checkFriendRelationship(between: users[1].id!, and: users[3].id!)
-            .subscribe(onNext: { (friend) in
-                if friend {
-                    print("This should not be friend")
-                }
-            })
-
+//        getFriendList(id: users[1].id!)
+//        checkFriendRelationship(between: users[1].id!, and: users[0].id!)
+//            .subscribe(onNext: { (friend) in
+//                if !friend {
+//                    print("This should be friend")
+//                }
+//            })
+//        checkFriendRelationship(between: users[1].id!, and: users[3].id!)
+//            .subscribe(onNext: { (friend) in
+//                if friend {
+//                    print("This should not be friend")
+//                }
+//            })
     }
 
     
