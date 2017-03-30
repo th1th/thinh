@@ -71,13 +71,13 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="user" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hS2-KN-pXF">
-                                                <rect key="frame" x="20" y="409.5" width="280" height="29"/>
+                                                <rect key="frame" x="20" y="429.5" width="280" height="29"/>
                                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="21"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="caption user caption user caption user caption user caption user" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Dfv-0c-HVz">
-                                                <rect key="frame" x="105" y="320" width="207" height="69.5"/>
+                                                <rect key="frame" x="105" y="340" width="207" height="69.5"/>
                                                 <fontDescription key="fontDescription" name="OpenSans-Italic" family="Open Sans" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -109,7 +109,7 @@
                                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="hS2-KN-pXF" secondAttribute="bottom" id="HRW-wO-nlT"/>
                                             <constraint firstItem="hS2-KN-pXF" firstAttribute="top" secondItem="Dfv-0c-HVz" secondAttribute="bottom" constant="20" id="IQU-cQ-wlm"/>
                                             <constraint firstItem="nx7-hX-d5r" firstAttribute="top" secondItem="rqH-5r-L4W" secondAttribute="bottom" constant="25" id="Ptd-cE-43d"/>
-                                            <constraint firstItem="Dfv-0c-HVz" firstAttribute="top" secondItem="m2z-2R-wM1" secondAttribute="bottom" constant="20" id="R0z-ym-Q8e"/>
+                                            <constraint firstItem="Dfv-0c-HVz" firstAttribute="top" secondItem="m2z-2R-wM1" secondAttribute="bottom" constant="40" id="R0z-ym-Q8e"/>
                                             <constraint firstAttribute="trailing" secondItem="Dfv-0c-HVz" secondAttribute="trailing" constant="8" id="adP-i0-1EQ"/>
                                             <constraint firstItem="Dfv-0c-HVz" firstAttribute="leading" secondItem="iy9-6R-K78" secondAttribute="trailing" constant="15" id="j7T-fM-xRW"/>
                                             <constraint firstAttribute="trailing" secondItem="hS2-KN-pXF" secondAttribute="trailing" constant="20" id="kBL-MB-hEi"/>

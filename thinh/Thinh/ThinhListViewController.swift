@@ -80,7 +80,11 @@ class ThinhListViewController: UIViewController {
         if let buttonId = sender.restorationIdentifier{
             for index in 0..<acceptButtonIDs.count {
                 if buttonId == acceptButtonIDs[index] {
-                    acceptThinh(tag: index)
+                    utilities.log("reloadThinhList----accept thinh from user: \(users[index].id!) -- tag=\(index)")
+                    Api.shared().thathinh(users[index].id!)
+                    users = []
+                    //update view
+                    updateImage(tag: index)
                     print("index \(index)")
                     break
                 }
@@ -91,7 +95,11 @@ class ThinhListViewController: UIViewController {
         if let buttonId = sender.restorationIdentifier{
             for index in 0..<declineButtonIDs.count {
                 if buttonId == declineButtonIDs[index] {
-                    declineThinh(tag: index)
+                    //Handle with FRB client
+                    //.............waiting for function in client...  ~.~
+                    
+                    //update view
+                    updateImage(tag: index)
                     print(index)
                 }
             }
@@ -123,10 +131,25 @@ extension ThinhListViewController{
             image?.layer.cornerRadius = (image?.frame.height)!/2 //set corner for image here
             image?.clipsToBounds = true
         }
-
-        
-        getThinhList()
-        hideUnuseThinhView()
+        reloadThinhList()
+    }
+    //Get Thinh from server and add to list users
+    func reloadThinhList() {
+        //GET ALL THINH HERE:
+        utilities.log("reloadThinhList---   \(User.currentUser.id)")
+        Api.shared().getMyStrangerThinh().subscribe(onNext: { (thinh:Thinh) in
+            utilities.log("reloadThinhList--\(thinh)")
+            Api.shared().getUser(id: thinh.from!).subscribe(onNext: { (user) in
+                self.thinhs.append(thinh)
+                self.users.append(user)
+                utilities.log("reloadThinhList--- number of thinh:\(self.users.count)")
+                self.loadUserToView()
+                self.hideUnuseThinhView()
+            }, onError: nil, onCompleted: nil, onDisposed: nil)
+            //            self.indexTracking =
+        }, onError: { (error) in
+            print(error.localizedDescription)
+        }, onCompleted: nil, onDisposed: nil)
     }
 
     //Load all image of users (when fisrt load Thinh list view)
@@ -140,10 +163,10 @@ extension ThinhListViewController{
         }
         
         for index in 0..<counter {
+            utilities.log("loadUserToView-- update avatar for: \(users[index].name)")
             images[index].setImageWith(URL(string: users[index].avatar!)!)
-            indexTracking += 1
+//            indexTracking += 1
         }
-        hideUnuseThinhView()
     }
     
     //Function is used to change image when user accept/decline, after load new user and remove old user
@@ -153,10 +176,17 @@ extension ThinhListViewController{
             self.acceptButtons[tag].alpha = 0
             self.declineButtons[tag].alpha = 0
         }) { (result) in
-            self.images[tag].setImageWith(URL(string: self.users[tag+1].avatar!)!)
+            if tag >= self.users.count - 1 {
+                utilities.log("updateImage-- \(self.users.count)++ End of list ++tag \(tag)")
+                self.images[tag].isHidden = true
+                self.hideUnuseThinhView()
+            }else{
+                utilities.log("updateImage-- \(self.users.count)++tag \(tag)")
+                self.images[tag].setImageWith(URL(string: self.users[tag+1].avatar!)!)
+            }
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 2, options: [], animations: {
                 self.images[tag].transform = CGAffineTransform(scaleX: 1, y: 1)
-                self.loadUserToView()
+                self.reloadThinhList()
             }, completion: {(result) in
                 self.acceptButtons[tag].alpha = 1
                 self.declineButtons[tag].alpha = 1
@@ -181,61 +211,6 @@ extension ThinhListViewController{
 }
 
 
-//MARK: LOGIC
-extension ThinhListViewController{
-    //Get Thinh from server and add to list users
-    func getThinhList() {
-        //GET ALL THINH HERE:
-        utilities.log("getThinhList---   \(User.currentUser.id)")
-        Api.shared().getMyStrangerThinh().subscribe(onNext: { (thinh:Thinh) in
-            utilities.log("getThinhList--\(thinh)")
-            Api.shared().getUser(id: thinh.from!).subscribe(onNext: { (user) in
-                self.thinhs.append(thinh)
-                self.users.append(user)
-                utilities.log("getThinhList--- number of thinh:\(self.users.count)")
-                self.loadUserToView()
-            }, onError: nil, onCompleted: nil, onDisposed: nil)
-            //            self.indexTracking =
-        }, onError: { (error) in
-            print(error.localizedDescription)
-        }, onCompleted: nil, onDisposed: nil)
-    }
-    
-    func acceptThinh(tag: Int) {
-        //Handle with FRB client
-        //.............waiting for function in client...  ~.~
-        utilities.log("getThinhList----accept thinh from user: \(users[tag].id!) -- tag=\(tag)")
-        Api.shared().thathinh(users[tag].id!)
-        
-        //update thinh list (users list)
-        updateThinhList(index: tag)
-        //update view
-        updateImage(tag: tag)
-    }
-    func declineThinh(tag: Int) {
-        //Handle with FRB client
-        //.............waiting for function in client...  ~.~
-        
-        //update view
-        updateImage(tag: tag)
-        //update user
-//        for index in tag..<users.count{
-//            users[index] = users[index+1]
-//        }
-//        loadUserToView()
-    }
-    func updateThinhList(index:Int) {
-        for count in index..<6 {
-            if index == 5 {
-                getThinhList()
-                break
-            }
-            users[count]=users[count+1]
-        }
-        
-        utilities.log("updateThinhList--  \(users.count)")
-    }
-}
 
 
 
