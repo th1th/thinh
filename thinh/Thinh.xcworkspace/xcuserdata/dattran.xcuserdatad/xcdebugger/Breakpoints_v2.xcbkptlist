@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Thinh/FirebaseClient.swift"
-            timestampString = "512454225.153073"
+            timestampString = "512619829.590509"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "541"
-            endingLineNumber = "541"
+            startingLineNumber = "544"
+            endingLineNumber = "544"
             landmarkName = "Api"
             landmarkType = "3">
          </BreakpointContent>

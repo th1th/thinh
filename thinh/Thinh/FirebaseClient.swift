@@ -238,6 +238,9 @@ class Api: NSObject {
         return Observable<Message>.create { (subcriber) -> Disposable in
             self.conversationDb.child(id).child(FirebaseKey.messages).observe(.childAdded, with: { snapshot in
                 if let message = Message(json: snapshot.value as! JSON) {
+                    print(message.message)
+                    print(message.media)
+                    print("----------")
                     subcriber.onNext(message)
                 } else {
                    print("Maybe typing")

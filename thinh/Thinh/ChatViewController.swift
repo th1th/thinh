@@ -72,20 +72,17 @@ class ChatViewController: JSQMessagesViewController {
         self.navigationController?.navigationBar.tintColor = UIColor(red: 78/255.0, green: 221/255.0, blue: 200/255.0, alpha: 1.0)
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 57/255.0, green: 67/255.0, blue: 89/255.0, alpha: 1.0)
 
+        observeMessages()
         
-        
+        observeTyping()
     }
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        
-        observeMessages()
+        super.viewWillAppear(true) 
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         //self.inputToolbar.contentView.textView.becomeFirstResponder()
-        observeTyping()
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
