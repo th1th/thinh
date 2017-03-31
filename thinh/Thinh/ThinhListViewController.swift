@@ -97,7 +97,7 @@ class ThinhListViewController: UIViewController {
                 if buttonId == declineButtonIDs[index] {
                     //Handle with FRB client
                     //.............waiting for function in client...  ~.~
-                    
+                    Api.shared().dropThinh(users[index].id!)
                     //update view
                     updateImage(tag: index)
                     print(index)
@@ -127,9 +127,9 @@ extension ThinhListViewController{
         images = [UserImage,UserImage2,UserImage3,UserImage4,UserImage5,UserImage6]
         acceptButtons = [acceptButton,acceptButton2,acceptButton3,acceptButton4,acceptButton5,acceptButton6]
         declineButtons = [declineButton,declineButton2,declineButton3,declineButton4,declineButton5,declineButton6]
-        for image in [UserImage,UserImage2,UserImage3,UserImage4,UserImage5,UserImage6] {
-            image?.layer.cornerRadius = (image?.frame.height)!/2 //set corner for image here
-            image?.clipsToBounds = true
+        for image in images {
+            image.layer.cornerRadius = (image.frame.height)/2 //set corner for image here
+            image.clipsToBounds = true
         }
         reloadThinhList()
     }
