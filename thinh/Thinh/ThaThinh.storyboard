@@ -19,12 +19,120 @@
                     <view key="view" contentMode="scaleToFill" id="grI-nf-agt">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="d5w-e0-154">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                            </imageView>
+                            <imageView tag="1" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="photo-36-1465292669338" translatesAutoresizingMaskIntoConstraints="NO" id="yw0-pP-pQJ">
+                                <rect key="frame" x="17" y="95" width="130" height="200"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="opJ-pa-sw8" appends="YES" id="KEj-nj-VSi"/>
+                                </connections>
+                            </imageView>
+                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hot-girl-han-quoc-xinh-dep-song-o-sai-gon-gay-sot" translatesAutoresizingMaskIntoConstraints="NO" id="J8a-Gt-Sv7">
+                                <rect key="frame" x="174" y="86" width="130" height="200"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="83r-2G-Zzo" appends="YES" id="RLO-60-vTz"/>
+                                </connections>
+                            </imageView>
+                            <imageView tag="3" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tulinh2_1" translatesAutoresizingMaskIntoConstraints="NO" id="MgO-03-I80">
+                                <rect key="frame" x="17" y="340" width="130" height="200"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Zer-bb-k06" appends="YES" id="qmo-Ex-PM9"/>
+                                </connections>
+                            </imageView>
+                            <imageView tag="2" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tulinh" translatesAutoresizingMaskIntoConstraints="NO" id="ju5-Pv-LJh">
+                                <rect key="frame" x="174" y="325" width="130" height="200"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="23h-Fh-1Ai" appends="YES" id="6la-F9-1ht"/>
+                                </connections>
+                            </imageView>
+                            <button opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KR2-tf-3aQ">
+                                <rect key="frame" x="59" y="234" width="60" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="ThaThinh"/>
+                                <connections>
+                                    <action selector="ThaThinh:" destination="90z-SF-7AG" eventType="touchUpInside" id="SI1-HR-ZfU"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YdY-YL-Gvy">
+                                <rect key="frame" x="216" y="222" width="60" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="ThaThinh"/>
+                                <connections>
+                                    <action selector="ThaThinh:" destination="90z-SF-7AG" eventType="touchUpInside" id="4Ud-eY-sQa"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mTf-e1-cST">
+                                <rect key="frame" x="59" y="479" width="60" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="ThaThinh"/>
+                                <connections>
+                                    <action selector="ThaThinh:" destination="90z-SF-7AG" eventType="touchUpInside" id="gGD-ut-MCY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KZD-IL-w4T">
+                                <rect key="frame" x="216" y="456" width="60" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="ThaThinh"/>
+                                <connections>
+                                    <action selector="ThaThinh:" destination="90z-SF-7AG" eventType="touchUpInside" id="vCg-zC-nCQ"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="d5w-e0-154" secondAttribute="trailing" id="g9S-q4-8tE"/>
+                            <constraint firstItem="d5w-e0-154" firstAttribute="top" secondItem="S3n-Uy-Gmh" secondAttribute="bottom" id="nH2-Hg-CPn"/>
+                            <constraint firstItem="EJf-q8-yp0" firstAttribute="top" secondItem="d5w-e0-154" secondAttribute="bottom" id="pep-T1-CS4"/>
+                            <constraint firstItem="d5w-e0-154" firstAttribute="leading" secondItem="grI-nf-agt" secondAttribute="leading" id="vMa-kc-izB"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="UserImage1" destination="J8a-Gt-Sv7" id="BM0-bG-l8o"/>
+                        <outlet property="UserImage2" destination="yw0-pP-pQJ" id="RMf-fk-Egb"/>
+                        <outlet property="UserImage3" destination="ju5-Pv-LJh" id="2tJ-PF-rFn"/>
+                        <outlet property="UserImage4" destination="MgO-03-I80" id="e2h-0l-IIU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XVM-6V-ZDI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="83r-2G-Zzo">
+                    <connections>
+                        <action selector="onClickGetDetail:" destination="90z-SF-7AG" id="2wy-8O-N1P"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="opJ-pa-sw8">
+                    <connections>
+                        <action selector="onClickGetDetail:" destination="90z-SF-7AG" id="ZBr-MB-CZc"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="23h-Fh-1Ai">
+                    <connections>
+                        <action selector="onClickGetDetail:" destination="90z-SF-7AG" id="4sL-Mb-J9L"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="Zer-bb-k06">
+                    <connections>
+                        <action selector="onClickGetDetail:" destination="90z-SF-7AG" id="q8f-kV-CWN"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-186" y="328"/>
+            <point key="canvasLocation" x="-187.5" y="327.46478873239437"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ThaThinh" width="558" height="200"/>
+        <image name="hot-girl-han-quoc-xinh-dep-song-o-sai-gon-gay-sot" width="639" height="633"/>
+        <image name="photo-36-1465292669338" width="650" height="649"/>
+        <image name="tulinh" width="660" height="690"/>
+        <image name="tulinh2_1" width="660" height="495"/>
+    </resources>
 </document>
