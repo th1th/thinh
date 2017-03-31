@@ -103,7 +103,14 @@ extension ThaThinhViewController{
         for index in 0..<maximumShowUser {
             utilities.log("reloadUserToShowUser--- index=\(index)")
             showUsers.append(allUsers[index])
-            images[index].setImageWith(URL(string:showUsers[index].avatar!)!)
+
+            UIView.transition(with: self.images[index],
+                              duration: 0.7,
+                              options: .transitionCrossDissolve,
+                              animations: {
+                              self.images[index].setImageWith(URL(string:self.showUsers[index].avatar!)!)
+            },
+                              completion: nil)
         }
         
     }
