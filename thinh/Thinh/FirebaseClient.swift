@@ -552,13 +552,13 @@ class Api: NSObject {
 
 extension Api {
     func createMockData() {
-        deleteDb()
+//        deleteDb()
         let users = createMockUser()
         for i in 0..<users.count - 10 {
-            for j in i..<i+10 {
-                let id = createMockConversation(user1: users[i].id!, user2: users[j].id!)
-                createMockMessage(user1: users[i].id!, user2: users[j].id!, id: id)
-            }
+//            for j in 0..<10 {
+//                let id = createMockConversation(user1: users[i].id!, user2: users[i+j+1].id!)
+//                createMockMessage(user1: users[i].id!, user2: users[i+j+1].id!, id: id, j: j)
+//            }
             if i != 11 {
                createMockThinh(users[i].id!, users[11].id!)
                 createMockThinh(users[11].id!, users[i].id!)
@@ -611,8 +611,8 @@ extension Api {
         return createNewConversation(forUser: user1, andUser: user2)
     }
     
-    private func createMockMessage(user1: UserId, user2: UserId, id: ConversationId) {
-        let messages = Message.mock(from: user1, to: user2)
+    private func createMockMessage(user1: UserId, user2: UserId, id: ConversationId, j: Int) {
+        let messages = Message.mock(from: user1, to: user2, i: j)
         for message in messages {
             sendMessage(id: id, message: message)
         }
