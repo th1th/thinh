@@ -224,10 +224,17 @@ class User: NSObject, Glossy {
     static let prefer11 = Sex.male
     
     
-    static let user12 = "WR3OioP6R0UTPUoWItWyJX5g4p62"
-    static let name12 = "Linh Lê"
-    static let avatar12 = "https://scontent.fsgn5-2.fna.fbcdn.net/v/t31.0-8/13063139_634160786731295_2174880575869215799_o.jpg?oh=7d102fc8d13573b96800f5fd7ff3139a&oe=596E46C5"
-    static let desc12 = ""
+    static let user24 = "WR3OioP6R0UTPUoWItWyJX5g4p62"
+    static let name24 = "Linh Lê"
+    static let avatar24 = "https://scontent.fsgn5-2.fna.fbcdn.net/v/t31.0-8/13063139_634160786731295_2174880575869215799_o.jpg?oh=7d102fc8d13573b96800f5fd7ff3139a&oe=596E46C5"
+    static let desc24 = ""
+    static let sex24 = Sex.male
+    static let prefer24 = Sex.female
+    
+    static let user12 = "WhEZVoiMDpTA4QkdI8dHCZFyG752"
+    static let name12 = "Đạt Trần"
+    static let avatar12 = "https://scontent.fsgn5-2.fna.fbcdn.net/v/t1.0-9/15622573_1085371901571808_5746077286281389946_n.jpg?oh=1e4ac7b38fb7b0cabba9b2e301ab9b23&oe=5999D42E"
+    static let desc12 = "Have nothing to say"
     static let sex12 = Sex.male
     static let prefer12 = Sex.female
     
@@ -283,12 +290,7 @@ class User: NSObject, Glossy {
     
     
     
-    static let user24 = "WhEZVoiMDpTA4QkdI8dHCZFyG752"
-    static let name24 = "Đạt Trần"
-    static let avatar24 = "https://scontent.fsgn5-2.fna.fbcdn.net/v/t1.0-9/15622573_1085371901571808_5746077286281389946_n.jpg?oh=1e4ac7b38fb7b0cabba9b2e301ab9b23&oe=5999D42E"
-    static let desc24 = "Have nothing to say"
-    static let sex24 = Sex.male
-    static let prefer24 = Sex.female
+    
     
     static let user20 = "cdP7J0LNP2gUG3BeEq29N8JHDt72"
     static let name20 = "Đặng Việt"
@@ -330,7 +332,7 @@ class User: NSObject, Glossy {
     static let prefer25 = Sex.female
     
     static let user26 = "VUoc532PABTXwHAc5ceaIAtem9D2"
-    static let avatar26 = "https://scontent.fsgn5-2.fna.fbcdn.net/v/t34.0-12/16176889_112685309244626_578204711_n.jpg?oh=210ef086c2f26cc6a708aac0e89640ea&oe=58DD39E8"
+    static let avatar26 = "https://pbs.twimg.com/profile_images/1146014416/mark-zuckerberg.jpg"
     static let name26 = "Mark Zuckerberg"
     static let desc26 = "Move fast, break thing"
     static let sex26 = Sex.male

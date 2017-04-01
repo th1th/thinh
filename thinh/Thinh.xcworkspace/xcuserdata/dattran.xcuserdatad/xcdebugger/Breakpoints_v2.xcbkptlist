@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Thinh/FirebaseClient.swift"
-            timestampString = "512746628.843825"
+            timestampString = "512751967.358934"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "585"
@@ -22,79 +22,79 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Thinh/FirebaseClient.swift"
-            timestampString = "512746628.843825"
+            timestampString = "512750190.849875"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "370"
-            endingLineNumber = "370"
-            landmarkName = "getFriendIdsOf(user:)"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
+            landmarkName = "createNewConversation(forUser:andUser:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Thinh/FirebaseClient.swift"
-            timestampString = "512746628.843825"
+            timestampString = "512751967.358934"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "369"
-            endingLineNumber = "369"
-            landmarkName = "getFriendIdsOf(user:)"
+            startingLineNumber = "495"
+            endingLineNumber = "495"
+            landmarkName = "thathinh(A:B:message:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Thinh/FirebaseClient.swift"
-            timestampString = "512746628.843825"
+            timestampString = "512751967.358934"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "368"
-            endingLineNumber = "368"
-            landmarkName = "getFriendIdsOf(user:)"
+            startingLineNumber = "512"
+            endingLineNumber = "512"
+            landmarkName = "thathinh(A:B:message:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Thinh.Api.(getFriendIdsOf in _A49D73E69C29A058CE591DF2AD382D98) (user : Swift.String) -&gt; RxSwift.Observable&lt;Swift.Array&lt;Swift.String&gt;&gt;"
+                  symbolName = "Thinh.Api.((thathinh in _A49D73E69C29A058CE591DF2AD382D98) (A : Swift.String, B : Swift.String, message : Swift.Optional&lt;Thinh.Message&gt;) -&gt; ()).(closure #1)"
                   moduleName = "Thinh"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/dattran/Desktop/CoderSchool%20iOs/thinh/thinh/Thinh/FirebaseClient.swift"
-                  timestampString = "512747593.772387"
+                  timestampString = "512751634.626045"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "368"
-                  endingLineNumber = "368"
-                  offsetFromSymbolStart = "418">
+                  startingLineNumber = "518"
+                  endingLineNumber = "518"
+                  offsetFromSymbolStart = "3842">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Thinh.Api.((getFriendIdsOf in _A49D73E69C29A058CE591DF2AD382D98) (user : Swift.String) -&gt; RxSwift.Observable&lt;Swift.Array&lt;Swift.String&gt;&gt;).(closure #1)"
+                  symbolName = "Thinh.Api.((thathinh in _A49D73E69C29A058CE591DF2AD382D98) (A : Swift.String, B : Swift.String, message : Swift.Optional&lt;Thinh.Message&gt;) -&gt; ()).(closure #1).(closure #2)"
                   moduleName = "Thinh"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/dattran/Desktop/CoderSchool%20iOs/thinh/thinh/Thinh/FirebaseClient.swift"
-                  timestampString = "512747593.773907"
+                  timestampString = "512751634.627794"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "368"
-                  endingLineNumber = "368"
-                  offsetFromSymbolStart = "43">
+                  startingLineNumber = "519"
+                  endingLineNumber = "519"
+                  offsetFromSymbolStart = "27">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -105,13 +105,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Thinh/FirebaseClient.swift"
-            timestampString = "512747563.8584"
+            filePath = "Thinh/ContactListViewController.swift"
+            timestampString = "512751674.546963"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "496"
-            endingLineNumber = "496"
-            landmarkName = "thathinh(A:B:message:)"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "loadContactList()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

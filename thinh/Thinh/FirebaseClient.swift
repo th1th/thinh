@@ -49,7 +49,9 @@ class Api: NSObject {
     }
     
     func userId() -> String? {
-        return FIRAuth.auth()?.currentUser?.uid
+//        return FIRAuth.auth()?.currentUser?.uid   // me
+        return "WR3OioP6R0UTPUoWItWyJX5g4p62" // Linh Le
+//        return "S5cirBWXUiOGnareVEEWbjaIJN02" // Harley
     }
    
 
@@ -330,8 +332,12 @@ class Api: NSObject {
     fileprivate func getFriendList(id: UserId) -> Observable<User> {
         return Observable<User>.create({ (subcriber) -> Disposable in
             self.getFriendIdOf(user: id).subscribe(onNext: { (id) in
-                self.userDb.child(id).observeSingleEvent(of: .value, with: { (snapshot) in
-                    guard let user = User(json: snapshot.value as! JSON) else {
+                self.userDb.child(id).observe(.value, with: { (snapshot) in
+                    guard let data = snapshot.value as? JSON else {
+                        subcriber.onError(ThinhError.unknownUser)
+                        return
+                    }
+                    guard let user = User(json: data) else {
                         subcriber.onError(ThinhError.unknownUser)
                         return
                     }
@@ -347,14 +353,8 @@ class Api: NSObject {
     */
     fileprivate func getFriendIdOf(user: UserId) -> Observable<UserId> {
         return Observable<UserId>.create { (subcriber) -> Disposable in
-            self.userFriendDb.child(user).observeSingleEvent(of: .value, with: { (snapshot) in
-                guard let data = snapshot.value as? [UserId: TimeInterval] else {
-                    subcriber.onError(ThinhError.unknownUser)   // FIXME
-                    return
-                }
-                for datum in data {
-                    subcriber.onNext(datum.key)
-                }
+            self.userFriendDb.child(user).observe(.childAdded, with: { (snapshot) in
+                subcriber.onNext(snapshot.key)
             })
             
             return Disposables.create()
@@ -612,7 +612,7 @@ extension Api {
                    createMockThinh(users[11].id!, users[i].id!, message: nil)
                 }
             }
-            if i % 4 == 0 {
+            if i % 2 == 0 {
                 createMockThinh(users[i].id!, users[23].id!, message: "You are so talented")
             }
         }
