@@ -32,8 +32,18 @@ class ConversationViewCell: UITableViewCell {
                     self.partnerImg.image = JSQMessagesAvatarImageFactory.avatarImage(with: image, diameter: 60).avatarImage
                     self.nameLabel.text = self.conversation?.partnerName
                     
-                    print("Nil avatar url, name \(self.conversation?.partnerName)")
                     // Handle online/offline
+                    if let is_online = self.conversation?.partnerOnline {
+                        if(is_online){
+                            self.statusImage.image = #imageLiteral(resourceName: "online")
+                        } else {
+                            self.statusImage.image = #imageLiteral(resourceName: "offline")
+                        }
+                        
+                    } else {
+                        self.statusImage.image = #imageLiteral(resourceName: "offline")
+                    }
+                    
                 }) { (_, _, error) in
                     
                 }
@@ -45,7 +55,7 @@ class ConversationViewCell: UITableViewCell {
             lastMessageLabel.text = conversation?.lastMessage
             print("Time \(conversation?.lastTime)")
             // Handle time interval
-            let timeAgo = NSDate(timeIntervalSince1970: (conversation?.lastTime)!)
+            let timeAgo = NSDate(timeIntervalSince1970: ((conversation?.lastTime)!/1000))
             timeLabel.text = timeAgo.dateTimeAgo()
         }
     }

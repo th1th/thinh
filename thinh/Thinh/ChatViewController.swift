@@ -25,6 +25,7 @@ class ChatViewController: JSQMessagesViewController {
     
     var current_user:User?
     
+    
     var messages = [JSQMessage]()
     
     private var localTyping = false
@@ -128,9 +129,10 @@ class ChatViewController: JSQMessagesViewController {
             
             if(message.from == self.current_user?.id){
                 message_sender_name = self.current_user?.name
-            } else {
-                
+            } else if( message.from == self.conversation?.partnerID) {
                 message_sender_name = self.conversation?.partnerName
+            } else {
+                message_sender_name = "CoderSchool.vn"
             }
             
             // handle media message here
@@ -169,8 +171,13 @@ class ChatViewController: JSQMessagesViewController {
             }) { (_, _, error) in
                 
             }
-        } else if (message.senderId == ""){
+        } else if (message.senderId == "fuckTheBugs"){
             // Handle Bot message
+            ImageView.setImageWith(URLRequest(url: URL(string: User.botAvatar)!), placeholderImage: nil, success: { (_, _, image) in
+                imageDataSource = JSQMessagesAvatarImageFactory.avatarImage(with: image, diameter: 30)
+            }) { (_, _, error) in
+                
+            }
         } else {
             // Handler partner image
             ImageView.setImageWith(URLRequest(url: (conversation?.partnerAvatar)!), placeholderImage: nil, success: { (_, _, image) in
@@ -282,6 +289,7 @@ class ChatViewController: JSQMessagesViewController {
         // set self.showTypingIndicator
         // scroll to bottom
         Api.shared().observeIsTyping((self.conversation?.id!)!).subscribe(onNext: { (user, typing) in
+            print("User ID \(user)")
             if(user == self.conversation?.partnerID){
                 self.showTypingIndicator = typing
                 self.scrollToBottom(animated: true)

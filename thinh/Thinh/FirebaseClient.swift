@@ -107,7 +107,7 @@ class Api: NSObject {
     */
     func updateUserStatus(_ status: Bool) {
         userDb.child(userId()!).updateChildValues(["status": status]) { (error, reference) in
-            if error == nil {
+            if error != nil {
                 print(error!.localizedDescription)
             }
         }
