@@ -28,10 +28,13 @@ class UserDetailViewController: UIViewController {
     @IBOutlet weak var PreferImage: UIImageView!
     @IBOutlet weak var InfoView: UIView!
     
+    @IBOutlet weak var closeButton: UIButton!
     
     @IBOutlet weak var ScrollView: UIScrollView!
     var user:User? = nil
     var sex:[UIImage]! = []
+    
+    var showCloseButton: Bool = true
     
     @IBAction func closeView(_ sender: UIButton) {
         //Remove the Previous ViewController and Set Button State.
@@ -71,6 +74,10 @@ class UserDetailViewController: UIViewController {
         // Do any additional setup after loading the view.
         loadMockInfo()
         loadInfo()
+        
+        if showCloseButton == false {
+            closeButton.isHidden = true
+        }
     }
 
     override func didReceiveMemoryWarning() {

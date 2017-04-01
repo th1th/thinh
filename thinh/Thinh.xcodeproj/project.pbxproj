@@ -27,6 +27,7 @@
 		05F377801E881AAA00B9890F /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F3777F1E881AAA00B9890F /* ContactTableViewCell.swift */; };
 		05F8ACC01E85609F00A9B281 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 05F8ACBF1E85609F00A9B281 /* Fonts */; };
 		05F8ACC61E8583CE00A9B281 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F8ACC51E8583CE00A9B281 /* TabBarViewController.swift */; };
+		1510ADB61E8FF14E00EBB24E /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1510ADB51E8FF14E00EBB24E /* ImageViewController.swift */; };
 		1534E6B11E82CA4400E62BAD /* Conversation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1534E6B01E82CA4400E62BAD /* Conversation.storyboard */; };
 		1534E6B91E82D2A000E62BAD /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1534E6B81E82D2A000E62BAD /* ConversationViewController.swift */; };
 		1534E6BF1E836F7900E62BAD /* ConversationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1534E6BE1E836F7900E62BAD /* ConversationViewCell.swift */; };
@@ -68,6 +69,7 @@
 		05F3777F1E881AAA00B9890F /* ContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
 		05F8ACBF1E85609F00A9B281 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fonts; sourceTree = "<group>"; };
 		05F8ACC51E8583CE00A9B281 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		1510ADB51E8FF14E00EBB24E /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		1534E6B01E82CA4400E62BAD /* Conversation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Conversation.storyboard; sourceTree = "<group>"; };
 		1534E6B81E82D2A000E62BAD /* ConversationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		1534E6BE1E836F7900E62BAD /* ConversationViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationViewCell.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 				153676101E891641007A2FB5 /* Chat.storyboard */,
 				1536760E1E88EA6D007A2FB5 /* ChatViewController.swift */,
 				153676121E89547B007A2FB5 /* AsyncPhotoMediaItem.swift */,
+				1510ADB51E8FF14E00EBB24E /* ImageViewController.swift */,
 			);
 			name = Chat;
 			sourceTree = "<group>";
@@ -413,6 +416,7 @@
 				0555D5B71E82CAF60058F9CD /* UserDetailViewController.swift in Sources */,
 				1534E6B91E82D2A000E62BAD /* ConversationViewController.swift in Sources */,
 				0562252A1E8ABD7F00650511 /* ThaThinhViewController.swift in Sources */,
+				1510ADB61E8FF14E00EBB24E /* ImageViewController.swift in Sources */,
 				9497178D1E87F3AF00FBD83D /* Thinh.swift in Sources */,
 				941469B91E7F542C00CB3732 /* Date_extension.swift in Sources */,
 				0555D5C11E82DE390058F9CD /* SettingViewController.swift in Sources */,

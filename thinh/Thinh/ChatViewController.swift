@@ -28,6 +28,8 @@ class ChatViewController: JSQMessagesViewController {
     
     var messages = [JSQMessage]()
     
+    var selectedImage : UIImage?
+    
     private var localTyping = false
     var isTyping: Bool {
         get {
@@ -171,20 +173,22 @@ class ChatViewController: JSQMessagesViewController {
             }) { (_, _, error) in
                 
             }
-        } else if (message.senderId == "fuckTheBugs"){
-            // Handle Bot message
-            ImageView.setImageWith(URLRequest(url: URL(string: User.botAvatar)!), placeholderImage: nil, success: { (_, _, image) in
-                imageDataSource = JSQMessagesAvatarImageFactory.avatarImage(with: image, diameter: 30)
-            }) { (_, _, error) in
-                
-            }
-        } else {
+        } else if (message.senderId == self.conversation?.partnerID){
             // Handler partner image
             ImageView.setImageWith(URLRequest(url: (conversation?.partnerAvatar)!), placeholderImage: nil, success: { (_, _, image) in
                 imageDataSource = JSQMessagesAvatarImageFactory.avatarImage(with: image, diameter: 30)
             }) { (_, _, error) in
                 
             }
+            
+        } else {
+            // Handle Bot message
+            ImageView.setImageWith(URLRequest(url: URL(string: User.botAvatar)!), placeholderImage: nil, success: { (_, _, image) in
+                imageDataSource = JSQMessagesAvatarImageFactory.avatarImage(with: image, diameter: 30)
+            }) { (_, _, error) in
+                
+            }
+            
         }
         
         return imageDataSource
@@ -279,7 +283,35 @@ class ChatViewController: JSQMessagesViewController {
         
         return 0.0
     }
+    
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, didTapMessageBubbleAt indexPath: IndexPath!) {
+        if let media = messages[(indexPath.row)].media as? AsyncPhotoMediaItem{
+           // Go to full screen
+            if let image = media.imgView.image {
+                selectedImage = image
+                performSegue(withIdentifier: "fullImage", sender: self)
+            }
+        }
+    }
+    
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, didTapAvatarImageView avatarImageView: UIImageView!, at indexPath: IndexPath!) {
+        if(messages[(indexPath.row)].senderId == conversation?.partnerID){
+            performSegue(withIdentifier: "UserDetail", sender: self)
+        }
+    }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "fullImage"){
+            let destView = segue.destination as! ImageViewController
+            destView.image = selectedImage
+        } else if(segue.identifier == "UserDetail"){
+            let destView = segue.destination as! UserDetailViewController
+            destView.user = self.conversation?.partner
+            destView.showCloseButton = false
+        }
+        
+        
+    }
     
     // handle isTyping
     

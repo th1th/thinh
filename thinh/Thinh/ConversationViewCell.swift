@@ -32,6 +32,9 @@ class ConversationViewCell: UITableViewCell {
                     self.partnerImg.image = JSQMessagesAvatarImageFactory.avatarImage(with: image, diameter: 60).avatarImage
                     self.nameLabel.text = self.conversation?.partnerName
                     
+                    self.statusImage.layer.borderColor = UIColor.white.cgColor
+                    self.statusImage.layer.borderWidth = 2.0
+                    self.statusImage.layer.cornerRadius = self.statusImage.frame.height/2
                     // Handle online/offline
                     if let is_online = self.conversation?.partnerOnline {
                         if(is_online){

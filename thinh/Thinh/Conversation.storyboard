@@ -64,11 +64,11 @@
                                                         <constraint firstAttribute="width" constant="30" id="k50-Ri-Ze7"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="red_offline_icon" translatesAutoresizingMaskIntoConstraints="NO" id="cSu-gF-dhe">
-                                                    <rect key="frame" x="45" y="45" width="10" height="10"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cSu-gF-dhe">
+                                                    <rect key="frame" x="43" y="43" width="12" height="12"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="10" id="Kjp-WY-663"/>
-                                                        <constraint firstAttribute="width" constant="10" id="QAp-f4-yPD"/>
+                                                        <constraint firstAttribute="height" constant="12" id="Kjp-WY-663"/>
+                                                        <constraint firstAttribute="width" constant="12" id="QAp-f4-yPD"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
@@ -119,7 +119,4 @@
             <point key="canvasLocation" x="243.75" y="158.45070422535213"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="red_offline_icon" width="205" height="203"/>
-    </resources>
 </document>

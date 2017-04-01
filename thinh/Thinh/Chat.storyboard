@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -28,10 +28,57 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="6RL-4C-17B" kind="push" identifier="fullImage" id="7Wl-Zv-N0o"/>
+                        <segue destination="l7Q-6B-B8Y" kind="push" identifier="UserDetail" id="qDB-dg-jhm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bDa-1X-Z0O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1288.8" y="166.8665667166417"/>
+        </scene>
+        <!--UserDetail-->
+        <scene sceneID="NZM-ON-W0I">
+            <objects>
+                <viewControllerPlaceholder storyboardName="UserDetail" id="l7Q-6B-B8Y" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="jgJ-SR-4eH"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZdD-M5-2FC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2198" y="-303"/>
+        </scene>
+        <!--Image View Controller-->
+        <scene sceneID="3qE-FN-yrA">
+            <objects>
+                <viewController id="6RL-4C-17B" customClass="ImageViewController" customModule="Thinh" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9kz-2o-Ugl"/>
+                        <viewControllerLayoutGuide type="bottom" id="bng-yF-whr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rwV-nE-L04">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="chj-3y-uBS">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="chj-3y-uBS" secondAttribute="trailing" id="EUh-D9-DTH"/>
+                            <constraint firstItem="chj-3y-uBS" firstAttribute="leading" secondItem="rwV-nE-L04" secondAttribute="leading" id="Kcp-Q8-fdc"/>
+                            <constraint firstItem="chj-3y-uBS" firstAttribute="top" secondItem="9kz-2o-Ugl" secondAttribute="bottom" id="LgK-BP-PyF"/>
+                            <constraint firstItem="bng-yF-whr" firstAttribute="top" secondItem="chj-3y-uBS" secondAttribute="bottom" id="MKp-Pm-gvF"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="fMV-UO-DaY"/>
+                    <connections>
+                        <outlet property="fullImageView" destination="chj-3y-uBS" id="Ctc-tZ-mLw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nug-Mn-Vcs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2214.375" y="165.8450704225352"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Wgh-UO-6lW">

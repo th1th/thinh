@@ -27,6 +27,7 @@ class Conversation: NSObject, Glossy {
     var partnerID: UserId? {
         didSet{
             Api.shared().getUser(id: partnerID!).subscribe(onNext: { (user) in
+                self.partner = user
                 self.partnerName = user.name
                 self.partnerAvatar = URL(string: user.avatar!)
                 
@@ -41,6 +42,7 @@ class Conversation: NSObject, Glossy {
     var partnerName: String?
     var partnerAvatar: URL?
     var partnerOnline: Bool?
+    var partner: User?
     
     required init?(json: JSON) {
         super.init()
