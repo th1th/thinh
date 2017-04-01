@@ -138,6 +138,7 @@
                     </view>
                     <connections>
                         <outlet property="AvatarImage" destination="iy9-6R-K78" id="sJw-mB-OWc"/>
+                        <outlet property="ScrollView" destination="E0C-TC-Hdp" id="DwC-gY-LDB"/>
                         <outlet property="UserBackgroundImage" destination="m2z-2R-wM1" id="jTj-20-Gzn"/>
                         <outlet property="UserCaptionLabel" destination="Dfv-0c-HVz" id="MwK-My-G3X"/>
                         <outlet property="UserInfoLabel" destination="hS2-KN-pXF" id="GR9-fY-vJP"/>

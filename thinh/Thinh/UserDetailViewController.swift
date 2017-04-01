@@ -8,6 +8,8 @@
 
 import UIKit
 import AFNetworking
+import DGElasticPullToRefresh
+import DZNEmptyDataSet
 
 class UserDetailViewController: UIViewController {
 
@@ -18,6 +20,7 @@ class UserDetailViewController: UIViewController {
     @IBOutlet weak var UserCaptionLabel: UILabel!
     @IBOutlet weak var UserInfoLabel: UILabel!
     
+    @IBOutlet weak var ScrollView: UIScrollView!
     var user:User? = nil
     @IBAction func closeView(_ sender: UIButton) {
         //Remove the Previous ViewController and Set Button State.
@@ -35,7 +38,16 @@ class UserDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        //Add refresh database
+        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
+        loadingView.tintColor = UIColor(red: 78/255.0, green: 221/255.0, blue: 200/255.0, alpha: 1.0)
+        ScrollView.dg_addPullToRefreshWithActionHandler({
+            self.ScrollView.dg_stopLoading()
+        }, loadingView: loadingView)
+        ScrollView.dg_setPullToRefreshFillColor(UIColor(red: 57/255.0, green: 67/255.0, blue: 89/255.0, alpha: 1.0))
+        //ScrollView.dg_setPullToRefreshBackgroundColor(ScrollView.backgroundColor!)
+        
         // Do any additional setup after loading the view.
         loadMockInfo()
         loadInfo()

@@ -98,6 +98,7 @@ class ThinhListViewController: UIViewController {
                     //Handle with FRB client
                     //.............waiting for function in client...  ~.~
                     Api.shared().dropThinh(users[index].id!)
+                    users = []
                     //update view
                     updateImage(tag: index)
                     print(index)
@@ -116,7 +117,11 @@ class ThinhListViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    override func viewDidAppear(_ animated: Bool) {
+        if users.count == 0 {
+            initView()
+        }
+    }
 
 
 }
@@ -135,6 +140,7 @@ extension ThinhListViewController{
     }
     //Get Thinh from server and add to list users
     func reloadThinhList() {
+        hideUnuseThinhView()
         //GET ALL THINH HERE:
         utilities.log("reloadThinhList---   \(User.currentUser.id)")
         Api.shared().getMyStrangerThinh().subscribe(onNext: { (thinh:Thinh) in

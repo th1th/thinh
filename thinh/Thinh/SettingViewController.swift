@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 
+import DGElasticPullToRefresh
+import DZNEmptyDataSet
 import FacebookLogin
 //import FacebookCore
 
@@ -25,9 +27,13 @@ class SettingViewController: UIViewController {
     @IBOutlet weak var UserNameLabel: UILabel!
     @IBOutlet weak var UserCaptionLabel: UILabel!
     @IBOutlet weak var UserInfoLabel: UILabel!
+    @IBOutlet weak var ScrollView: UIScrollView!
     
     var user:User? = nil
 
+    @IBAction func createMockData(_ sender: UIButton) {
+        Api.shared().createMockData()
+    }
     
     @IBAction func showPopUp(_ sender: UIButton) {
         self.showPopupView()
@@ -54,6 +60,17 @@ class SettingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        //Add refresh database
+        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
+        loadingView.tintColor = UIColor(red: 78/255.0, green: 221/255.0, blue: 200/255.0, alpha: 1.0)
+        ScrollView.dg_addPullToRefreshWithActionHandler({
+            self.ScrollView.dg_stopLoading()
+        }, loadingView: loadingView)
+        ScrollView.dg_setPullToRefreshFillColor(UIColor(red: 57/255.0, green: 67/255.0, blue: 89/255.0, alpha: 1.0))
+        //ScrollView.dg_setPullToRefreshBackgroundColor(ScrollView.backgroundColor!)
+
 
         // Do any additional setup after loading the view.
         loadUser()

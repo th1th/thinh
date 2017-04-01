@@ -120,6 +120,7 @@
                     </view>
                     <connections>
                         <outlet property="AvatarImage" destination="TDj-TL-eVm" id="Tex-ak-IFW"/>
+                        <outlet property="ScrollView" destination="H6c-br-HrT" id="d8b-vQ-Qjy"/>
                         <outlet property="UserBackgroundImage" destination="e4v-5l-zbG" id="4MT-HE-CsN"/>
                         <outlet property="UserCaptionLabel" destination="m8D-To-9Hv" id="MYy-e5-Cdt"/>
                         <outlet property="UserInfoLabel" destination="XBi-RM-ow4" id="4Tm-7a-7yv"/>

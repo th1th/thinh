@@ -87,20 +87,34 @@
                                     <action selector="ThaThinh:" destination="90z-SF-7AG" eventType="touchUpInside" id="vCg-zC-nCQ"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MyD-iS-yd6">
+                                <rect key="frame" x="320" y="568" width="0.0" height="0.0"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" id="ozc-uB-0w9"/>
+                                    <constraint firstAttribute="width" id="xdG-lc-BgR"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="MyD-iS-yd6" secondAttribute="bottom" id="Fxd-IK-Ybb"/>
                             <constraint firstAttribute="trailing" secondItem="d5w-e0-154" secondAttribute="trailing" id="g9S-q4-8tE"/>
                             <constraint firstItem="d5w-e0-154" firstAttribute="top" secondItem="S3n-Uy-Gmh" secondAttribute="bottom" id="nH2-Hg-CPn"/>
                             <constraint firstItem="EJf-q8-yp0" firstAttribute="top" secondItem="d5w-e0-154" secondAttribute="bottom" id="pep-T1-CS4"/>
                             <constraint firstItem="d5w-e0-154" firstAttribute="leading" secondItem="grI-nf-agt" secondAttribute="leading" id="vMa-kc-izB"/>
+                            <constraint firstAttribute="trailing" secondItem="MyD-iS-yd6" secondAttribute="trailing" id="wD4-w2-mXp"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="ThathinhButton1" destination="YdY-YL-Gvy" id="b6K-yy-mgG"/>
+                        <outlet property="ThathinhButton2" destination="KR2-tf-3aQ" id="h48-HL-3bj"/>
+                        <outlet property="ThathinhButton3" destination="KZD-IL-w4T" id="YPa-Sg-5qN"/>
+                        <outlet property="ThathinhButton4" destination="mTf-e1-cST" id="3B1-KK-Eab"/>
                         <outlet property="UserImage1" destination="J8a-Gt-Sv7" id="BM0-bG-l8o"/>
                         <outlet property="UserImage2" destination="yw0-pP-pQJ" id="RMf-fk-Egb"/>
                         <outlet property="UserImage3" destination="ju5-Pv-LJh" id="2tJ-PF-rFn"/>
                         <outlet property="UserImage4" destination="MgO-03-I80" id="e2h-0l-IIU"/>
+                        <outlet property="cacheImage" destination="MyD-iS-yd6" id="Cvf-Qe-0t0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XVM-6V-ZDI" userLabel="First Responder" sceneMemberID="firstResponder"/>

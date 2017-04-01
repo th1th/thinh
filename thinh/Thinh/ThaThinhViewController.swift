@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import DGElasticPullToRefresh
+import DZNEmptyDataSet
 
 class ThaThinhViewController: UIViewController {
 
@@ -14,8 +16,17 @@ class ThaThinhViewController: UIViewController {
     @IBOutlet weak var UserImage2: UIImageView!
     @IBOutlet weak var UserImage3: UIImageView!
     @IBOutlet weak var UserImage4: UIImageView!
+
+    @IBOutlet weak var ThathinhButton1: UIButton!
+    @IBOutlet weak var ThathinhButton2: UIButton!
+    @IBOutlet weak var ThathinhButton3: UIButton!
+    @IBOutlet weak var ThathinhButton4: UIButton!
+    
+
+    @IBOutlet weak var cacheImage: UIImageView!
     
     var images: [UIImageView]! = []
+    var buttons: [UIButton]! = []
     var allUsers: [User]! = []
     var showUsers: [User]! = []
     
@@ -50,12 +61,12 @@ class ThaThinhViewController: UIViewController {
     
     @IBAction func ThaThinh(_ sender: UIButton) {
         var index = sender.tag
-        
-
         Api.shared().thathinh(allUsers[index].id!)
         allUsers.remove(at: index)
         reloadUserToShowUser()
-
+        if allUsers.count<4 {
+            loadMoreUser()
+        }
     }
 
     
@@ -76,6 +87,7 @@ class ThaThinhViewController: UIViewController {
 extension ThaThinhViewController{
     func initView() {
         images = [UserImage1,UserImage2,UserImage3,UserImage4]
+        buttons = [ThathinhButton1,ThathinhButton2,ThathinhButton3,ThathinhButton4]
         for image in images {
             image.layer.cornerRadius = (image.frame.height)/18 //set corner for image
             image.clipsToBounds = true
@@ -112,7 +124,31 @@ extension ThaThinhViewController{
             },
                               completion: nil)
         }
-        
+        if allUsers.count>maximumShowUser {
+            cacheImage.setImageWith(URL(string: allUsers[maximumShowUser].avatar!)!)
+        }
+        hideUnuseView()
+    }
+    func hideUnuseView() {
+        if allUsers.count<4 {
+            for index in 0..<allUsers.count-1 {
+                images[index].isHidden = false
+                buttons[index].isHidden = false
+            }
+            for index in (allUsers.count-1)..<4 {
+                images[index].isHidden = true
+                buttons[index].isHidden = true
+            }
+        }else{
+            
+            for index in 0..<4 {
+                images[index].isHidden = false
+                buttons[index].isHidden = false
+            }
+        }
+    }
+    func loadMoreUser() {
+        getUserFromServer()
     }
     
 }

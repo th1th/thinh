@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import DGElasticPullToRefresh
+import DZNEmptyDataSet
 
 class ContactListViewController: UIViewController {
 
@@ -33,12 +35,28 @@ class ContactListViewController: UIViewController {
         
         
         
+        contactListTable.emptyDataSetSource = self
+        contactListTable.emptyDataSetDelegate = self
+        
         //Add refresh database
-        refreshController.addTarget(self, action: #selector(refreshControlAction(refreshController:)), for: UIControlEvents.valueChanged)
-        contactListTable.insertSubview(refreshController, at: 0)
+        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
+        loadingView.tintColor = UIColor(red: 78/255.0, green: 221/255.0, blue: 200/255.0, alpha: 1.0)
+        contactListTable.dg_addPullToRefreshWithActionHandler({ 
+            self.contactListTable.dg_stopLoading()
+        }, loadingView: loadingView)
+        contactListTable.dg_setPullToRefreshFillColor(UIColor(red: 57/255.0, green: 67/255.0, blue: 89/255.0, alpha: 1.0))
+        contactListTable.dg_setPullToRefreshBackgroundColor(contactListTable.backgroundColor!)
+
+        //Add refresh database
+//        refreshController.addTarget(self, action: #selector(refreshControlAction(refreshController:)), for: UIControlEvents.valueChanged)
+//        contactListTable.insertSubview(refreshController, at: 0)
         
         
     }
+    deinit {
+        self.contactListTable.dg_removePullToRefresh()
+    }
+
     
     
 }
@@ -99,9 +117,57 @@ extension ContactListViewController: UITableViewDelegate, UITableViewDataSource 
 
     }
     // Hides the RefreshControl
-    func refreshControlAction(refreshController: UIRefreshControl) {
-        self.refreshController.endRefreshing()
-    }
+//    func refreshControlAction(refreshController: UIRefreshControl) {
+//        self.refreshController.endRefreshing()
+//    }
 }
 
+extension ContactListViewController:DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        let text = "NO MESSAGE"
+        
+        let attribs = [
+            NSFontAttributeName: UIFont.systemFont(ofSize: 25),
+            NSForegroundColorAttributeName: UIColor.white
+        ]
+        
+        return NSAttributedString(string: text, attributes: attribs)
+    }
+    
+    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        let text = "GETTING NO MESSAGE IS ALSO A MESSAGE"
+        
+        let para = NSMutableParagraphStyle()
+        para.lineBreakMode = NSLineBreakMode.byWordWrapping
+        para.alignment = NSTextAlignment.center
+        
+        let attribs = [
+            NSFontAttributeName: UIFont.systemFont(ofSize: 12),
+            NSForegroundColorAttributeName: UIColor.white,
+            NSParagraphStyleAttributeName: para
+        ]
+        
+        return NSAttributedString(string: text, attributes: attribs)
+    }
+    
+    func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> NSAttributedString! {
+        let text = "Start Tha Thinh !"
+        let attribs = [
+            NSFontAttributeName: UIFont.boldSystemFont(ofSize: 18),
+            NSForegroundColorAttributeName: view.tintColor
+            ] as [String : Any]
+        
+        return NSAttributedString(string: text, attributes: attribs)
+        
+    }
+    
+    func emptyDataSetDidTapButton(_ scrollView: UIScrollView!) {
+        print("Tapped")
+    }
+    
+    func backgroundColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
+        return UIColor.gray
+    }
+    
+}
 
