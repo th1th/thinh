@@ -120,7 +120,8 @@ class User: NSObject, Glossy {
                  FirebaseKey.phone: "0938481680",
                  FirebaseKey.id: ids[i],
                  FirebaseKey.prefer: prefers[i].rawValue,
-                 FirebaseKey.caption: descs[i]
+                 FirebaseKey.caption: descs[i],
+                 FirebaseKey.status: false
                 ])
             users.append(user!)
         }
@@ -194,7 +195,7 @@ class User: NSObject, Glossy {
     static let sex7 = Sex.male
     static let prefer7 = Sex.female
     
-    static let user8 = "cdP7J0LNP2gUG3BeEq29N8JHDt72"
+    static let user8 = "3JqA5vuaFhMbd8bS5Y82RSB9G092"
     static let name8 = "Donald Trump"
     static let avatar8 = "https://scontent.fsgn5-2.fna.fbcdn.net/v/t1.0-9/16174753_10158517450380725_87513729581056003_n.jpg?oh=cd7c84cbc1929f9c8142284f3ced79da&oe=595C747A"
     static let desc8 = "Make America Great Again"
@@ -282,10 +283,17 @@ class User: NSObject, Glossy {
     
     
     
-    static let user20 = "WhEZVoiMDpTA4QkdI8dHCZFyG752"
-    static let name20 = "Đạt Trần"
-    static let avatar20 = "https://scontent.fsgn5-2.fna.fbcdn.net/v/t1.0-9/15622573_1085371901571808_5746077286281389946_n.jpg?oh=1e4ac7b38fb7b0cabba9b2e301ab9b23&oe=5999D42E"
-    static let desc20 = "Have nothing to say"
+    static let user24 = "WhEZVoiMDpTA4QkdI8dHCZFyG752"
+    static let name24 = "Đạt Trần"
+    static let avatar24 = "https://scontent.fsgn5-2.fna.fbcdn.net/v/t1.0-9/15622573_1085371901571808_5746077286281389946_n.jpg?oh=1e4ac7b38fb7b0cabba9b2e301ab9b23&oe=5999D42E"
+    static let desc24 = "Have nothing to say"
+    static let sex24 = Sex.male
+    static let prefer24 = Sex.female
+    
+    static let user20 = "cdP7J0LNP2gUG3BeEq29N8JHDt72"
+    static let name20 = "Đặng Việt"
+    static let avatar20 = "https://scontent.fsgn5-2.fna.fbcdn.net/v/t31.0-8/1531951_472627046182268_1638135017_o.jpg?oh=ddb563e39d25f453b577a36a38ca514e&oe=59692A86"
+    static let desc20 = "Sống nội tâm, yêu màu tía"
     static let sex20 = Sex.male
     static let prefer20 = Sex.female
     
@@ -311,13 +319,8 @@ class User: NSObject, Glossy {
     static let desc23 = "Sau tất cả, mình trở về với nhau"
     static let sex23 = Sex.male
     static let prefer23 = Sex.female
+   
     
-    static let user24 = "3JqA5vuaFhMbd8bS5Y82RSB9G092"
-    static let name24 = "Đặng Việt"
-    static let avatar24 = "https://scontent.fsgn5-2.fna.fbcdn.net/v/t31.0-8/1531951_472627046182268_1638135017_o.jpg?oh=ddb563e39d25f453b577a36a38ca514e&oe=59692A86"
-    static let desc24 = "Sống nội tâm, yêu màu tía"
-    static let sex24 = Sex.male
-    static let prefer24 = Sex.female
     
     static let user25 = "qEXDOLL1ykPSpNE0quQhbTrqggA3"
     static let name25 = "Đoàn Ngọc Hải"

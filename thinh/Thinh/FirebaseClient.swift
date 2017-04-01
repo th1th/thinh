@@ -159,8 +159,7 @@ class Api: NSObject {
     
     func getAllConversation() -> Observable<[Conversation]> {
        return Observable<[Conversation]>.create({ subcriber -> Disposable in
-            // TODO: child event
-            self.userConversationDb.child(self.userId()!).observe(.value, with: { snapshot in
+            self.userConversationDb.child(self.userId()!).queryOrdered(byChild: FirebaseKey.lastTime).observe(.value, with: { snapshot in
                 var conversations = [Conversation]()
                 for child in snapshot.children {
                     guard let data = child as? FIRDataSnapshot else {
@@ -226,7 +225,6 @@ class Api: NSObject {
             })
             return Disposables.create()
         })
-        
     }
     
     /*
@@ -331,7 +329,7 @@ class Api: NSObject {
     */
     fileprivate func getFriendList(id: UserId) -> Observable<User> {
         return Observable<User>.create({ (subcriber) -> Disposable in
-            self.getFriendsIdOf(user: id).subscribe(onNext: { (id) in
+            self.getFriendIdOf(user: id).subscribe(onNext: { (id) in
                 self.userDb.child(id).observeSingleEvent(of: .value, with: { (snapshot) in
                     guard let user = User(json: snapshot.value as! JSON) else {
                         subcriber.onError(ThinhError.unknownUser)
@@ -347,7 +345,7 @@ class Api: NSObject {
     /*
      get all friend id one at the time
     */
-    fileprivate func getFriendsIdOf(user: UserId) -> Observable<UserId> {
+    fileprivate func getFriendIdOf(user: UserId) -> Observable<UserId> {
         return Observable<UserId>.create { (subcriber) -> Disposable in
             self.userFriendDb.child(user).observeSingleEvent(of: .value, with: { (snapshot) in
                 guard let data = snapshot.value as? [UserId: TimeInterval] else {
@@ -361,6 +359,50 @@ class Api: NSObject {
             
             return Disposables.create()
         }
+    }
+    
+    /*
+     get all friend id one all the time
+     */
+    fileprivate func getFriendIdsOf(user: UserId) -> Observable<[UserId]> {
+        return Observable<[UserId]>.create { (subcriber) -> Disposable in
+            self.userFriendDb.child(user).observeSingleEvent(of: .value, with: { (snapshot) in
+                guard let data = snapshot.value as? [UserId: TimeInterval] else {
+                    subcriber.onError(ThinhError.unknownUser)   // FIXME
+                    return
+                }
+                var keys = [UserId]()
+                for datum in data {
+                    keys.append(datum.key)
+                }
+                subcriber.onNext(keys)
+            })
+            
+            return Disposables.create()
+        }
+    }
+    
+    /*
+     get stranger related to me
+    */
+    func getMyStrangerList() -> Observable<User> {
+        return getStrangerOf(userId()!)
+    }
+    
+    /*
+     get stranger related to user id
+    */
+    fileprivate func getStrangerOf(_ id: UserId) -> Observable<User> {
+        return Observable<User>.create({ (subcriber) -> Disposable in
+            self.getFriendIdsOf(user: id).do(onNext: { (users) in
+                self.getAllUser().do(onNext: { (user) in
+                    if !users.contains(user.id!) {
+                        subcriber.onNext(user)
+                    }
+                })
+            })
+            return Disposables.create()
+        })
     }
     
     /*
@@ -563,8 +605,15 @@ extension Api {
                 createMockMessage(user1: users[i].id!, user2: users[i+j+1].id!, id: id, j: j)
             }
             if i != 11 {
-               createMockThinh(users[i].id!, users[11].id!)
-                createMockThinh(users[11].id!, users[i].id!)
+                // Every one tha thinh a Linh
+               createMockThinh(users[i].id!, users[11].id!, message: nil)
+                if (i != 23) {
+                    // a Linh tha thinh everyone except Dat, Dat - Linh is not friend
+                   createMockThinh(users[11].id!, users[i].id!, message: nil)
+                }
+            }
+            if i % 4 == 0 {
+                createMockThinh(users[i].id!, users[23].id!, message: "You are so talented")
             }
         }
     
@@ -622,8 +671,12 @@ extension Api {
         }
     }
     
-    private func createMockThinh(_ from: UserId, _ to: UserId) {
-        thathinh(A: to, B: from, message: nil)
+    private func createMockThinh(_ from: UserId, _ to: UserId, message: String?) {
+        var sms: Message? = nil
+        if let message = message {
+            sms = Message(from: from, to: to, message: message)
+        }
+        thathinh(A: to, B: from, message: sms)
         
     }
     
