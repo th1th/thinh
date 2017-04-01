@@ -21,11 +21,18 @@ class ConversationViewCell: UITableViewCell {
     @IBOutlet weak var statusImage: UIImageView!
     var conversation : Conversation? {
         didSet{
+            partnerImg.image = nil
+            nameLabel.text = ""
+            lastMessageLabel.text = ""
+            timeLabel.text = ""
+            thinhImg.image = nil
+            
             if conversation?.partnerAvatar != nil {
                 partnerImg.setImageWith(URLRequest(url: (conversation?.partnerAvatar)!), placeholderImage: nil, success: { (_, _, image) in
                     self.partnerImg.image = JSQMessagesAvatarImageFactory.avatarImage(with: image, diameter: 60).avatarImage
                     self.nameLabel.text = self.conversation?.partnerName
                     
+                    print("Nil avatar url, name \(self.conversation?.partnerName)")
                     // Handle online/offline
                 }) { (_, _, error) in
                     
@@ -36,7 +43,7 @@ class ConversationViewCell: UITableViewCell {
             
 
             lastMessageLabel.text = conversation?.lastMessage
-            
+            print("Time \(conversation?.lastTime)")
             // Handle time interval
             let timeAgo = NSDate(timeIntervalSince1970: (conversation?.lastTime)!)
             timeLabel.text = timeAgo.dateTimeAgo()
