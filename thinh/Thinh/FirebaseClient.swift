@@ -49,8 +49,8 @@ class Api: NSObject {
     }
     
     func userId() -> String? {
-//        return FIRAuth.auth()?.currentUser?.uid   // me
-        return "WR3OioP6R0UTPUoWItWyJX5g4p62" // Linh Le
+        return FIRAuth.auth()?.currentUser?.uid   // me
+//        return "WR3OioP6R0UTPUoWItWyJX5g4p62" // Linh Le
 //        return "S5cirBWXUiOGnareVEEWbjaIJN02" // Harley
     }
    
@@ -394,8 +394,8 @@ class Api: NSObject {
     */
     fileprivate func getStrangerOf(_ id: UserId) -> Observable<User> {
         return Observable<User>.create({ (subcriber) -> Disposable in
-            self.getFriendIdsOf(user: id).do(onNext: { (users) in
-                self.getAllUser().do(onNext: { (user) in
+            self.getFriendIdsOf(user: id).subscribe(onNext: { (users) in
+                self.getAllUser().subscribe(onNext: { (user) in
                     if !users.contains(user.id!) {
                         subcriber.onNext(user)
                     }
