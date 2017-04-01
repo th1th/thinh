@@ -26,11 +26,11 @@ The following **required** functionality is completed:
    - [ ] User can edit their info (optional)
 - [ ] Chat list page
    - [x] List friend with avatar, status
-   - [ ] "Tha thinh" again button (optional)
-   - [ ] Online indicator (optional)
-   - [ ] Tapping on a user image should bring up that user's profile page.
+   - [x] "Tha thinh" again button (optional)
+   - [x] Online indicator (optional)
+   - [x] Tapping on a user image should bring up that user's profile page.
    - [x] Tapping on user cell should bring up to chat page.
-   - [ ] List waiting for response from whom user have liked ("tha thinh") (optional).
+   - [x] List waiting for response from whom user have liked ("tha thinh") (optional).
 - [ ] Chat page
    - [x] Contains the user info: avatar, name
    - [x] Contains input text field to type messages
@@ -39,8 +39,8 @@ The following **required** functionality is completed:
    - [x] User is typing indicator
    - [x] User can send photo, video (optional)
 - [ ] Tha Thinh page
-   - [ ] Contains list of new user and friend who've not yet received "thinh"
-   - [ ] User cell: contain avatar, name, description, "tha thinh" (like) button
+   - [x] Contains list of new user and friend who've not yet received "thinh"
+   - [x] User cell: contain avatar, name, description, "tha thinh" (like) button
 - [ ] Setting page
    - [ ] gender setting
    - [ ] notification setting (optional)
