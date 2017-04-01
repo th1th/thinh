@@ -9,15 +9,24 @@
 import UIKit
 import DGElasticPullToRefresh
 import DZNEmptyDataSet
+import AVFoundation
+import MediaPlayer
+import MobileCoreServices
+import ImagePicker
 
 class ContactListViewController: UIViewController {
 
     @IBOutlet weak var contactListTable: UITableView!
     
+//    @IBAction func onLongPressThaThinh(_ sender: UILongPressGestureRecognizer) {
+//        sender.numberOfTapsRequired = 1
+////        utilities.log(contactListTable.indexPath(for: UITableViewCell))
+//    }
     
 
     var contactList = [User]()
     let refreshController = UIRefreshControl()
+    var thathinhUser: User?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,8 +42,6 @@ class ContactListViewController: UIViewController {
         
         
         
-        contactListTable.emptyDataSetSource = self
-        contactListTable.emptyDataSetDelegate = self
         
         //Add refresh database
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
@@ -89,6 +96,7 @@ extension ContactListViewController: UITableViewDelegate, UITableViewDataSource 
         cell.avatarImage.layer.zPosition = 0
         cell.avatarImage.clipsToBounds = true
         cell.user = user
+        cell.delegate = self
         
         return cell
     }
@@ -121,52 +129,80 @@ extension ContactListViewController: UITableViewDelegate, UITableViewDataSource 
 //    }
 }
 
-extension ContactListViewController:DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
-    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let text = "NO MESSAGE"
-        
-        let attribs = [
-            NSFontAttributeName: UIFont.systemFont(ofSize: 25),
-            NSForegroundColorAttributeName: UIColor.white
-        ]
-        
-        return NSAttributedString(string: text, attributes: attribs)
+
+extension ContactListViewController:ContactTableViewCellDelegate,ImagePickerDelegate{
+    public func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
+        imagePicker.dismiss(animated: true, completion: nil)
+        let image = images[0]
+        Api.shared().thathinh((thathinhUser?.id)!, image: image)
     }
-    
-    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let text = "GETTING NO MESSAGE IS ALSO A MESSAGE"
-        
-        let para = NSMutableParagraphStyle()
-        para.lineBreakMode = NSLineBreakMode.byWordWrapping
-        para.alignment = NSTextAlignment.center
-        
-        let attribs = [
-            NSFontAttributeName: UIFont.systemFont(ofSize: 12),
-            NSForegroundColorAttributeName: UIColor.white,
-            NSParagraphStyleAttributeName: para
-        ]
-        
-        return NSAttributedString(string: text, attributes: attribs)
+
+    func contactTableViewCellDelegate(user: User) {
+        utilities.log(user)
+        thathinhUser = user
+        let picker = ImagePickerController()
+        picker.delegate = self
+        picker.imageLimit = 1
+        present(picker, animated: true, completion:nil)
     }
-    
-    func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> NSAttributedString! {
-        let text = "Start Tha Thinh !"
-        let attribs = [
-            NSFontAttributeName: UIFont.boldSystemFont(ofSize: 18),
-            NSForegroundColorAttributeName: view.tintColor
-            ] as [String : Any]
-        
-        return NSAttributedString(string: text, attributes: attribs)
+    func cancelButtonDidPress(_ imagePicker: ImagePickerController) {
         
     }
     
-    func emptyDataSetDidTapButton(_ scrollView: UIScrollView!) {
-        print("Tapped")
+    func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]){
+        
     }
-    
-    func backgroundColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
-        return UIColor.gray
-    }
-    
+
 }
+
+//extension ContactListViewController:DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+//    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+//        let text = "NO MESSAGE"
+//        
+//        let attribs = [
+//            NSFontAttributeName: UIFont.systemFont(ofSize: 25),
+//            NSForegroundColorAttributeName: UIColor.white
+//        ]
+//        
+//        return NSAttributedString(string: text, attributes: attribs)
+//    }
+//    
+//    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+//        let text = "GETTING NO MESSAGE IS ALSO A MESSAGE"
+//        
+//        let para = NSMutableParagraphStyle()
+//        para.lineBreakMode = NSLineBreakMode.byWordWrapping
+//        para.alignment = NSTextAlignment.center
+//        
+//        let attribs = [
+//            NSFontAttributeName: UIFont.systemFont(ofSize: 12),
+//            NSForegroundColorAttributeName: UIColor.white,
+//            NSParagraphStyleAttributeName: para
+//        ]
+//        
+//        return NSAttributedString(string: text, attributes: attribs)
+//    }
+//    
+//    func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> NSAttributedString! {
+//        let text = "Start Tha Thinh !"
+//        let attribs = [
+//            NSFontAttributeName: UIFont.boldSystemFont(ofSize: 18),
+//            NSForegroundColorAttributeName: view.tintColor
+//            ] as [String : Any]
+//        
+//        return NSAttributedString(string: text, attributes: attribs)
+//        
+//    }
+//    
+//    func emptyDataSetDidTapButton(_ scrollView: UIScrollView!) {
+//        print("Tapped")
+//    }
+//    
+//    func backgroundColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
+//        return UIColor.gray
+//    }
+//    
+//}
+
+
 

@@ -63,6 +63,7 @@
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0kb-fG-V9o">
                                                     <rect key="frame" x="226" y="47" width="84" height="30"/>
+                                                    <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="84" id="6xO-7v-fGy"/>
                                                         <constraint firstAttribute="height" constant="30" id="Ddg-x7-KeS"/>

@@ -9,6 +9,9 @@
 import UIKit
 import DGElasticPullToRefresh
 import DZNEmptyDataSet
+import AVFoundation
+import MediaPlayer
+import MobileCoreServices
 
 class ThaThinhViewController: UIViewController {
 
@@ -31,7 +34,9 @@ class ThaThinhViewController: UIViewController {
     var showUsers: [User]! = []
     
     var tracking = 0
-    
+    //For remove unlike user
+    var UserImageOriginalCenter: CGPoint!
+
     
     @IBAction func onClickGetDetail(_ sender: UITapGestureRecognizer) {
         sender.numberOfTapsRequired = 1
@@ -56,8 +61,47 @@ class ThaThinhViewController: UIViewController {
         
     }
     
-    
+    @IBAction func onUserPan(_ sender: UIPanGestureRecognizer) {
+        let point = sender.location(in: view)
+        let translation = sender.translation(in: view)
+        let velocity = sender.velocity(in: view)
+        let button = buttons[(sender.view?.tag)!]
+        self.view.bringSubview(toFront: sender.view!)
+        if sender.state == UIGestureRecognizerState.began {
+            print("Gesture began at \(point)")
+            UserImageOriginalCenter = sender.view?.center
+            button.isHidden = true
+        } else if sender.state == UIGestureRecognizerState.changed {
+            print("Gesture changed at \(point)")
+            sender.view?.center = CGPoint(x: UserImageOriginalCenter.x+translation.x, y: UserImageOriginalCenter.y + translation.y)
+            
+        } else if sender.state == UIGestureRecognizerState.ended {
+            print("Gesture ended at \(point)")
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 0.1, options: [], animations: {
+                if velocity.x>0{
+                    sender.view?.alpha = 0
+                }else{
+                    sender.view?.center = self.UserImageOriginalCenter
+                }
+                
+            }, completion: { (_) in
+                sender.view?.center = self.UserImageOriginalCenter
+                sender.view?.alpha = 1
+                self.view.sendSubview(toBack: sender.view!)
+                button.isHidden = false
+                if velocity.x>0{
+                    self.allUsers.remove(at: (sender.view?.tag)!)
+                    self.reloadUserToShowUser()
+                    if self.allUsers.count<4 {
+                        self.loadMoreUser()
+                    }                }
+            })
+        }
+    }
 
+    @IBAction func onLongPressThaThinh(_ sender: UILongPressGestureRecognizer) {
+        
+    }
     
     @IBAction func ThaThinh(_ sender: UIButton) {
         var index = sender.tag
@@ -70,10 +114,6 @@ class ThaThinhViewController: UIViewController {
         }
     }
 
-    
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -84,6 +124,7 @@ class ThaThinhViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
 }
 extension ThaThinhViewController{
     func initView() {
@@ -152,4 +193,7 @@ extension ThaThinhViewController{
         getUserFromServer()
     }
     
+}
+extension ThaThinhViewController{
+
 }

@@ -29,6 +29,7 @@
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="opJ-pa-sw8" appends="YES" id="KEj-nj-VSi"/>
+                                    <outletCollection property="gestureRecognizers" destination="9Ef-SL-v5i" appends="YES" id="Uxe-X9-ibP"/>
                                 </connections>
                             </imageView>
                             <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hot-girl-han-quoc-xinh-dep-song-o-sai-gon-gay-sot" translatesAutoresizingMaskIntoConstraints="NO" id="J8a-Gt-Sv7">
@@ -37,6 +38,7 @@
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="83r-2G-Zzo" appends="YES" id="RLO-60-vTz"/>
+                                    <outletCollection property="gestureRecognizers" destination="ec2-Ab-ulR" appends="YES" id="VTP-9h-dVB"/>
                                 </connections>
                             </imageView>
                             <imageView tag="3" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tulinh2_1" translatesAutoresizingMaskIntoConstraints="NO" id="MgO-03-I80">
@@ -45,6 +47,7 @@
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="Zer-bb-k06" appends="YES" id="qmo-Ex-PM9"/>
+                                    <outletCollection property="gestureRecognizers" destination="0vw-sP-AWy" appends="YES" id="Ngh-2S-fEF"/>
                                 </connections>
                             </imageView>
                             <imageView tag="2" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tulinh" translatesAutoresizingMaskIntoConstraints="NO" id="ju5-Pv-LJh">
@@ -53,38 +56,47 @@
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="23h-Fh-1Ai" appends="YES" id="6la-F9-1ht"/>
+                                    <outletCollection property="gestureRecognizers" destination="6Uc-fe-77d" appends="YES" id="VX2-eN-amy"/>
                                 </connections>
                             </imageView>
                             <button opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KR2-tf-3aQ">
                                 <rect key="frame" x="42" y="234" width="80" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
                                 <state key="normal" backgroundImage="ThaThinh"/>
                                 <connections>
                                     <action selector="ThaThinh:" destination="90z-SF-7AG" eventType="touchUpInside" id="SI1-HR-ZfU"/>
+                                    <outletCollection property="gestureRecognizers" destination="Q3b-rt-Hll" appends="YES" id="clJ-Jl-7BH"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YdY-YL-Gvy">
                                 <rect key="frame" x="206" y="222" width="80" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
                                 <state key="normal" backgroundImage="ThaThinh"/>
                                 <connections>
                                     <action selector="ThaThinh:" destination="90z-SF-7AG" eventType="touchUpInside" id="4Ud-eY-sQa"/>
+                                    <outletCollection property="gestureRecognizers" destination="2gA-cO-vWy" appends="YES" id="RVx-53-O44"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mTf-e1-cST">
                                 <rect key="frame" x="42" y="479" width="80" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
                                 <state key="normal" backgroundImage="ThaThinh"/>
                                 <connections>
                                     <action selector="ThaThinh:" destination="90z-SF-7AG" eventType="touchUpInside" id="gGD-ut-MCY"/>
+                                    <outletCollection property="gestureRecognizers" destination="X4H-Hg-jUB" appends="YES" id="k1h-B7-0Xl"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KZD-IL-w4T">
                                 <rect key="frame" x="206" y="456" width="80" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
                                 <state key="normal" backgroundImage="ThaThinh"/>
                                 <connections>
                                     <action selector="ThaThinh:" destination="90z-SF-7AG" eventType="touchUpInside" id="vCg-zC-nCQ"/>
+                                    <outletCollection property="gestureRecognizers" destination="WdG-LJ-7hF" appends="YES" id="Rd7-L6-8dE"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MyD-iS-yd6">
@@ -138,6 +150,46 @@
                         <action selector="onClickGetDetail:" destination="90z-SF-7AG" id="q8f-kV-CWN"/>
                     </connections>
                 </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="ec2-Ab-ulR">
+                    <connections>
+                        <action selector="onUserPan:" destination="90z-SF-7AG" id="44B-Xc-wZg"/>
+                    </connections>
+                </panGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="9Ef-SL-v5i">
+                    <connections>
+                        <action selector="onUserPan:" destination="90z-SF-7AG" id="OvY-5a-Ppy"/>
+                    </connections>
+                </panGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="0vw-sP-AWy">
+                    <connections>
+                        <action selector="onUserPan:" destination="90z-SF-7AG" id="BUp-ht-Uct"/>
+                    </connections>
+                </panGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="6Uc-fe-77d">
+                    <connections>
+                        <action selector="onUserPan:" destination="90z-SF-7AG" id="cwl-Mr-SkC"/>
+                    </connections>
+                </panGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="2gA-cO-vWy">
+                    <connections>
+                        <action selector="onLongPressThaThinh:" destination="90z-SF-7AG" id="cPl-bh-gHz"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="Q3b-rt-Hll">
+                    <connections>
+                        <action selector="onLongPressThaThinh:" destination="90z-SF-7AG" id="OdW-eD-Sa4"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="WdG-LJ-7hF">
+                    <connections>
+                        <action selector="onLongPressThaThinh:" destination="90z-SF-7AG" id="uYy-ZM-fzs"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="X4H-Hg-jUB">
+                    <connections>
+                        <action selector="onLongPressThaThinh:" destination="90z-SF-7AG" id="nJE-ns-DTv"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-187.5" y="327.46478873239437"/>
         </scene>
