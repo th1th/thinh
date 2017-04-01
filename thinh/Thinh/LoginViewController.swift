@@ -90,6 +90,9 @@ extension LoginViewController{
     func updateAvatar(_ fbid: String?)  {
         let photoUrl = URL(string: "https://graph.facebook.com/\(fbid!)/picture?type=large")
         print("[xx]\(photoUrl)")
+        
+        
+        Api.shared().updateUserStatus(true)
 
         self.avatarHeighContrain.constant = 100
         self.avatarWidthContrain.constant = 100

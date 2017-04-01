@@ -23,7 +23,7 @@ class Conversation: NSObject, Glossy {
     var id: ConversationId?
 
     var lastMessage: String?
-    var lastTime: TimeInterval?
+    var lastTime: TimeInterval!
     var partnerID: UserId? {
         didSet{
             Api.shared().getUser(id: partnerID!).subscribe(onNext: { (user) in
@@ -31,7 +31,7 @@ class Conversation: NSObject, Glossy {
                 self.partnerAvatar = URL(string: user.avatar!)
                 
                 // TODO: Get partner online/offline status
-                self.partnerOnline = true
+                self.partnerOnline = user.status
                 
                 self.delegate?.ConversationInfoUpdate(self)
             })

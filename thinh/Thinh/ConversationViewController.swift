@@ -35,12 +35,14 @@ class ConversationViewController: UIViewController {
                 for conversation in (self?.conversationList)! {
                     conversation.delegate = self
                 }
+
+                self?.conversationList = (self?.conversationList.sorted(by: { $0.lastTime > $1.lastTime }))!
                 self?.conversationTable.reloadData()
                 self?.conversationTable.dg_stopLoading()
                 
             }, onError: { (error) in
                 self?.conversationTable.dg_stopLoading()
-            }, onCompleted: { 
+            }, onCompleted: {
                 self?.conversationTable.dg_stopLoading()
             }, onDisposed: nil)
         
@@ -54,6 +56,7 @@ class ConversationViewController: UIViewController {
             for conversation in (self.conversationList) {
                 conversation.delegate = self
             }
+            self.conversationList = (self.conversationList.sorted(by: { $0.lastTime > $1.lastTime }))
             self.conversationTable.reloadData()
         })
     }
