@@ -7,8 +7,15 @@
 //
 
 import UIKit
+import AVFoundation
+import MediaPlayer
+import MobileCoreServices
 
-class ContactTableViewCell: UITableViewCell {
+
+@objc protocol ContactTableViewCellDelegate {
+    @objc func contactTableViewCellDelegate(user: User)
+}
+class ContactTableViewCell: UITableViewCell,AVCapturePhotoCaptureDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var avatarImage: UIImageView!
     @IBOutlet weak var statusImage: UIImageView!
@@ -17,7 +24,11 @@ class ContactTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     
     @IBOutlet weak var ThaThinhButton: UIButton!
+    
     var user:User!
+    
+    var delegate: ContactTableViewCellDelegate?
+
     
     @IBAction func onClickThaThinhButton(_ sender: UIButton) {
         print("[xx]thathinh \(user.name)")
@@ -35,12 +46,22 @@ class ContactTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        let tapGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.tapEdit(sender:)))
+        addGestureRecognizer(tapGesture)
     }
 
+    func tapEdit(sender: UILongPressGestureRecognizer) {
+        utilities.log("longpress")
+        delegate?.contactTableViewCellDelegate(user: user)
+    }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
 
+}
+extension ContactTableViewCell{
+    
 }
