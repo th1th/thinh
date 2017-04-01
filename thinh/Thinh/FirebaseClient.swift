@@ -24,7 +24,6 @@ class Api: NSObject {
     fileprivate var userFriendDb: FIRDatabaseReference
     fileprivate var userThinhDb: FIRDatabaseReference
     fileprivate var userConversationDb: FIRDatabaseReference
-    fileprivate let botId = "fuckFirebase"
     fileprivate var storage: FIRStorageReference
     fileprivate var conversationStorage: FIRStorageReference
     
@@ -291,7 +290,7 @@ class Api: NSObject {
      - both friend tha thinh
      */
     fileprivate func sendBotMessage(id: ConversationId, user1: UserId, user2: UserId) -> MessageId {
-        let message = Message(from: botId, to: user1, message: FirebaseKey.botMessage)
+        let message = Message(from: User.botId, to: user1, message: FirebaseKey.botMessage)
         // set this for bot message only
         message.user1 = user1
         message.user2 = user2
@@ -555,17 +554,17 @@ class Api: NSObject {
 
 extension Api {
     func createMockData() {
-//        deleteDb()
+        deleteDb()
+        
         let users = createMockUser()
         for i in 0..<users.count - 10 {
-//            for j in 0..<10 {
-//                let id = createMockConversation(user1: users[i].id!, user2: users[i+j+1].id!)
-//                createMockMessage(user1: users[i].id!, user2: users[i+j+1].id!, id: id, j: j)
-//            }
+            for j in 0..<10 {
+                let id = createMockConversation(user1: users[i].id!, user2: users[i+j+1].id!)
+                createMockMessage(user1: users[i].id!, user2: users[i+j+1].id!, id: id, j: j)
+            }
             if i != 11 {
                createMockThinh(users[i].id!, users[11].id!)
                 createMockThinh(users[11].id!, users[i].id!)
-            
             }
         }
     
@@ -600,6 +599,8 @@ extension Api {
     }
     
     private func createMockUser()  -> [User] {
+        let bot = User.createBot()
+        createUser(bot.id!, user: bot)
         let users = User.mock()
         for user in users {
             userDb.child(user.id!).setValue(user.toJSON()!)

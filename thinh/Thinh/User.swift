@@ -127,6 +127,23 @@ class User: NSObject, Glossy {
         return users
     }
     
+    static func createBot() -> User {
+        return User(json: [
+            FirebaseKey.id: botId,
+            FirebaseKey.name: botName,
+            FirebaseKey.gender: botSex,
+            FirebaseKey.avatar: botAvatar,
+            FirebaseKey.prefer: botPrefer,
+            FirebaseKey.caption: botDes])!
+    }
+    
+    static let botName = "ThaThinh"
+    static let botAvatar = "https://e27.co/img/startups/11852/logo-1457327647.png"
+    static let botDes = "Developing Developers"
+    static let botSex = Sex.male
+    static let botPrefer = Sex.female
+    static let botId = "fuckTheBugs"
+    
     // mock user data
     static let user1 = "S5cirBWXUiOGnareVEEWbjaIJN02"
     static let name1 = "Harley Trung"
