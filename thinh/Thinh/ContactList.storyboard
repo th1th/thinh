@@ -69,7 +69,7 @@
                                                     </constraints>
                                                     <state key="normal" backgroundImage="ThaThinh"/>
                                                     <connections>
-                                                        <action selector="onClickThaThinhButton:" destination="hh9-bl-t1p" eventType="touchUpInside" id="goy-xc-Hv5"/>
+                                                        <action selector="onClickThaThinhButton:" destination="2zJ-Bu-jur" eventType="touchUpInside" id="fSS-lM-BXG"/>
                                                     </connections>
                                                 </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hot-girl-han-quoc-xinh-dep-song-o-sai-gon-gay-sot" translatesAutoresizingMaskIntoConstraints="NO" id="wR4-rR-YhX">
@@ -98,6 +98,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="ThaThinhButton" destination="0kb-fG-V9o" id="qdH-U7-R1F"/>
                                             <outlet property="avatarImage" destination="wR4-rR-YhX" id="DJD-8n-1ZQ"/>
                                             <outlet property="captionLabel" destination="suY-OV-fhC" id="HM1-Bw-hzR"/>
                                             <outlet property="nameLabel" destination="xrA-5l-dCh" id="bKF-K8-cgM"/>

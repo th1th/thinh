@@ -61,6 +61,7 @@ class ThaThinhViewController: UIViewController {
     
     @IBAction func ThaThinh(_ sender: UIButton) {
         var index = sender.tag
+        utilities.log("tha thinh: \(allUsers[index].name))")
         Api.shared().thathinh(allUsers[index].id!)
         allUsers.remove(at: index)
         reloadUserToShowUser()

@@ -16,6 +16,21 @@ class ContactTableViewCell: UITableViewCell {
     @IBOutlet weak var captionLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     
+    @IBOutlet weak var ThaThinhButton: UIButton!
+    var user:User!
+    
+    @IBAction func onClickThaThinhButton(_ sender: UIButton) {
+        print("[xx]thathinh \(user.name)")
+        Api.shared().thathinh((user?.id)!)
+        UIView.transition(with: self.ThaThinhButton.imageView!,
+                          duration: 0.3,
+                          options: .transitionCrossDissolve,
+                          animations: {
+                            self.ThaThinhButton.imageView?.image = UIImage(named: "ThaThinh")
+        },
+                          completion: nil)
+        
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

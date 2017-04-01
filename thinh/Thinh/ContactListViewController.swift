@@ -15,9 +15,7 @@ class ContactListViewController: UIViewController {
     @IBOutlet weak var contactListTable: UITableView!
     
     
-    @IBAction func onClickThaThinhButton(_ sender: UIButton) {
-        print("[xx]thathinh")
-    }
+
     var contactList = [User]()
     let refreshController = UIRefreshControl()
 
@@ -90,6 +88,7 @@ extension ContactListViewController: UITableViewDelegate, UITableViewDataSource 
         cell.statusImage.layer.zPosition = 1
         cell.avatarImage.layer.zPosition = 0
         cell.avatarImage.clipsToBounds = true
+        cell.user = user
         
         return cell
     }

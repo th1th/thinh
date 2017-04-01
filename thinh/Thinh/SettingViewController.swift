@@ -26,11 +26,20 @@ class SettingViewController: UIViewController {
     @IBOutlet weak var AvatarImage: UIImageView!
     @IBOutlet weak var UserNameLabel: UILabel!
     @IBOutlet weak var UserCaptionLabel: UILabel!
-    @IBOutlet weak var UserInfoLabel: UILabel!
+    @IBOutlet weak var UserCaptionView: UIView!
+    
+    @IBOutlet weak var PhoneNumberLabel: UILabel!
+    @IBOutlet weak var GenderLabel: UILabel!
+    @IBOutlet weak var GenderImage: UIImageView!
+    @IBOutlet weak var PreferLabel: UILabel!
+    @IBOutlet weak var PreferImage: UIImageView!
+    @IBOutlet weak var InfoView: UIView!
+    
     @IBOutlet weak var ScrollView: UIScrollView!
     
     var user:User? = nil
-
+    var sex:[UIImage]! = []
+    
     @IBAction func createMockData(_ sender: UIButton) {
         Api.shared().createMockData()
     }
@@ -57,10 +66,11 @@ class SettingViewController: UIViewController {
     @IBOutlet weak var captionTextView: UITextView!
     @IBOutlet weak var phoneTextView: UITextView!
     @IBOutlet weak var genderSegment: UISegmentedControl!
+    @IBOutlet weak var preferSegment: UISegmentedControl!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         //Add refresh database
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
@@ -91,12 +101,20 @@ extension SettingViewController{
     }
 
     func loadInfo() {
+        sex = [#imageLiteral(resourceName: "male"),#imageLiteral(resourceName: "female"),#imageLiteral(resourceName: "biosex")]
         //UserBackgroundImage.setImageWith(URL(string: (user?.avatar)!)!)
         AvatarImage.setImageWith(URL(string: (user?.avatar)!)!)
         UserNameLabel.text = user?.name
-        UserCaptionLabel.text = user?.caption
-        UserInfoLabel.text = user?.name
+        UserCaptionLabel.text = user?.caption ?? "What's in your mind?"
+        user?.phone = user?.phone ?? "Secret 😉"
+        user?.gender = user?.gender ?? User.Sex(rawValue: "unknown")!
+        user?.prefer = user?.prefer ?? User.Sex(rawValue: "unknown")!
         
+        PhoneNumberLabel.text = "Phone: \(user!.phone!)"
+        GenderLabel.text =      "Gender: \((user!.gender)!.rawValue)"
+        PreferLabel.text =      "Interested in: \((user!.prefer)!.rawValue)"
+        GenderImage.image = sex[(user?.gender?.hashValue) ?? 3]
+        PreferImage.image = sex[(user?.prefer?.hashValue) ?? 3]
         UserBackgroundImage.image = #imageLiteral(resourceName: "Background")
         
         
@@ -107,15 +125,30 @@ extension SettingViewController{
         AvatarImage.layer.borderWidth = 1.0
         //
         
-        UserCaptionLabel.clipsToBounds = true
-        UserCaptionLabel.layer.cornerRadius = 8
-        UserCaptionLabel.layer.borderColor = UIColor( red: 255/255, green: 0/255, blue:255/255, alpha: 0.5).cgColor
-        UserCaptionLabel.layer.borderWidth = 1.0
+        UserCaptionView.clipsToBounds = true
+        UserCaptionView.layer.cornerRadius = 8
+        UserCaptionView.layer.borderColor = UIColor( red: 170/255, green: 254/255, blue:235/255, alpha: 0.5).cgColor
+        UserCaptionView.layer.borderWidth = 1.0
+        UserCaptionView.backgroundColor = UIColor( red: 170/255, green: 254/255, blue:235/255, alpha: 0.5)
+        
+        InfoView.clipsToBounds = true
+        InfoView.layer.cornerRadius = 8
+        InfoView.layer.borderColor = UIColor( red: 170/255, green: 254/255, blue:235/255, alpha: 0.5).cgColor
+        InfoView.layer.borderWidth = 1.0
+        InfoView.backgroundColor = UIColor( red: 170/255, green: 254/255, blue:235/255, alpha: 0.5)
+        
+//        view.backgroundColor = UIColor( red: 122/255, green: 215/255, blue:253/255, alpha: 1)
+
+        //View for Edit profile
+        
         
     }
     func updateUserInfo() {
+        let sex = ["male","female","unknown"]
+        
         user?.caption = captionTextView.text
-        user?.gender = User.Sex(rawValue: genderSegment.titleForSegment(at: genderSegment.selectedSegmentIndex)!)
+        user?.gender = User.Sex(rawValue: sex[genderSegment.selectedSegmentIndex])
+        user?.prefer = User.Sex(rawValue: sex[preferSegment.selectedSegmentIndex])
         user?.phone = phoneTextView.text
     }
     func signOut() {
@@ -142,7 +175,8 @@ extension SettingViewController{
         if let tempUser = user {
             captionTextView.text = tempUser.caption ?? "Unknown"
             phoneTextView.text = tempUser.phone ?? "Unknown"
-            //genderSegment.selectedSegmentIndex = (tempUser.gender?.hashValue)! ?? 2
+            genderSegment.selectedSegmentIndex = (tempUser.gender?.hashValue) ?? 2
+            preferSegment.selectedSegmentIndex = (tempUser.prefer?.hashValue) ?? 0
         }else{
             captionTextView.text = "song noi tam yeu mau tim"
             phoneTextView.text = "unknown"
@@ -158,6 +192,9 @@ extension SettingViewController{
         popupView = Bundle.main.loadNibNamed("PopupView", owner: self, options: nil)?[0] as? PopupView
         
         self.view.addSubview(popupView!)
+        //delegate
+        captionTextView.delegate = self
+        phoneTextView.delegate = self
         
         //Configure popupview
         popupView?.frame.size = CGSize(width: 0, height: 0)
@@ -177,7 +214,7 @@ extension SettingViewController{
         
         let h_Pin = NSLayoutConstraint.constraints(withVisualFormat: "H:|-(12)-[popupView]-(12)-|", options: .alignAllTop, metrics: nil, views: dView)
         self.view.addConstraints(h_Pin)
-        let v_Pin = NSLayoutConstraint.constraints(withVisualFormat:"V:|-(36)-[popupView]-(36)-|", options: .alignAllTop, metrics: nil, views: dView)
+        let v_Pin = NSLayoutConstraint.constraints(withVisualFormat:"V:|-(56)-[popupView]-(56)-|", options: .alignAllTop, metrics: nil, views: dView)
         self.view.addConstraints(v_Pin)
         
         constY = NSLayoutConstraint(item: popupView!, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0)
@@ -239,3 +276,10 @@ extension SettingViewController{
         
     }
 }
+
+extension SettingViewController:UITextViewDelegate{
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        textView.text = ""
+    }
+}
+
