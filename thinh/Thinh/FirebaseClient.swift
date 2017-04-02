@@ -14,7 +14,7 @@ import FacebookCore
 import RxSwift
 import Gloss
 import FirebaseStorage
-import Kingfisher
+//import Kingfisher
 import SCRecorder
 
 class Api: NSObject {

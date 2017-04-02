@@ -88,7 +88,6 @@ PODS:
   - JSQMessagesViewController (7.3.4):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
-  - Kingfisher (3.6.1)
   - NSDate+TimeAgo (1.0.6)
   - RxCocoa (3.3.1):
     - RxSwift (~> 3.3)
@@ -114,7 +113,6 @@ DEPENDENCIES:
   - Gloss
   - ImagePicker
   - JSQMessagesViewController
-  - Kingfisher (~> 3.0)
   - NSDate+TimeAgo
   - RxCocoa
   - RxSwift
@@ -146,12 +144,11 @@ SPEC CHECKSUMS:
   ImagePicker: c0dd40026df3039ddd4b6f61433a96224d56d63b
   JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
-  Kingfisher: 2f31cb75f3e98d3d4c406cbdcd9b263e956cfa67
   NSDate+TimeAgo: 35601c619b2d59290055e4fe76e61d97677a2360
   RxCocoa: 7dcb7a1860fc9cd0e23dae67ab105fc2916670b6
   RxSwift: 8fc9f2de6275a9101d518444e00bf32f1a42caac
   SCRecorder: bbb521dbc222908876ec9cd9156bbc8a893bed44
 
-PODFILE CHECKSUM: 6b10c735d372df0dd2e4afbe76fe6b0c3b94eeee
+PODFILE CHECKSUM: cdb7a600f8e4b3b9969f3528c478bfd85c1820ae
 
 COCOAPODS: 1.2.0
