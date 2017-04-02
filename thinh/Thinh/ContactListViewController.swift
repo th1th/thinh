@@ -121,12 +121,13 @@ extension ContactListViewController: UITableViewDelegate, UITableViewDataSource 
     
     //Tha Thinh with image
     func contactTableViewCellDelegate(user: User) {
+        
+        utilities.log(user)
+        thathinhUser = user
         takePhoto()
         /*
         if #available(iOS 10.0, *) {
-            
-            utilities.log(user)
-            thathinhUser = user
+         
             
             let controller = UIStoryboard(name: "RecordVideo", bundle: nil).instantiateViewController(withIdentifier: "RecordVideoViewController")
             self.present(controller, animated: true, completion: nil)
