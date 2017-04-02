@@ -5,8 +5,14 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Ailerons-Typeface.otf">
+            <string>Ailerons-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Tha Thinh View Controller-->
         <scene sceneID="Fbg-83-m7l">
@@ -106,10 +112,31 @@
                                     <constraint firstAttribute="width" id="xdG-lc-BgR"/>
                                 </constraints>
                             </imageView>
+                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pull" translatesAutoresizingMaskIntoConstraints="NO" id="dLr-ba-lIU">
+                                <rect key="frame" x="196" y="20" width="30" height="60"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="NzG-wW-a6K"/>
+                                    <constraint firstAttribute="height" constant="60" id="rga-s3-vuu"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="bFb-er-Feh" appends="YES" id="WDs-cO-rWm"/>
+                                </connections>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pull to refresh" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ySh-64-dvg">
+                                <rect key="frame" x="12" y="40" width="151" height="21"/>
+                                <fontDescription key="fontDescription" name="Ailerons-Regular" family="Ailerons" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="dLr-ba-lIU" firstAttribute="leading" secondItem="grI-nf-agt" secondAttribute="leadingMargin" constant="180" id="4J2-bB-FTb"/>
+                            <constraint firstItem="ySh-64-dvg" firstAttribute="leading" secondItem="grI-nf-agt" secondAttribute="leading" constant="12" id="AoO-bS-7Mm"/>
                             <constraint firstAttribute="bottom" secondItem="MyD-iS-yd6" secondAttribute="bottom" id="Fxd-IK-Ybb"/>
+                            <constraint firstItem="ySh-64-dvg" firstAttribute="top" secondItem="S3n-Uy-Gmh" secondAttribute="bottom" constant="20" id="NM6-Ir-yVN"/>
+                            <constraint firstItem="dLr-ba-lIU" firstAttribute="top" secondItem="S3n-Uy-Gmh" secondAttribute="bottom" id="fCQ-n6-uiu"/>
                             <constraint firstAttribute="trailing" secondItem="d5w-e0-154" secondAttribute="trailing" id="g9S-q4-8tE"/>
                             <constraint firstItem="d5w-e0-154" firstAttribute="top" secondItem="S3n-Uy-Gmh" secondAttribute="bottom" id="nH2-Hg-CPn"/>
                             <constraint firstItem="EJf-q8-yp0" firstAttribute="top" secondItem="d5w-e0-154" secondAttribute="bottom" id="pep-T1-CS4"/>
@@ -127,6 +154,7 @@
                         <outlet property="UserImage3" destination="ju5-Pv-LJh" id="2tJ-PF-rFn"/>
                         <outlet property="UserImage4" destination="MgO-03-I80" id="e2h-0l-IIU"/>
                         <outlet property="cacheImage" destination="MyD-iS-yd6" id="Cvf-Qe-0t0"/>
+                        <outlet property="refreshLabe" destination="ySh-64-dvg" id="k0B-nT-0dl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XVM-6V-ZDI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -190,6 +218,11 @@
                         <action selector="onLongPressThaThinh:" destination="90z-SF-7AG" id="nJE-ns-DTv"/>
                     </connections>
                 </pongPressGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="bFb-er-Feh">
+                    <connections>
+                        <action selector="onRefreshPan:" destination="90z-SF-7AG" id="Y6X-s5-QRc"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-187.5" y="327.46478873239437"/>
         </scene>
@@ -198,6 +231,7 @@
         <image name="ThaThinh" width="558" height="200"/>
         <image name="hot-girl-han-quoc-xinh-dep-song-o-sai-gon-gay-sot" width="639" height="633"/>
         <image name="photo-36-1465292669338" width="650" height="649"/>
+        <image name="pull" width="512" height="512"/>
         <image name="tulinh" width="660" height="690"/>
         <image name="tulinh2_1" width="660" height="495"/>
     </resources>

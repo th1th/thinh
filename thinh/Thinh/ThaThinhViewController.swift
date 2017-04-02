@@ -28,6 +28,8 @@ class ThaThinhViewController: UIViewController {
 
     @IBOutlet weak var cacheImage: UIImageView!
     
+    @IBOutlet weak var refreshLabe: UILabel!
+    
     var images: [UIImageView]! = []
     var buttons: [UIButton]! = []
     var allUsers: [User]! = []
@@ -36,6 +38,8 @@ class ThaThinhViewController: UIViewController {
     var tracking = 0
     //For remove unlike user
     var UserImageOriginalCenter: CGPoint!
+    var RefreshImageCenter:CGPoint!
+    
 
     
     @IBAction func onClickGetDetail(_ sender: UITapGestureRecognizer) {
@@ -59,6 +63,40 @@ class ThaThinhViewController: UIViewController {
         view.addSubview(vc.view)
         vc.didMove(toParentViewController: self)
         
+    }
+    @IBAction func onRefreshPan(_ sender: UIPanGestureRecognizer) {
+        let point = sender.location(in: view)
+        let translation = sender.translation(in: view)
+        let velocity = sender.velocity(in: view)
+
+        self.view.bringSubview(toFront: sender.view!)
+        if sender.state == UIGestureRecognizerState.began {
+            print("refresh began at \(point)")
+            RefreshImageCenter = sender.view?.center
+        } else if sender.state == UIGestureRecognizerState.changed {
+            print("refresh changed at \(point)")
+            if translation.y < 40 {
+                sender.view?.center = CGPoint(x: RefreshImageCenter.x, y: RefreshImageCenter.y + translation.y)
+            }
+            
+        } else if sender.state == UIGestureRecognizerState.ended {
+            print("refresh ended at \(point)")
+            refreshLabe.alpha = 0
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 0.1, options: [], animations: {
+                sender.view?.center = self.RefreshImageCenter
+                self.allUsers.remove(at: (sender.view?.tag)!)
+                self.allUsers.remove(at: (sender.view?.tag)!)
+                self.allUsers.remove(at: (sender.view?.tag)!)
+                self.allUsers.remove(at: (sender.view?.tag)!)
+                if self.allUsers.count<4 {
+                    self.loadMoreUser()
+                }
+                self.refreshLabe.alpha = 1
+            }, completion: { (_) in
+                self.view.sendSubview(toBack: sender.view!)
+                self.reloadUserToShowUser()
+            })
+        }
     }
     
     @IBAction func onUserPan(_ sender: UIPanGestureRecognizer) {
@@ -91,10 +129,7 @@ class ThaThinhViewController: UIViewController {
                 button.isHidden = false
                 if velocity.x>0{
                     self.allUsers.remove(at: (sender.view?.tag)!)
-                    self.reloadUserToShowUser()
-                    if self.allUsers.count<4 {
-                        self.loadMoreUser()
-                    }                }
+                    self.reloadUserToShowUser()                }
             })
         }
     }

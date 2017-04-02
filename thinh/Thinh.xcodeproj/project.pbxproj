@@ -21,6 +21,10 @@
 		0555D5C11E82DE390058F9CD /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0555D5C01E82DE390058F9CD /* SettingViewController.swift */; };
 		056225281E8ABD6A00650511 /* ThaThinh.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 056225271E8ABD6A00650511 /* ThaThinh.storyboard */; };
 		0562252A1E8ABD7F00650511 /* ThaThinhViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056225291E8ABD7F00650511 /* ThaThinhViewController.swift */; };
+		057886BF1E911063000B818D /* Anders.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 057886BE1E911063000B818D /* Anders.ttf */; };
+		057886C11E91108F000B818D /* MODERNE SANS.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 057886C01E91108F000B818D /* MODERNE SANS.ttf */; };
+		057886C51E9117A5000B818D /* MANIFESTO.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 057886C41E9117A5000B818D /* MANIFESTO.ttf */; };
+		057886C71E911ADC000B818D /* Ailerons-Typeface.otf in Resources */ = {isa = PBXBuildFile; fileRef = 057886C61E911ADC000B818D /* Ailerons-Typeface.otf */; };
 		059BA13B1E900F350071D4A0 /* RecordVideo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 059BA13A1E900F350071D4A0 /* RecordVideo.storyboard */; };
 		059BA13D1E900F700071D4A0 /* RecordVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059BA13C1E900F700071D4A0 /* RecordVideoViewController.swift */; };
 		059BA13F1E90AC930071D4A0 /* PhotoCaptureDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059BA13E1E90AC930071D4A0 /* PhotoCaptureDelegate.swift */; };
@@ -67,6 +71,10 @@
 		0555D5C01E82DE390058F9CD /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		056225271E8ABD6A00650511 /* ThaThinh.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ThaThinh.storyboard; sourceTree = "<group>"; };
 		056225291E8ABD7F00650511 /* ThaThinhViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThaThinhViewController.swift; sourceTree = "<group>"; };
+		057886BE1E911063000B818D /* Anders.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Anders.ttf; sourceTree = "<group>"; };
+		057886C01E91108F000B818D /* MODERNE SANS.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MODERNE SANS.ttf"; sourceTree = "<group>"; };
+		057886C41E9117A5000B818D /* MANIFESTO.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MANIFESTO.ttf; sourceTree = "<group>"; };
+		057886C61E911ADC000B818D /* Ailerons-Typeface.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Ailerons-Typeface.otf"; path = "Thinh/Fonts/Ailerons-Typeface.otf"; sourceTree = "<group>"; };
 		059BA13A1E900F350071D4A0 /* RecordVideo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RecordVideo.storyboard; sourceTree = "<group>"; };
 		059BA13C1E900F700071D4A0 /* RecordVideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordVideoViewController.swift; sourceTree = "<group>"; };
 		059BA13E1E90AC930071D4A0 /* PhotoCaptureDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCaptureDelegate.swift; sourceTree = "<group>"; };
@@ -252,6 +260,10 @@
 		94C71EF41E7444E300D63A95 = {
 			isa = PBXGroup;
 			children = (
+				057886C61E911ADC000B818D /* Ailerons-Typeface.otf */,
+				057886BE1E911063000B818D /* Anders.ttf */,
+				057886C41E9117A5000B818D /* MANIFESTO.ttf */,
+				057886C01E91108F000B818D /* MODERNE SANS.ttf */,
 				94C71EFF1E7444E400D63A95 /* Thinh */,
 				94C71EFE1E7444E400D63A95 /* Products */,
 				B78E57204AFA4356146B95B2 /* Pods */,
@@ -360,10 +372,12 @@
 			files = (
 				051EBECD1E864BB6002BA6B7 /* PopupView.xib in Resources */,
 				153676111E891641007A2FB5 /* Chat.storyboard in Resources */,
+				057886BF1E911063000B818D /* Anders.ttf in Resources */,
 				94C71F0B1E7444E400D63A95 /* LaunchScreen.storyboard in Resources */,
 				05B03C8F1E82BFDA00106C08 /* UserDetail.storyboard in Resources */,
 				94C71F081E7444E400D63A95 /* Assets.xcassets in Resources */,
 				05F3777C1E881A2800B9890F /* ContactList.storyboard in Resources */,
+				057886C71E911ADC000B818D /* Ailerons-Typeface.otf in Resources */,
 				1534E6B11E82CA4400E62BAD /* Conversation.storyboard in Resources */,
 				05F8ACC01E85609F00A9B281 /* Fonts in Resources */,
 				055024151E7C331700175FED /* GoogleService-Info.plist in Resources */,
@@ -371,7 +385,9 @@
 				056225281E8ABD6A00650511 /* ThaThinh.storyboard in Resources */,
 				059BA13B1E900F350071D4A0 /* RecordVideo.storyboard in Resources */,
 				94C71F061E7444E400D63A95 /* Main.storyboard in Resources */,
+				057886C11E91108F000B818D /* MODERNE SANS.ttf in Resources */,
 				0555D5BF1E82DE1C0058F9CD /* Setting.storyboard in Resources */,
+				057886C51E9117A5000B818D /* MANIFESTO.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

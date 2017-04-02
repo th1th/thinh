@@ -87,45 +87,68 @@ class UserDetailViewController: UIViewController {
 
     
     func loadInfo() {
+        AvatarImage.alpha = 0
+        UserCaptionView.alpha = 0
+        InfoView.alpha = 0
+        
         sex = [#imageLiteral(resourceName: "male"),#imageLiteral(resourceName: "female"),#imageLiteral(resourceName: "biosex")]
         //UserBackgroundImage.setImageWith(URL(string: (user?.avatar)!)!)
         AvatarImage.setImageWith(URL(string: (user?.avatar)!)!)
         UserNameLabel.text = user?.name
-        UserCaptionLabel.text = user?.caption ?? "Tha Thinh me 😝"
+        if let caption = user?.caption {
+            UserCaptionLabel.text = caption
+            if UserCaptionLabel.text == "" {
+                UserCaptionLabel.text = user?.caption ?? "Tha Thinh me 😝"
+            }
+        }
+        user?.phone = user?.phone ?? "Secret 😉"
+        
         PhoneNumberLabel.text = "Phone: \(user!.phone!)"
-        GenderLabel.text =      "Gender:  \((user!.gender)!.rawValue)"
-        PreferLabel.text =      "Interested in: \((user!.prefer)!.rawValue)"
+        GenderLabel.text =      "\((user!.gender)!.rawValue)"
+        PreferLabel.text =      "\((user!.prefer)!.rawValue)"
         GenderImage.image = sex[(user?.gender?.hashValue)!]
         PreferImage.image = sex[(user?.prefer?.hashValue)!]
         
         UserBackgroundImage.image = #imageLiteral(resourceName: "Background")
         
-        
-        //
-//        UserBackgroundImage.layer.cornerRadius = AvatarImage.frame.height/2
-//        UserBackgroundImage.clipsToBounds = true
-//        UserBackgroundImage.layer.borderColor = UIColor( red: 255/255, green: 255/255, blue:255/255, alpha: 0.5).cgColor
-//        UserBackgroundImage.layer.borderWidth = 1.0
-        //
         AvatarImage.layer.cornerRadius = AvatarImage.frame.height/2
         AvatarImage.clipsToBounds = true
         AvatarImage.layer.borderColor = UIColor( red: 255/255, green: 255/255, blue:255/255, alpha: 0.5).cgColor
         AvatarImage.layer.borderWidth = 1.0
-        //
         
         
         UserCaptionView.clipsToBounds = true
         UserCaptionView.layer.cornerRadius = 8
         UserCaptionView.layer.borderColor = UIColor( red: 170/255, green: 254/255, blue:235/255, alpha: 0.5).cgColor
         UserCaptionView.layer.borderWidth = 1.0
-        UserCaptionView.backgroundColor = UIColor( red: 170/255, green: 254/255, blue:235/255, alpha: 0.5)
+        UserCaptionView.backgroundColor = UIColor( red: 166/255, green: 229/255, blue:217/255, alpha: 0.5)
         
         
         InfoView.clipsToBounds = true
         InfoView.layer.cornerRadius = 8
-                    InfoView.layer.borderColor = UIColor( red: 170/255, green: 254/255, blue:235/255, alpha: 0.5).cgColor
+        InfoView.layer.borderColor = UIColor( red: 170/255, green: 254/255, blue:235/255, alpha: 0.5).cgColor
         InfoView.layer.borderWidth = 1.0
-        InfoView.backgroundColor = UIColor( red: 170/255, green: 254/255, blue:235/255, alpha: 0.5)
+        InfoView.backgroundColor = UIColor( red: 201/255, green: 243/255, blue:222/255, alpha: 0.5)
+        //
+        UIView.transition(with: self.AvatarImage,
+                          duration: 0.3,
+                          options: .transitionCrossDissolve,
+                          animations: {
+                            self.AvatarImage.alpha = 1
+        }, completion: nil)
+        UIView.transition(with: self.UserCaptionView,
+                          duration: 0.7,
+                          options: .transitionCrossDissolve,
+                          animations: {
+                            self.UserCaptionView.alpha = 1
+        }, completion: nil)
+        UIView.transition(with: self.InfoView,
+                          duration: 0.7,
+                          options: .transitionCrossDissolve,
+                          animations: {
+                            self.InfoView.alpha = 1
+        }, completion: nil)
+        
 //        view.backgroundColor = UIColor( red: 122/255, green: 215/255, blue:253/255, alpha: 1)
 
     }
