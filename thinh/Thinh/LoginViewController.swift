@@ -31,6 +31,7 @@ class LoginViewController: UIViewController {
     
     //Action
     @IBAction func onClickedLoginButton(_ sender: UIButton) {
+
         loginViaFb()
     }
     

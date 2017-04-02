@@ -21,6 +21,10 @@
 		0555D5C11E82DE390058F9CD /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0555D5C01E82DE390058F9CD /* SettingViewController.swift */; };
 		056225281E8ABD6A00650511 /* ThaThinh.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 056225271E8ABD6A00650511 /* ThaThinh.storyboard */; };
 		0562252A1E8ABD7F00650511 /* ThaThinhViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056225291E8ABD7F00650511 /* ThaThinhViewController.swift */; };
+		059BA13B1E900F350071D4A0 /* RecordVideo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 059BA13A1E900F350071D4A0 /* RecordVideo.storyboard */; };
+		059BA13D1E900F700071D4A0 /* RecordVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059BA13C1E900F700071D4A0 /* RecordVideoViewController.swift */; };
+		059BA13F1E90AC930071D4A0 /* PhotoCaptureDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059BA13E1E90AC930071D4A0 /* PhotoCaptureDelegate.swift */; };
+		059BA1411E90ACEF0071D4A0 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059BA1401E90ACEF0071D4A0 /* PreviewView.swift */; };
 		05B03C8F1E82BFDA00106C08 /* UserDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05B03C8E1E82BFDA00106C08 /* UserDetail.storyboard */; };
 		05F3777C1E881A2800B9890F /* ContactList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05F3777B1E881A2800B9890F /* ContactList.storyboard */; };
 		05F3777E1E881A4000B9890F /* ContactListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F3777D1E881A4000B9890F /* ContactListViewController.swift */; };
@@ -63,6 +67,10 @@
 		0555D5C01E82DE390058F9CD /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		056225271E8ABD6A00650511 /* ThaThinh.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ThaThinh.storyboard; sourceTree = "<group>"; };
 		056225291E8ABD7F00650511 /* ThaThinhViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThaThinhViewController.swift; sourceTree = "<group>"; };
+		059BA13A1E900F350071D4A0 /* RecordVideo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RecordVideo.storyboard; sourceTree = "<group>"; };
+		059BA13C1E900F700071D4A0 /* RecordVideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordVideoViewController.swift; sourceTree = "<group>"; };
+		059BA13E1E90AC930071D4A0 /* PhotoCaptureDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCaptureDelegate.swift; sourceTree = "<group>"; };
+		059BA1401E90ACEF0071D4A0 /* PreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 		05B03C8E1E82BFDA00106C08 /* UserDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserDetail.storyboard; sourceTree = "<group>"; };
 		05F3777B1E881A2800B9890F /* ContactList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ContactList.storyboard; sourceTree = "<group>"; };
 		05F3777D1E881A4000B9890F /* ContactListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactListViewController.swift; sourceTree = "<group>"; };
@@ -133,6 +141,17 @@
 				056225291E8ABD7F00650511 /* ThaThinhViewController.swift */,
 			);
 			name = ThaThinh;
+			sourceTree = "<group>";
+		};
+		059BA1391E900F170071D4A0 /* RecordVideo */ = {
+			isa = PBXGroup;
+			children = (
+				059BA13A1E900F350071D4A0 /* RecordVideo.storyboard */,
+				059BA13C1E900F700071D4A0 /* RecordVideoViewController.swift */,
+				059BA1401E90ACEF0071D4A0 /* PreviewView.swift */,
+				059BA13E1E90AC930071D4A0 /* PhotoCaptureDelegate.swift */,
+			);
+			name = RecordVideo;
 			sourceTree = "<group>";
 		};
 		05F3777A1E881A0C00B9890F /* ContactList */ = {
@@ -214,6 +233,7 @@
 		948C1F331E7E3623000F20E5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				059BA1391E900F170071D4A0 /* RecordVideo */,
 				056225261E8ABD5600650511 /* ThaThinh */,
 				05F3777A1E881A0C00B9890F /* ContactList */,
 				05F8ACBE1E842CFA00A9B281 /* Setting */,
@@ -310,7 +330,7 @@
 				TargetAttributes = {
 					94C71EFC1E7444E300D63A95 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = A2S8X674GE;
+						DevelopmentTeam = 8D5SZ9A5H3;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -349,6 +369,7 @@
 				055024151E7C331700175FED /* GoogleService-Info.plist in Resources */,
 				0555D5BB1E82CB520058F9CD /* ThinhList.storyboard in Resources */,
 				056225281E8ABD6A00650511 /* ThaThinh.storyboard in Resources */,
+				059BA13B1E900F350071D4A0 /* RecordVideo.storyboard in Resources */,
 				94C71F061E7444E400D63A95 /* Main.storyboard in Resources */,
 				0555D5BF1E82DE1C0058F9CD /* Setting.storyboard in Resources */,
 			);
@@ -421,8 +442,11 @@
 				941469B91E7F542C00CB3732 /* Date_extension.swift in Sources */,
 				0555D5C11E82DE390058F9CD /* SettingViewController.swift in Sources */,
 				94C71F011E7444E400D63A95 /* AppDelegate.swift in Sources */,
+				059BA1411E90ACEF0071D4A0 /* PreviewView.swift in Sources */,
+				059BA13D1E900F700071D4A0 /* RecordVideoViewController.swift in Sources */,
 				9483C28A1E8956ED0092CECE /* Image.swift in Sources */,
 				0550242D1E7D278500175FED /* User.swift in Sources */,
+				059BA13F1E90AC930071D4A0 /* PhotoCaptureDelegate.swift in Sources */,
 				051EBED11E864F87002BA6B7 /* PopupView.swift in Sources */,
 				1536760F1E88EA6D007A2FB5 /* ChatViewController.swift in Sources */,
 				05F8ACC61E8583CE00A9B281 /* TabBarViewController.swift in Sources */,
@@ -559,7 +583,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = A2S8X674GE;
+				DEVELOPMENT_TEAM = 8D5SZ9A5H3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -567,7 +591,7 @@
 				INFOPLIST_FILE = Thinh/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.codee.Thinh;
+				PRODUCT_BUNDLE_IDENTIFIER = com.coderschool.Thinh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -580,7 +604,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = A2S8X674GE;
+				DEVELOPMENT_TEAM = 8D5SZ9A5H3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -588,7 +612,7 @@
 				INFOPLIST_FILE = Thinh/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.codee.Thinh;
+				PRODUCT_BUNDLE_IDENTIFIER = com.coderschool.Thinh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

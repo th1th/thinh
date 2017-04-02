@@ -18,16 +18,11 @@ class ContactListViewController: UIViewController {
 
     @IBOutlet weak var contactListTable: UITableView!
     
-//    @IBAction func onLongPressThaThinh(_ sender: UILongPressGestureRecognizer) {
-//        sender.numberOfTapsRequired = 1
-////        utilities.log(contactListTable.indexPath(for: UITableViewCell))
-//    }
-    
-
     var contactList = [User]()
     let refreshController = UIRefreshControl()
     var thathinhUser: User?
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -123,27 +118,40 @@ extension ContactListViewController: UITableViewDelegate, UITableViewDataSource 
         vc.didMove(toParentViewController: self)
 
     }
-    // Hides the RefreshControl
-//    func refreshControlAction(refreshController: UIRefreshControl) {
-//        self.refreshController.endRefreshing()
-//    }
+    
+    //Tha Thinh with image
+    func contactTableViewCellDelegate(user: User) {
+        takePhoto()
+        /*
+        if #available(iOS 10.0, *) {
+            
+            utilities.log(user)
+            thathinhUser = user
+            
+            let controller = UIStoryboard(name: "RecordVideo", bundle: nil).instantiateViewController(withIdentifier: "RecordVideoViewController")
+            self.present(controller, animated: true, completion: nil)
+            
+            
+        }else{
+            dismiss(animated: true, completion: {
+                utilities.log("only compatible with iOS 10 or above")
+            })
+        }*/
+    }
 }
 
 
 extension ContactListViewController:ContactTableViewCellDelegate,ImagePickerDelegate{
-    public func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
-        imagePicker.dismiss(animated: true, completion: nil)
-        let image = images[0]
-        Api.shared().thathinh((thathinhUser?.id)!, image: image)
-    }
-
-    func contactTableViewCellDelegate(user: User) {
-        utilities.log(user)
-        thathinhUser = user
+    func takePhoto()  {
         let picker = ImagePickerController()
         picker.delegate = self
         picker.imageLimit = 1
         present(picker, animated: true, completion:nil)
+    }
+    public func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
+        imagePicker.dismiss(animated: true, completion: nil)
+        let image = images[0]
+        Api.shared().thathinh((thathinhUser?.id)!, image: image)
     }
     func cancelButtonDidPress(_ imagePicker: ImagePickerController) {
         
