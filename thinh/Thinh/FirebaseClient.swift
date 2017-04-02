@@ -14,6 +14,8 @@ import FacebookCore
 import RxSwift
 import Gloss
 import FirebaseStorage
+import Kingfisher
+import SCRecorder
 
 class Api: NSObject {
     
@@ -64,6 +66,7 @@ class Api: NSObject {
 
     }
 
+    // TODO: get user info from facebook
     fileprivate func loginWithFacebook(accessToken: String) -> Observable<Bool> {
         return Observable<Bool>.create({ (obsever) -> Disposable in
             let credential = FIRFacebookAuthProvider.credential(withAccessToken: accessToken)
@@ -475,6 +478,10 @@ class Api: NSObject {
         })
     }
     
+    func thathinh(_ A: UserId, video: String) {
+            // TODO: implement
+    }
+    
     /*
      current user tha thinh user A with message
     */
@@ -567,6 +574,11 @@ class Api: NSObject {
             })
             return Disposables.create()
         })
+        
+    }
+    
+    fileprivate func uploadVideo(_ video: String) {
+        // TODO: upload video from file path
         
     }
     

@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>supportedFlashModes</key>
-	<string></string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>using microphone</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -65,6 +61,8 @@
 	<string>Select media</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Select camera</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>using microphone</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Select photo library</string>
 	<key>UIAppFonts</key>
@@ -100,5 +98,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>supportedFlashModes</key>
+	<string></string>
 </dict>
 </plist>
