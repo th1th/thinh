@@ -84,13 +84,19 @@ class ThaThinhViewController: UIViewController {
             refreshLabe.alpha = 0
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 0.1, options: [], animations: {
                 sender.view?.center = self.RefreshImageCenter
-                self.allUsers.remove(at: (sender.view?.tag)!)
-                self.allUsers.remove(at: (sender.view?.tag)!)
-                self.allUsers.remove(at: (sender.view?.tag)!)
-                self.allUsers.remove(at: (sender.view?.tag)!)
-                if self.allUsers.count<4 {
-                    self.loadMoreUser()
+                var numberOfShowedUser = 4
+                if self.allUsers.count<4{
+                    numberOfShowedUser = self.allUsers.count
                 }
+                if self.allUsers.count>0{
+                    for index in 0..<self.allUsers.count{
+                        self.allUsers.remove(at: (sender.view?.tag)!)
+                    }
+                }
+
+//                if self.allUsers.count<4 {
+//                    self.loadMoreUser()
+//                }
                 self.refreshLabe.alpha = 1
             }, completion: { (_) in
                 self.view.sendSubview(toBack: sender.view!)
@@ -144,9 +150,6 @@ class ThaThinhViewController: UIViewController {
         Api.shared().thathinh(allUsers[index].id!)
         allUsers.remove(at: index)
         reloadUserToShowUser()
-        if allUsers.count<4 {
-            loadMoreUser()
-        }
     }
 
     override func viewDidLoad() {
@@ -173,6 +176,7 @@ extension ThaThinhViewController{
     }
     func getUserFromServer() {
         allUsers = []
+        hideUnuseView()
         Api.shared().getMyStrangerList().subscribe(onNext: { (user) in
             self.allUsers.append(user)
             utilities.log("getUserFromServer--  get \(self.allUsers.count) users")
@@ -207,12 +211,18 @@ extension ThaThinhViewController{
         hideUnuseView()
     }
     func hideUnuseView() {
+        if allUsers.count<1 {
+            for index in 0..<4 {
+                images[index].isHidden = true
+                buttons[index].isHidden = true
+            }
+        }
         if allUsers.count<4 {
-            for index in 0..<allUsers.count-1 {
+            for index in 0..<allUsers.count {
                 images[index].isHidden = false
                 buttons[index].isHidden = false
             }
-            for index in (allUsers.count-1)..<4 {
+            for index in (allUsers.count)..<4 {
                 images[index].isHidden = true
                 buttons[index].isHidden = true
             }
@@ -224,9 +234,9 @@ extension ThaThinhViewController{
             }
         }
     }
-    func loadMoreUser() {
-        getUserFromServer()
-    }
+//    func loadMoreUser() {
+////        getUserFromServer()
+//    }
     
 }
 extension ThaThinhViewController{

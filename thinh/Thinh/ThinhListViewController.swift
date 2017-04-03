@@ -197,6 +197,9 @@ extension ThinhListViewController{
             images[index].isHidden = true
             acceptButtons[index].isHidden = true
             declineButtons[index].isHidden = true
+            images[index].image = nil
+            blurEffect(currentView: images[index])
+//            images[index].
         }
         for index in 0..<users.count {
             if index == 6 {
@@ -206,6 +209,13 @@ extension ThinhListViewController{
             acceptButtons[index].isHidden = false
             declineButtons[index].isHidden = false
         }
+    }
+    func blurEffect(currentView: UIView) {
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = currentView.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        currentView.addSubview(blurEffectView)
     }
 }
 
