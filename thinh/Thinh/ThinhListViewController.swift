@@ -82,7 +82,7 @@ class ThinhListViewController: UIViewController {
                 if buttonId == acceptButtonIDs[index] {
                     utilities.log("reloadThinhList----accept thinh from user: \(users[index].id!) -- tag=\(index)")
                     Api.shared().thathinh(users[index].id!)
-                    users = []
+                    users.remove(at: index)
                     //update view
                     updateImage(tag: index)
                     print("index \(index)")
@@ -98,7 +98,7 @@ class ThinhListViewController: UIViewController {
                     //Handle with FRB client
                     //.............waiting for function in client...  ~.~
                     Api.shared().dropThinh(users[index].id!)
-                    users = []
+                    users.remove(at: index)
                     //update view
                     updateImage(tag: index)
                     print(index)

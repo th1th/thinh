@@ -39,8 +39,16 @@ class AsyncPhotoMediaItem: JSQPhotoMediaItem {
             size: size,
             radius: 0
         )
+        let bubbleImageFactory = JSQMessagesBubbleImageFactory(bubble: UIImage.jsq_bubbleCompactTailless(), capInsets: UIEdgeInsets.zero)
         
-        JSQMessagesMediaViewBubbleImageMasker.applyBubbleImageMask(toMediaView: self.imgView, isOutgoing: self.appliesMediaViewMaskAsOutgoing)
+        if(isOperator){
+            JSQMessagesMediaViewBubbleImageMasker(bubbleImageFactory: bubbleImageFactory).applyOutgoingBubbleImageMask(toMediaView: self.imgView)
+        } else {
+            JSQMessagesMediaViewBubbleImageMasker(bubbleImageFactory: bubbleImageFactory).applyIncomingBubbleImageMask(toMediaView: self.imgView)
+        }
+        
+        
+        //JSQMessagesMediaViewBubbleImageMasker.applyBubbleImageMask(toMediaView: self.imgView, isOutgoing: self.appliesMediaViewMaskAsOutgoing)
         
         imgView.af_setImage(withURL: url as URL, filter: filter) { (response) in
             let image = response.result.value

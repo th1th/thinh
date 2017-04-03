@@ -30,7 +30,7 @@ class ContactListViewController: UIViewController {
         super.viewDidLoad()
         
         contactListTable.sectionHeaderHeight = 12
-        contactListTable.sectionIndexColor = UIColor(red: 217/255.0, green: 243/255.0, blue: 239/255.0, alpha: 1.0)
+        contactListTable.sectionIndexColor = UIColor.jsq_messageBubbleGreen()
         contactListTable.sectionIndexBackgroundColor = UIColor(white: 1, alpha: 0)
         
         
@@ -53,7 +53,7 @@ class ContactListViewController: UIViewController {
         contactListTable.dg_addPullToRefreshWithActionHandler({ 
             self.contactListTable.dg_stopLoading()
         }, loadingView: loadingView)
-        contactListTable.dg_setPullToRefreshFillColor(UIColor(red: 217/255.0, green: 243/255.0, blue: 239/255.0, alpha: 1.0))
+        contactListTable.dg_setPullToRefreshFillColor(UIColor(red: 225/255.0, green: 245/255.0, blue: 242/255.0, alpha: 1.0))
         contactListTable.dg_setPullToRefreshBackgroundColor(contactListTable.backgroundColor!)
 
         //Add refresh database
@@ -76,7 +76,18 @@ extension ContactListViewController{
             let userName = user.name
             let initialLetter = userName?.substring(to: (userName?.index(after: (userName?.startIndex)!))!).uppercased()
             var userArray = self.contactDict[initialLetter!] ?? [User]()
-            userArray.append(user)
+            
+            var isReplicated:Bool = false
+            for (index, element) in userArray.enumerated() {
+                if element.id == user.id {
+                    // Replace user
+                    isReplicated = true
+                    userArray[index] = user
+                }
+            }
+            if(!isReplicated){
+                userArray.append(user)
+            }
             self.contactDict[initialLetter!] = userArray
             
             self.sectionTitles = Array(self.contactDict.keys)
@@ -184,6 +195,7 @@ extension ContactListViewController: UITableViewDelegate, UITableViewDataSource 
         utilities.log(user)
         thathinhUser = user
 //        takePhoto()
+
         
         if #available(iOS 10.0, *) {
             let controller = UIStoryboard(name: "RecordVideo", bundle: nil).instantiateViewController(withIdentifier: "RecordVideoViewController")
