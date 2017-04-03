@@ -57,6 +57,7 @@ class SettingViewController: UIViewController {
     
     @IBAction func close(_ sender: UIButton) {
         hidePopupView()
+        Api.shared().createMockThinh(User.user14, User.user27, message: "abc")
     }
     @IBAction func signoutButton(_ sender: UIButton) {
         signOut()
@@ -77,12 +78,7 @@ class SettingViewController: UIViewController {
         loadingView.tintColor = UIColor(red: 78/255.0, green: 221/255.0, blue: 200/255.0, alpha: 1.0)
         ScrollView.dg_addPullToRefreshWithActionHandler({
             utilities.log(User.currentUser.id ?? "cannot get currentUser id")
-            Api.shared().getUser(id: User.currentUser.id!).subscribe(onNext: { (user) in
-                self.loadUser()
-            }, onError: { (error) in
-                utilities.log(error)
-            }, onCompleted: nil, onDisposed: nil)
-
+            self.loadUser()
             self.ScrollView.dg_stopLoading()
         }, loadingView: loadingView)
         ScrollView.dg_setPullToRefreshFillColor(UIColor(red: 217/255.0, green: 243/255.0, blue: 239/255.0, alpha: 1.0))
@@ -105,7 +101,7 @@ extension SettingViewController{
     func loadUser() {
         user = User.currentUser
         utilities.log("current user id: \(User.currentUser.id)")
-        Api.shared().getUser(id: User.currentUser.id!).subscribe(onNext: { (user) in
+        Api.shared().getCurrentUser().subscribe(onNext: { (user) in
             if let userID = user.id{
                 self.user = user
             }else{

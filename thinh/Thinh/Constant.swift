@@ -58,7 +58,7 @@ struct FirebaseKey {
     static let lastTime = "lastTime"
     static let lastMessage = "lastMessage"
     
-    static let botMessage = "Congra! Everyone shold love thinh"
+    static let botMessage = "Congra! Everyone should love thinh"
 }
 
 enum ThinhError: Error {

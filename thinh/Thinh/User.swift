@@ -64,6 +64,8 @@ class User: NSObject, Glossy {
         self.gender = Sex.unknown
         self.prefer = Sex.unknown
         self.caption = ""
+        self.status = true
+        self.phone = "unknow"
     }
     
     func withAvatar(_ avatar: String) -> User {

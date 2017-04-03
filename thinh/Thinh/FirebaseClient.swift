@@ -51,11 +51,13 @@ class Api: NSObject {
     }
     
     func userId() -> String? {
-        return FIRAuth.auth()?.currentUser?.uid   // me
+//        return FIRAuth.auth()?.currentUser?.uid   // me
 //        return "WR3OioP6R0UTPUoWItWyJX5g4p62" // Linh Le
 //        return "S5cirBWXUiOGnareVEEWbjaIJN02" // Harley
+//        return "VUoc532PABTXwHAc5ceaIAtem9D2" // Mark
+//        return "3JqA5vuaFhMbd8bS5Y82RSB9G092"   // Donald Trump
+        return "SyHSwBEV7zYR1FEzuqBTevOJVsH3"
     }
-   
 
     /*
      login with facebook
@@ -77,7 +79,11 @@ class Api: NSObject {
                     obsever.onNext(false)
                     return
                 }
-                self.createUser(user.uid, user: User(user: user))
+                self.isUserExist(user.uid).subscribe(onNext: { (exist) in
+                    if !exist {
+                        self.createUser(user.uid, user: User(user: user))
+                    }
+                })
             })
             return Disposables.create()
         })
@@ -103,6 +109,22 @@ class Api: NSObject {
             print ("Error signing out: %@", signOutError)
         }
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "didLogOut"), object: nil)
+    }
+    
+    /*
+     check if user login for first time
+    */
+    fileprivate func isUserExist(_ id: UserId) -> Observable<Bool> {
+        return Observable.create({ (subcriber) -> Disposable in
+            self.userDb.observeSingleEvent(of: .value, with: { (snapshot) in
+                if snapshot.hasChild(id) {
+                    subcriber.onNext(true)
+                } else {
+                    subcriber.onNext(false)
+                }
+            })
+            return Disposables.create()
+        })
     }
     
     /*
@@ -394,9 +416,9 @@ class Api: NSObject {
     /*
      get stranger related to me
     */
-    func getMyStrangerList() -> Observable<User> {
-        return getStrangerOf(userId()!)
-    }
+//    func getMyStrangerList() -> Observable<User> {
+//        return getStrangerOf(userId()!)
+//    }
     
     /*
      get stranger related to user id
@@ -689,7 +711,7 @@ extension Api {
         }
     }
     
-    private func createMockThinh(_ from: UserId, _ to: UserId, message: String?) {
+    func createMockThinh(_ from: UserId, _ to: UserId, message: String?) {
         var sms: Message? = nil
         if let message = message {
             sms = Message(from: from, to: to, message: message)

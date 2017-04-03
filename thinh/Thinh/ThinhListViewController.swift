@@ -186,7 +186,6 @@ extension ThinhListViewController{
             }
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 2, options: [], animations: {
                 self.images[tag].transform = CGAffineTransform(scaleX: 1, y: 1)
-                self.reloadThinhList()
             }, completion: {(result) in
                 self.acceptButtons[tag].alpha = 1
                 self.declineButtons[tag].alpha = 1
