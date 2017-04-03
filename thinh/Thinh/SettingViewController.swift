@@ -57,7 +57,7 @@ class SettingViewController: UIViewController {
     
     @IBAction func close(_ sender: UIButton) {
         hidePopupView()
-        Api.shared().createMockThinh(User.user14, User.user27, message: "abc")
+        Api.shared().createMockThinh(User.user14, User.user18, message: "abc")
     }
     @IBAction func signoutButton(_ sender: UIButton) {
         signOut()

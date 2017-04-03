@@ -51,12 +51,12 @@ class Api: NSObject {
     }
     
     func userId() -> String? {
-//        return FIRAuth.auth()?.currentUser?.uid   // me
+        return FIRAuth.auth()?.currentUser?.uid   // me
 //        return "WR3OioP6R0UTPUoWItWyJX5g4p62" // Linh Le
 //        return "S5cirBWXUiOGnareVEEWbjaIJN02" // Harley
 //        return "VUoc532PABTXwHAc5ceaIAtem9D2" // Mark
 //        return "3JqA5vuaFhMbd8bS5Y82RSB9G092"   // Donald Trump
-        return "SyHSwBEV7zYR1FEzuqBTevOJVsH3"
+//        return "SyHSwBEV7zYR1FEzuqBTevOJVsH3"
     }
 
     /*
@@ -644,16 +644,16 @@ extension Api {
                 let id = createMockConversation(user1: users[i].id!, user2: users[i+j+1].id!)
                 createMockMessage(user1: users[i].id!, user2: users[i+j+1].id!, id: id, j: j)
             }
-            if i != 11 {
-                // Every one tha thinh a Linh
-               createMockThinh(users[i].id!, users[11].id!, message: nil)
-                if (i != 23) {
-                    // a Linh tha thinh everyone except Dat, Dat - Linh is not friend
-                   createMockThinh(users[11].id!, users[i].id!, message: nil)
+            if i != 0 {
+                // Every one tha thinh a Viet
+               createMockThinh(users[i].id!, users[0].id!, message: nil)
+                if (i != 4) {
+                    // a Linh tha thinh every one
+                   createMockThinh(users[4].id!, users[i].id!, message: nil)
                 }
             }
             if i % 2 == 0 {
-                createMockThinh(users[i].id!, users[23].id!, message: "You are so talented")
+                createMockThinh(users[i].id!, users[17].id!, message: "You are so talented")
             }
         }
     
@@ -717,7 +717,6 @@ extension Api {
             sms = Message(from: from, to: to, message: message)
         }
         thathinh(A: to, B: from, message: sms)
-        
     }
     
     private func test() {
