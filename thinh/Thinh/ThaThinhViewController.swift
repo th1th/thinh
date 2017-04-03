@@ -173,7 +173,7 @@ extension ThaThinhViewController{
     }
     func getUserFromServer() {
         allUsers = []
-        Api.shared().getAllUser().subscribe(onNext: { (user) in
+        Api.shared().getMyStrangerList().subscribe(onNext: { (user) in
             self.allUsers.append(user)
             utilities.log("getUserFromServer--  get \(self.allUsers.count) users")
             self.reloadUserToShowUser()

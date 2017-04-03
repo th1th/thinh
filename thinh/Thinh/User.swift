@@ -156,10 +156,17 @@ class User: NSObject, Glossy {
     static let botId = "fuckTheBugs"
     
     // mock user data
-    static let user1 = "S5cirBWXUiOGnareVEEWbjaIJN02"
-    static let name1 = "Harley Trung"
-    static let avatar1 = "https://scontent.fsgn5-2.fna.fbcdn.net/v/t31.0-8/11703293_10100901374320434_2543083367635502905_o.jpg?oh=e7f649ba4b7bb4e8b3b009b2df670061&oe=5998B046"
-    static let desc1 = "i work on tech training & bilingual education. we're hiring at CoderSchool & Blue Sky Academy"
+    static let user20 = "S5cirBWXUiOGnareVEEWbjaIJN02"
+    static let name20 = "Harley Trung"
+    static let avatar20 = "https://scontent.fsgn5-2.fna.fbcdn.net/v/t31.0-8/11703293_10100901374320434_2543083367635502905_o.jpg?oh=e7f649ba4b7bb4e8b3b009b2df670061&oe=5998B046"
+    static let desc20 = "i work on tech training & bilingual education. we're hiring at CoderSchool & Blue Sky Academy"
+    static let sex20 = Sex.male
+    static let prefer20 = Sex.female
+    
+    static let user1 = "cdP7J0LNP2gUG3BeEq29N8JHDt72"
+    static let name1 = "Đặng Việt"
+    static let avatar1 = "https://scontent.fsgn5-2.fna.fbcdn.net/v/t31.0-8/1531951_472627046182268_1638135017_o.jpg?oh=ddb563e39d25f453b577a36a38ca514e&oe=59692A86"
+    static let desc1 = "Sống nội tâm, yêu màu tía"
     static let sex1 = Sex.male
     static let prefer1 = Sex.female
     
@@ -184,12 +191,19 @@ class User: NSObject, Glossy {
     static let sex4 = Sex.male
     static let prefer4 = Sex.female
     
-    static let user5 = "H1NHDr1QjlgwHUJJ5DS2B9E7hqf1"
-    static let avatar5 = "https://firebasestorage.googleapis.com/v0/b/thinh-43483.appspot.com/o/mock%2F7.jpg?alt=media&token=452ab287-8dca-41b0-a3dd-a74fb3301d95"
-    static let name5 = "Tử Yên"
+    static let user24 = "H1NHDr1QjlgwHUJJ5DS2B9E7hqf1"
+    static let avatar24 = "https://firebasestorage.googleapis.com/v0/b/thinh-43483.appspot.com/o/mock%2F7.jpg?alt=media&token=452ab287-8dca-41b0-a3dd-a74fb3301d95"
+    static let name24 = "Tử Yên"
+    static let desc24 = ""
+    static let sex24 = Sex.female
+    static let prefer24 = Sex.male
+    
+    static let user5 = "WR3OioP6R0UTPUoWItWyJX5g4p62"
+    static let name5 = "Linh Lê"
+    static let avatar5 = "https://scontent.fsgn5-2.fna.fbcdn.net/v/t31.0-8/13063139_634160786731295_2174880575869215799_o.jpg?oh=7d102fc8d13573b96800f5fd7ff3139a&oe=596E46C5"
     static let desc5 = ""
-    static let sex5 = Sex.female
-    static let prefer5 = Sex.male
+    static let sex5 = Sex.male
+    static let prefer5 = Sex.female
     
     static let user6 = "rsu1wVrOsDeBBlfriSkhMsW6sKm2"
     static let avatar6 = "https://scontent.fsgn5-2.fna.fbcdn.net/v/t1.0-9/15871854_1650346778598340_3128247238115573349_n.jpg?oh=a52b2910eab2941395a0f01eafd36ab1&oe=595CDE3B"
@@ -233,20 +247,12 @@ class User: NSObject, Glossy {
     static let sex11 = Sex.female
     static let prefer11 = Sex.male
     
-    
-    static let user24 = "WR3OioP6R0UTPUoWItWyJX5g4p62"
-    static let name24 = "Linh Lê"
-    static let avatar24 = "https://scontent.fsgn5-2.fna.fbcdn.net/v/t31.0-8/13063139_634160786731295_2174880575869215799_o.jpg?oh=7d102fc8d13573b96800f5fd7ff3139a&oe=596E46C5"
-    static let desc24 = ""
-    static let sex24 = Sex.male
-    static let prefer24 = Sex.female
-    
-    static let user12 = "WhEZVoiMDpTA4QkdI8dHCZFyG752"
-    static let name12 = "Đạt Trần"
-    static let avatar12 = "https://scontent.fsgn5-2.fna.fbcdn.net/v/t1.0-9/15622573_1085371901571808_5746077286281389946_n.jpg?oh=1e4ac7b38fb7b0cabba9b2e301ab9b23&oe=5999D42E"
-    static let desc12 = "Have nothing to say"
-    static let sex12 = Sex.male
-    static let prefer12 = Sex.female
+    static let user18 = "WhEZVoiMDpTA4QkdI8dHCZFyG752"
+    static let name18 = "Đạt Trần"
+    static let avatar18 = "https://scontent.fsgn5-2.fna.fbcdn.net/v/t1.0-9/15622573_1085371901571808_5746077286281389946_n.jpg?oh=1e4ac7b38fb7b0cabba9b2e301ab9b23&oe=5999D42E"
+    static let desc18 = "Have nothing to say"
+    static let sex18 = Sex.male
+    static let prefer18 = Sex.female
     
     static let user13 = "kAywm67rnKRrlSrTEuWe14ayVrv1"
     static let avatar13 = "https://firebasestorage.googleapis.com/v0/b/thinh-43483.appspot.com/o/mock%2F4.jpg?alt=media&token=7f444e1c-b2f4-4ee7-8b13-55714d56879a"
@@ -284,12 +290,12 @@ class User: NSObject, Glossy {
     static let sex17 = Sex.male
     static let prefer17 = Sex.female
     
-    static let user18 = "e6boIwD7rZfz8W9FDqlY41LXn993"
-    static let name18 = "Bill Gates"
-    static let avatar18 = "https://scontent.fsgn5-2.fna.fbcdn.net/v/t1.0-9/10322603_10152660298856961_5840658467777063124_n.jpg?oh=7897e5f2b21bc8409c3adee73fb27c95&oe=596206B8"
-    static let desc18 = "I will always choose a lazy person to do a difficult job, because he will find an easy way to do it"
-    static let sex18 = Sex.male
-    static let prefer18 = Sex.female
+    static let user12 = "e6boIwD7rZfz8W9FDqlY41LXn993"
+    static let name12 = "Bill Gates"
+    static let avatar12 = "https://scontent.fsgn5-2.fna.fbcdn.net/v/t1.0-9/10322603_10152660298856961_5840658467777063124_n.jpg?oh=7897e5f2b21bc8409c3adee73fb27c95&oe=596206B8"
+    static let desc12 = "I will always choose a lazy person to do a difficult job, because he will find an easy way to do it"
+    static let sex12 = Sex.male
+    static let prefer12 = Sex.female
     
     static let user19 = "jYfiiw29RSZoqohs2ApbYJpXoRv2"
     static let avatar19 = "http://dantri4.vcmedia.vn/WZKQ2cccccccccccckCc0AfnZ0zh4c/Image/2015/07/xb-c0629.jpg"
@@ -299,15 +305,6 @@ class User: NSObject, Glossy {
     static let prefer19 = Sex.female
     
     
-    
-    
-    
-    static let user20 = "cdP7J0LNP2gUG3BeEq29N8JHDt72"
-    static let name20 = "Đặng Việt"
-    static let avatar20 = "https://scontent.fsgn5-2.fna.fbcdn.net/v/t31.0-8/1531951_472627046182268_1638135017_o.jpg?oh=ddb563e39d25f453b577a36a38ca514e&oe=59692A86"
-    static let desc20 = "Sống nội tâm, yêu màu tía"
-    static let sex20 = Sex.male
-    static let prefer20 = Sex.female
     
 
     static let user21 = "CAnWZ9ADu6QGQ3IsVlKVntsTBiJ2"
