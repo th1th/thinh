@@ -14,8 +14,8 @@ import FacebookCore
 import RxSwift
 import Gloss
 import FirebaseStorage
-//import Kingfisher
 import SCRecorder
+import FBSDKCoreKit
 
 class Api: NSObject {
     
@@ -60,14 +60,12 @@ class Api: NSObject {
     /*
      login with facebook
     */
-
     func login(accessToken: String) -> Observable<Bool> {
-        return loginWithFacebook(accessToken: accessToken)
-
+        return loginWithFacebook(accessToken)
     }
 
     // TODO: get user info from facebook
-    fileprivate func loginWithFacebook(accessToken: String) -> Observable<Bool> {
+    fileprivate func loginWithFacebook(_ accessToken: String) -> Observable<Bool> {
         return Observable<Bool>.create({ (obsever) -> Disposable in
             let credential = FIRFacebookAuthProvider.credential(withAccessToken: accessToken)
             FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) in
@@ -84,6 +82,7 @@ class Api: NSObject {
             return Disposables.create()
         })
     }
+    
     
     /*
      check if has user logined
@@ -118,13 +117,20 @@ class Api: NSObject {
         }
     }
     
-    func createUser(_ id: UserId, user: User)  {
+    fileprivate func createUser(_ id: UserId, user: User)  {
         userDb.child(id).setValue(user.toJSON()) { (error, reference) in
             guard error == nil else {
                 print(error!.localizedDescription)
                 return
             }
         }
+    }
+    
+    /*
+     update user info
+    */
+    func updateUser(_ user: User) {
+        userDb.child(user.id!).updateChildValues(user.toJSON()!)
     }
     
     /*

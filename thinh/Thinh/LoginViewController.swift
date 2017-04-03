@@ -65,7 +65,11 @@ extension LoginViewController{
             }
             self.blurEffect()
         }
-        Api.shared().login(accessToken: accessToken)
+        Api.shared().login(accessToken: accessToken).subscribe(onNext: { (true) in
+            print("Login success")
+        }, onError: { (error) in
+            print("Login failed")
+        })
     }
 }
 

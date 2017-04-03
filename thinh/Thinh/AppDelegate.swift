@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let vc = storyboard.instantiateInitialViewController()
             self.window?.rootViewController = vc
         }
-//        Api.shared().createMockData()
+        Api.shared().createMockData()
 //        Api.shared().getMyStrangerList().subscribe(onNext: { (user) in
 //            print(user)
 //        })

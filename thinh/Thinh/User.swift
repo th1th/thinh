@@ -61,6 +61,9 @@ class User: NSObject, Glossy {
         self.avatar = user.photoURL?.absoluteString
         self.name = user.displayName
         self.id = user.uid
+        self.gender = Sex.unknown
+        self.prefer = Sex.unknown
+        self.caption = ""
     }
     
     func withAvatar(_ avatar: String) -> User {
@@ -89,13 +92,18 @@ class User: NSObject, Glossy {
         return self
     }
     
-    func withId(_ id: UserId) -> User {
-        self.id = id
-        return self
-    }
+//    func withId(_ id: UserId) -> User {
+//        self.id = id
+//        return self
+//    }
     
     func withStatus(_ status: Bool) -> User {
         self.status = status
+        return self
+    }
+    
+    func withCaption(_ caption: String) -> User {
+        self.caption = caption
         return self
     }
     
