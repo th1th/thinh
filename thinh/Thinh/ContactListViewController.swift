@@ -76,7 +76,18 @@ extension ContactListViewController{
             let userName = user.name
             let initialLetter = userName?.substring(to: (userName?.index(after: (userName?.startIndex)!))!).uppercased()
             var userArray = self.contactDict[initialLetter!] ?? [User]()
-            userArray.append(user)
+            
+            var isReplicated:Bool = false
+            for (index, element) in userArray.enumerated() {
+                if element.id == user.id {
+                    // Replace user
+                    isReplicated = true
+                    userArray[index] = user
+                }
+            }
+            if(!isReplicated){
+                userArray.append(user)
+            }
             self.contactDict[initialLetter!] = userArray
             
             self.sectionTitles = Array(self.contactDict.keys)
