@@ -211,6 +211,9 @@ extension ThaThinhViewController{
         hideUnuseView()
     }
     func hideUnuseView() {
+        for index in 0..<4 {
+            images[index].image = #imageLiteral(resourceName: "gray")
+        }
         if allUsers.count<1 {
             for index in 0..<4 {
                 images[index].isHidden = true
