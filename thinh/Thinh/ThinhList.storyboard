@@ -165,8 +165,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.33580207563725634" green="0.46573862604324806" blue="0.98617788461538458" alpha="1" colorSpace="calibratedRGB"/>
-                    </view>
+                        <color key="backgroundColor" red="0.90588235294117647" green="1" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>                    </view>
                     <navigationItem key="navigationItem" id="IWn-Kf-Pon">
                         <barButtonItem key="leftBarButtonItem" systemItem="done" id="5oe-Lh-0hj"/>
                     </navigationItem>

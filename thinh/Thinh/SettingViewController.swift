@@ -76,6 +76,13 @@ class SettingViewController: UIViewController {
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
         loadingView.tintColor = UIColor(red: 78/255.0, green: 221/255.0, blue: 200/255.0, alpha: 1.0)
         ScrollView.dg_addPullToRefreshWithActionHandler({
+            utilities.log(User.currentUser.id ?? "cannot get currentUser id")
+            Api.shared().getUser(id: User.currentUser.id!).subscribe(onNext: { (user) in
+                self.loadUser()
+            }, onError: { (error) in
+                utilities.log(error)
+            }, onCompleted: nil, onDisposed: nil)
+
             self.ScrollView.dg_stopLoading()
         }, loadingView: loadingView)
         ScrollView.dg_setPullToRefreshFillColor(UIColor(red: 57/255.0, green: 67/255.0, blue: 89/255.0, alpha: 1.0))
@@ -84,7 +91,6 @@ class SettingViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         loadUser()
-        loadInfo()
     }
 
     override func didReceiveMemoryWarning() {
@@ -98,6 +104,18 @@ extension SettingViewController{
     
     func loadUser() {
         user = User.currentUser
+        utilities.log("current user id: \(User.currentUser.id)")
+        Api.shared().getUser(id: User.currentUser.id!).subscribe(onNext: { (user) in
+            if let userID = user.id{
+                self.user = user
+            }else{
+                self.user = User.currentUser
+            }
+            self.loadInfo()
+        }, onError: { (error) in
+            utilities.log(error)
+        }, onCompleted: nil, onDisposed: nil)
+
     }
 
     func loadInfo() {
@@ -155,13 +173,13 @@ extension SettingViewController{
         }){ (result) in
             UIView.transition(with: self.UserCaptionView,
                               duration: 0.7,
-                              options: .transitionCurlDown,
+                              options: .transitionCrossDissolve,
                               animations: {
                                 self.UserCaptionView.alpha = 1
             }) { (result) in
                 UIView.transition(with: self.InfoView,
                                   duration: 0.7,
-                                  options: .transitionCurlDown,
+                                  options: .transitionCrossDissolve,
                                   animations: {
                                     self.InfoView.alpha = 1
                 }, completion: nil)

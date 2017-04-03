@@ -28,7 +28,7 @@ class TabBarViewController: UIViewController {
     //keep track of the tab button that is selected
     var selectedIndex: Int = 0
     //count number of new chats
-    var chatCount: Int = 7
+    var chatCount: Int = 0
     
     @IBAction func onClickTab(_ sender: UIButton) {
         //Get Access to the Previous and Current Tab Button.
