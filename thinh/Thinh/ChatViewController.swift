@@ -19,6 +19,10 @@ class ChatViewController: JSQMessagesViewController {
     lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
     lazy var incomingBubbleImageView: JSQMessagesBubbleImage = self.setupIncomingBubble()
     
+    var senderImage = UIImage()
+    var botImage = UIImage()
+    var partnerImage = UIImage()
+    
     var conversation:Conversation?
     
     var senderAvatar:URL?
@@ -44,6 +48,27 @@ class ChatViewController: JSQMessagesViewController {
         }
     }
     
+    func loadAvatarImage(){
+        let SenderImageView = UIImageView()
+        let BotImageView = UIImageView()
+        let PartnerImageView = UIImageView()
+        
+        SenderImageView.af_setImage(withURL: self.senderAvatar!) { (reponse) in
+            self.senderImage = reponse.result.value!
+            self.collectionView.reloadData()
+        }
+    
+        BotImageView.af_setImage(withURL: URL(string: User.botAvatar)!) { (response) in
+            self.botImage = response.result.value!
+            self.collectionView.reloadData()
+        }
+        
+        PartnerImageView.af_setImage(withURL: (self.conversation?.partnerAvatar)!) { (reponse) in
+            self.partnerImage = reponse.result.value!
+            self.collectionView.reloadData()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -54,7 +79,15 @@ class ChatViewController: JSQMessagesViewController {
         self.senderAvatar = URL(string: (self.current_user?.avatar)!)
         self.senderId = self.current_user?.id
         
-        self.title = conversation?.partnerName
+        let button =  UIButton(type: .custom)
+        button.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
+        button.backgroundColor = UIColor(red: 217/255.0, green: 243/255.0, blue: 239/255.0, alpha: 1.0)
+        button.setTitleColor(UIColor.black, for: .normal)
+        button.setTitle(conversation?.partnerName, for: .normal)
+        button.addTarget(self, action: #selector(self.clickOnTitle), for: .touchUpInside)
+        self.navigationItem.titleView = button
+        
+        
         
         self.automaticallyScrollsToMostRecentMessage = true
         //self.inputToolbar.contentView.textView.becomeFirstResponder()
@@ -63,6 +96,8 @@ class ChatViewController: JSQMessagesViewController {
         
         collectionView?.collectionViewLayout.incomingAvatarViewSize = CGSize(width: kJSQMessagesCollectionViewAvatarSizeDefault, height:kJSQMessagesCollectionViewAvatarSizeDefault )
         collectionView?.collectionViewLayout.outgoingAvatarViewSize = CGSize(width: kJSQMessagesCollectionViewAvatarSizeDefault, height:kJSQMessagesCollectionViewAvatarSizeDefault )
+        
+        collectionView.collectionViewLayout.messageBubbleFont = UIFont(name: "HelveticaNeue-Light", size: 17)
         
         
         let imgBackground:UIImageView = UIImageView(frame: self.view.bounds)
@@ -73,7 +108,7 @@ class ChatViewController: JSQMessagesViewController {
         self.collectionView?.backgroundView = imgBackground
         
         self.navigationController?.navigationBar.tintColor = UIColor(red: 78/255.0, green: 221/255.0, blue: 200/255.0, alpha: 1.0)
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 57/255.0, green: 67/255.0, blue: 89/255.0, alpha: 1.0)
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 217/255.0, green: 243/255.0, blue: 239/255.0, alpha: 1.0)
 
         observeMessages()
         
@@ -85,6 +120,8 @@ class ChatViewController: JSQMessagesViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+        loadAvatarImage()
+        self.scrollToBottom(animated: true)
         //self.inputToolbar.contentView.textView.becomeFirstResponder()
     }
     
@@ -134,7 +171,7 @@ class ChatViewController: JSQMessagesViewController {
             } else if( message.from == self.conversation?.partnerID) {
                 message_sender_name = self.conversation?.partnerName
             } else {
-                message_sender_name = "CoderSchool.vn"
+                message_sender_name = ""
             }
             
             // handle media message here
@@ -165,30 +202,14 @@ class ChatViewController: JSQMessagesViewController {
         
         
         var imageDataSource:JSQMessageAvatarImageDataSource?
-        let ImageView = UIImageView()
         
         if(message.senderId == self.current_user?.id){
-            ImageView.setImageWith(URLRequest(url: self.senderAvatar!), placeholderImage: nil, success: { (_, _, image) in
-                imageDataSource = JSQMessagesAvatarImageFactory.avatarImage(with: image, diameter: 30)
-            }) { (_, _, error) in
-                
-            }
+            imageDataSource = JSQMessagesAvatarImageFactory.avatarImage(with: self.senderImage, diameter: 30)
         } else if (message.senderId == self.conversation?.partnerID){
-            // Handler partner image
-            ImageView.setImageWith(URLRequest(url: (conversation?.partnerAvatar)!), placeholderImage: nil, success: { (_, _, image) in
-                imageDataSource = JSQMessagesAvatarImageFactory.avatarImage(with: image, diameter: 30)
-            }) { (_, _, error) in
-                
-            }
+            imageDataSource = JSQMessagesAvatarImageFactory.avatarImage(with: self.partnerImage, diameter: 30)
             
         } else {
-            // Handle Bot message
-            ImageView.setImageWith(URLRequest(url: URL(string: User.botAvatar)!), placeholderImage: nil, success: { (_, _, image) in
-                imageDataSource = JSQMessagesAvatarImageFactory.avatarImage(with: image, diameter: 30)
-            }) { (_, _, error) in
-                
-            }
-            
+            imageDataSource = JSQMessagesAvatarImageFactory.avatarImage(with: self.botImage, diameter: 30)
         }
         
         return imageDataSource
@@ -252,7 +273,7 @@ class ChatViewController: JSQMessagesViewController {
         
         let currentMessage = self.messages[indexPath.item]
         
-        if currentMessage.senderId == self.senderId {
+        if currentMessage.senderId != self.conversation?.partnerID {
             return 0.0
         }
         
@@ -268,20 +289,29 @@ class ChatViewController: JSQMessagesViewController {
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView, attributedTextForCellTopLabelAt indexPath: IndexPath) -> NSAttributedString? {
 
-//        if (indexPath.item % 3 == 0) {
-//            let message = self.messages[indexPath.item]
-//            
-//            return JSQMessagesTimestampFormatter.shared().attributedTimestamp(for: message.date)
-//        }
+        if (self.messages[indexPath.item].senderId != current_user?.id && self.messages[indexPath.item].senderId != conversation?.partnerID){
+            let text = "You guys are matched !"
+            let attribs = [
+                NSFontAttributeName: UIFont.boldSystemFont(ofSize: 18),
+                NSForegroundColorAttributeName: UIColor.lightGray
+                ] as [String : Any]
+            
+            return NSAttributedString(string: text, attributes: attribs)
+        } else {
+            return nil
+        }
         
-        return nil
+        
+        
     }
     override func collectionView(_ collectionView: JSQMessagesCollectionView, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout, heightForCellTopLabelAt indexPath: IndexPath) -> CGFloat {
-//        if indexPath.item % 3 == 0 {
-//            return kJSQMessagesCollectionViewCellLabelHeightDefault
-//        }
+        if (self.messages[indexPath.item].senderId != current_user?.id && self.messages[indexPath.item].senderId != conversation?.partnerID){
+            return kJSQMessagesCollectionViewCellLabelHeightDefault + 5
+        } else {
+            return 0.0
+        }
         
-        return 0.0
+
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, didTapMessageBubbleAt indexPath: IndexPath!) {
@@ -333,6 +363,10 @@ class ChatViewController: JSQMessagesViewController {
         super.textViewDidChange(textView)
         // If the text is not empty, the user is typing
         isTyping = textView.text != ""
+    }
+    
+    func clickOnTitle(button: UIButton) {
+        performSegue(withIdentifier: "UserDetail", sender: self)
     }
 
     

@@ -22,9 +22,18 @@ class ContactListViewController: UIViewController {
     let refreshController = UIRefreshControl()
     var thathinhUser: User?
     
+    var contactDict = [String:[User]]()
+    var sectionTitles = [String]()
+    let indexTitles = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        contactListTable.sectionHeaderHeight = 12
+        contactListTable.sectionIndexColor = UIColor(red: 217/255.0, green: 243/255.0, blue: 239/255.0, alpha: 1.0)
+        contactListTable.sectionIndexBackgroundColor = UIColor(white: 1, alpha: 0)
+        
+        
         
         contactListTable.delegate = self
         contactListTable.dataSource = self
@@ -44,7 +53,7 @@ class ContactListViewController: UIViewController {
         contactListTable.dg_addPullToRefreshWithActionHandler({ 
             self.contactListTable.dg_stopLoading()
         }, loadingView: loadingView)
-        contactListTable.dg_setPullToRefreshFillColor(UIColor(red: 57/255.0, green: 67/255.0, blue: 89/255.0, alpha: 1.0))
+        contactListTable.dg_setPullToRefreshFillColor(UIColor(red: 217/255.0, green: 243/255.0, blue: 239/255.0, alpha: 1.0))
         contactListTable.dg_setPullToRefreshBackgroundColor(contactListTable.backgroundColor!)
 
         //Add refresh database
@@ -62,8 +71,18 @@ class ContactListViewController: UIViewController {
 }
 extension ContactListViewController{
     func loadContactList() {
-        Api.shared().getMyFriendList().subscribe(onNext: { (User) in
-            self.contactList.append(User)
+        Api.shared().getMyFriendList().subscribe(onNext: { (user) in
+            
+            let userName = user.name
+            let initialLetter = userName?.substring(to: (userName?.index(after: (userName?.startIndex)!))!).uppercased()
+            var userArray = self.contactDict[initialLetter!] ?? [User]()
+            userArray.append(user)
+            self.contactDict[initialLetter!] = userArray
+            
+            self.sectionTitles = Array(self.contactDict.keys)
+            self.sectionTitles = self.sectionTitles.sorted { $0.localizedCaseInsensitiveCompare($1) == ComparisonResult.orderedAscending }
+            
+//            self.contactList.append(user)
             self.contactListTable.reloadData()
         }, onError: { (Error) in
             print(Error.localizedDescription)
@@ -72,17 +91,33 @@ extension ContactListViewController{
 }
 
 extension ContactListViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return self.sectionTitles.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.sectionTitles[section]
+    }
+    
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = contactListTable.dequeueReusableCell(withIdentifier: "contactTableViewCell") as! ContactTableViewCell
-        let user = contactList[indexPath.row]
+        
+        let sectionTitle = self.sectionTitles[indexPath.section]
+        let userArray = self.contactDict[sectionTitle]
+        
+        let user = userArray?[indexPath.row]
+//        let user = contactList[indexPath.row]
         var statusImage = #imageLiteral(resourceName: "offline")
         
-        cell.avatarImage.setImageWith(URL(string: user.avatar!)!, placeholderImage: nil)
-        cell.nameLabel.text = user.name
-        cell.captionLabel.text = user.caption
+        cell.avatarImage.image = nil
+        cell.avatarImage.setImageWith(URL(string: (user?.avatar!)!)!, placeholderImage: nil)
+        cell.nameLabel.text = user?.name
+        cell.captionLabel.text = user?.caption
         
         
-        if user.status == true {
+        if user?.status == true {
             statusImage = #imageLiteral(resourceName: "online")
         }
         cell.statusImage.image = statusImage
@@ -96,12 +131,36 @@ extension ContactListViewController: UITableViewDelegate, UITableViewDataSource 
         return cell
     }
     
+    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        return self.indexTitles
+    }
+    
+    func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
+        return self.sectionTitles.index(of: title) ?? NSNotFound
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let headerView = view as? UITableViewHeaderFooterView {
+            headerView.textLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 10)
+
+            headerView.textLabel?.textColor = UIColor.gray
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return contactList.count
+//        return contactList.count
+        
+        let sectionTitle = self.sectionTitles[section]
+        let userArray = self.contactDict[sectionTitle]
+        return userArray!.count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let user = contactList[(indexPath.row)]
+        //let user = contactList[(indexPath.row)]
+        let sectionTitle = self.sectionTitles[indexPath.section]
+        let userArray = self.contactDict[sectionTitle]
+        let user = userArray?[indexPath.row]
+        
         tableView.deselectRow(at: indexPath, animated: true)
         //Remove the ThinhListViewController
         let previousVC = UIStoryboard(name: "ContactList", bundle: nil).instantiateViewController(withIdentifier: "ContactListViewController")

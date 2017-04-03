@@ -47,7 +47,7 @@ class ConversationViewController: UIViewController {
             }, onDisposed: nil)
         
             }, loadingView: loadingView)
-        conversationTable.dg_setPullToRefreshFillColor(UIColor(red: 57/255.0, green: 67/255.0, blue: 89/255.0, alpha: 1.0))
+        conversationTable.dg_setPullToRefreshFillColor(UIColor(red: 217/255.0, green: 243/255.0, blue: 239/255.0, alpha: 1.0))
         conversationTable.dg_setPullToRefreshBackgroundColor(conversationTable.backgroundColor!)
         
         let disposable = Api.shared().getAllConversation().subscribe(onNext: { conversations in

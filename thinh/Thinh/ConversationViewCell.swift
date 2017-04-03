@@ -26,6 +26,7 @@ class ConversationViewCell: UITableViewCell {
             lastMessageLabel.text = ""
             timeLabel.text = ""
             thinhImg.image = nil
+            statusImage.image = nil
             
             if conversation?.partnerAvatar != nil {
                 partnerImg.setImageWith(URLRequest(url: (conversation?.partnerAvatar)!), placeholderImage: nil, success: { (_, _, image) in

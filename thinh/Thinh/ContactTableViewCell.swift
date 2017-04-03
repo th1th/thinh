@@ -48,7 +48,7 @@ class ContactTableViewCell: UITableViewCell,AVCapturePhotoCaptureDelegate, UIIma
         // Initialization code
         statusImage.layer.cornerRadius = statusImage.frame.height/2
         statusImage.layer.borderColor = UIColor( red: 255/255, green: 255/255, blue:255/255, alpha: 1).cgColor
-        statusImage.layer.borderWidth = 1.0
+        statusImage.layer.borderWidth = 2.0
 
         let tapGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.tapEdit(sender:)))
         addGestureRecognizer(tapGesture)

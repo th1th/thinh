@@ -85,7 +85,7 @@ class SettingViewController: UIViewController {
 
             self.ScrollView.dg_stopLoading()
         }, loadingView: loadingView)
-        ScrollView.dg_setPullToRefreshFillColor(UIColor(red: 57/255.0, green: 67/255.0, blue: 89/255.0, alpha: 1.0))
+        ScrollView.dg_setPullToRefreshFillColor(UIColor(red: 217/255.0, green: 243/255.0, blue: 239/255.0, alpha: 1.0))
         //ScrollView.dg_setPullToRefreshBackgroundColor(ScrollView.backgroundColor!)
 
 
