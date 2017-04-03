@@ -416,9 +416,9 @@ class Api: NSObject {
     /*
      get stranger related to me
     */
-//    func getMyStrangerList() -> Observable<User> {
-//        return getStrangerOf(userId()!)
-//    }
+    func getMyStrangerList() -> Observable<User> {
+        return getStrangerOf(userId()!)
+    }
     
     /*
      get stranger related to user id
