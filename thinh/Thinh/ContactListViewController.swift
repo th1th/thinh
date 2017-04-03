@@ -53,7 +53,7 @@ class ContactListViewController: UIViewController {
         contactListTable.dg_addPullToRefreshWithActionHandler({ 
             self.contactListTable.dg_stopLoading()
         }, loadingView: loadingView)
-        contactListTable.dg_setPullToRefreshFillColor(UIColor(red: 217/255.0, green: 243/255.0, blue: 239/255.0, alpha: 1.0))
+        contactListTable.dg_setPullToRefreshFillColor(UIColor(red: 225/255.0, green: 245/255.0, blue: 242/255.0, alpha: 1.0))
         contactListTable.dg_setPullToRefreshBackgroundColor(contactListTable.backgroundColor!)
 
         //Add refresh database
@@ -194,8 +194,8 @@ extension ContactListViewController: UITableViewDelegate, UITableViewDataSource 
         
         utilities.log(user)
         thathinhUser = user
-        takePhoto()
-        /*
+        //takePhoto()
+        
         if #available(iOS 10.0, *) {
          
             
@@ -207,7 +207,7 @@ extension ContactListViewController: UITableViewDelegate, UITableViewDataSource 
             dismiss(animated: true, completion: {
                 utilities.log("only compatible with iOS 10 or above")
             })
-        }*/
+        }
     }
 }
 

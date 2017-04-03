@@ -82,7 +82,7 @@ class ThinhListViewController: UIViewController {
                 if buttonId == acceptButtonIDs[index] {
                     utilities.log("reloadThinhList----accept thinh from user: \(users[index].id!) -- tag=\(index)")
                     Api.shared().thathinh(users[index].id!)
-                    users = []
+                    users.remove(at: index)
                     //update view
                     updateImage(tag: index)
                     print("index \(index)")
@@ -98,7 +98,7 @@ class ThinhListViewController: UIViewController {
                     //Handle with FRB client
                     //.............waiting for function in client...  ~.~
                     Api.shared().dropThinh(users[index].id!)
-                    users = []
+                    users.remove(at: index)
                     //update view
                     updateImage(tag: index)
                     print(index)
@@ -118,9 +118,9 @@ class ThinhListViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     override func viewDidAppear(_ animated: Bool) {
-        if users.count == 0 {
-            initView()
-        }
+//        if users.count == 0 {
+//            initView()
+//        }
     }
 
 
@@ -192,7 +192,6 @@ extension ThinhListViewController{
             }
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 2, options: [], animations: {
                 self.images[tag].transform = CGAffineTransform(scaleX: 1, y: 1)
-                self.reloadThinhList()
             }, completion: {(result) in
                 self.acceptButtons[tag].alpha = 1
                 self.declineButtons[tag].alpha = 1
