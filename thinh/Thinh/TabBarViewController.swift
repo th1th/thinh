@@ -65,7 +65,8 @@ class TabBarViewController: UIViewController {
         homeViewController = UIStoryboard(name: "ContactList", bundle: nil).instantiateViewController(withIdentifier: "ContactListViewController")
         
         
-        conversationViewController = UIStoryboard(name: "Conversation", bundle: nil).instantiateViewController(withIdentifier: "ConversationViewController")
+        //conversationViewController = UIStoryboard(name: "Conversation", bundle: nil).instantiateViewController(withIdentifier: "ConversationViewController")
+        conversationViewController = UIStoryboard(name: "Conversation", bundle: nil).instantiateViewController(withIdentifier: "Conversation") as! UINavigationController
         
         
         thaThinhViewController = UIStoryboard(name: "ThaThinh", bundle: nil).instantiateViewController(withIdentifier: "ThaThinhViewController")

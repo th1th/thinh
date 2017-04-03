@@ -21,6 +21,18 @@ class ConversationViewController: UIViewController {
         conversationTable.delegate = self
         conversationTable.dataSource = self
         
+        self.automaticallyAdjustsScrollViewInsets = false
+        
+        // Add search bar to navigation bar
+        let searchBar = UISearchBar()
+        searchBar.sizeToFit()
+        
+        // Customize navigation controller
+        self.navigationController?.navigationBar.tintColor = UIColor(red: 78/255.0, green: 221/255.0, blue: 200/255.0, alpha: 1.0)
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 217/255.0, green: 243/255.0, blue: 239/255.0, alpha: 1.0)
+        
+        navigationItem.titleView = searchBar
+        
         conversationTable.emptyDataSetSource = self
         conversationTable.emptyDataSetDelegate = self
         

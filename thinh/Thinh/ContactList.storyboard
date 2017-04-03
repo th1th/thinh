@@ -44,7 +44,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xrA-5l-dCh">
-                                                    <rect key="frame" x="66" y="8" width="48" height="21"/>
+                                                    <rect key="frame" x="66" y="12.5" width="48" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="dAM-hU-mx6"/>
                                                     </constraints>
@@ -52,11 +52,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Caption" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="suY-OV-fhC">
-                                                    <rect key="frame" x="66" y="29" width="49" height="20"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="20" id="Iof-L1-IIN"/>
-                                                    </constraints>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Caption" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="suY-OV-fhC">
+                                                    <rect key="frame" x="66" y="41.5" width="246" height="19.5"/>
                                                     <fontDescription key="fontDescription" name="OpenSans-Italic" family="Open Sans" pointSize="14"/>
                                                     <color key="textColor" red="0.74525240384615388" green="0.74525240384615388" blue="0.74525240384615388" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -82,18 +79,19 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="0kb-fG-V9o" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="suY-OV-fhC" secondAttribute="trailing" constant="8" id="1dA-89-nKn"/>
                                                 <constraint firstItem="0kb-fG-V9o" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xrA-5l-dCh" secondAttribute="trailing" constant="8" id="6Z7-Vj-hno"/>
                                                 <constraint firstItem="wR4-rR-YhX" firstAttribute="leading" secondItem="Hhg-Ml-oW6" secondAttribute="leading" constant="8" id="8cQ-J2-5RO"/>
+                                                <constraint firstAttribute="trailing" secondItem="suY-OV-fhC" secondAttribute="trailing" constant="8" id="AgF-ll-KLR"/>
                                                 <constraint firstItem="wR4-rR-YhX" firstAttribute="top" secondItem="Hhg-Ml-oW6" secondAttribute="top" constant="8" id="D2A-IW-Z1N"/>
-                                                <constraint firstItem="xrA-5l-dCh" firstAttribute="top" secondItem="wR4-rR-YhX" secondAttribute="top" id="K4N-0H-f6h"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="suY-OV-fhC" secondAttribute="bottom" constant="8" id="INI-VB-8ac"/>
                                                 <constraint firstItem="suY-OV-fhC" firstAttribute="leading" secondItem="wR4-rR-YhX" secondAttribute="trailing" constant="8" id="PUJ-Dx-q5u"/>
                                                 <constraint firstItem="0kb-fG-V9o" firstAttribute="top" secondItem="Hhg-Ml-oW6" secondAttribute="top" constant="8" id="Q7Y-mr-cSQ"/>
                                                 <constraint firstItem="xrA-5l-dCh" firstAttribute="leading" secondItem="wR4-rR-YhX" secondAttribute="trailing" constant="8" id="Yuy-VF-vdB"/>
+                                                <constraint firstItem="xrA-5l-dCh" firstAttribute="centerY" secondItem="0kb-fG-V9o" secondAttribute="centerY" id="bSN-88-St5"/>
                                                 <constraint firstAttribute="trailing" secondItem="0kb-fG-V9o" secondAttribute="trailing" constant="8" id="fAm-ml-EBO"/>
                                                 <constraint firstItem="ocC-qu-Okf" firstAttribute="bottom" secondItem="wR4-rR-YhX" secondAttribute="bottom" constant="-3" id="jmk-2V-0tb"/>
                                                 <constraint firstItem="ocC-qu-Okf" firstAttribute="trailing" secondItem="wR4-rR-YhX" secondAttribute="trailing" constant="-3" id="qEh-2H-1BJ"/>
-                                                <constraint firstItem="suY-OV-fhC" firstAttribute="top" secondItem="xrA-5l-dCh" secondAttribute="bottom" id="saH-Dc-gjC"/>
+                                                <constraint firstItem="suY-OV-fhC" firstAttribute="top" secondItem="xrA-5l-dCh" secondAttribute="bottom" constant="8" id="saH-Dc-gjC"/>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="wR4-rR-YhX" secondAttribute="bottom" constant="8" id="utV-YS-G5r"/>
                                             </constraints>
                                         </tableViewCellContentView>

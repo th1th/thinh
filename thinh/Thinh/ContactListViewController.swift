@@ -30,7 +30,7 @@ class ContactListViewController: UIViewController {
         super.viewDidLoad()
         
         contactListTable.sectionHeaderHeight = 12
-        contactListTable.sectionIndexColor = UIColor(red: 217/255.0, green: 243/255.0, blue: 239/255.0, alpha: 1.0)
+        contactListTable.sectionIndexColor = UIColor.jsq_messageBubbleGreen()
         contactListTable.sectionIndexBackgroundColor = UIColor(white: 1, alpha: 0)
         
         
