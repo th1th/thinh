@@ -200,7 +200,7 @@ extension ThinhListViewController{
             images[index].isHidden = true
             acceptButtons[index].isHidden = true
             declineButtons[index].isHidden = true
-            images[index].image = nil
+            //images[index].image = nil
 //            blurEffect(currentView: images[index])
             
         }
