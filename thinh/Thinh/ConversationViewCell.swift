@@ -25,7 +25,6 @@ class ConversationViewCell: UITableViewCell {
             nameLabel.text = ""
             lastMessageLabel.text = ""
             timeLabel.text = ""
-            thinhImg.image = nil
             statusImage.image = nil
             
             if conversation?.partnerAvatar != nil {

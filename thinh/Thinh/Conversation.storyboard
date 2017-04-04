@@ -40,13 +40,13 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Partner Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FXZ-A9-Rzg">
-                                                    <rect key="frame" x="66" y="8" width="101.5" height="18"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                    <rect key="frame" x="66" y="8" width="97" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Last Message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eHd-SO-SA9">
-                                                    <rect key="frame" x="66" y="30" width="84" height="16"/>
+                                                    <rect key="frame" x="66" y="30" width="246" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -57,13 +57,6 @@
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Nyk-h2-XaX">
-                                                    <rect key="frame" x="282" y="33.5" width="30" height="30"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="eBX-Fz-jKQ"/>
-                                                        <constraint firstAttribute="width" constant="30" id="k50-Ri-Ze7"/>
-                                                    </constraints>
-                                                </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cSu-gF-dhe">
                                                     <rect key="frame" x="43" y="43" width="12" height="12"/>
                                                     <constraints>
@@ -74,8 +67,6 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="b4F-HI-8WJ" firstAttribute="leading" secondItem="9Vi-6X-y0H" secondAttribute="leading" constant="8" id="5Ka-X6-Y5g"/>
-                                                <constraint firstItem="Nyk-h2-XaX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="eHd-SO-SA9" secondAttribute="trailing" constant="8" id="BJ8-mi-Hhx"/>
-                                                <constraint firstAttribute="trailing" secondItem="Nyk-h2-XaX" secondAttribute="trailing" constant="8" id="CNg-Ea-eAJ"/>
                                                 <constraint firstItem="cSu-gF-dhe" firstAttribute="trailing" secondItem="b4F-HI-8WJ" secondAttribute="trailing" constant="-3" id="NjY-px-bNQ"/>
                                                 <constraint firstItem="cSu-gF-dhe" firstAttribute="bottom" secondItem="b4F-HI-8WJ" secondAttribute="bottom" constant="-3" id="Ntg-NG-URs"/>
                                                 <constraint firstItem="FXZ-A9-Rzg" firstAttribute="leading" secondItem="b4F-HI-8WJ" secondAttribute="trailing" constant="8" id="OaB-nh-txd"/>
@@ -85,8 +76,8 @@
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="b4F-HI-8WJ" secondAttribute="bottom" constant="8" id="dkT-Ne-U2z"/>
                                                 <constraint firstItem="eHd-SO-SA9" firstAttribute="top" secondItem="FXZ-A9-Rzg" secondAttribute="bottom" constant="4" id="eHM-fc-klO"/>
                                                 <constraint firstAttribute="trailing" secondItem="lzt-lg-rpV" secondAttribute="trailing" constant="8" id="hQX-bQ-bK0"/>
-                                                <constraint firstItem="Nyk-h2-XaX" firstAttribute="top" secondItem="lzt-lg-rpV" secondAttribute="bottom" constant="8" id="jSs-ME-efN"/>
                                                 <constraint firstItem="FXZ-A9-Rzg" firstAttribute="top" secondItem="b4F-HI-8WJ" secondAttribute="top" id="voY-Cd-e0z"/>
+                                                <constraint firstAttribute="trailing" secondItem="eHd-SO-SA9" secondAttribute="trailing" constant="8" id="x3P-OA-psX"/>
                                                 <constraint firstItem="lzt-lg-rpV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="FXZ-A9-Rzg" secondAttribute="trailing" constant="42.5" id="zG1-kE-h27"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -95,7 +86,6 @@
                                             <outlet property="nameLabel" destination="FXZ-A9-Rzg" id="yde-o7-tGV"/>
                                             <outlet property="partnerImg" destination="b4F-HI-8WJ" id="wWO-Cg-DVC"/>
                                             <outlet property="statusImage" destination="cSu-gF-dhe" id="JLZ-KX-qGc"/>
-                                            <outlet property="thinhImg" destination="Nyk-h2-XaX" id="sAh-HZ-lcv"/>
                                             <outlet property="timeLabel" destination="lzt-lg-rpV" id="Vqr-3p-CnR"/>
                                         </connections>
                                     </tableViewCell>
