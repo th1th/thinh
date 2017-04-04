@@ -30,9 +30,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        Api.shared().getMyStrangerList().subscribe(onNext: { (user) in
 //            print(user)
 //        })
-        Api.shared().observeMyMatchNotification().subscribe(onNext: { (match) in
-            print(match.AName)
-        })
+//        Api.shared().observeMyMatchNotification().subscribe(onNext: { (match) in
+//            print(match.AName)
+//        })
 
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }

@@ -705,10 +705,11 @@ extension Api {
             if i != 0 {
                 // Every one tha thinh a Viet
                createMockThinh(users[i].id!, users[0].id!, message: nil)
-                if (i != 4) {
-                    // a Linh tha thinh every one
-                   createMockThinh(users[4].id!, users[i].id!, message: nil)
-                }
+                
+            }
+            if (i != 4) {
+                // a Linh tha thinh every one
+                createMockThinh(users[4].id!, users[i].id!, message: nil)
             }
             if i % 2 == 0 {
                 createMockThinh(users[i].id!, users[17].id!, message: "You are so talented")
