@@ -89,14 +89,11 @@ class ThaThinhViewController: UIViewController {
                     numberOfShowedUser = self.allUsers.count
                 }
                 if self.allUsers.count>0{
-                    for index in 0..<self.allUsers.count{
+                    for index in 0..<numberOfShowedUser{
                         self.allUsers.remove(at: (sender.view?.tag)!)
                     }
                 }
-
-//                if self.allUsers.count<4 {
-//                    self.loadMoreUser()
-//                }
+                
                 self.refreshLabe.alpha = 1
             }, completion: { (_) in
                 self.view.sendSubview(toBack: sender.view!)
@@ -188,6 +185,9 @@ extension ThaThinhViewController{
     func reloadUserToShowUser() {
         showUsers = []
         var maximumShowUser = 4
+        for index in 0..<4 {
+            images[index].image = #imageLiteral(resourceName: "gray")
+        }
         
         if allUsers.count < 4 {
             maximumShowUser = allUsers.count
@@ -211,9 +211,6 @@ extension ThaThinhViewController{
         hideUnuseView()
     }
     func hideUnuseView() {
-        for index in 0..<4 {
-            images[index].image = #imageLiteral(resourceName: "gray")
-        }
         if allUsers.count<1 {
             for index in 0..<4 {
                 images[index].isHidden = true
