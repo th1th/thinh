@@ -194,17 +194,17 @@ extension ContactListViewController: UITableViewDelegate, UITableViewDataSource 
         
         utilities.log(user)
         thathinhUser = user
-//        takePhoto()
+        takePhoto()
 
         
-        if #available(iOS 10.0, *) {
-            let controller = UIStoryboard(name: "RecordVideo", bundle: nil).instantiateViewController(withIdentifier: "RecordVideoViewController")
-            self.present(controller, animated: true, completion: nil)
-        }else{
-            dismiss(animated: true, completion: {
-                utilities.log("only compatible with iOS 10 or above")
-            })
-        }
+//        if #available(iOS 10.0, *) {
+//            let controller = UIStoryboard(name: "RecordVideo", bundle: nil).instantiateViewController(withIdentifier: "RecordVideoViewController")
+//            self.present(controller, animated: true, completion: nil)
+//        }else{
+//            dismiss(animated: true, completion: {
+//                utilities.log("only compatible with iOS 10 or above")
+//            })
+//        }
     }
 }
 
