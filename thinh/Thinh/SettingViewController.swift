@@ -41,6 +41,7 @@ class SettingViewController: UIViewController {
     var sex:[UIImage]! = []
     
     @IBAction func createMockData(_ sender: UIButton) {
+        print("reset mock data")
         Api.shared().createMockData()
     }
     
