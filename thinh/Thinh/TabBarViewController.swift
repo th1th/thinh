@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import JSQMessagesViewController
+import NoticeBar
 
 
 class TabBarViewController: UIViewController {
@@ -19,7 +21,7 @@ class TabBarViewController: UIViewController {
     
     
     var homeViewController: UIViewController!
-    var conversationViewController: UIViewController!
+    var conversationViewNavigator: UIViewController!
     var thaThinhViewController: UIViewController!
     var thinhListViewController: UIViewController!
     var userViewController: UIViewController!
@@ -66,8 +68,9 @@ class TabBarViewController: UIViewController {
         
         
         //conversationViewController = UIStoryboard(name: "Conversation", bundle: nil).instantiateViewController(withIdentifier: "ConversationViewController")
-        conversationViewController = UIStoryboard(name: "Conversation", bundle: nil).instantiateViewController(withIdentifier: "Conversation") as! UINavigationController
-        
+        conversationViewNavigator = UIStoryboard(name: "Conversation", bundle: nil).instantiateViewController(withIdentifier: "Conversation") as! UINavigationController
+        let conversationViewController = (conversationViewNavigator as! UINavigationController).topViewController as! ConversationViewController
+        conversationViewController.delegate = self
         
         thaThinhViewController = UIStoryboard(name: "ThaThinh", bundle: nil).instantiateViewController(withIdentifier: "ThaThinhViewController")
         
@@ -76,7 +79,7 @@ class TabBarViewController: UIViewController {
         
         userViewController = UIStoryboard(name: "Setting", bundle: nil).instantiateViewController(withIdentifier: "SettingViewController")
         
-        viewControllers = [homeViewController, conversationViewController, thaThinhViewController,thinhListViewController, userViewController]
+        viewControllers = [homeViewController, conversationViewNavigator, thaThinhViewController,thinhListViewController, userViewController]
 
         //Set the Initial Tab when the App Starts.
         buttons[selectedIndex].isSelected = true
@@ -153,5 +156,36 @@ extension TabBarViewController{
         default: break
         }
         updateChatCount()
+    }
+}
+
+extension TabBarViewController: ConversationViewControllerDelegate{
+    func gotNewThinh(_ conversation: Conversation) {
+        print("Got thinh")
+        
+        Api.shared().getUser(id: conversation.partnerID!).subscribe(onNext: { (user) in
+            let url = URL(string: user.avatar!)
+            let imageView = UIImageView()
+            
+            imageView.af_setImage(withURL: url!) { (response) in
+                
+                let image = JSQMessagesAvatarImageFactory.avatarImage(with: response.result.value, diameter: 120).avatarImage
+                let config = NoticeBarConfig(title: "#Got new THÍNH from \(conversation.partnerName!)", image: image, textColor: UIColor.white, backgroundColor: UIColor.red, barStyle: NoticeBarStyle.onNavigationBar, animationType: NoticeBarAnimationType.right )
+                let noticeBar = NoticeBar(config: config)
+                /// do something before noticeBar show.
+                /// such as : 
+                UIApplication.shared.statusBarStyle = .lightContent
+                noticeBar.show(duration: 3.0, completed: {
+                    (finished) in
+                    if finished {
+                        /// do something here.
+                        /// such as : 
+                        UIApplication.shared.statusBarStyle = .default
+                    }
+                })
+                
+            }
+        })
+        
     }
 }

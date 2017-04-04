@@ -10,10 +10,18 @@ import UIKit
 import DGElasticPullToRefresh
 import DZNEmptyDataSet
 
+protocol ConversationViewControllerDelegate : class {
+    func gotNewThinh(_ conversation: Conversation)
+}
+
 class ConversationViewController: UIViewController {
 
     @IBOutlet weak var conversationTable: UITableView!
     var conversationList = [Conversation]()
+    
+    var lastThinhTime:TimeInterval = 0
+    
+    weak var delegate : ConversationViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +59,7 @@ class ConversationViewController: UIViewController {
                 for conversation in (self?.conversationList)! {
                     conversation.delegate = self
                 }
-
+                
                 self?.conversationList = (self?.conversationList.sorted(by: { $0.lastTime > $1.lastTime }))!
                 self?.conversationTable.reloadData()
                 self?.conversationTable.dg_stopLoading()
@@ -61,8 +69,9 @@ class ConversationViewController: UIViewController {
             }, onCompleted: {
                 self?.conversationTable.dg_stopLoading()
             }, onDisposed: nil)
-        
-            }, loadingView: loadingView)
+            
+            }
+            ,loadingView: loadingView)
         conversationTable.dg_setPullToRefreshFillColor(UIColor(red: 217/255.0, green: 243/255.0, blue: 239/255.0, alpha: 1.0))
         conversationTable.dg_setPullToRefreshBackgroundColor(conversationTable.backgroundColor!)
         
@@ -73,6 +82,14 @@ class ConversationViewController: UIViewController {
                 conversation.delegate = self
             }
             self.conversationList = (self.conversationList.sorted(by: { $0.lastTime > $1.lastTime }))
+            
+            let message = self.conversationList[0].lastMessage
+            if(message == "test test" && self.conversationList[0].lastTime != self.lastThinhTime){
+                // Trigger conversation delegate
+                self.delegate?.gotNewThinh(self.conversationList[0])
+                self.lastThinhTime = self.conversationList[0].lastTime
+            }
+            
             self.conversationTable.reloadData()
         })
     }
@@ -92,6 +109,7 @@ extension ConversationViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return conversationList.count
     }
     
