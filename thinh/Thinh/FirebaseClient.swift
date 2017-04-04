@@ -59,6 +59,7 @@ class Api: NSObject {
 //        return "VUoc532PABTXwHAc5ceaIAtem9D2" // Mark
 //        return "3JqA5vuaFhMbd8bS5Y82RSB9G092"   // Donald Trump
 //        return "SyHSwBEV7zYR1FEzuqBTevOJVsH3"
+//        return "cdP7J0LNP2gUG3BeEq29N8JHDt72" // Dang Viet
     }
 
     /*
@@ -428,8 +429,9 @@ class Api: NSObject {
     fileprivate func getStrangerOf(_ id: UserId) -> Observable<User> {
         return Observable<User>.create({ (subcriber) -> Disposable in
             self.getFriendIdsOf(user: id).subscribe(onNext: { (users) in
+                
                 self.getAllUser().subscribe(onNext: { (user) in
-                    if !users.contains(user.id!) {
+                    if !users.contains(user.id!) && user.id! != User.botId {
                         subcriber.onNext(user)
                     }
                 })
@@ -697,21 +699,21 @@ extension Api {
         deleteDb()
         
         let users = createMockUser()
-        for i in 0..<users.count - 10 {
-            for j in 0..<10 {
+        for i in 0..<users.count - 5 {
+            for j in 0..<5 {
                 let id = createMockConversation(user1: users[i].id!, user2: users[i+j+1].id!)
                 createMockMessage(user1: users[i].id!, user2: users[i+j+1].id!, id: id, j: j)
             }
-            if i != 0 {
+            if i != 0 && i % 2 == 0 {
                 // Every one tha thinh a Viet
-               createMockThinh(users[i].id!, users[0].id!, message: nil)
+                createMockThinh(users[i].id!, users[0].id!, image: #imageLiteral(resourceName: "ThaThinh-1"))
                 
             }
-            if (i != 4) {
+            if i != 1  && i % 2 == 1 {
                 // a Linh tha thinh every one
-                createMockThinh(users[4].id!, users[i].id!, message: nil)
+                createMockThinh(users[i].id!, users[1].id!, message: "I love you babe")
             }
-            if i % 2 == 0 {
+            if i != 17 && i % 3 == 0 {
                 createMockThinh(users[i].id!, users[17].id!, message: "You are so talented")
             }
         }
@@ -776,6 +778,13 @@ extension Api {
             sms = Message(from: from, to: to, message: message)
         }
         thathinh(A: to, B: from, message: sms)
+    }
+    
+    fileprivate func createMockThinh(_ from: UserId, _ to: UserId, image: UIImage) {
+        self.uploadImage(image).subscribe(onNext: { (url) in
+            let message = Message(from: from, to: to, media: url)
+            self.thathinh(A: to, B: from, message: message)
+        })
     }
     
     private func test() {

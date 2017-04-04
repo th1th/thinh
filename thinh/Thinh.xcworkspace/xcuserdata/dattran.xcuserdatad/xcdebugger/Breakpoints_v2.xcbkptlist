@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Thinh/FirebaseClient.swift"
-            timestampString = "512969264.841312"
+            timestampString = "513013178.787351"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "218"
-            endingLineNumber = "218"
+            startingLineNumber = "219"
+            endingLineNumber = "219"
             landmarkName = "createNewConversation(forUser:andUser:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -86,15 +86,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Thinh/FirebaseClient.swift"
-            timestampString = "512969439.540995"
+            timestampString = "513016466.767921"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "600"
-            endingLineNumber = "600"
+            startingLineNumber = "602"
+            endingLineNumber = "602"
             landmarkName = "sendMatchNotification(for:message:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -102,15 +102,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Thinh/FirebaseClient.swift"
-            timestampString = "512969440.725145"
+            timestampString = "513016466.767921"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "604"
-            endingLineNumber = "604"
+            startingLineNumber = "606"
+            endingLineNumber = "606"
             landmarkName = "sendMatchNotification(for:message:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -118,15 +118,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Thinh/FirebaseClient.swift"
-            timestampString = "512969543.841878"
+            timestampString = "513016466.767921"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "596"
-            endingLineNumber = "596"
+            startingLineNumber = "598"
+            endingLineNumber = "598"
             landmarkName = "sendMatchNotification(for:message:)"
             landmarkType = "7">
          </BreakpointContent>

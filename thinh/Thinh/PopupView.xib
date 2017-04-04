@@ -104,13 +104,6 @@
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     <dataDetectorType key="dataDetectorTypes" phoneNumber="YES"/>
                 </textView>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4kO-WE-Oql">
-                    <rect key="frame" x="17" y="336" width="92" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <connections>
-                        <action selector="createMockData:" destination="-1" eventType="touchUpInside" id="pZj-zz-958"/>
-                    </connections>
-                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prefer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E0o-09-Fby">
                     <rect key="frame" x="15" y="240" width="60" height="30"/>
                     <constraints>
@@ -128,7 +121,7 @@
                     <segments>
                         <segment title="men"/>
                         <segment title="women"/>
-                        <segment title="unknow"/>
+                        <segment title="unknown"/>
                     </segments>
                 </segmentedControl>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xa0-fG-g6h">
@@ -137,9 +130,15 @@
                         <constraint firstAttribute="height" constant="30" id="SdN-XS-AMd"/>
                         <constraint firstAttribute="width" constant="60" id="oXg-Qr-adQ"/>
                     </constraints>
-                    <state key="normal" title="Signout"/>
+                    <state key="normal" title="Sign out"/>
                     <connections>
                         <action selector="signoutButton:" destination="-1" eventType="touchUpInside" id="TTO-WT-tj5"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4kO-WE-Oql">
+                    <rect key="frame" x="145" y="374" width="30" height="30"/>
+                    <connections>
+                        <action selector="createMockData:" destination="-1" eventType="touchUpInside" id="pZj-zz-958"/>
                     </connections>
                 </button>
             </subviews>
@@ -162,7 +161,9 @@
                 <constraint firstItem="M1c-MB-GFC" firstAttribute="centerY" secondItem="28Y-Fy-h79" secondAttribute="centerY" id="UEs-xX-jPV"/>
                 <constraint firstItem="mWn-qb-B1L" firstAttribute="top" secondItem="bph-D2-as1" secondAttribute="bottom" constant="35" id="VJ6-SW-MpR"/>
                 <constraint firstItem="xa0-fG-g6h" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Wr7-hf-Wl8"/>
+                <constraint firstItem="4kO-WE-Oql" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Wv1-GJ-plG"/>
                 <constraint firstAttribute="trailing" secondItem="Vyp-yc-pzi" secondAttribute="trailing" constant="60" id="ZxL-lF-a4s"/>
+                <constraint firstItem="4kO-WE-Oql" firstAttribute="top" secondItem="xa0-fG-g6h" secondAttribute="bottom" constant="33" id="aMI-ev-AkX"/>
                 <constraint firstItem="xa0-fG-g6h" firstAttribute="top" secondItem="nnF-td-e5h" secondAttribute="bottom" constant="42" id="dSC-vx-GWU"/>
                 <constraint firstItem="nnF-td-e5h" firstAttribute="leading" secondItem="E0o-09-Fby" secondAttribute="trailing" constant="6" id="eDW-j0-hU5"/>
                 <constraint firstItem="E0o-09-Fby" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="f7Q-ra-d5R"/>

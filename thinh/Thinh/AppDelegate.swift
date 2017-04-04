@@ -26,13 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let vc = storyboard.instantiateInitialViewController()
             self.window?.rootViewController = vc
         }
-//        Api.shared().createMockData()
-//        Api.shared().getMyStrangerList().subscribe(onNext: { (user) in
-//            print(user)
-//        })
-//        Api.shared().observeMyMatchNotification().subscribe(onNext: { (match) in
-//            print(match.AName)
-//        })
 
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }

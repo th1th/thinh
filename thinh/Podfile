@@ -35,5 +35,6 @@ target 'Thinh' do
   #pod 'Kingfisher', '~> 3.0'
 
   pod 'SCRecorder'
+  pod 'NoticeBar'
 
 end

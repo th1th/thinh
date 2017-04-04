@@ -170,12 +170,19 @@ class User: NSObject, Glossy {
     static let sex1 = Sex.male
     static let prefer1 = Sex.female
     
-    static let user2 = "wnlI40CQLLX7LVohp6tW8LqOmqD3"
-    static let avatar2 = "http://anh.24h.com.vn/upload/1-2016/images/2016-01-22/1453435185-1453434580-3.jpg"
-    static let name2 = "Bắc Đẩu"
-    static let desc2 = "Một khi cụ đã thương muốn làm người thường cụ cũng không cho"
-    static let sex2 = Sex.female
-    static let prefer2 = Sex.male
+    static let user6 = "wnlI40CQLLX7LVohp6tW8LqOmqD3"
+    static let avatar6 = "http://anh.24h.com.vn/upload/1-2016/images/2016-01-22/1453435185-1453434580-3.jpg"
+    static let name6 = "Bắc Đẩu"
+    static let desc6 = "Một khi cụ đã thương muốn làm người thường cụ cũng không cho"
+    static let sex6 = Sex.female
+    static let prefer6 = Sex.male
+    
+    static let user2 = "WR3OioP6R0UTPUoWItWyJX5g4p62"
+    static let name2 = "Linh Lê"
+    static let avatar2 = "https://scontent.fsgn5-2.fna.fbcdn.net/v/t31.0-8/13063139_634160786731295_2174880575869215799_o.jpg?oh=7d102fc8d13573b96800f5fd7ff3139a&oe=596E46C5"
+    static let desc2 = ""
+    static let sex2 = Sex.male
+    static let prefer2 = Sex.female
     
     static let user3 = "i6mDtuUTA7NVJxzmX3wClZH582s1"
     static let avatar3 = "https://firebasestorage.googleapis.com/v0/b/thinh-43483.appspot.com/o/mock%2F3.jpg?alt=media&token=190b9e47-f245-4918-86ee-c92179c0d60b"
@@ -198,19 +205,14 @@ class User: NSObject, Glossy {
     static let sex24 = Sex.female
     static let prefer24 = Sex.male
     
-    static let user5 = "WR3OioP6R0UTPUoWItWyJX5g4p62"
-    static let name5 = "Linh Lê"
-    static let avatar5 = "https://scontent.fsgn5-2.fna.fbcdn.net/v/t31.0-8/13063139_634160786731295_2174880575869215799_o.jpg?oh=7d102fc8d13573b96800f5fd7ff3139a&oe=596E46C5"
-    static let desc5 = ""
+    
+    
+    static let user5 = "rsu1wVrOsDeBBlfriSkhMsW6sKm2"
+    static let avatar5 = "https://scontent.fsgn5-2.fna.fbcdn.net/v/t1.0-9/15871854_1650346778598340_3128247238115573349_n.jpg?oh=a52b2910eab2941395a0f01eafd36ab1&oe=595CDE3B"
+    static let name5 = "Sơn Tùng"
+    static let desc5 = "Xin hãy là em của ngày hôm qua"
     static let sex5 = Sex.male
     static let prefer5 = Sex.female
-    
-    static let user6 = "rsu1wVrOsDeBBlfriSkhMsW6sKm2"
-    static let avatar6 = "https://scontent.fsgn5-2.fna.fbcdn.net/v/t1.0-9/15871854_1650346778598340_3128247238115573349_n.jpg?oh=a52b2910eab2941395a0f01eafd36ab1&oe=595CDE3B"
-    static let name6 = "Sơn Tùng"
-    static let desc6 = "Xin hãy là em của ngày hôm qua"
-    static let sex6 = Sex.male
-    static let prefer6 = Sex.female
     
     static let user7 = "yIoo1rv5FvaEusPooUF3HXtwt7G2"
     static let avatar7 = "https://scontent.fsgn5-2.fna.fbcdn.net/v/t1.0-9/15871458_1547913765237939_6046469785741529254_n.jpg?oh=400fe3c6073caf7b45abd6c6ffb9ed23&oe=594DDA54"
