@@ -84,7 +84,7 @@ class ConversationViewController: UIViewController {
             self.conversationList = (self.conversationList.sorted(by: { $0.lastTime > $1.lastTime }))
             
             let message = self.conversationList[0].lastMessage
-            if(message == "test test" && self.conversationList[0].lastTime != self.lastThinhTime){
+            if(message == "Congra! Everyone should love thinh" && self.conversationList[0].lastTime != self.lastThinhTime){
                 // Trigger conversation delegate
                 self.delegate?.gotNewThinh(self.conversationList[0])
                 self.lastThinhTime = self.conversationList[0].lastTime
