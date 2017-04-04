@@ -22,6 +22,7 @@ struct FirebaseKey {
     static let userThinh = "user-thinh"
     static let isTyping = "isTyping"
     static let messages = "messages"
+    static let match = "match"
     
     // user key
     static let avatar = "avatar"
@@ -57,6 +58,16 @@ struct FirebaseKey {
     // conversation
     static let lastTime = "lastTime"
     static let lastMessage = "lastMessage"
+    
+    // match
+    static let AName = "AName"
+    static let BName = "BName"
+    static let AAvatar = "AAvatar"
+    static let BAvatar = "BAvatar"
+    static let AMessage = "AMessage"
+    static let BMessage = "BMessage"
+    static let AMedia = "AMedia"
+    static let BMedia = "BMedia"
     
     static let botMessage = "Congra! Everyone should love thinh"
 }
