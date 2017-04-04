@@ -168,7 +168,6 @@ extension ThinhListViewController{
         for index in 0..<counter {
             utilities.log("loadUserToView-- update avatar for: \(users[index].name)")
             images[index].af_setImage(withURL: URL(string: users[index].avatar!)!)
-//            indexTracking += 1
         }
     }
     
@@ -182,11 +181,12 @@ extension ThinhListViewController{
             if tag >= self.users.count - 1 {
                 utilities.log("updateImage-- \(self.users.count)++ End of list ++tag \(tag)")
                 self.images[tag].isHidden = true
-                self.hideUnuseThinhView()
             }else{
                 utilities.log("updateImage-- \(self.users.count)++tag \(tag)")
                 self.images[tag].af_setImage(withURL: URL(string: self.users[tag+1].avatar!)!)
             }
+            self.hideUnuseThinhView()
+            self.loadUserToView()
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 2, options: [], animations: {
                 self.images[tag].transform = CGAffineTransform(scaleX: 1, y: 1)
             }, completion: {(result) in
@@ -201,7 +201,6 @@ extension ThinhListViewController{
             acceptButtons[index].isHidden = true
             declineButtons[index].isHidden = true
             //images[index].image = nil
-//            blurEffect(currentView: images[index])
             
         }
         for index in 0..<users.count {
@@ -213,14 +212,6 @@ extension ThinhListViewController{
             declineButtons[index].isHidden = false
         }
     }
-//    func blurEffect(currentView: UIView) {
-//        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
-//        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-//        blurEffectView.frame = currentView.bounds
-//        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-//        currentView.addSubview(blurEffectView)
-//    }
-    
 }
 
 
