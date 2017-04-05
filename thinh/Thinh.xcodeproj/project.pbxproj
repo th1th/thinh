@@ -33,6 +33,8 @@
 		05F3777C1E881A2800B9890F /* ContactList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05F3777B1E881A2800B9890F /* ContactList.storyboard */; };
 		05F3777E1E881A4000B9890F /* ContactListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F3777D1E881A4000B9890F /* ContactListViewController.swift */; };
 		05F377801E881AAA00B9890F /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F3777F1E881AAA00B9890F /* ContactTableViewCell.swift */; };
+		05F5E4BB1E9402780058E44B /* ThaThinhMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05F5E4BA1E9402780058E44B /* ThaThinhMessageView.xib */; };
+		05F5E4BD1E9402990058E44B /* ThaThinhMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F5E4BC1E9402990058E44B /* ThaThinhMessageView.swift */; };
 		05F8ACC01E85609F00A9B281 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 05F8ACBF1E85609F00A9B281 /* Fonts */; };
 		05F8ACC61E8583CE00A9B281 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F8ACC51E8583CE00A9B281 /* TabBarViewController.swift */; };
 		1510ADB61E8FF14E00EBB24E /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1510ADB51E8FF14E00EBB24E /* ImageViewController.swift */; };
@@ -84,6 +86,8 @@
 		05F3777B1E881A2800B9890F /* ContactList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ContactList.storyboard; sourceTree = "<group>"; };
 		05F3777D1E881A4000B9890F /* ContactListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactListViewController.swift; sourceTree = "<group>"; };
 		05F3777F1E881AAA00B9890F /* ContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
+		05F5E4BA1E9402780058E44B /* ThaThinhMessageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThaThinhMessageView.xib; sourceTree = "<group>"; };
+		05F5E4BC1E9402990058E44B /* ThaThinhMessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThaThinhMessageView.swift; sourceTree = "<group>"; };
 		05F8ACBF1E85609F00A9B281 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fonts; sourceTree = "<group>"; };
 		05F8ACC51E8583CE00A9B281 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		1510ADB51E8FF14E00EBB24E /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
@@ -168,6 +172,8 @@
 		05F3777A1E881A0C00B9890F /* ContactList */ = {
 			isa = PBXGroup;
 			children = (
+				05F5E4BA1E9402780058E44B /* ThaThinhMessageView.xib */,
+				05F5E4BC1E9402990058E44B /* ThaThinhMessageView.swift */,
 				05F3777B1E881A2800B9890F /* ContactList.storyboard */,
 				05F3777F1E881AAA00B9890F /* ContactTableViewCell.swift */,
 				05F3777D1E881A4000B9890F /* ContactListViewController.swift */,
@@ -381,6 +387,7 @@
 				94C71F081E7444E400D63A95 /* Assets.xcassets in Resources */,
 				05F3777C1E881A2800B9890F /* ContactList.storyboard in Resources */,
 				057886C71E911ADC000B818D /* Ailerons-Typeface.otf in Resources */,
+				05F5E4BB1E9402780058E44B /* ThaThinhMessageView.xib in Resources */,
 				1534E6B11E82CA4400E62BAD /* Conversation.storyboard in Resources */,
 				05F8ACC01E85609F00A9B281 /* Fonts in Resources */,
 				055024151E7C331700175FED /* GoogleService-Info.plist in Resources */,
@@ -464,6 +471,7 @@
 				94C71F011E7444E400D63A95 /* AppDelegate.swift in Sources */,
 				059BA1411E90ACEF0071D4A0 /* PreviewView.swift in Sources */,
 				059BA13D1E900F700071D4A0 /* RecordVideoViewController.swift in Sources */,
+				05F5E4BD1E9402990058E44B /* ThaThinhMessageView.swift in Sources */,
 				9483C28A1E8956ED0092CECE /* Image.swift in Sources */,
 				0550242D1E7D278500175FED /* User.swift in Sources */,
 				059BA13F1E90AC930071D4A0 /* PhotoCaptureDelegate.swift in Sources */,

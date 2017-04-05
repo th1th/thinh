@@ -18,9 +18,25 @@ class ContactListViewController: UIViewController {
 
     @IBOutlet weak var contactListTable: UITableView!
     
+    
+    @IBOutlet weak var ThaThinhMessageTextView: UITextView!
+    
+    
+    var grayBackgroundView = UIView()
+    var popupView:ThaThinhMessageView?
+    var popupViewDic:[String:ThaThinhMessageView] = [:]
+    var constX:NSLayoutConstraint?
+    var constY:NSLayoutConstraint?
+    
+    @IBAction func CompleteThathinhButton(_ sender: UIButton) {
+        thathinhMessage = ThaThinhMessageTextView.text
+    }
+    
     var contactList = [User]()
     let refreshController = UIRefreshControl()
     var thathinhUser: User?
+    var thathinhMessage: String!
+    
     
     var contactDict = [String:[User]]()
     var sectionTitles = [String]()
@@ -219,6 +235,8 @@ extension ContactListViewController:ContactTableViewCellDelegate,ImagePickerDele
     public func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
         imagePicker.dismiss(animated: true, completion: nil)
         let image = images[0]
+        //show popup to user input the message
+//        showPopupView()
         Api.shared().thathinh((thathinhUser?.id)!, image: image)
     }
     func cancelButtonDidPress(_ imagePicker: ImagePickerController) {
@@ -231,54 +249,107 @@ extension ContactListViewController:ContactTableViewCellDelegate,ImagePickerDele
 
 }
 
-//extension ContactListViewController:DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
-//    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-//        let text = "NO MESSAGE"
-//        
-//        let attribs = [
-//            NSFontAttributeName: UIFont.systemFont(ofSize: 25),
-//            NSForegroundColorAttributeName: UIColor.white
-//        ]
-//        
-//        return NSAttributedString(string: text, attributes: attribs)
-//    }
-//    
-//    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-//        let text = "GETTING NO MESSAGE IS ALSO A MESSAGE"
-//        
-//        let para = NSMutableParagraphStyle()
-//        para.lineBreakMode = NSLineBreakMode.byWordWrapping
-//        para.alignment = NSTextAlignment.center
-//        
-//        let attribs = [
-//            NSFontAttributeName: UIFont.systemFont(ofSize: 12),
-//            NSForegroundColorAttributeName: UIColor.white,
-//            NSParagraphStyleAttributeName: para
-//        ]
-//        
-//        return NSAttributedString(string: text, attributes: attribs)
-//    }
-//    
-//    func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> NSAttributedString! {
-//        let text = "Start Tha Thinh !"
-//        let attribs = [
-//            NSFontAttributeName: UIFont.boldSystemFont(ofSize: 18),
-//            NSForegroundColorAttributeName: view.tintColor
-//            ] as [String : Any]
-//        
-//        return NSAttributedString(string: text, attributes: attribs)
-//        
-//    }
-//    
-//    func emptyDataSetDidTapButton(_ scrollView: UIScrollView!) {
-//        print("Tapped")
-//    }
-//    
-//    func backgroundColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
-//        return UIColor.gray
-//    }
-//    
-//}
+//setting pop up view
+extension ContactListViewController{
+    func configContentPopupView() {
+            ThaThinhMessageTextView.text = "Say something :))"
+            ThaThinhMessageTextView.font = UIFont(name: "SF UI Display Medium", size: 22)
+    }
+    func showPopupView(){
+        
+        
+        //Show GrayView Behind popup view
+        self.showGrayBGView(viewController: self, grayView: grayBackgroundView)
+        
+        //Load nib, and get reference to variable 'popupView'.
+        popupView = Bundle.main.loadNibNamed("ThaThinhMessageView", owner: self, options: nil)?[0] as? ThaThinhMessageView
+        
+        self.view.addSubview(popupView!)
+//        //delegate
+//        captionTextView.delegate = self
+//        phoneTextView.delegate = self
+        
+        //Configure popupview
+        popupView?.frame.size = CGSize(width: 0, height: 0)
+        popupView?.center = self.view.center
+        popupView?.alpha = 0.5
+        popupView?.clipsToBounds = true
+        popupView?.layer.cornerRadius = 20
+        
+        
+        //Autolayout part
+        popupViewDic["ThaThinhMessageView"] = popupView
+        
+        var dView:[String:UIView] = [:]
+        dView["ThaThinhMessageView"] = popupView
+        
+        popupView?.translatesAutoresizingMaskIntoConstraints = false
+        
+        let h_Pin = NSLayoutConstraint.constraints(withVisualFormat: "H:|-(12)-[popupView]-(12)-|", options: .alignAllTop, metrics: nil, views: dView)
+        self.view.addConstraints(h_Pin)
+        let v_Pin = NSLayoutConstraint.constraints(withVisualFormat:"V:|-(56)-[popupView]-(56)-|", options: .alignAllTop, metrics: nil, views: dView)
+        self.view.addConstraints(v_Pin)
+        
+        constY = NSLayoutConstraint(item: popupView!, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0)
+        self.view.addConstraint(constY!)
+        
+        
+        constX = NSLayoutConstraint(item: popupView!, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
+        self.view.addConstraint(constX!)
+        
+        UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.50, options: UIViewAnimationOptions.layoutSubviews, animations: { () -> Void in
+            self.popupView?.alpha = 1
+            self.view.layoutIfNeeded()
+        }) { (value:Bool) -> Void in
+            
+        }
+        
+    }
+    
+    
+    //Gray bg view configuration
+    func showGrayBGView(viewController:UIViewController,grayView:UIView){
+        
+        let viewController:UIViewController = viewController
+        let GrayView:UIView = grayView
+        
+        viewController.view.addSubview(GrayView)
+        
+        var dView:[String:UIView] = [:]
+        dView["GrayView"] = GrayView
+        
+        GrayView.frame = viewController.view.frame
+        GrayView.backgroundColor = UIColor.clear
+        GrayView.translatesAutoresizingMaskIntoConstraints = (false)
+        UIView.animate(withDuration: 0.5, animations: {
+            GrayView.backgroundColor = UIColor.black
+            GrayView.alpha = 0.75
+        })
+        
+        let h_Pin = NSLayoutConstraint.constraints(withVisualFormat: "H:|-(-16)-[GrayView]-(-16)-|", options: .alignAllTop, metrics: nil, views: dView)
+        viewController.view.addConstraints(h_Pin)
+        
+        let v_Pin = NSLayoutConstraint.constraints(withVisualFormat: "V:|-(-16)-[GrayView]-(-16)-|", options: .alignAllTop, metrics: nil, views: dView)
+        viewController.view.addConstraints(v_Pin)
+        
+    }
+    
+    func hidePopupView(){
+        
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.50, options: UIViewAnimationOptions.curveEaseOut, animations: { () -> Void in
+            
+            self.grayBackgroundView.alpha = 0
+            self.popupView!.alpha = 0
+            
+        }) { (value:Bool) -> Void in
+            self.popupView!.removeFromSuperview()
+            self.grayBackgroundView.removeFromSuperview()
+            
+        }
+        
+    }
+}
+
 
 
 
