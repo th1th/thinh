@@ -68,7 +68,6 @@ class Conversation: NSObject, Glossy {
         self.id = id
         self.lastMessage = message
         self.lastTime = time
-        self.seen = false
     }
     
     // For Testing
@@ -83,6 +82,11 @@ class Conversation: NSObject, Glossy {
     
     func withUser(_ user: UserId) -> Conversation {
         self.partnerID = user
+        return self
+    }
+    
+    func withSeen(_ seen: Bool) -> Conversation {
+        self.seen = seen
         return self
     }
 }

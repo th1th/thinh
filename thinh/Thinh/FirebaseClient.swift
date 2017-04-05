@@ -293,8 +293,8 @@ class Api: NSObject {
         if (message.message != nil) {
             // update last message
             let conversation = Conversation(id: id, message: message.message, time: message.date)
-            userConversationDb.child(message.user1!).child(message.user2!).setValue(conversation.withUser(message.user2!).toJSON())
-            userConversationDb.child(message.user2!).child(message.user1!).setValue(conversation.withUser(message.user1!).toJSON())
+            userConversationDb.child(message.user1!).child(message.user2!).setValue(conversation.withUser(message.user2!).withSeen(true).toJSON())
+            userConversationDb.child(message.user2!).child(message.user1!).setValue(conversation.withUser(message.user1!).withSeen(false).toJSON())
         }   // photo message don't update last message
         return key
     }
