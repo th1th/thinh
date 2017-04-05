@@ -57,6 +57,16 @@ class Message: NSObject, Glossy {
         self.media = media
     }
     
+    init(from: UserId, to: UserId, message: String, media: URL) {
+        date = Date.currentTimeInMillis()
+        self.from = from
+        self.to = to
+        self.user1 = from
+        self.user2 = to
+        self.media = media
+        self.message = message
+    }
+    
     init(thinh: Thinh) {
         date = Date.currentTimeInMillis()
         self.from = thinh.from

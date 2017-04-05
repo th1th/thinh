@@ -536,6 +536,13 @@ class Api: NSObject {
         thathinh(A: A, B: userId()!, message: message)
     }
     
+    func thathinh(_ A: UserId, message: String, image: UIImage) {
+        uploadImage(image).subscribe(onNext: { (url) in
+            let sms = Message(from: self.userId()!, to: A, message: message, media: url)
+            self.thathinh(A: A, B: self.userId()!, message: sms)
+        })
+    }
+    
     /*
      user B tha thinh user A, also for test, with message as wrapper
     */
@@ -552,12 +559,14 @@ class Api: NSObject {
                         id = self.createNewConversation(forUser: A, andUser: B)
                     }
                     self.sendBotMessage(id: id, user1: A, user2: B)
-                    if (thinh.media != nil || thinh.message != nil) {
-                        self.sendMessage(id: id, message: Message(thinh: thinh))
-                    }
-                    if (message != nil) {
-                        self.sendMessage(id: id, message: message!.refreshTime())
-                    }
+//                    if (thinh.media != nil || thinh.message != nil) {
+//                        self.sendMessage(id: id, message: Message(thinh: thinh))
+//                        
+//                    }
+//                    if (message != nil) {
+//                        self.sendMessage(id: id, message: message!.refreshTime())
+//                    }
+                    self.sendMessage(id: id, message: Message(thinh: thinh))
 //                    self.sendMatchNotification(for: thinh, message: message)
                     self.deleteThinh(B, to: A)
                 })
