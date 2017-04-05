@@ -113,14 +113,6 @@ class User: NSObject, Glossy {
     
     
     static func mock() -> [User] {
-        let names = [name1, name2, name3, name4, name5, name6, name7, name8, name9, name10, name11, name12, name13, name14, name15, name16, name17, name18, name19, name20, name21, name22, name23, name24, name25, name26, name27, name28, name29, name30]
-        let links = [avatar1, avatar2, avatar3, avatar4, avatar5, avatar6, avatar7, avatar8, avatar9, avatar10, avatar11, avatar12, avatar13, avatar14, avatar15, avatar16, avatar17, avatar18, avatar19, avatar20, avatar21, avatar22, avatar23, avatar24, avatar25, avatar26, avatar27, avatar28, avatar29, avatar30]
-        let ids = [user1, user2, user3, user4, user5, user6, user7, user8, user9, user10, user11, user12, user13, user14, user15, user16, user17, user18, user9
-        , user20, user21, user22, user23, user24, user25, user26, user27, user28, user29, user30]
-        let descs = [desc1, desc2, desc3, desc4, desc5, desc6, desc7, desc8, desc9, desc10, desc11, desc12, desc13, desc14, desc15, desc16, desc17, desc18, desc19, desc20, desc21, desc22, desc23, desc24, desc25, desc26, desc27, desc28, desc29, desc30]
-        let sexes = [sex1, sex2, sex3, sex4, sex5, sex6, sex7, sex8, sex9, sex10, sex11, sex12, sex13, sex14, sex15, sex16, sex17, sex18, sex19, sex20, sex21, sex22, sex23, sex24, sex25, sex26, sex27, sex28, sex29, sex30]
-        let prefers = [prefer1, prefer2, prefer3, prefer4, prefer5, prefer6,prefer7, prefer8, prefer9, prefer10, prefer11, prefer12, prefer13, prefer14, prefer15, prefer16, prefer17, prefer18, prefer19, prefer20, prefer21, prefer22, prefer23, prefer24, prefer25, prefer26, prefer27, prefer28, prefer29, prefer30]
-        
         var users = [User]()
         for i in 0..<30 {
             let user = User(json:
@@ -137,6 +129,14 @@ class User: NSObject, Glossy {
         }
         return users
     }
+    
+    static let names = [name1, name2, name3, name4, name5, name6, name7, name8, name9, name10, name11, name12, name13, name14, name15, name16, name17, name18, name19, name20, name21, name22, name23, name24, name25, name26, name27, name28, name29, name30]
+    static let links = [avatar1, avatar2, avatar3, avatar4, avatar5, avatar6, avatar7, avatar8, avatar9, avatar10, avatar11, avatar12, avatar13, avatar14, avatar15, avatar16, avatar17, avatar18, avatar19, avatar20, avatar21, avatar22, avatar23, avatar24, avatar25, avatar26, avatar27, avatar28, avatar29, avatar30]
+    static let ids = [user1, user2, user3, user4, user5, user6, user7, user8, user9, user10, user11, user12, user13, user14, user15, user16, user17, user18, user9
+        , user20, user21, user22, user23, user24, user25, user26, user27, user28, user29, user30]
+    static let descs = [desc1, desc2, desc3, desc4, desc5, desc6, desc7, desc8, desc9, desc10, desc11, desc12, desc13, desc14, desc15, desc16, desc17, desc18, desc19, desc20, desc21, desc22, desc23, desc24, desc25, desc26, desc27, desc28, desc29, desc30]
+    static let sexes = [sex1, sex2, sex3, sex4, sex5, sex6, sex7, sex8, sex9, sex10, sex11, sex12, sex13, sex14, sex15, sex16, sex17, sex18, sex19, sex20, sex21, sex22, sex23, sex24, sex25, sex26, sex27, sex28, sex29, sex30]
+    static let prefers = [prefer1, prefer2, prefer3, prefer4, prefer5, prefer6,prefer7, prefer8, prefer9, prefer10, prefer11, prefer12, prefer13, prefer14, prefer15, prefer16, prefer17, prefer18, prefer19, prefer20, prefer21, prefer22, prefer23, prefer24, prefer25, prefer26, prefer27, prefer28, prefer29, prefer30]
     
     static func createBot() -> User {
         return User(json: [

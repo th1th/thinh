@@ -715,7 +715,7 @@ extension Api {
         for i in 0..<users.count - 5 {
             for j in 0..<5 {
                 let id = createMockConversation(user1: users[i].id!, user2: users[i+j+1].id!)
-                createMockMessage(user1: users[i].id!, user2: users[i+j+1].id!, id: id, j: j)
+                createMockMessage(user1: users[i].id!, user2: users[i+j+1].id!, id: id)
             }
             if i != 0 && i % 2 == 0 {
                 // Every one tha thinh a Viet
@@ -778,8 +778,8 @@ extension Api {
         return createNewConversation(forUser: user1, andUser: user2)
     }
     
-    private func createMockMessage(user1: UserId, user2: UserId, id: ConversationId, j: Int) {
-        let messages = Message.mock(from: user1, to: user2, i: j)
+    private func createMockMessage(user1: UserId, user2: UserId, id: ConversationId) {
+        let messages = Message.mock(from: user1, to: user2, i: Int(arc4random_uniform(10)))
         for message in messages {
             sendMessage(id: id, message: message)
         }
