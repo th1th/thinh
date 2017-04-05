@@ -234,7 +234,6 @@ extension ContactListViewController:ContactTableViewCellDelegate,ImagePickerDele
         let picker = ImagePickerController()
         picker.delegate = self
         picker.imageLimit = 1
-        
         present(picker, animated: true, completion:nil)
     }
     public func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {

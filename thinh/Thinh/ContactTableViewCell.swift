@@ -32,7 +32,9 @@ class ContactTableViewCell: UITableViewCell,AVCapturePhotoCaptureDelegate, UIIma
     
     @IBAction func onClickThaThinhButton(_ sender: UIButton) {
         print("[xx]thathinh \(user.name)")
-        Api.shared().thathinh((user?.id)!)
+        delegate?.contactTableViewCellDelegate(user: user)
+
+//        Api.shared().thathinh((user?.id)!)
         UIView.transition(with: self.ThaThinhButton.imageView!,
                           duration: 0.3,
                           options: .transitionCrossDissolve,
