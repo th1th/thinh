@@ -310,7 +310,7 @@ class Api: NSObject {
     User A has seen this conversation
     */
     fileprivate func user(_ A: UserId, hasSeenConversation conversation: ConversationId, from B: UserId) {
-        self.userConversationDb.child(A).child(conversation).updateChildValues([FirebaseKey.seen: true])
+        self.userConversationDb.child(A).child(B).updateChildValues([FirebaseKey.seen: true])
     }
     
     /*

@@ -24,7 +24,7 @@ class Conversation: NSObject, Glossy {
 
     var lastMessage: String?
     var lastTime: TimeInterval!
-    var seen: Bool!
+    var seen: Bool?
     var partnerID: UserId? {
         didSet{
             Api.shared().getUser(id: partnerID!).subscribe(onNext: { (user) in
