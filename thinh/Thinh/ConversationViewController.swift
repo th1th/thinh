@@ -12,6 +12,8 @@ import DZNEmptyDataSet
 
 protocol ConversationViewControllerDelegate : class {
     func gotNewThinh(_ conversation: Conversation)
+    
+    func numberOfUnseenConversation(_ n: Int)
 }
 
 class ConversationViewController: UIViewController {
@@ -76,11 +78,20 @@ class ConversationViewController: UIViewController {
         conversationTable.dg_setPullToRefreshBackgroundColor(conversationTable.backgroundColor!)
         
         let disposable = Api.shared().getAllConversation().subscribe(onNext: { conversations in
+            
+            var unseenConversation:Int = 0
+            
             self.conversationList = conversations
             
             for conversation in (self.conversationList) {
                 conversation.delegate = self
+                if conversation.seen == false {
+                    unseenConversation += 1
+                }
             }
+            
+            self.delegate?.numberOfUnseenConversation(unseenConversation)
+            
             self.conversationList = (self.conversationList.sorted(by: { $0.lastTime > $1.lastTime }))
             
             let message = self.conversationList[0].lastMessage

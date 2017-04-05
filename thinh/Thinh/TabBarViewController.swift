@@ -114,6 +114,7 @@ extension TabBarViewController{
             chatBagde.frame = CGRect(x: view.frame.width*1.55/5, y: 0.0, width: 25.0, height: 16.0)
             chatBagde.layer.cornerRadius = 7
             chatBagde.clipsToBounds = true
+            chatBagde.text = "\(chatCount)"
         }else{
             chatBagde.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
         }
@@ -160,6 +161,11 @@ extension TabBarViewController{
 }
 
 extension TabBarViewController: ConversationViewControllerDelegate{
+    
+    func numberOfUnseenConversation(_ n: Int){
+        chatCount = n
+        updateChatCount()
+    }
     func gotNewThinh(_ conversation: Conversation) {
         print("Got thinh")
         
@@ -170,7 +176,7 @@ extension TabBarViewController: ConversationViewControllerDelegate{
             imageView.af_setImage(withURL: url!) { (response) in
                 
                 let image = JSQMessagesAvatarImageFactory.avatarImage(with: response.result.value, diameter: 120).avatarImage
-                let config = NoticeBarConfig(title: "#Got new THÍNH from \(conversation.partnerName!)", image: image, textColor: UIColor.white, backgroundColor: UIColor.red, barStyle: NoticeBarStyle.onNavigationBar, animationType: NoticeBarAnimationType.right )
+                let config = NoticeBarConfig(title: "#You've matched with \(conversation.partnerName!)", image: image, textColor: UIColor.white, backgroundColor: UIColor.red, barStyle: NoticeBarStyle.onNavigationBar, animationType: NoticeBarAnimationType.right )
                 let noticeBar = NoticeBar(config: config)
                 /// do something before noticeBar show.
                 /// such as : 

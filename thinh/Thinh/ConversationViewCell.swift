@@ -27,6 +27,22 @@ class ConversationViewCell: UITableViewCell {
             timeLabel.text = ""
             statusImage.image = nil
             
+            // Check seen here
+            if(conversation?.seen)!{
+                lastMessageLabel.textColor = UIColor.lightGray
+                timeLabel.textColor = UIColor.lightGray
+                
+                nameLabel.font = UIFont.systemFont(ofSize: 15, weight: UIFontWeightMedium)
+            } else {
+                lastMessageLabel.textColor = UIColor.black
+                lastMessageLabel.font = UIFont.systemFont(ofSize: 13, weight: UIFontWeightMedium)
+                
+                timeLabel.textColor = UIColor.black
+                timeLabel.font = UIFont.systemFont(ofSize: 13, weight: UIFontWeightMedium)
+                
+                nameLabel.font = UIFont.systemFont(ofSize: 15, weight: UIFontWeightBold)
+            }
+            
             if conversation?.partnerAvatar != nil {
                 partnerImg.setImageWith(URLRequest(url: (conversation?.partnerAvatar)!), placeholderImage: nil, success: { (_, _, image) in
                     self.partnerImg.image = JSQMessagesAvatarImageFactory.avatarImage(with: image, diameter: 60).avatarImage
