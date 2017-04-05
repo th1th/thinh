@@ -33,8 +33,6 @@ class ConversationViewController: UIViewController {
         
         self.automaticallyAdjustsScrollViewInsets = false
         
-        
-        
         // Add search bar to navigation bar
         let searchBar = UISearchBar()
         searchBar.sizeToFit()
@@ -54,24 +52,6 @@ class ConversationViewController: UIViewController {
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
         loadingView.tintColor = UIColor(red: 78/255.0, green: 221/255.0, blue: 200/255.0, alpha: 1.0)
         conversationTable.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
-            
-            Api.shared().getAllConversation().subscribe(onNext: { (conversations) in
-                self?.conversationList = conversations
-                
-                for conversation in (self?.conversationList)! {
-                    conversation.delegate = self
-                }
-                
-                self?.conversationList = (self?.conversationList.sorted(by: { $0.lastTime > $1.lastTime }))!
-                self?.conversationTable.reloadData()
-                self?.conversationTable.dg_stopLoading()
-                
-            }, onError: { (error) in
-                self?.conversationTable.dg_stopLoading()
-            }, onCompleted: {
-                self?.conversationTable.dg_stopLoading()
-            }, onDisposed: nil)
-            
             }
             ,loadingView: loadingView)
         conversationTable.dg_setPullToRefreshFillColor(UIColor(red: 217/255.0, green: 243/255.0, blue: 239/255.0, alpha: 1.0))
@@ -108,8 +88,6 @@ class ConversationViewController: UIViewController {
     deinit {
         self.conversationTable.dg_removePullToRefresh()
     }
-
- 
 }
 
 extension ConversationViewController: UITableViewDelegate, UITableViewDataSource {
@@ -134,7 +112,7 @@ extension ConversationViewController: UITableViewDelegate, UITableViewDataSource
         self.conversationTable.deselectRow(at: indexPath, animated: false)
         self.present(controller, animated: true, completion: nil)
     }
-
+    
 }
 
 extension ConversationViewController: ConversationDelegate{

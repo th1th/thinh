@@ -194,8 +194,9 @@ class Api: NSObject {
     */
     func getAllConversation() -> Observable<[Conversation]> {
        return Observable<[Conversation]>.create({ subcriber -> Disposable in
-            self.userConversationDb.child(self.userId()!).queryOrdered(byChild: FirebaseKey.lastTime).observe(.value, with: { snapshot in
+            self.userConversationDb.child(self.userId()!).observe(.value, with: { snapshot in
                 var conversations = [Conversation]()
+                print(snapshot)
                 for child in snapshot.children {
                     guard let data = child as? FIRDataSnapshot else {
                         return
@@ -557,7 +558,7 @@ class Api: NSObject {
                     if (message != nil) {
                         self.sendMessage(id: id, message: message!.refreshTime())
                     }
-                    self.sendMatchNotification(for: thinh, message: message)
+//                    self.sendMatchNotification(for: thinh, message: message)
                     self.deleteThinh(B, to: A)
                 })
             } else {
