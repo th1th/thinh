@@ -11,7 +11,6 @@ import Gloss
 
 typealias ThinhId = String
 class Thinh: NSObject, Glossy  {
-    var id: ThinhId?
     var from: UserId?
     var to: UserId?
     var message: String?
@@ -20,7 +19,6 @@ class Thinh: NSObject, Glossy  {
     var friend: Bool?
     
     required init?(json: JSON) {
-        id = FirebaseKey.id <~~ json
         from = FirebaseKey.from <~~ json
         to = FirebaseKey.to <~~ json
         message = FirebaseKey.message <~~ json
@@ -31,7 +29,6 @@ class Thinh: NSObject, Glossy  {
     
     func toJSON() -> JSON? {
         return jsonify([
-            FirebaseKey.id ~~> id,
             FirebaseKey.from ~~> from,
             FirebaseKey.to ~~> to,
             FirebaseKey.message ~~> message,
@@ -73,5 +70,9 @@ class Thinh: NSObject, Glossy  {
     func withFriend(_ friend: Bool) -> Thinh {
         self.friend = friend
         return self
+    }
+    
+    func hasSomething() -> Bool {
+        return media != nil || message != nil
     }
 }

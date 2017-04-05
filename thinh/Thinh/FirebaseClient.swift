@@ -559,14 +559,12 @@ class Api: NSObject {
                         id = self.createNewConversation(forUser: A, andUser: B)
                     }
                     self.sendBotMessage(id: id, user1: A, user2: B)
-//                    if (thinh.media != nil || thinh.message != nil) {
-//                        self.sendMessage(id: id, message: Message(thinh: thinh))
-//                        
-//                    }
-//                    if (message != nil) {
-//                        self.sendMessage(id: id, message: message!.refreshTime())
-//                    }
-                    self.sendMessage(id: id, message: Message(thinh: thinh))
+                    if thinh.hasSomething() {
+                        self.sendMessage(id: id, message: Message(thinh: thinh))
+                    }
+                    if message != nil {
+                        self.sendMessage(id: id, message: message!)
+                    }
 //                    self.sendMatchNotification(for: thinh, message: message)
                     self.deleteThinh(B, to: A)
                 })
@@ -737,7 +735,8 @@ extension Api {
                 createMockThinh(users[i].id!, users[1].id!, message: "I love you babe")
             }
             if i != 17 && i % 3 == 0 {
-                createMockThinh(users[i].id!, users[17].id!, message: "You are so talented")
+//                createMockThinh(users[i].id!, users[17].id!, message: "You are so talented")
+                createMockThinh(users[i].id!, users[17].id!, message: "You are so talented", image: #imageLiteral(resourceName: "hot-girl-han-quoc-xinh-dep-song-o-sai-gon-gay-sot"))
             }
         }
     
@@ -795,12 +794,17 @@ extension Api {
         }
     }
     
-    func createMockThinh(_ from: UserId, _ to: UserId, message: String?) {
+    func createMockThinh(_ from: UserId, _ to: UserId, message: String) {
         var sms: Message? = nil
-        if let message = message {
-            sms = Message(from: from, to: to, message: message)
-        }
+        sms = Message(from: from, to: to, message: message)
         thathinh(A: to, B: from, message: sms)
+    }
+    
+    fileprivate func createMockThinh(_ from: UserId, _ to: UserId, message: String, image: UIImage) {
+        self.uploadImage(image).subscribe(onNext: { (url) in
+            let sms = Message(from: from, to: to, message: message, media: url)
+            self.thathinh(A: to, B: from, message: sms)
+        })
     }
     
     fileprivate func createMockThinh(_ from: UserId, _ to: UserId, image: UIImage) {
