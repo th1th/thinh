@@ -24,6 +24,7 @@ class Conversation: NSObject, Glossy {
 
     var lastMessage: String?
     var lastTime: TimeInterval!
+    var seen: Bool!
     var partnerID: UserId? {
         didSet{
             Api.shared().getUser(id: partnerID!).subscribe(onNext: { (user) in
@@ -49,6 +50,7 @@ class Conversation: NSObject, Glossy {
         id = FirebaseKey.conversation <~~ json
         lastMessage = FirebaseKey.lastMessage <~~ json
         lastTime = FirebaseKey.lastTime <~~ json
+        seen = FirebaseKey.seen <~~ json
         ({self.partnerID = FirebaseKey.user <~~ json})()
     }
     
@@ -57,7 +59,8 @@ class Conversation: NSObject, Glossy {
             FirebaseKey.conversation ~~> id,
             FirebaseKey.lastMessage ~~> lastMessage,
             FirebaseKey.lastTime ~~> lastTime,
-            FirebaseKey.user ~~> partnerID
+            FirebaseKey.user ~~> partnerID,
+            FirebaseKey.seen ~~> seen
             ])
     }
     
@@ -65,6 +68,7 @@ class Conversation: NSObject, Glossy {
         self.id = id
         self.lastMessage = message
         self.lastTime = time
+        self.seen = false
     }
     
     // For Testing

@@ -192,7 +192,6 @@ class Api: NSObject {
      get all conversation of current login user
      FIXME: Change to child_added event in future?
     */
-    
     func getAllConversation() -> Observable<[Conversation]> {
        return Observable<[Conversation]>.create({ subcriber -> Disposable in
             self.userConversationDb.child(self.userId()!).queryOrdered(byChild: FirebaseKey.lastTime).observe(.value, with: { snapshot in
@@ -298,6 +297,20 @@ class Api: NSObject {
             userConversationDb.child(message.user2!).child(message.user1!).setValue(conversation.withUser(message.user1!).toJSON())
         }   // photo message don't update last message
         return key
+    }
+    
+    /*
+     current user has seen new message from user B
+    */
+    func hasSeenConversation(_ conversation: ConversationId, from B: UserId) {
+        user(userId()!, hasSeenConversation: conversation, from: B)
+    }
+    
+    /*
+    User A has seen this conversation
+    */
+    fileprivate func user(_ A: UserId, hasSeenConversation conversation: ConversationId, from B: UserId) {
+        self.userConversationDb.child(A).child(conversation).updateChildValues([FirebaseKey.seen: true])
     }
     
     /*

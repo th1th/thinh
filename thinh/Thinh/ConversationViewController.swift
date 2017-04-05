@@ -117,11 +117,10 @@ extension ConversationViewController: UITableViewDelegate, UITableViewDataSource
         let storyboard = UIStoryboard(name: "Chat", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "ChatViewController") as! UINavigationController
         let chatVC = controller.viewControllers.first as! ChatViewController
-        
-        chatVC.conversation = self.conversationList[indexPath.row]
-        
+        let conversation = self.conversationList[indexPath.row]
+        chatVC.conversation = conversation
+        Api.shared().hasSeenConversation(conversation.id!, from: conversation.partnerID!)
         self.conversationTable.deselectRow(at: indexPath, animated: false)
-        
         self.present(controller, animated: true, completion: nil)
     }
 
