@@ -260,8 +260,7 @@ extension ContactListViewController{
             ThaThinhMessageTextView.font = UIFont(name: "SF UI Display Medium", size: 22)
     }
     func showPopupView(){
-        
-        
+                
         //Show GrayView Behind popup view
         self.showGrayBGView(viewController: self, grayView: grayBackgroundView)
         
@@ -270,8 +269,7 @@ extension ContactListViewController{
         
         self.view.addSubview(popupView!)
 //        //delegate
-//        captionTextView.delegate = self
-//        phoneTextView.delegate = self
+        ThaThinhMessageTextView.delegate = self
         
         //Configure popupview
         popupView?.frame.size = CGSize(width: 0, height: 0)
@@ -291,7 +289,7 @@ extension ContactListViewController{
         
         let h_Pin = NSLayoutConstraint.constraints(withVisualFormat: "H:|-(12)-[ThaThinhMessageView]-(12)-|", options: .alignAllTop, metrics: nil, views: dView)
         self.view.addConstraints(h_Pin)
-        let v_Pin = NSLayoutConstraint.constraints(withVisualFormat:"V:|-(56)-[ThaThinhMessageView]-(56)-|", options: .alignAllTop, metrics: nil, views: dView)
+        let v_Pin = NSLayoutConstraint.constraints(withVisualFormat:"V:|-(100)-[ThaThinhMessageView]-(150)-|", options: .alignAllTop, metrics: nil, views: dView)
         self.view.addConstraints(v_Pin)
         
         constY = NSLayoutConstraint(item: popupView!, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0)
@@ -355,7 +353,11 @@ extension ContactListViewController{
         
     }
 }
-
+extension ContactListViewController:UITextViewDelegate{
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        textView.text = ""
+    }
+}
 
 
 

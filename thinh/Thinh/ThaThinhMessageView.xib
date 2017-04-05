@@ -34,12 +34,12 @@
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4I5-Rl-ZYk">
-                    <rect key="frame" x="125" y="198" width="70" height="40"/>
+                    <rect key="frame" x="118" y="198" width="85" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="3gN-qW-iBk"/>
-                        <constraint firstAttribute="width" constant="70" id="A9r-qd-zgQ"/>
+                        <constraint firstAttribute="width" constant="85" id="A9r-qd-zgQ"/>
                     </constraints>
-                    <state key="normal" title="Button"/>
+                    <state key="normal" title="Send Now!"/>
                     <connections>
                         <action selector="CompleteThathinhButton:" destination="-1" eventType="touchUpInside" id="GaE-MS-bt2"/>
                     </connections>

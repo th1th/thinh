@@ -58,7 +58,9 @@ class ContactTableViewCell: UITableViewCell,AVCapturePhotoCaptureDelegate, UIIma
 
     func tapEdit(sender: UILongPressGestureRecognizer) {
         utilities.log("longpress")
-        delegate?.contactTableViewCellDelegate(user: user)
+        
+        //there is a bug here. So comment out this line. Fix later
+//        delegate?.contactTableViewCellDelegate(user: user)
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
