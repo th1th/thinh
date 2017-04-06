@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -24,22 +24,22 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Say something :))" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="VbH-w7-P3e">
-                    <rect key="frame" x="30" y="30" width="260" height="128"/>
+                    <rect key="frame" x="30" y="30" width="260" height="48"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="240" id="E9u-Ln-g9U"/>
-                        <constraint firstAttribute="height" constant="128" id="hkd-dz-7Jl"/>
+                        <constraint firstAttribute="height" constant="48" id="hkd-dz-7Jl"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="22"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4I5-Rl-ZYk">
-                    <rect key="frame" x="125" y="198" width="70" height="40"/>
+                    <rect key="frame" x="100" y="102" width="120" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="3gN-qW-iBk"/>
-                        <constraint firstAttribute="width" constant="70" id="A9r-qd-zgQ"/>
+                        <constraint firstAttribute="width" constant="120" id="A9r-qd-zgQ"/>
                     </constraints>
-                    <state key="normal" title="Button"/>
+                    <state key="normal" title="Tha Thinh Nao!"/>
                     <connections>
                         <action selector="CompleteThathinhButton:" destination="-1" eventType="touchUpInside" id="GaE-MS-bt2"/>
                     </connections>
@@ -49,7 +49,7 @@
             <constraints>
                 <constraint firstItem="VbH-w7-P3e" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="2GY-Ck-L1o"/>
                 <constraint firstItem="4I5-Rl-ZYk" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Aph-we-uIZ"/>
-                <constraint firstItem="4I5-Rl-ZYk" firstAttribute="top" secondItem="VbH-w7-P3e" secondAttribute="bottom" constant="40" id="bAl-of-2ry"/>
+                <constraint firstItem="4I5-Rl-ZYk" firstAttribute="top" secondItem="VbH-w7-P3e" secondAttribute="bottom" constant="24" id="bAl-of-2ry"/>
                 <constraint firstItem="VbH-w7-P3e" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="30" id="ieK-SJ-lB8"/>
                 <constraint firstAttribute="trailing" secondItem="VbH-w7-P3e" secondAttribute="trailing" constant="30" id="jge-4b-ofF"/>
             </constraints>

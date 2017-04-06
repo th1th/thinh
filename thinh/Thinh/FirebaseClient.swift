@@ -105,9 +105,11 @@ class Api: NSObject {
      logout of service
     */
     func logout() {
+        updateUserStatus(false)
         do {
             LoginManager().logOut()
             try FIRAuth.auth()?.signOut()
+            UserDefaults.standard.set(nil, forKey: "Thinh_CurrentUser")
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }

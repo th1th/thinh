@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -126,6 +126,14 @@
                                         <color key="textColor" red="0.99417658399630371" green="0.96498742627418987" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="12" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cNC-58-exG" userLabel="Thinh Bagde">
+                                        <rect key="frame" x="227" y="3" width="25" height="16"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="1" green="0.0" blue="0.0187217119" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <color key="textColor" red="0.99417658399999997" green="0.96498742630000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -172,6 +180,7 @@
                     <connections>
                         <outlet property="chatBagde" destination="opq-3q-2b0" id="ifS-4v-d89"/>
                         <outlet property="contentView" destination="qaT-gV-SNI" id="ZTa-wb-DVn"/>
+                        <outlet property="thinhBagde" destination="cNC-58-exG" id="KSu-nQ-vnK"/>
                         <outletCollection property="buttons" destination="dl5-tV-vd4" collectionClass="NSMutableArray" id="5Ed-zI-FWT"/>
                         <outletCollection property="buttons" destination="AkF-8N-sCg" collectionClass="NSMutableArray" id="9ms-Dt-QKU"/>
                         <outletCollection property="buttons" destination="K4U-LQ-meR" collectionClass="NSMutableArray" id="XWu-kP-kiL"/>
@@ -188,7 +197,7 @@
         <image name="ChatTabBar" width="250" height="195"/>
         <image name="ContactTabBar" width="250" height="195"/>
         <image name="MeTabBar" width="250" height="195"/>
-        <image name="Sign In  #1" width="750" height="1334"/>
+        <image name="Sign In  #1" width="1500" height="2668"/>
         <image name="ThaTabBar" width="250" height="195"/>
         <image name="ThinhTabBar" width="250" height="195"/>
     </resources>

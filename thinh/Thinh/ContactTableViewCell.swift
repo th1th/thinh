@@ -32,7 +32,9 @@ class ContactTableViewCell: UITableViewCell,AVCapturePhotoCaptureDelegate, UIIma
     
     @IBAction func onClickThaThinhButton(_ sender: UIButton) {
         print("[xx]thathinh \(user.name)")
-        Api.shared().thathinh((user?.id)!)
+        delegate?.contactTableViewCellDelegate(user: user)
+
+//        Api.shared().thathinh((user?.id)!)
         UIView.transition(with: self.ThaThinhButton.imageView!,
                           duration: 0.3,
                           options: .transitionCrossDissolve,
@@ -56,7 +58,9 @@ class ContactTableViewCell: UITableViewCell,AVCapturePhotoCaptureDelegate, UIIma
 
     func tapEdit(sender: UILongPressGestureRecognizer) {
         utilities.log("longpress")
-        delegate?.contactTableViewCellDelegate(user: user)
+        
+        //there is a bug here. So comment out this line. Fix later
+//        delegate?.contactTableViewCellDelegate(user: user)
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

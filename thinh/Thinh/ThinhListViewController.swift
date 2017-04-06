@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol ThinhListViewControllerDelegate {
+    func numberOfStrangerThinh(_ n: Int)
+}
+
 class ThinhListViewController: UIViewController {
 
     @IBOutlet weak var UserImage: UIImageView!
@@ -49,7 +53,8 @@ class ThinhListViewController: UIViewController {
     // \___________/   ^    \___________________/
     //  loaded user   track        unload user
     var indexTracking = 0
-    
+    var delegate: ThinhListViewControllerDelegate?
+    fileprivate var numberOfThinh: Int = 0
     
     
     
@@ -89,6 +94,8 @@ class ThinhListViewController: UIViewController {
                     break
                 }
             }
+            numberOfThinh -= 1
+            delegate?.numberOfStrangerThinh(numberOfThinh)
         }
     }
     @IBAction func onClickedDeline(_ sender: UIButton) {
@@ -104,7 +111,10 @@ class ThinhListViewController: UIViewController {
                     print(index)
                 }
             }
+            numberOfThinh -= 1
+            delegate?.numberOfStrangerThinh(numberOfThinh)
         }
+        
     }
     
     override func viewDidLoad() {
@@ -139,6 +149,8 @@ extension ThinhListViewController{
         utilities.log("reloadThinhList---   \(User.currentUser.id)")
         Api.shared().getMyStrangerThinh().subscribe(onNext: { (thinh:Thinh) in
             utilities.log("reloadThinhList--\(thinh)")
+            self.numberOfThinh += 1
+            self.delegate?.numberOfStrangerThinh(self.numberOfThinh)
             Api.shared().getUser(id: thinh.from!).subscribe(onNext: { (user) in
                 self.thinhs.append(thinh)
                 self.users.append(user)
