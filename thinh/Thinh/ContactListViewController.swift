@@ -289,7 +289,7 @@ extension ContactListViewController{
         
         let h_Pin = NSLayoutConstraint.constraints(withVisualFormat: "H:|-(12)-[ThaThinhMessageView]-(12)-|", options: .alignAllTop, metrics: nil, views: dView)
         self.view.addConstraints(h_Pin)
-        let v_Pin = NSLayoutConstraint.constraints(withVisualFormat:"V:|-(100)-[ThaThinhMessageView]-(150)-|", options: .alignAllTop, metrics: nil, views: dView)
+        let v_Pin = NSLayoutConstraint.constraints(withVisualFormat:"V:|-(100)-[ThaThinhMessageView]-(250)-|", options: .alignAllTop, metrics: nil, views: dView)
         self.view.addConstraints(v_Pin)
         
         constY = NSLayoutConstraint(item: popupView!, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0)
