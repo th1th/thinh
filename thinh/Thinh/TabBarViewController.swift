@@ -15,7 +15,7 @@ class TabBarViewController: UIViewController {
 
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var chatBagde: UILabel!
-    
+    @IBOutlet weak var thinhBagde: UILabel!
     
     @IBOutlet var buttons: [UIButton]!
     
@@ -23,7 +23,7 @@ class TabBarViewController: UIViewController {
     var homeViewController: UIViewController!
     var conversationViewNavigator: UIViewController!
     var thaThinhViewController: UIViewController!
-    var thinhListViewController: UIViewController!
+    var thinhListViewController: ThinhListViewController!
     var userViewController: UIViewController!
     //an array to hold the ViewControllers named
     var viewControllers: [UIViewController]!
@@ -31,6 +31,7 @@ class TabBarViewController: UIViewController {
     var selectedIndex: Int = 0
     //count number of new chats
     var chatCount: Int = 0
+    var thinhCount: Int = 0
     
     @IBAction func onClickTab(_ sender: UIButton) {
         //Get Access to the Previous and Current Tab Button.
@@ -75,7 +76,10 @@ class TabBarViewController: UIViewController {
         thaThinhViewController = UIStoryboard(name: "ThaThinh", bundle: nil).instantiateViewController(withIdentifier: "ThaThinhViewController")
         
         
-        thinhListViewController = UIStoryboard(name: "ThinhList", bundle: nil).instantiateViewController(withIdentifier: "ThinhListViewController")
+        thinhListViewController = UIStoryboard(name: "ThinhList", bundle: nil).instantiateViewController(withIdentifier: "ThinhListViewController") as! ThinhListViewController
+        thinhListViewController.delegate = self
+        
+        
         
         userViewController = UIStoryboard(name: "Setting", bundle: nil).instantiateViewController(withIdentifier: "SettingViewController")
         
@@ -108,6 +112,7 @@ class TabBarViewController: UIViewController {
 extension TabBarViewController{
     func initView() {
         updateChatCount()
+        updateThinhCount()
     }
     func updateChatCount(){
         if chatCount>0 {
@@ -119,6 +124,18 @@ extension TabBarViewController{
             chatBagde.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
         }
     }
+    
+    func updateThinhCount() {
+        if thinhCount>0 {
+            thinhBagde.frame = CGRect(x: view.frame.width*1.55/2.22, y: 0.0, width: 25.0, height: 16.0)
+            thinhBagde.layer.cornerRadius = 7
+            thinhBagde.clipsToBounds = true
+            thinhBagde.text = "\(thinhCount)"
+        }else{
+            thinhBagde.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
+        }
+    }
+    
     func updateTabBarImage(selectselectedIndex:Int,previousIndex:Int) {
         switch previousIndex {
         case 0:
@@ -157,15 +174,22 @@ extension TabBarViewController{
         default: break
         }
         updateChatCount()
+        updateThinhCount()
     }
 }
 
-extension TabBarViewController: ConversationViewControllerDelegate{
+extension TabBarViewController: ConversationViewControllerDelegate, ThinhListViewControllerDelegate {
     
     func numberOfUnseenConversation(_ n: Int){
         chatCount = n
         updateChatCount()
     }
+    
+    func numberOfStrangerThinh(_ n: Int) {
+        thinhCount = n
+        updateThinhCount()
+    }
+    
     func gotNewThinh(_ conversation: Conversation) {
         print("Got thinh")
         

@@ -197,17 +197,7 @@ extension SettingViewController{
         Api.shared().updateUser(user!)
     }
     func signOut() {
-        let firebaseAuth = FIRAuth.auth()
-        let defaults = UserDefaults.standard
-        
-        do {
-            LoginManager().logOut()
-            defaults.set(nil, forKey: "Thinh_CurrentUser")
-            try firebaseAuth?.signOut()
-        } catch let signOutError as NSError {
-            print ("Error signing out: %@", signOutError)
-        }
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "didLogOut"), object: nil)
+        Api.shared().logout()
         
     }
 }
