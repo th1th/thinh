@@ -73,14 +73,14 @@ class ConversationViewController: UIViewController {
             self.delegate?.numberOfUnseenConversation(unseenConversation)
             
             self.conversationList = (self.conversationList.sorted(by: { $0.lastTime > $1.lastTime }))
-            
-            let message = self.conversationList[0].lastMessage
-            if(message == "Congra! Everyone should love thinh" && self.conversationList[0].lastTime != self.lastThinhTime){
-                // Trigger conversation delegate
-                self.delegate?.gotNewThinh(self.conversationList[0])
-                self.lastThinhTime = self.conversationList[0].lastTime
+            if self.conversationList.count > 0 {
+                let message = self.conversationList[0].lastMessage
+                if(message == FirebaseKey.botMessage && self.conversationList[0].lastTime != self.lastThinhTime){
+                    // Trigger conversation delegate
+                    self.delegate?.gotNewThinh(self.conversationList[0])
+                    self.lastThinhTime = self.conversationList[0].lastTime
+                }
             }
-            
             self.conversationTable.reloadData()
         })
     }
