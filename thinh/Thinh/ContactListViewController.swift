@@ -30,12 +30,16 @@ class ContactListViewController: UIViewController {
     
     @IBAction func CompleteThathinhButton(_ sender: UIButton) {
         thathinhMessage = ThaThinhMessageTextView.text
+        Api.shared().thathinh(thathinhUser!.id!, message: thathinhMessage, image: thathinhImage)
+        hidePopupView()
     }
     
     var contactList = [User]()
     let refreshController = UIRefreshControl()
     var thathinhUser: User?
     var thathinhMessage: String!
+    
+    var thathinhImage: UIImage!
     
     
     var contactDict = [String:[User]]()
@@ -230,14 +234,15 @@ extension ContactListViewController:ContactTableViewCellDelegate,ImagePickerDele
         let picker = ImagePickerController()
         picker.delegate = self
         picker.imageLimit = 1
+        
         present(picker, animated: true, completion:nil)
     }
     public func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
         imagePicker.dismiss(animated: true, completion: nil)
-        let image = images[0]
+        thathinhImage = images[0]
         //show popup to user input the message
-//        showPopupView()
-        Api.shared().thathinh((thathinhUser?.id)!, image: image)
+        showPopupView()
+        //Api.shared().thathinh((thathinhUser?.id)!, image: image)
     }
     func cancelButtonDidPress(_ imagePicker: ImagePickerController) {
         
@@ -285,9 +290,9 @@ extension ContactListViewController{
         
         popupView?.translatesAutoresizingMaskIntoConstraints = false
         
-        let h_Pin = NSLayoutConstraint.constraints(withVisualFormat: "H:|-(12)-[popupView]-(12)-|", options: .alignAllTop, metrics: nil, views: dView)
+        let h_Pin = NSLayoutConstraint.constraints(withVisualFormat: "H:|-(12)-[ThaThinhMessageView]-(12)-|", options: .alignAllTop, metrics: nil, views: dView)
         self.view.addConstraints(h_Pin)
-        let v_Pin = NSLayoutConstraint.constraints(withVisualFormat:"V:|-(56)-[popupView]-(56)-|", options: .alignAllTop, metrics: nil, views: dView)
+        let v_Pin = NSLayoutConstraint.constraints(withVisualFormat:"V:|-(56)-[ThaThinhMessageView]-(56)-|", options: .alignAllTop, metrics: nil, views: dView)
         self.view.addConstraints(v_Pin)
         
         constY = NSLayoutConstraint(item: popupView!, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0)
@@ -335,6 +340,8 @@ extension ContactListViewController{
     }
     
     func hidePopupView(){
+        
+        
         
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.50, options: UIViewAnimationOptions.curveEaseOut, animations: { () -> Void in
             

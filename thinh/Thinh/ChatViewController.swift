@@ -179,7 +179,9 @@ class ChatViewController: JSQMessagesViewController {
                 self.addMessage(withId: message.from!, name : message_sender_name!, text: message.message!)
             } else {
                 self.addPhotoMessage(withId: message.from!, name: message_sender_name!, mediaItem: AsyncPhotoMediaItem(withURL: message.media! as NSURL, isOperator: (message.from == self.current_user?.id)))
-
+                if let text = message.message {
+                    self.addMessage(withId: message.from!, name : message_sender_name!, text: text)
+                }
             }
             
             
@@ -290,7 +292,7 @@ class ChatViewController: JSQMessagesViewController {
     override func collectionView(_ collectionView: JSQMessagesCollectionView, attributedTextForCellTopLabelAt indexPath: IndexPath) -> NSAttributedString? {
 
         if (self.messages[indexPath.item].senderId != current_user?.id && self.messages[indexPath.item].senderId != conversation?.partnerID){
-            let text = "You guys are matched !"
+            let text = "\u{1F496}"
             let attribs = [
                 NSFontAttributeName: UIFont.boldSystemFont(ofSize: 18),
                 NSForegroundColorAttributeName: UIColor.lightGray
