@@ -729,16 +729,19 @@ extension Api {
             }
             if i != 0 && i % 2 == 0 {
                 // Every one tha thinh a Viet
-                createMockThinh(users[i].id!, users[0].id!, image: #imageLiteral(resourceName: "ThaThinh-1"))
+//                createMockThinh(users[i].id!, users[0].id!, image: #imageLiteral(resourceName: "ThaThinh-1"))
+                createMockThinh(users[i].id!, users[0].id!)
                 
             }
             if i != 1  && i % 2 == 1 {
                 // a Linh tha thinh every one
-                createMockThinh(users[i].id!, users[1].id!, message: "I love you babe")
+//                createMockThinh(users[i].id!, users[1].id!, message: "I love you babe")
+                createMockThinh(users[i].id!, users[1].id!)
             }
             if i != 17 && i % 3 == 0 {
 //                createMockThinh(users[i].id!, users[17].id!, message: "You are so talented")
-                createMockThinh(users[i].id!, users[17].id!, message: "You are so talented", image: #imageLiteral(resourceName: "hot-girl-han-quoc-xinh-dep-song-o-sai-gon-gay-sot"))
+//                createMockThinh(users[i].id!, users[17].id!, message: "You are so talented", image: #imageLiteral(resourceName: "hot-girl-han-quoc-xinh-dep-song-o-sai-gon-gay-sot"))
+                createMockThinh(users[i].id!, users[17].id!)
             }
         }
     
@@ -788,12 +791,16 @@ extension Api {
     private func createMockConversation(user1: UserId, user2: UserId) -> ConversationId {
         return createNewConversation(forUser: user1, andUser: user2)
     }
-    
+
     private func createMockMessage(user1: UserId, user2: UserId, id: ConversationId) {
         let messages = Message.mock(from: user1, to: user2, i: Int(arc4random_uniform(10)))
         for message in messages {
             sendMessage(id: id, message: message)
         }
+    }
+
+    private func createMockThinh(_ from: UserId, _ to: UserId) {
+        thathinh(A: to, B: from, message: nil)
     }
     
     func createMockThinh(_ from: UserId, _ to: UserId, message: String) {
