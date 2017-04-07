@@ -73,6 +73,13 @@ PODS:
     - FirebaseAnalytics (~> 3.7)
     - GTMSessionFetcher/Core (~> 1.1)
   - Gloss (1.2.4)
+  - GoogleMaps (2.2.0):
+    - GoogleMaps/Maps (= 2.2.0)
+  - GoogleMaps/Base (2.2.0)
+  - GoogleMaps/Maps (2.2.0):
+    - GoogleMaps/Base
+  - GooglePlaces (2.2.0):
+    - GoogleMaps/Base (= 2.2.0)
   - GoogleToolboxForMac/DebugUtils (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
   - GoogleToolboxForMac/Defines (2.1.1)
@@ -112,6 +119,8 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Storage
   - Gloss
+  - GoogleMaps
+  - GooglePlaces
   - ImagePicker
   - JSQMessagesViewController
   - NoticeBar
@@ -141,6 +150,8 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: 2d0518b1378fe9d685ef40cbdd63d2fdc1125339
   FirebaseStorage: a5c55b23741a49a72af8f30f95b3bb5ddbeda12d
   Gloss: 4e036074610fdb993abcb958ebcd7332588e2333
+  GoogleMaps: 104c418d61ab8a05dff06ed0784c25ea9d37da45
+  GooglePlaces: bca867d5e9da15384c794b945e4226848bc6e9d9
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 5c046c76a1f859bc9c187e918f18e4fc7bb57b5e
   ImagePicker: c0dd40026df3039ddd4b6f61433a96224d56d63b
@@ -152,6 +163,6 @@ SPEC CHECKSUMS:
   RxSwift: 8fc9f2de6275a9101d518444e00bf32f1a42caac
   SCRecorder: bbb521dbc222908876ec9cd9156bbc8a893bed44
 
-PODFILE CHECKSUM: ca86340e35395efd4c97457eda035f3b5d076d2e
+PODFILE CHECKSUM: 209dfc5883b0bafb5dd6f203118e8ec556111cc4
 
 COCOAPODS: 1.2.0
