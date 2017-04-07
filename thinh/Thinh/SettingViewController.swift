@@ -77,7 +77,7 @@ class SettingViewController: UIViewController {
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
         loadingView.tintColor = UIColor(red: 78/255.0, green: 221/255.0, blue: 200/255.0, alpha: 1.0)
         ScrollView.dg_addPullToRefreshWithActionHandler({
-            utilities.log(User.currentUser.id ?? "cannot get currentUser id")
+            utilities.log(User.currentUser!.id ?? "cannot get currentUser id")
             self.loadUser()
             self.ScrollView.dg_stopLoading()
         }, loadingView: loadingView)
@@ -100,7 +100,7 @@ extension SettingViewController{
     
     func loadUser() {
         user = User.currentUser
-        utilities.log("current user id: \(User.currentUser.id)")
+        utilities.log("current user id: \(User.currentUser!.id)")
         Api.shared().getCurrentUser().subscribe(onNext: { (user) in
             if let userID = user.id{
                 self.user = user

@@ -146,7 +146,7 @@ extension ThinhListViewController{
     func reloadThinhList() {
         hideUnuseThinhView()
         //GET ALL THINH HERE:
-        utilities.log("reloadThinhList---   \(User.currentUser.id)")
+        utilities.log("reloadThinhList---   \(User.currentUser!.id)")
         Api.shared().getMyStrangerThinh().subscribe(onNext: { (thinh:Thinh) in
             utilities.log("reloadThinhList--\(thinh)")
             self.numberOfThinh += 1

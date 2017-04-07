@@ -46,6 +46,7 @@
 		153676131E89547B007A2FB5 /* AsyncPhotoMediaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153676121E89547B007A2FB5 /* AsyncPhotoMediaItem.swift */; };
 		941469B91E7F542C00CB3732 /* Date_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941469B81E7F542C00CB3732 /* Date_extension.swift */; };
 		9414AE5A1E933D4A00428558 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9414AE591E933D4A00428558 /* Match.swift */; };
+		9446FC901E97C50F00C4E7FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9446FC8F1E97C50F00C4E7FD /* Assets.xcassets */; };
 		9483C28A1E8956ED0092CECE /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9483C2891E8956ED0092CECE /* Image.swift */; };
 		948C1F2B1E7E267C000F20E5 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948C1F2A1E7E267C000F20E5 /* Constant.swift */; };
 		948C1F2D1E7E2A88000F20E5 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948C1F2C1E7E2A88000F20E5 /* Message.swift */; };
@@ -54,7 +55,6 @@
 		9497178D1E87F3AF00FBD83D /* Thinh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9497178C1E87F3AF00FBD83D /* Thinh.swift */; };
 		94C71F011E7444E400D63A95 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C71F001E7444E400D63A95 /* AppDelegate.swift */; };
 		94C71F061E7444E400D63A95 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94C71F041E7444E400D63A95 /* Main.storyboard */; };
-		94C71F081E7444E400D63A95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94C71F071E7444E400D63A95 /* Assets.xcassets */; };
 		94C71F0B1E7444E400D63A95 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94C71F091E7444E400D63A95 /* LaunchScreen.storyboard */; };
 		C8263355D1140BCE9AFEE195 /* Pods_Thinh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B511A829B8797A0E0B0FD21 /* Pods_Thinh.framework */; };
 /* End PBXBuildFile section */
@@ -102,6 +102,7 @@
 		8B511A829B8797A0E0B0FD21 /* Pods_Thinh.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Thinh.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		941469B81E7F542C00CB3732 /* Date_extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date_extension.swift; sourceTree = "<group>"; };
 		9414AE591E933D4A00428558 /* Match.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
+		9446FC8F1E97C50F00C4E7FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9483C2891E8956ED0092CECE /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		948C1F2A1E7E267C000F20E5 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		948C1F2C1E7E2A88000F20E5 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -111,7 +112,6 @@
 		94C71EFD1E7444E400D63A95 /* Thinh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Thinh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94C71F001E7444E400D63A95 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		94C71F051E7444E400D63A95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		94C71F071E7444E400D63A95 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		94C71F0A1E7444E400D63A95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		94C71F0C1E7444E400D63A95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -234,7 +234,7 @@
 		948C1F321E7E360A000F20E5 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				94C71F071E7444E400D63A95 /* Assets.xcassets */,
+				9446FC8F1E97C50F00C4E7FD /* Assets.xcassets */,
 				05F8ACBF1E85609F00A9B281 /* Fonts */,
 				94C71F0C1E7444E400D63A95 /* Info.plist */,
 				055024271E7CFA3700175FED /* utilities.swift */,
@@ -382,9 +382,9 @@
 				051EBECD1E864BB6002BA6B7 /* PopupView.xib in Resources */,
 				153676111E891641007A2FB5 /* Chat.storyboard in Resources */,
 				057886BF1E911063000B818D /* Anders.ttf in Resources */,
+				9446FC901E97C50F00C4E7FD /* Assets.xcassets in Resources */,
 				94C71F0B1E7444E400D63A95 /* LaunchScreen.storyboard in Resources */,
 				05B03C8F1E82BFDA00106C08 /* UserDetail.storyboard in Resources */,
-				94C71F081E7444E400D63A95 /* Assets.xcassets in Resources */,
 				05F3777C1E881A2800B9890F /* ContactList.storyboard in Resources */,
 				057886C71E911ADC000B818D /* Ailerons-Typeface.otf in Resources */,
 				05F5E4BB1E9402780058E44B /* ThaThinhMessageView.xib in Resources */,

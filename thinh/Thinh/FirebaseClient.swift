@@ -60,6 +60,7 @@ class Api: NSObject {
 //        return "3JqA5vuaFhMbd8bS5Y82RSB9G092"   // Donald Trump
 //        return "SyHSwBEV7zYR1FEzuqBTevOJVsH3"
 //        return "cdP7J0LNP2gUG3BeEq29N8JHDt72" // Dang Viet
+        return "tpe0qfm577eZ3VgCaatP42cPk2n2"    // Kim Lien
     }
 
     /*
@@ -213,15 +214,40 @@ class Api: NSObject {
     }
     
     /*
+     update cover for conversation
+    */
+    func updateCover(_ cover: UIImage, forConversation id: ConversationId) {
+        uploadImage(cover).subscribe(onNext: { (url) in
+            self.conversationDb.child(id).child(FirebaseKey.cover).setValue(url.absoluteString)
+        })
+    }
+    
+    /*
+     get conversation cover 
+    */
+    func getCoverForConversation(_ id: ConversationId) -> Observable<URL>{
+        return Observable<URL>.create({ (subcriber) -> Disposable in
+            self.conversationDb.child(id).child(FirebaseKey.cover).observeSingleEvent(of: .value, with: { (snapshot) in
+                guard let url = URL(string: snapshot.value as! String) else {
+                    subcriber.onError(ThinhError.unknownUser)
+                    return
+                }
+                subcriber.onNext(url)
+            })
+            return Disposables.create()
+        })
+    }
+    
+    
+    /*
      create new conversation when 2 user matched:
         - stranger dop thinh
         - both friend tha thinh
     */
-    // FIXME: create new conversation between current user and user A
     func createNewConversation(forUser: UserId, andUser: UserId) -> ConversationId {
         let key = conversationDb.childByAutoId().key
-//        sendBotMessage(id: key, user1: forUser, user2: andUser)
         createFriendRelationship(between: forUser, and: andUser)
+        conversationDb.child(key).child(FirebaseKey.cover).setValue(Conversation.randomCover())
         return key
     }
     
@@ -728,52 +754,24 @@ extension Api {
                 createMockMessage(user1: users[i].id!, user2: users[i+j+1].id!, id: id)
             }
             if i != 0 && i % 2 == 0 {
-                // Every one tha thinh a Viet
-//                createMockThinh(users[i].id!, users[0].id!, image: #imageLiteral(resourceName: "ThaThinh-1"))
                 createMockThinh(users[i].id!, users[0].id!)
                 
             }
             if i != 1  && i % 2 == 1 {
-                // a Linh tha thinh every one
-//                createMockThinh(users[i].id!, users[1].id!, message: "I love you babe")
                 createMockThinh(users[i].id!, users[1].id!)
             }
             if i != 17 && i % 3 == 0 {
-//                createMockThinh(users[i].id!, users[17].id!, message: "You are so talented")
-//                createMockThinh(users[i].id!, users[17].id!, message: "You are so talented", image: #imageLiteral(resourceName: "hot-girl-han-quoc-xinh-dep-song-o-sai-gon-gay-sot"))
+
                 createMockThinh(users[i].id!, users[17].id!)
             }
         }
-    
-        // both friend tha each other, has conversation
-//        createMockThinh(users[1].id!, users[2].id!)
-        
-        // stranger, not tha thinh each other
-//        createMockThinh(users[1].id!, users[6].id!)
-        
-        // stranger, tha each other
-//        createMockThinh(users[1].id!, users[4].id!)
-        
-        
-//        getFriendList(id: users[1].id!)
-//        checkFriendRelationship(between: users[1].id!, and: users[0].id!)
-//            .subscribe(onNext: { (friend) in
-//                if !friend {
-//                    print("This should be friend")
-//                }
-//            })
-//        checkFriendRelationship(between: users[1].id!, and: users[3].id!)
-//            .subscribe(onNext: { (friend) in
-//                if friend {
-//                    print("This should not be friend")
-//                }
-//            })
     }
 
     
     private func deleteDb() {
         database.setValue(nil)
     }
+    
     
     private func createMockUser()  -> [User] {
         let bot = User.createBot()
