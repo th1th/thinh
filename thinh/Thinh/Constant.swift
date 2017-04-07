@@ -76,6 +76,9 @@ struct FirebaseKey {
 }
 
 enum ThinhError: Error {
+    case loginFailed
     case unknownUser
-    // TODO: more error
+    case sendMessage
+    case uploadImageFailed
+    case unknownThinh
 }

@@ -518,6 +518,7 @@ class Api: NSObject {
         return Observable<Bool>.create { (subcriber) -> Disposable in
             self.userFriendDb.child(user1).observeSingleEvent(of: .value, with: { (snapshot) in
                 subcriber.onNext(snapshot.hasChild(user2))
+                subcriber.onCompleted()
             })
             return Disposables.create()
         }
@@ -534,7 +535,7 @@ class Api: NSObject {
         return Observable<Thinh>.create({ (subcriber) -> Disposable in
             self.thinhDb.child(id).observe(.childAdded, with: { (snapshot) in
                 guard let data = snapshot.value as? JSON else {
-                    subcriber.onError(ThinhError.unknownUser)
+                    subcriber.onError(ThinhError.unknownThinh)
                     return
                 }
                 let thinh = Thinh(json: data)!
@@ -557,7 +558,6 @@ class Api: NSObject {
      current user tha thinh user A only, also dop thinh
     */
     func thathinh(_ A: UserId) {
-//        thathinh(A: A, B: userId()!)
         thathinh(A: A, B: userId()!, message: nil)
         
     }
@@ -569,11 +569,15 @@ class Api: NSObject {
         uploadImage(image).subscribe(onNext: { (url) in
             let message = Message(from: self.userId()!, to: A, media: url)
             self.thathinh(A: A, B: self.userId()!, message: message)
-        })
+        }, onError: { (error) in
+            print("thathing \(error.localizedDescription)")
+        }, onCompleted: {
+            print("thathinh complete")
+        }, onDisposed: nil)
     }
     
     func thathinh(_ A: UserId, video: String) {
-            // TODO: implement
+        // TODO: implement
     }
     
     /*
@@ -588,7 +592,11 @@ class Api: NSObject {
         uploadImage(image).subscribe(onNext: { (url) in
             let sms = Message(from: self.userId()!, to: A, message: message, media: url)
             self.thathinh(A: A, B: self.userId()!, message: sms)
-        })
+        }, onError: { (error) in
+            print("thathing \(error.localizedDescription)")
+        }, onCompleted: { 
+            print("thathinh complete")
+        }, onDisposed: nil)
     }
     
     /*
@@ -639,6 +647,7 @@ class Api: NSObject {
                 } else {
                     subcriber.onNext(nil)
                 }
+                subcriber.onCompleted()
 
             })
             return Disposables.create()
@@ -663,43 +672,43 @@ class Api: NSObject {
     /*
      send the match notification to both user
     */
-    fileprivate func sendMatchNotification(for thinh: Thinh, message: Message?) {
-        let key = matchDb.childByAutoId().key
-        let match = Match(key).withAMessage(thinh.message).withAMedia(thinh.media).withBMessage(message?.message).withBMedia(message?.media)
-        
-        self.getUser(id: thinh.from!).flatMap { (user) -> Observable<User> in
-            match.withAName(user.name!).withAAvatar(user.avatar!)
-            return self.getUser(id: thinh.to!)
-        }.subscribe(onNext: { (user) in
-            match.withBName(user.name!).withBAvatar(user.avatar!)
-            self.matchDb.child(thinh.to!).child(match.id!).setValue(match.toJSON())
-            self.matchDb.child(thinh.from!).child(match.id!).setValue(match.toJSON())
-        })
-        
-    }
+//    fileprivate func sendMatchNotification(for thinh: Thinh, message: Message?) {
+//        let key = matchDb.childByAutoId().key
+//        let match = Match(key).withAMessage(thinh.message).withAMedia(thinh.media).withBMessage(message?.message).withBMedia(message?.media)
+//        
+//        self.getUser(id: thinh.from!).flatMap { (user) -> Observable<User> in
+//            match.withAName(user.name!).withAAvatar(user.avatar!)
+//            return self.getUser(id: thinh.to!)
+//        }.subscribe(onNext: { (user) in
+//            match.withBName(user.name!).withBAvatar(user.avatar!)
+//            self.matchDb.child(thinh.to!).child(match.id!).setValue(match.toJSON())
+//            self.matchDb.child(thinh.from!).child(match.id!).setValue(match.toJSON())
+//        })
+//        
+//    }
     
     /*
      observe match notification of me
     */
-    func observeMyMatchNotification() -> Observable<Match> {
-        return observeMatchNotification(userId()!)
-    }
+//    func observeMyMatchNotification() -> Observable<Match> {
+//        return observeMatchNotification(userId()!)
+//    }
     
     
     /*
      observe match notification
     */
-    fileprivate func observeMatchNotification(_ userId: UserId) -> Observable<Match> {
-        return Observable<Match>.create({ (subcriber) -> Disposable in
-            self.matchDb.child(userId).observe(.childAdded, with: { (snapshot) in
-                guard let match = Match(json: snapshot.value as! JSON) else {
-                    return
-                }
-                subcriber.onNext(match)
-            })
-            return Disposables.create()
-        })
-    }
+//    fileprivate func observeMatchNotification(_ userId: UserId) -> Observable<Match> {
+//        return Observable<Match>.create({ (subcriber) -> Disposable in
+//            self.matchDb.child(userId).observe(.childAdded, with: { (snapshot) in
+//                guard let match = Match(json: snapshot.value as! JSON) else {
+//                    return
+//                }
+//                subcriber.onNext(match)
+//            })
+//            return Disposables.create()
+//        })
+//    }
     
     /*
      delete match notification of current user
@@ -725,9 +734,15 @@ class Api: NSObject {
             let name = "\(Date.currentTimeInMillis()).jpg"
             self.dataStorage.child(name).put(data!, metadata: nil, completion: { (metadata, error) in
                 guard error == nil else {
+                    subcriber.onError(error!)
                     return
                 }
-                subcriber.onNext((metadata?.downloadURL())!)
+                guard let url = metadata?.downloadURL as? URL  else {
+                    subcriber.onError(ThinhError.uploadImageFailed)
+                    return
+                }
+                
+                subcriber.onNext(url)
             })
             return Disposables.create()
         })
