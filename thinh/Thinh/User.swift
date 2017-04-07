@@ -21,6 +21,7 @@ class User: NSObject, Glossy {
     var id: UserId?
     var status: Bool?
     var caption: String?
+    var cover: URL?
     
     static var currentUser: User!
     
@@ -39,6 +40,7 @@ class User: NSObject, Glossy {
         self.id = FirebaseKey.id <~~ json
         self.status = FirebaseKey.status <~~ json
         self.caption = FirebaseKey.caption <~~ json
+        self.cover = FirebaseKey.cover <~~ json
     }
     
     func toJSON() -> JSON? {
@@ -50,7 +52,8 @@ class User: NSObject, Glossy {
             FirebaseKey.prefer ~~> prefer,
             FirebaseKey.id ~~> id,
             FirebaseKey.status ~~> status,
-            FirebaseKey.caption ~~> caption])
+            FirebaseKey.caption ~~> caption,
+            FirebaseKey.cover ~~> cover])
     }
     
     override init() {

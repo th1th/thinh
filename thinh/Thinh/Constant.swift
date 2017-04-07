@@ -23,6 +23,7 @@ struct FirebaseKey {
     static let isTyping = "isTyping"
     static let messages = "messages"
     static let match = "match"
+    static let data = "data"
     static let cover = "cover"
     
     // user key

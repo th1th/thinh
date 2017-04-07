@@ -29,6 +29,7 @@ class Api: NSObject {
     fileprivate var storage: FIRStorageReference
     fileprivate var conversationStorage: FIRStorageReference
     fileprivate var matchDb: FIRDatabaseReference
+    fileprivate var dataStorage: FIRStorageReference
     
     static private var _shared: Api!
     
@@ -50,6 +51,7 @@ class Api: NSObject {
         matchDb = database.child(FirebaseKey.match)
         storage = FIRStorage.storage().reference()
         conversationStorage = storage.child(FirebaseKey.conversation)
+        dataStorage = storage.child(FirebaseKey.data)
     }
     
     func userId() -> String? {
@@ -159,6 +161,24 @@ class Api: NSObject {
     */
     func updateUser(_ user: User) {
         userDb.child(user.id!).updateChildValues(user.toJSON()!)
+    }
+    
+    /*
+     update user image
+    */
+    func updateAvatar(_ avatar: UIImage) {
+        uploadImage(avatar).subscribe(onNext: { (url) in
+            self.userDb.child(self.userId()!).updateChildValues([FirebaseKey.avatar: url.absoluteString])
+        })
+    }
+    
+    /*
+     update user cover
+    */
+    func updateUserCover(_ cover: UIImage) {
+        uploadImage(cover).subscribe(onNext: { (url) in
+            self.userDb.child(self.userId()!).updateChildValues([FirebaseKey.cover: url.absoluteString])
+        })
     }
     
     /*
@@ -703,7 +723,7 @@ class Api: NSObject {
         return Observable<URL>.create({ (subcriber) -> Disposable in
             let data = UIImageJPEGRepresentation(image, 0.2)
             let name = "\(Date.currentTimeInMillis()).jpg"
-            self.storage.child(name).put(data!, metadata: nil, completion: { (metadata, error) in
+            self.dataStorage.child(name).put(data!, metadata: nil, completion: { (metadata, error) in
                 guard error == nil else {
                     return
                 }
