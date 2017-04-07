@@ -22,16 +22,7 @@ class User: NSObject, Glossy {
     var status: Bool?
     var caption: String?
     
-    static var currentUser = User(json: [
-        FirebaseKey.id: User.user14,
-        FirebaseKey.avatar: User.avatar14,
-        FirebaseKey.name: User.name14,
-        FirebaseKey.prefer: User.prefer14,
-        FirebaseKey.caption: User.desc14,
-        FirebaseKey.gender: Sex.female.rawValue,
-        FirebaseKey.status: true,
-        FirebaseKey.phone: "0987867897"
-        ])
+    static var currentUser: User!
     
     enum Sex: String {
         case male = "male"

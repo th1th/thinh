@@ -53,7 +53,7 @@ class Api: NSObject {
     }
     
     func userId() -> String? {
-        return FIRAuth.auth()?.currentUser?.uid   // me
+//        return FIRAuth.auth()?.currentUser?.uid   // me
 //        return "WR3OioP6R0UTPUoWItWyJX5g4p62" // Linh Le
 //        return "S5cirBWXUiOGnareVEEWbjaIJN02" // Harley
 //        return "VUoc532PABTXwHAc5ceaIAtem9D2" // Mark
