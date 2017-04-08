@@ -124,7 +124,7 @@
                                 </connections>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pull to refresh" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ySh-64-dvg">
-                                <rect key="frame" x="12" y="40" width="151" height="21"/>
+                                <rect key="frame" x="12" y="40" width="150.5" height="20"/>
                                 <fontDescription key="fontDescription" name="Ailerons-Regular" family="Ailerons" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -143,6 +143,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="9FG-xu-BEv" secondAttribute="trailing" constant="25" id="3fj-s9-m4R"/>
                             <constraint firstItem="dLr-ba-lIU" firstAttribute="leading" secondItem="grI-nf-agt" secondAttribute="leadingMargin" constant="180" id="4J2-bB-FTb"/>
                             <constraint firstItem="tgl-oZ-AWh" firstAttribute="top" secondItem="S3n-Uy-Gmh" secondAttribute="bottom" constant="15" id="9Fu-Vk-O4T"/>
                             <constraint firstItem="ySh-64-dvg" firstAttribute="leading" secondItem="grI-nf-agt" secondAttribute="leading" constant="12" id="AoO-bS-7Mm"/>
@@ -153,6 +154,7 @@
                             <constraint firstAttribute="trailing" secondItem="d5w-e0-154" secondAttribute="trailing" id="g9S-q4-8tE"/>
                             <constraint firstItem="d5w-e0-154" firstAttribute="top" secondItem="S3n-Uy-Gmh" secondAttribute="bottom" id="nH2-Hg-CPn"/>
                             <constraint firstItem="EJf-q8-yp0" firstAttribute="top" secondItem="d5w-e0-154" secondAttribute="bottom" id="pep-T1-CS4"/>
+                            <constraint firstItem="9FG-xu-BEv" firstAttribute="top" secondItem="S3n-Uy-Gmh" secondAttribute="bottom" constant="15" id="sRY-J6-oIg"/>
                             <constraint firstItem="d5w-e0-154" firstAttribute="leading" secondItem="grI-nf-agt" secondAttribute="leading" id="vMa-kc-izB"/>
                             <constraint firstAttribute="trailing" secondItem="MyD-iS-yd6" secondAttribute="trailing" id="wD4-w2-mXp"/>
                         </constraints>
@@ -297,6 +299,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tjZ-mf-SpT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="691.875" y="194.36619718309859"/>
+
         </scene>
     </scenes>
     <resources>

@@ -3,6 +3,7 @@
 //  Thinh
 //
 //  Created by Linh Le on 4/8/17.
+
 //  Copyright © 2017 coderschool. All rights reserved.
 //
 
@@ -29,12 +30,12 @@ class MapViewController: UIViewController {
             //
         }
     }
+  
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         mockPosition = CLLocationCoordinate2D(latitude: 37.785834000000001, longitude: -122.406417)
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -161,16 +162,4 @@ extension GMSMarker {
 //        guard let url = URL(string: link) else { return }
 //        downloadedFrom(url: url, contentMode: mode)
 //    }
-//}
-
-
-
-
-
-
-
-
-
-
-
 
