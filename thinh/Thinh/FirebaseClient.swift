@@ -69,9 +69,9 @@ class Api: NSObject {
     /*
      login with facebook
     */
-    func login(accessToken: String) -> Observable<Bool> {
-        return loginWithFacebook(accessToken)
-    }
+//    func login(accessToken: String) -> Observable<Bool> {
+//        return loginWithFacebook(accessToken)
+//    }
 
     // TODO: get user info from facebook
     fileprivate func loginWithFacebook(_ accessToken: String) -> Observable<Bool> {
@@ -753,8 +753,8 @@ class Api: NSObject {
                     subcriber.onError(error!)
                     return
                 }
-                guard let url = metadata?.downloadURL as? URL  else {
-                    subcriber.onError(ThinhError.uploadImageFailed)
+                guard let url = metadata?.downloadURL() else {
+//                    subcriber.onError(ThinhError.uploadImageFailed)
                     return
                 }
                 

@@ -36,13 +36,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         // get current user to and store through the app
-        Api.shared().getCurrentUser().subscribe(onNext: { (user) in
-            User.currentUser = user
-        }, onError: { (error) in
-            print(error.localizedDescription)
-        }, onCompleted: { 
-            print("Get current user")
-        }, onDisposed: nil)
+        
+        // TODO: Move thí shit after login
+//        _ = Api.shared().getCurrentUser().subscribe(onNext: { (user) in
+//            User.currentUser = user
+//        }, onError: { (error) in
+//            print(error.localizedDescription)
+//        }, onCompleted: { 
+//            print("Get current user")
+//        }, onDisposed: nil)
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 

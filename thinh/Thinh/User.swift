@@ -26,7 +26,7 @@ class User: NSObject, Glossy {
     var lat: CLLocationDegrees?
     var lon: CLLocationDegrees?
     
-    static var currentUser: User!
+    static var currentUser: User? = User(user: (FIRAuth.auth()?.currentUser!)!)
     
     enum Sex: String {
         case male = "male"
@@ -226,6 +226,8 @@ class User: NSObject, Glossy {
     static let desc24 = ""
     static let sex24 = Sex.female
     static let prefer24 = Sex.male
+    static let lat24 = 10.7527067
+    static let long24 = 106.6688146
     
     
     static let user5 = "rsu1wVrOsDeBBlfriSkhMsW6sKm2"
@@ -252,8 +254,9 @@ class User: NSObject, Glossy {
     static let desc8 = "Make America Great Again"
     static let sex8 = Sex.male
     static let prefer8 = Sex.female
-    static let lat8 = 10.7527067
-    static let long8 = 106.6688146
+    static let lat8 = 10.7831803
+    static let lon8 = 106.6982434
+    
 
     static let user9 = "4MfSmNC6J6M2n2rHMW8Rl0DeCYx2"
     static let name9 = "Kim Jong Un"
@@ -269,6 +272,8 @@ class User: NSObject, Glossy {
     static let avatar10 = "https://firebasestorage.googleapis.com/v0/b/thinh-43483.appspot.com/o/mock%2F1.jpg?alt=media&token=5574f907-7260-4e3d-ae3e-e951dd4816a0"
     static let desc10 = "Giang Tô đệ nhất kỹ nữ"
     static let sex10 = Sex.female
+    static let lat10 = 10.7527067
+    static let lon10 = 106.6688146
     static let prefer10 = Sex.male
     
     static let user11 = "ScnTerJ0ckcjODE87Lyc7ULJdrk2"
@@ -277,6 +282,8 @@ class User: NSObject, Glossy {
     static let desc11 = ""
     static let sex11 = Sex.female
     static let prefer11 = Sex.male
+    static let lat11 = 10.7851177
+    static let lon11 = 106.6823341
     
     static let user18 = "WhEZVoiMDpTA4QkdI8dHCZFyG752"
     static let name18 = "Đạt Trần"
@@ -284,6 +291,8 @@ class User: NSObject, Glossy {
     static let desc18 = "Have nothing to say"
     static let sex18 = Sex.male
     static let prefer18 = Sex.female
+    static let lat18 = 10.8465972
+    static let lon18 = 106.668165
     
     static let user13 = "kAywm67rnKRrlSrTEuWe14ayVrv1"
     static let avatar13 = "https://firebasestorage.googleapis.com/v0/b/thinh-43483.appspot.com/o/mock%2F4.jpg?alt=media&token=7f444e1c-b2f4-4ee7-8b13-55714d56879a"
@@ -291,6 +300,8 @@ class User: NSObject, Glossy {
     static let desc13 = ""
     static let sex13 = Sex.female
     static let prefer13 = Sex.male
+    static let lat13 = 10.7765282
+    static let lon13 = 106.698802
     
     static let user14 = "tpe0qfm577eZ3VgCaatP42cPk2n2"
     static let avatar14 = "https://firebasestorage.googleapis.com/v0/b/thinh-43483.appspot.com/o/mock%2F5.jpg?alt=media&token=01cb085a-65ae-469d-b2f8-0ab2a82e3c38"
@@ -298,6 +309,8 @@ class User: NSObject, Glossy {
     static let desc14 = "Bày mưu gian, bợm già dỗ khách; Ham tình dục, gái đĩ giết chồng"
     static let sex14 = Sex.female
     static let prefer14 = Sex.male
+    static let lat14 = 10.7897149
+    static let lon14 = 106.6876916
     
     static let user15 = "zJPO6qqMKVPTb7lENxrVBtn2D1F2"
     static let avatar15 = "https://firebasestorage.googleapis.com/v0/b/thinh-43483.appspot.com/o/mock%2F6.png?alt=media&token=2396158b-200f-4b7b-82a9-f208fa582147"
@@ -305,6 +318,8 @@ class User: NSObject, Glossy {
     static let desc15 = "Lãng tử phong lưu lãng tử sầu, Sống trong tiên cảnh vẫn lo âu"
     static let sex15 = Sex.male
     static let prefer15 = Sex.female
+    static let lat15 = 10.7640026
+    static let lon15 = 106.6806042
     
     
     static let user16 = "7ufjet2By0UHMVtf0MINZ4gC63H3"
@@ -312,6 +327,8 @@ class User: NSObject, Glossy {
     static let avatar16 = "https://scontent.fsgn5-2.fna.fbcdn.net/v/t1.0-9/14322613_10153821054462091_7607588987828378428_n.jpg?oh=c19715460c5e8892558026fc40899843&oe=59589BA9"
     static let desc16 = "I will make it through"
     static let sex16 = Sex.male
+    static let lat16 = 10.7706286
+    static let lon16 = 106.6992986
     static let prefer16 = Sex.female
     
     static let user17 = "PdZ7Xg53WaPFpDc8QLP5de25c3F3"
@@ -319,6 +336,8 @@ class User: NSObject, Glossy {
     static let avatar17 = "http://eva-img.24hstatic.com/upload/2-2016/images/2016-04-28/cong-thuc-che-tao-soai-ca-van-nguoi-me-cua-bien-kich-hang-dau-han-quoc-91dotsc-1461779559-width500height375.jpg"
     static let desc17 = "Đã là quân nhân thì xác định không có bạn gái vì vất vả quá"
     static let sex17 = Sex.male
+    static let lat17 = 10.774329
+    static let lon17 = 106.6935157
     static let prefer17 = Sex.female
     
     static let user12 = "e6boIwD7rZfz8W9FDqlY41LXn993"
@@ -327,6 +346,8 @@ class User: NSObject, Glossy {
     static let desc12 = "I will always choose a lazy person to do a difficult job, because he will find an easy way to do it"
     static let sex12 = Sex.male
     static let prefer12 = Sex.female
+    static let lat12 = 10.7769038
+    static let lon12 = 106.6961743
     
     static let user19 = "jYfiiw29RSZoqohs2ApbYJpXoRv2"
     static let avatar19 = "http://dantri4.vcmedia.vn/WZKQ2cccccccccccckCc0AfnZ0zh4c/Image/2015/07/xb-c0629.jpg"
@@ -334,8 +355,6 @@ class User: NSObject, Glossy {
     static let desc19 = "Trông giao diện khác hẳn như kiểu mới cài Win"
     static let sex19 = Sex.male
     static let prefer19 = Sex.female
-    
-    
     
 
     static let user21 = "CAnWZ9ADu6QGQ3IsVlKVntsTBiJ2"
@@ -351,6 +370,8 @@ class User: NSObject, Glossy {
     static let desc22 = "I dont care"
     static let sex22 = Sex.male
     static let prefer22 = Sex.unknown
+    static let lat22 = 10.770054
+    static let lon22 = 106.6684026
     
     
     static let user23 = "nanALxR9dcT5NZeWcGV8bq7atGH3"
@@ -367,6 +388,8 @@ class User: NSObject, Glossy {
     static let avatar25 = "http://cafefcdn.com/thumb_w/660/2017/infonet-doan-ngoc-hai-1487583676256.JPG"
     static let desc25 = "Lấn vỉa hè một tấc cũng đập"
     static let sex25 = Sex.male
+    static let lat25 = 10.7805963
+    static let lon25 = 106.6970933
     static let prefer25 = Sex.female
     
     static let user26 = "VUoc532PABTXwHAc5ceaIAtem9D2"
@@ -374,6 +397,8 @@ class User: NSObject, Glossy {
     static let name26 = "Mark Zuckerberg"
     static let desc26 = "Move fast, break thing"
     static let sex26 = Sex.male
+    static let lat26 = 10.7806225
+    static let lon26 = 106.6905272
     static let prefer26 = Sex.female
     
     static let user27 = "SyHSwBEV7zYR1FEzuqBTevOJVsH3"
@@ -381,6 +406,8 @@ class User: NSObject, Glossy {
     static let avatar27 = "https://pbs.twimg.com/profile_images/824716853989744640/8Fcd0bji.jpg"
     static let desc27 = "Nobody can give you freedom, nobody can give you equality or justice, if you are a man, you take it"
     static let sex27 = Sex.male
+    static let lat27 = 10.759470
+    static let lon27 = 106.678499
     static let prefer27 = Sex.female
     
     static let user28 = "oyeh9Uw3ROgMESbdve57meldz2P2"
