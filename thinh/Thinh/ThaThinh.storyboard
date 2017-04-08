@@ -129,14 +129,27 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tgl-oZ-AWh">
+                                <rect key="frame" x="265" y="35" width="30" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="6lC-YX-5GU"/>
+                                    <constraint firstAttribute="height" constant="40" id="wv2-0g-fXS"/>
+                                </constraints>
+                                <state key="normal" image="Pin Icon"/>
+                                <connections>
+                                    <segue destination="L6W-1E-kzR" kind="presentation" id="KLs-jl-mjz"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="dLr-ba-lIU" firstAttribute="leading" secondItem="grI-nf-agt" secondAttribute="leadingMargin" constant="180" id="4J2-bB-FTb"/>
+                            <constraint firstItem="tgl-oZ-AWh" firstAttribute="top" secondItem="S3n-Uy-Gmh" secondAttribute="bottom" constant="15" id="9Fu-Vk-O4T"/>
                             <constraint firstItem="ySh-64-dvg" firstAttribute="leading" secondItem="grI-nf-agt" secondAttribute="leading" constant="12" id="AoO-bS-7Mm"/>
                             <constraint firstAttribute="bottom" secondItem="MyD-iS-yd6" secondAttribute="bottom" id="Fxd-IK-Ybb"/>
                             <constraint firstItem="ySh-64-dvg" firstAttribute="top" secondItem="S3n-Uy-Gmh" secondAttribute="bottom" constant="20" id="NM6-Ir-yVN"/>
                             <constraint firstItem="dLr-ba-lIU" firstAttribute="top" secondItem="S3n-Uy-Gmh" secondAttribute="bottom" id="fCQ-n6-uiu"/>
+                            <constraint firstAttribute="trailing" secondItem="tgl-oZ-AWh" secondAttribute="trailing" constant="25" id="fn8-Cn-4ed"/>
                             <constraint firstAttribute="trailing" secondItem="d5w-e0-154" secondAttribute="trailing" id="g9S-q4-8tE"/>
                             <constraint firstItem="d5w-e0-154" firstAttribute="top" secondItem="S3n-Uy-Gmh" secondAttribute="bottom" id="nH2-Hg-CPn"/>
                             <constraint firstItem="EJf-q8-yp0" firstAttribute="top" secondItem="d5w-e0-154" secondAttribute="bottom" id="pep-T1-CS4"/>
@@ -226,8 +239,68 @@
             </objects>
             <point key="canvasLocation" x="-187.5" y="327.46478873239437"/>
         </scene>
+        <!--Map View Controller-->
+        <scene sceneID="NNL-CZ-FZx">
+            <objects>
+                <viewController id="Yok-yK-2yS" customClass="MapViewController" customModule="Thinh" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hDN-jd-W5D"/>
+                        <viewControllerLayoutGuide type="bottom" id="FeP-II-3Ej"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="x09-ss-SeV">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vnq-lh-1kR">
+                                <rect key="frame" x="0.0" y="64" width="0.0" height="0.0"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" id="3hT-dh-1oQ"/>
+                                    <constraint firstAttribute="width" id="xta-4F-1ve"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Vnq-lh-1kR" firstAttribute="top" secondItem="x09-ss-SeV" secondAttribute="top" constant="64" id="NxU-DT-xNW"/>
+                            <constraint firstItem="Vnq-lh-1kR" firstAttribute="leading" secondItem="x09-ss-SeV" secondAttribute="leading" id="eRb-TP-EjX"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Dwd-pN-neM">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="NJI-6k-PfU">
+                            <connections>
+                                <action selector="onClickCancel:" destination="Yok-yK-2yS" id="opH-jY-a1y"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tempAvatar" destination="Vnq-lh-1kR" id="9A8-Pv-eg3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="smM-lc-7ff" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1689.375" y="194.36619718309859"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="DTZ-Wb-htW">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="L6W-1E-kzR" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="735-Uq-xLu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Yok-yK-2yS" kind="relationship" relationship="rootViewController" id="XYC-2D-AnD"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tjZ-mf-SpT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="691.875" y="194.36619718309859"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="Pin Icon" width="54" height="70"/>
         <image name="ThaThinh" width="558" height="200"/>
         <image name="hot-girl-han-quoc-xinh-dep-song-o-sai-gon-gay-sot" width="639" height="633"/>
         <image name="photo-36-1465292669338" width="650" height="649"/>

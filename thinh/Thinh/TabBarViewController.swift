@@ -9,6 +9,7 @@
 import UIKit
 import JSQMessagesViewController
 import NoticeBar
+import CoreLocation
 
 
 class TabBarViewController: UIViewController {
@@ -32,6 +33,9 @@ class TabBarViewController: UIViewController {
     //count number of new chats
     var chatCount: Int = 0
     var thinhCount: Int = 0
+    //location
+    var locationManager: CLLocationManager! = CLLocationManager()
+
     
     @IBAction func onClickTab(_ sender: UIButton) {
         //Get Access to the Previous and Current Tab Button.
@@ -88,6 +92,19 @@ class TabBarViewController: UIViewController {
         //Set the Initial Tab when the App Starts.
         buttons[selectedIndex].isSelected = true
         onClickTab(buttons[selectedIndex])
+        
+
+        //request access user's location
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.requestAlwaysAuthorization()
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.startUpdatingLocation()
+            utilities.log("Location services are not enabled")
+            utilities.log(locationManager.location?.coordinate)
+        }
+
         
     }
 
@@ -217,5 +234,16 @@ extension TabBarViewController: ConversationViewControllerDelegate, ThinhListVie
             }
         })
         
+    }
+}
+extension TabBarViewController: CLLocationManagerDelegate{
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let userLocation:CLLocation = locations[0]
+        let long = userLocation.coordinate.longitude;
+        let lat = userLocation.coordinate.latitude;
+        
+        print(long, lat)
+        
+        //Do What ever you want with it
     }
 }
