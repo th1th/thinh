@@ -13,16 +13,16 @@ import FBSDKLoginKit
 import GoogleMaps
 import GooglePlaces
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
-        GMSServices.provideAPIKey("AIzaSyBl4ZXN-bBzbD0KrvZeCOjaCiRFFoZr9EY")
-        GMSPlacesClient.provideAPIKey("AIzaSyBl4ZXN-bBzbD0KrvZeCOjaCiRFFoZr9EY")
-        
+        GMSServices.provideAPIKey("AIzaSyA3p9DLdNZ5pRiW1c-_8VZc6ZRFC_ePmzc")
+        GMSPlacesClient.provideAPIKey("AIzaSyA3p9DLdNZ5pRiW1c-_8VZc6ZRFC_ePmzc")
+      
         // Override point for customization after application launch.
         FIRApp.configure()
         FIRDatabase.database().persistenceEnabled = true
