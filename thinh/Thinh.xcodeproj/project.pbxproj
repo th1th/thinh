@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		050DD2A61E98D6FC00FDF653 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050DD2A51E98D6FC00FDF653 /* MapViewController.swift */; };
 		051EBECD1E864BB6002BA6B7 /* PopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 051EBECC1E864BB6002BA6B7 /* PopupView.xib */; };
 		051EBED11E864F87002BA6B7 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051EBED01E864F87002BA6B7 /* PopupView.swift */; };
 		055024151E7C331700175FED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 055024141E7C331700175FED /* GoogleService-Info.plist */; };
@@ -61,6 +62,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		050DD2A51E98D6FC00FDF653 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		051EBECC1E864BB6002BA6B7 /* PopupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopupView.xib; sourceTree = "<group>"; };
 		051EBED01E864F87002BA6B7 /* PopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
 		055024141E7C331700175FED /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				056225271E8ABD6A00650511 /* ThaThinh.storyboard */,
 				05503F541E97DD5E008ACF0B /* MapViewController.swift */,
 				056225291E8ABD7F00650511 /* ThaThinhViewController.swift */,
+				050DD2A51E98D6FC00FDF653 /* MapViewController.swift */,
 			);
 			name = ThaThinh;
 			sourceTree = "<group>";
@@ -459,7 +462,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05503F551E97DD5E008ACF0B /* MapViewController.swift in Sources */,
+				050DD2A61E98D6FC00FDF653 /* MapViewController.swift in Sources */,
 				0555D5BD1E82CB710058F9CD /* ThinhListViewController.swift in Sources */,
 				05F3777E1E881A4000B9890F /* ContactListViewController.swift in Sources */,
 				948C1F2F1E7E2C7D000F20E5 /* Conversation.swift in Sources */,

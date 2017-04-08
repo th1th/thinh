@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import Gloss
+import MapKit
 
 public typealias UserId = String
 class User: NSObject, Glossy {
@@ -22,6 +23,8 @@ class User: NSObject, Glossy {
     var status: Bool?
     var caption: String?
     var cover: URL?
+    var lat: CLLocationDegrees?
+    var lon: CLLocationDegrees?
     
     static var currentUser: User!
     
@@ -41,6 +44,8 @@ class User: NSObject, Glossy {
         self.status = FirebaseKey.status <~~ json
         self.caption = FirebaseKey.caption <~~ json
         self.cover = FirebaseKey.cover <~~ json
+        self.lat = FirebaseKey.lat <~~ json
+        self.lon = FirebaseKey.lon <~~ json
     }
     
     func toJSON() -> JSON? {
@@ -53,7 +58,9 @@ class User: NSObject, Glossy {
             FirebaseKey.id ~~> id,
             FirebaseKey.status ~~> status,
             FirebaseKey.caption ~~> caption,
-            FirebaseKey.cover ~~> cover])
+            FirebaseKey.cover ~~> cover,
+            FirebaseKey.lat ~~> lat,
+            FirebaseKey.lon ~~> lon])
     }
     
     override init() {
@@ -112,7 +119,9 @@ class User: NSObject, Glossy {
         return self
     }
     
-    
+    func location() -> CLLocation {
+        return CLLocation(latitude: lat ?? 0, longitude: lon ?? 0)
+    }
     
     
     static func mock() -> [User] {
@@ -165,12 +174,16 @@ class User: NSObject, Glossy {
     static let desc20 = "i work on tech training & bilingual education. we're hiring at CoderSchool & Blue Sky Academy"
     static let sex20 = Sex.male
     static let prefer20 = Sex.female
+    static let lat20 = 10.778184
+    static let lon20 = 106.700994
     
     static let user1 = "cdP7J0LNP2gUG3BeEq29N8JHDt72"
     static let name1 = "Đặng Việt"
     static let avatar1 = "https://scontent.fsgn5-2.fna.fbcdn.net/v/t31.0-8/1531951_472627046182268_1638135017_o.jpg?oh=ddb563e39d25f453b577a36a38ca514e&oe=59692A86"
     static let desc1 = "Sống nội tâm, yêu màu tía"
     static let sex1 = Sex.male
+    static let lat1 = 10.7579235
+    static let lon1 = 106.6973611
     static let prefer1 = Sex.female
     
     static let user6 = "wnlI40CQLLX7LVohp6tW8LqOmqD3"
@@ -183,7 +196,9 @@ class User: NSObject, Glossy {
     static let user2 = "WR3OioP6R0UTPUoWItWyJX5g4p62"
     static let name2 = "Linh Lê"
     static let avatar2 = "https://scontent.fsgn5-2.fna.fbcdn.net/v/t31.0-8/13063139_634160786731295_2174880575869215799_o.jpg?oh=7d102fc8d13573b96800f5fd7ff3139a&oe=596E46C5"
-    static let desc2 = ""
+    static let desc2 = "Tâm hồn trong sáng"
+    static let lat2 = 10.846800
+    static let lon2 = 106.636649
     static let sex2 = Sex.male
     static let prefer2 = Sex.female
     
@@ -191,6 +206,8 @@ class User: NSObject, Glossy {
     static let avatar3 = "https://firebasestorage.googleapis.com/v0/b/thinh-43483.appspot.com/o/mock%2F3.jpg?alt=media&token=190b9e47-f245-4918-86ee-c92179c0d60b"
     static let name3 = "Xuân Mai"
     static let desc3 = ""
+    static let lat3 = 10.7730801
+    static let lon3 = 106.6982786
     static let sex3 = Sex.female
     static let prefer3 = Sex.male
     
@@ -200,6 +217,8 @@ class User: NSObject, Glossy {
     static let desc4 = "Từng chặng đường dài mà ta qua, đều để lại kỷ niệm quý giá; Để lại một điều rằng rằng càng đi xa ta càng thêm nhớ nhà"
     static let sex4 = Sex.male
     static let prefer4 = Sex.female
+    static let lat4 = 10.7445835
+    static let lon4 = 106.6856697
     
     static let user24 = "H1NHDr1QjlgwHUJJ5DS2B9E7hqf1"
     static let avatar24 = "https://firebasestorage.googleapis.com/v0/b/thinh-43483.appspot.com/o/mock%2F7.jpg?alt=media&token=452ab287-8dca-41b0-a3dd-a74fb3301d95"
@@ -209,13 +228,14 @@ class User: NSObject, Glossy {
     static let prefer24 = Sex.male
     
     
-    
     static let user5 = "rsu1wVrOsDeBBlfriSkhMsW6sKm2"
     static let avatar5 = "https://scontent.fsgn5-2.fna.fbcdn.net/v/t1.0-9/15871854_1650346778598340_3128247238115573349_n.jpg?oh=a52b2910eab2941395a0f01eafd36ab1&oe=595CDE3B"
     static let name5 = "Sơn Tùng"
     static let desc5 = "Xin hãy là em của ngày hôm qua"
     static let sex5 = Sex.male
     static let prefer5 = Sex.female
+    static let lat5 = 10.7126581
+    static let lon5 = 106.7360382
     
     static let user7 = "yIoo1rv5FvaEusPooUF3HXtwt7G2"
     static let avatar7 = "https://scontent.fsgn5-2.fna.fbcdn.net/v/t1.0-9/15871458_1547913765237939_6046469785741529254_n.jpg?oh=400fe3c6073caf7b45abd6c6ffb9ed23&oe=594DDA54"
@@ -223,6 +243,8 @@ class User: NSObject, Glossy {
     static let desc7 = "Yêu là phải nói cũng như đói là phải ăn"
     static let sex7 = Sex.male
     static let prefer7 = Sex.female
+    static let lat7 = 10.7527067
+    static let lon7 = 106.6688146
     
     static let user8 = "3JqA5vuaFhMbd8bS5Y82RSB9G092"
     static let name8 = "Donald Trump"
@@ -230,13 +252,17 @@ class User: NSObject, Glossy {
     static let desc8 = "Make America Great Again"
     static let sex8 = Sex.male
     static let prefer8 = Sex.female
-    
+    static let lat8 = 10.7527067
+    static let long8 = 106.6688146
+
     static let user9 = "4MfSmNC6J6M2n2rHMW8Rl0DeCYx2"
     static let name9 = "Kim Jong Un"
     static let avatar9 = "https://scontent.fsgn5-2.fna.fbcdn.net/v/t1.0-9/406461_205539312865422_1454086306_n.jpg?oh=465c4f6d2b8e5a8403e620a74d6a436c&oe=595030FE"
     static let desc9 = "Trade nukes for food"
     static let sex9 = Sex.male
     static let prefer9 = Sex.female
+    static let lat9 = 39.027666
+    static let lon9 = 125.773101
     
     static let user10 = "KlQzdbgLraTAt85b3tqPc7njzFQ2"
     static let name10 = "Viên Viên"

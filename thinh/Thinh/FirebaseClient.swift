@@ -16,6 +16,7 @@ import Gloss
 import FirebaseStorage
 import SCRecorder
 import FBSDKCoreKit
+import MapKit
 
 class Api: NSObject {
     
@@ -85,7 +86,7 @@ class Api: NSObject {
                     obsever.onNext(false)
                     return
                 }
-                self.isUserExist(user.uid).subscribe(onNext: { (exist) in
+                _ = self.isUserExist(user.uid).subscribe(onNext: { (exist) in
                     if !exist {
                         self.createUser(user.uid, user: User(user: user))
                     }
@@ -167,18 +168,22 @@ class Api: NSObject {
      update user image
     */
     func updateAvatar(_ avatar: UIImage) {
-        uploadImage(avatar).subscribe(onNext: { (url) in
+        _ = uploadImage(avatar).subscribe(onNext: { (url) in
             self.userDb.child(self.userId()!).updateChildValues([FirebaseKey.avatar: url.absoluteString])
-        })
+        }, onError: { (error) in
+            print(error.localizedDescription)
+        }, onCompleted: nil, onDisposed: nil)
     }
     
     /*
      update user cover
     */
     func updateUserCover(_ cover: UIImage) {
-        uploadImage(cover).subscribe(onNext: { (url) in
+        _ = uploadImage(cover).subscribe(onNext: { (url) in
             self.userDb.child(self.userId()!).updateChildValues([FirebaseKey.cover: url.absoluteString])
-        })
+        }, onError: { (error) in
+            print(error.localizedDescription)
+        }, onCompleted: nil, onDisposed: nil)
     }
     
     /*
@@ -237,9 +242,21 @@ class Api: NSObject {
      update cover for conversation
     */
     func updateCover(_ cover: UIImage, forConversation id: ConversationId) {
-        uploadImage(cover).subscribe(onNext: { (url) in
+        _ = uploadImage(cover).subscribe(onNext: { (url) in
             self.conversationDb.child(id).child(FirebaseKey.cover).setValue(url.absoluteString)
-        })
+        }, onError: { (error) in
+            print(error.localizedDescription)
+        }, onCompleted: nil, onDisposed: nil)
+    }
+    
+    func updateMyLocation(_ location: CLLocation) {
+        updateUserLocation(userId()!, location)
+    }
+    /*
+     update user location
+    */
+    fileprivate func updateUserLocation(_ id: UserId, _ location: CLLocation) {
+        self.userDb.child(id).updateChildValues([FirebaseKey.lat: location.coordinate.latitude, FirebaseKey.lon: location.coordinate.longitude])
     }
     
     /*
@@ -319,9 +336,6 @@ class Api: NSObject {
         return Observable<Message>.create { (subcriber) -> Disposable in
             self.conversationDb.child(id).child(FirebaseKey.messages).observe(.childAdded, with: { snapshot in
                 if let message = Message(json: snapshot.value as! JSON) {
-                    print(message.message)
-                    print(message.media)
-                    print("----------")
                     subcriber.onNext(message)
                 } else {
                    print("Maybe typing")
@@ -366,10 +380,12 @@ class Api: NSObject {
      send message with image
     */
     func sendMessage(to A: UserId, conversation: ConversationId, image: UIImage) {
-        uploadImage(image).subscribe(onNext: { (url) in
+        _ = uploadImage(image).subscribe(onNext: { (url) in
             let message = Message(from: self.userId()!, to: A, media: url)
-            self.sendMessage(id: conversation, message: message)
-        })
+            _ = self.sendMessage(id: conversation, message: message)
+        }, onError: { (error) in
+            print(error.localizedDescription)
+        }, onCompleted: nil, onDisposed: nil)
     }
     
     /*
@@ -377,7 +393,7 @@ class Api: NSObject {
     */
     func sendMessage(to A: UserId, conversation: ConversationId, text: String) {
         let message = Message(from: userId()!, to: A, message: text)
-        sendMessage(id: conversation, message: message)
+        _ = sendMessage(id: conversation, message: message)
     }
     
     /*
@@ -427,7 +443,7 @@ class Api: NSObject {
     */
     fileprivate func getFriendList(id: UserId) -> Observable<User> {
         return Observable<User>.create({ (subcriber) -> Disposable in
-            self.getFriendIdOf(user: id).subscribe(onNext: { (id) in
+            _ = self.getFriendIdOf(user: id).subscribe(onNext: { (id) in
                 self.userDb.child(id).observe(.value, with: { (snapshot) in
                     guard let data = snapshot.value as? JSON else {
                         subcriber.onError(ThinhError.unknownUser)
@@ -490,9 +506,9 @@ class Api: NSObject {
     */
     fileprivate func getStrangerOf(_ id: UserId) -> Observable<User> {
         return Observable<User>.create({ (subcriber) -> Disposable in
-            self.getFriendIdsOf(user: id).subscribe(onNext: { (users) in
+            _ = self.getFriendIdsOf(user: id).subscribe(onNext: { (users) in
                 
-                self.getAllUser().subscribe(onNext: { (user) in
+                _ = self.getAllUser().subscribe(onNext: { (user) in
                     if !users.contains(user.id!) && user.id! != User.botId {
                         subcriber.onNext(user)
                     }
@@ -566,7 +582,7 @@ class Api: NSObject {
      current user tha thinh user A with image
      */
     func thathinh(_ A: UserId, image: UIImage) {
-        uploadImage(image).subscribe(onNext: { (url) in
+        _ = uploadImage(image).subscribe(onNext: { (url) in
             let message = Message(from: self.userId()!, to: A, media: url)
             self.thathinh(A: A, B: self.userId()!, message: message)
         }, onError: { (error) in
@@ -589,7 +605,7 @@ class Api: NSObject {
     }
     
     func thathinh(_ A: UserId, message: String, image: UIImage) {
-        uploadImage(image).subscribe(onNext: { (url) in
+        _ = uploadImage(image).subscribe(onNext: { (url) in
             let sms = Message(from: self.userId()!, to: A, message: message, media: url)
             self.thathinh(A: A, B: self.userId()!, message: sms)
         }, onError: { (error) in
@@ -603,9 +619,9 @@ class Api: NSObject {
      user B tha thinh user A, also for test, with message as wrapper
     */
     fileprivate func thathinh(A: UserId, B: UserId, message: Message?) {
-        has(B, recievedThinhFrom: A).subscribe(onNext: { (thinh) in
+        _ = has(B, recievedThinhFrom: A).subscribe(onNext: { (thinh) in
             if let thinh = thinh {
-                self.checkIfConversationExist(between: A, B: B).subscribe(onNext: { (conversationId) in
+                _ = self.checkIfConversationExist(between: A, B: B).subscribe(onNext: { (conversationId) in
                     var id: ConversationId!
                     let A = thinh.to!
                     let B = thinh.from!
@@ -614,19 +630,19 @@ class Api: NSObject {
                     } else {
                         id = self.createNewConversation(forUser: A, andUser: B)
                     }
-                    self.sendBotMessage(id: id, user1: A, user2: B)
+                    _ = self.sendBotMessage(id: id, user1: A, user2: B)
                     if thinh.hasSomething() {
-                        self.sendMessage(id: id, message: Message(thinh: thinh))
+                        _ = self.sendMessage(id: id, message: Message(thinh: thinh))
                     }
                     if message != nil {
-                        self.sendMessage(id: id, message: message!)
+                        _ = self.sendMessage(id: id, message: message!)
                     }
 //                    self.sendMatchNotification(for: thinh, message: message)
                     self.deleteThinh(B, to: A)
                 })
             } else {
                 let thinh = self.createThinhPackage(from: B, to: A, with: message?.message, with: message?.media)
-                self.checkFriendRelationship(between: B, and: A).subscribe(onNext: { (friend) in
+                _ = self.checkFriendRelationship(between: B, and: A).subscribe(onNext: { (friend) in
                     thinh.friend = friend
                     self.setThinhPackage(thinh)
                 })
@@ -828,7 +844,7 @@ extension Api {
     private func createMockMessage(user1: UserId, user2: UserId, id: ConversationId) {
         let messages = Message.mock(from: user1, to: user2, i: Int(arc4random_uniform(10)))
         for message in messages {
-            sendMessage(id: id, message: message)
+            _ = sendMessage(id: id, message: message)
         }
     }
 
@@ -843,17 +859,21 @@ extension Api {
     }
     
     fileprivate func createMockThinh(_ from: UserId, _ to: UserId, message: String, image: UIImage) {
-        self.uploadImage(image).subscribe(onNext: { (url) in
+        _ = self.uploadImage(image).subscribe(onNext: { (url) in
             let sms = Message(from: from, to: to, message: message, media: url)
             self.thathinh(A: to, B: from, message: sms)
-        })
+        }, onError: { (error) in
+            print(error.localizedDescription)
+        }, onCompleted: nil, onDisposed: nil)
     }
     
     fileprivate func createMockThinh(_ from: UserId, _ to: UserId, image: UIImage) {
-        self.uploadImage(image).subscribe(onNext: { (url) in
+        _ = self.uploadImage(image).subscribe(onNext: { (url) in
             let message = Message(from: from, to: to, media: url)
             self.thathinh(A: to, B: from, message: message)
-        })
+        }, onError: { (error) in
+            print(error.localizedDescription)
+        }, onCompleted: nil, onDisposed: nil)
     }
     
     private func test() {
