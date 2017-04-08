@@ -20,20 +20,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        // init google map
         GMSServices.provideAPIKey("AIzaSyBl4ZXN-bBzbD0KrvZeCOjaCiRFFoZr9EY")
         GMSPlacesClient.provideAPIKey("AIzaSyBl4ZXN-bBzbD0KrvZeCOjaCiRFFoZr9EY")
         
-        // Override point for customization after application launch.
+        // init firebase
         FIRApp.configure()
         FIRDatabase.database().persistenceEnabled = true
+        
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "didLogOut"), object: nil, queue: OperationQueue.main){ (Notification) -> Void in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateInitialViewController()
             self.window?.rootViewController = vc
         }
+        
+        // get current user to and store through the app
         Api.shared().getCurrentUser().subscribe(onNext: { (user) in
             User.currentUser = user
-        })
+        }, onError: { (error) in
+            print(error.localizedDescription)
+        }, onCompleted: { 
+            print("Get current user")
+        }, onDisposed: nil)
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 

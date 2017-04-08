@@ -55,14 +55,14 @@ class Api: NSObject {
     }
     
     func userId() -> String? {
-//        return FIRAuth.auth()?.currentUser?.uid   // me
+        return FIRAuth.auth()?.currentUser?.uid   // me
 //        return "WR3OioP6R0UTPUoWItWyJX5g4p62" // Linh Le
 //        return "S5cirBWXUiOGnareVEEWbjaIJN02" // Harley
 //        return "VUoc532PABTXwHAc5ceaIAtem9D2" // Mark
 //        return "3JqA5vuaFhMbd8bS5Y82RSB9G092"   // Donald Trump
 //        return "SyHSwBEV7zYR1FEzuqBTevOJVsH3"
 //        return "cdP7J0LNP2gUG3BeEq29N8JHDt72" // Dang Viet
-        return "tpe0qfm577eZ3VgCaatP42cPk2n2"    // Kim Lien
+//        return "tpe0qfm577eZ3VgCaatP42cPk2n2"    // Kim Lien
     }
 
     /*
@@ -713,16 +713,16 @@ class Api: NSObject {
     /*
      delete match notification of current user
     */
-    func deleteMyMatch(_ matchId: MatchId) {
-        deleteMatch(userId()!, matchId)
-    }
-    
-    /*
-     delete match notification of user
-    */
-    fileprivate func deleteMatch(_ userId: UserId, _ matchId: MatchId) {
-        matchDb.child(userId).child(matchId).setValue(nil)
-    }
+//    func deleteMyMatch(_ matchId: MatchId) {
+//        deleteMatch(userId()!, matchId)
+//    }
+//    
+//    /*
+//     delete match notification of user
+//    */
+//    fileprivate func deleteMatch(_ userId: UserId, _ matchId: MatchId) {
+//        matchDb.child(userId).child(matchId).setValue(nil)
+//    }
     
     
     /*

@@ -38,6 +38,8 @@ struct FirebaseKey {
     static let id = "id"
     static let status = "status"
     static let caption = "caption"
+    static let lat = "lat"
+    static let lon = "lon"
     
     // conversation
     static let from = "from"
