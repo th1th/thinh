@@ -135,7 +135,9 @@ class User: NSObject, Glossy {
                  FirebaseKey.id: ids[i],
                  FirebaseKey.prefer: prefers[i].rawValue,
                  FirebaseKey.caption: descs[i],
-                 FirebaseKey.status: false
+                 FirebaseKey.status: false,
+                 FirebaseKey.lat: lats[i],
+                 FirebaseKey.lon: lons[i]
                 ])
             users.append(user!)
         }
@@ -149,6 +151,8 @@ class User: NSObject, Glossy {
     static let descs = [desc1, desc2, desc3, desc4, desc5, desc6, desc7, desc8, desc9, desc10, desc11, desc12, desc13, desc14, desc15, desc16, desc17, desc18, desc19, desc20, desc21, desc22, desc23, desc24, desc25, desc26, desc27, desc28, desc29, desc30]
     static let sexes = [sex1, sex2, sex3, sex4, sex5, sex6, sex7, sex8, sex9, sex10, sex11, sex12, sex13, sex14, sex15, sex16, sex17, sex18, sex19, sex20, sex21, sex22, sex23, sex24, sex25, sex26, sex27, sex28, sex29, sex30]
     static let prefers = [prefer1, prefer2, prefer3, prefer4, prefer5, prefer6,prefer7, prefer8, prefer9, prefer10, prefer11, prefer12, prefer13, prefer14, prefer15, prefer16, prefer17, prefer18, prefer19, prefer20, prefer21, prefer22, prefer23, prefer24, prefer25, prefer26, prefer27, prefer28, prefer29, prefer30]
+    static let lats = [lat1, lat2, lat3, lat4, lat5, lat6, lat7, lat8, lat9, lat10, lat11, lat12, lat13, lat14, lat15, lat16, lat17, lat18, lat19, lat20, lat21, lat22, lat23, lat24, lat25, lat26, lat27, lat28, lat29, lat30]
+    static let lons = [lon1, lon2, lon3, lon4, lon5, lon6, lon7, lon8, lon9, lon10, lon11, lon12, lon13, lon14, lon15, lon16, lon17, lon18, lon19, lon20, lon21, lon22, lon23, lon24, lon25, lon26, lon27, lon28, lon29, lon30]
     
     static func createBot() -> User {
         return User(json: [
@@ -192,6 +196,8 @@ class User: NSObject, Glossy {
     static let desc6 = "Một khi cụ đã thương muốn làm người thường cụ cũng không cho"
     static let sex6 = Sex.female
     static let prefer6 = Sex.male
+    static let lat6 = 10.7865659
+    static let lon6 = 106.683883
     
     static let user2 = "WR3OioP6R0UTPUoWItWyJX5g4p62"
     static let name2 = "Linh Lê"
@@ -227,7 +233,7 @@ class User: NSObject, Glossy {
     static let sex24 = Sex.female
     static let prefer24 = Sex.male
     static let lat24 = 10.7527067
-    static let long24 = 106.6688146
+    static let lon24 = 106.6688146
     
     
     static let user5 = "rsu1wVrOsDeBBlfriSkhMsW6sKm2"
@@ -355,6 +361,8 @@ class User: NSObject, Glossy {
     static let desc19 = "Trông giao diện khác hẳn như kiểu mới cài Win"
     static let sex19 = Sex.male
     static let prefer19 = Sex.female
+    static let lat19 = 10.7865659
+    static let lon19 = 106.683883
     
 
     static let user21 = "CAnWZ9ADu6QGQ3IsVlKVntsTBiJ2"
@@ -363,6 +371,8 @@ class User: NSObject, Glossy {
     static let desc21 = "Từ nay, Thiên Đình không có chuyện bổ nhiệm người nhà mà không bổ nhiệm người tài"
     static let sex21 = Sex.male
     static let prefer21 = Sex.female
+    static let lat21 = 10.7874586
+    static let lon21 = 106.682691
     
     static let user22 = "z1cLfM8bR0hYTBHhz6TZr4t2LOC3"
     static let name22 = "Pikalong"
@@ -380,8 +390,8 @@ class User: NSObject, Glossy {
     static let desc23 = "Sau tất cả, mình trở về với nhau"
     static let sex23 = Sex.male
     static let prefer23 = Sex.female
-   
-    
+    static let lat23 = 10.8033034
+    static let lon23 = 106.6486846
     
     static let user25 = "qEXDOLL1ykPSpNE0quQhbTrqggA3"
     static let name25 = "Đoàn Ngọc Hải"
@@ -416,6 +426,8 @@ class User: NSObject, Glossy {
     static let desc28 = "Tôi ham tiền nhưng không dùng mọi cách để kiếm tiền, tôi còn phải chừa một phương lấy chồng chứ"
     static let sex28 = Sex.female
     static let prefer28 = Sex.male
+    static let lat28 = 10.7403729
+    static let lon28 = 106.696182
     
     static let user29 = "MmnlhICjeRh6p3XcMIVpfiPLgBm2"
     static let name29 = "Vũ Cát Tường"
@@ -423,6 +435,8 @@ class User: NSObject, Glossy {
     static let desc29 = "Người ta yêu nhiều nói ít"
     static let sex29 = Sex.female
     static let prefer29 = Sex.unknown
+    static let lat29 = 10.7849798
+    static let lon29 = 106.6861242
     
     static let user30 = "uqN20jagX1dZwti749FTmZbqpHn1"
     static let name30 = "Quang Lương"
@@ -430,5 +444,7 @@ class User: NSObject, Glossy {
     static let desc30 = "我愿变成童话里, 你爱的那个天使"
     static let sex30 = Sex.male
     static let prefer30 = Sex.female
+    static let lat30 = 10.7849799
+    static let lon30 = 106.6926903
     
 }
