@@ -26,7 +26,7 @@ class User: NSObject, Glossy {
     var lat: CLLocationDegrees?
     var lon: CLLocationDegrees?
     
-    static var currentUser: User? = User(user: (FIRAuth.auth()?.currentUser!)!)
+    static var currentUser: User?
     
     enum Sex: String {
         case male = "male"

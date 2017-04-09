@@ -56,26 +56,26 @@ class Api: NSObject {
     }
     
     func userId() -> String? {
-        return FIRAuth.auth()?.currentUser?.uid   // me
+//        return FIRAuth.auth()?.currentUser?.uid   // me
 //        return "WR3OioP6R0UTPUoWItWyJX5g4p62" // Linh Le
 //        return "S5cirBWXUiOGnareVEEWbjaIJN02" // Harley
 //        return "VUoc532PABTXwHAc5ceaIAtem9D2" // Mark
 //        return "3JqA5vuaFhMbd8bS5Y82RSB9G092"   // Donald Trump
 //        return "SyHSwBEV7zYR1FEzuqBTevOJVsH3"
 //        return "cdP7J0LNP2gUG3BeEq29N8JHDt72" // Dang Viet
-//        return "tpe0qfm577eZ3VgCaatP42cPk2n2"    // Kim Lien
+        return "tpe0qfm577eZ3VgCaatP42cPk2n2"    // Kim Lien
     }
 
     /*
      login with facebook
     */
-//    func login(accessToken: String) -> Observable<Bool> {
-//        return loginWithFacebook(accessToken)
-//    }
+    func login(accessToken: String) -> Observable<User> {
+        return loginWithFacebook(accessToken)
+    }
 
     // TODO: get user info from facebook
-    fileprivate func loginWithFacebook(_ accessToken: String) -> Observable<Bool> {
-        return Observable<Bool>.create({ (obsever) -> Disposable in
+    fileprivate func loginWithFacebook(_ accessToken: String) -> Observable<User> {
+        return Observable<User>.create({ (obsever) -> Disposable in
             let credential = FIRFacebookAuthProvider.credential(withAccessToken: accessToken)
             FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) in
                 guard error == nil else {
@@ -83,12 +83,24 @@ class Api: NSObject {
                     return
                 }
                 guard let user = user else {
-                    obsever.onNext(false)
+                    obsever.onError(ThinhError.unknownUser)
                     return
                 }
                 _ = self.isUserExist(user.uid).subscribe(onNext: { (exist) in
                     if !exist {
-                        self.createUser(user.uid, user: User(user: user))
+                        _ = self.createUser(user.uid, user: User(user: user)).subscribe(onNext: { (user) in
+                            User.currentUser = user
+                            obsever.onNext(user)
+                        }, onError: { (error) in
+                            print(error)
+                        }, onCompleted: nil, onDisposed: nil)
+                    } else {
+                        _ = self.getCurrentUser().subscribe(onNext: { (user) in
+                            User.currentUser = user
+                            obsever.onNext(user)
+                        }, onError: { (error) in
+                            print(error)
+                        }, onCompleted: nil, onDisposed: nil)
                     }
                 })
             })
@@ -148,13 +160,20 @@ class Api: NSObject {
         }
     }
     
-    fileprivate func createUser(_ id: UserId, user: User)  {
-        userDb.child(id).setValue(user.toJSON()) { (error, reference) in
-            guard error == nil else {
-                print(error!.localizedDescription)
-                return
+    fileprivate func createUser(_ id: UserId, user: User) -> Observable<User> {
+        return Observable<User>.create({ (subcriber) -> Disposable in
+            self.userDb.child(id).setValue(user.toJSON()) { (error, reference) in
+                guard error == nil else {
+                    print(error!.localizedDescription)
+                    subcriber.onError(ThinhError.createUserFailed)
+                    return
+                }
+                subcriber.onNext(user)
+
             }
-        }
+            return Disposables.create()
+        })
+        
     }
     
     /*

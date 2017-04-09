@@ -83,4 +83,5 @@ enum ThinhError: Error {
     case sendMessage
     case uploadImageFailed
     case unknownThinh
+    case createUserFailed
 }

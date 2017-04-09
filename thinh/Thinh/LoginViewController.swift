@@ -54,23 +54,16 @@ class LoginViewController: UIViewController {
 ///Core function
 extension LoginViewController{
     func firebaseSigin(_ accessToken: String) {
-        let credential = FIRFacebookAuthProvider.credential(withAccessToken: accessToken)
-        FIRAuth.auth()?.signIn(with: credential) { (user, error) in
-            if let error = error {
-                print(error)
-                return
-            }
-            if let fbUserID = self.defaults.string(forKey: "Thinh_FBuserID"){
-                self.updateAvatar(fbUserID)
-            }
+        Api.shared().login(accessToken: accessToken).subscribe(onNext: { (user) in
+            print("Login success")
+//            if let fbUserID = self.defaults.string(forKey: "Thinh_FBuserID"){
+//                
+//            }
+            self.updateAvatar(user.avatar!)
             self.blurEffect()
-        }
-        // TODO: Fix login flow
-//        Api.shared().login(accessToken: accessToken).subscribe(onNext: { (true) in
-//            print("Login success")
-//        }, onError: { (error) in
-//            print("Login failed")
-//        })
+        }, onError: { (error) in
+            print("Login failed")
+        })
     }
 }
 
@@ -93,8 +86,9 @@ extension LoginViewController{
             }
         }
     }
-    func updateAvatar(_ fbid: String?)  {
-        let photoUrl = URL(string: "https://graph.facebook.com/\(fbid!)/picture?type=large")
+    func updateAvatar(_ avatar: String)  {
+//        let photoUrl = URL(string: "https://graph.facebook.com/\(fbid!)/picture?type=large")
+        let photoUrl = URL(string: avatar)
         print("[xx]\(photoUrl)")
         
         
