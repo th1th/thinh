@@ -41,6 +41,9 @@ class ThaThinhViewController: UIViewController {
     var RefreshImageCenter:CGPoint!
     
 
+    @IBAction func showMap(_ sender: UIButton) {
+        performSegue(withIdentifier: "showMap", sender: self)
+    }
     
     @IBAction func onClickGetDetail(_ sender: UITapGestureRecognizer) {
         sender.numberOfTapsRequired = 1

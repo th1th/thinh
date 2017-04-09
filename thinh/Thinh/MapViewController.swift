@@ -12,21 +12,28 @@ import GoogleMaps
 
 
 class MapViewController: UIViewController {
-
     
     var allUsers: [User]! = []
     var camera:GMSCameraPosition!
     var mapView:GMSMapView!
     var mockPosition:CLLocationCoordinate2D!
+    var user:User!
+    
+    var selectedUser:User?{
+        get{
+            return user
+        }
+        set(selecteduser){
+            user = selecteduser!
+            utilities.log(selectedUser?.avatar)
+//            performSegue(withIdentifier: "UserDetail", sender: view)
+        }
+    }
+    
 
-    
-    
-    @IBOutlet weak var tempAvatar: UIImageView!
+    @IBOutlet weak var controll: UIView!
 
-    
-    
-    
-    @IBAction func onClickCancel(_ sender: UIBarButtonItem) {
+    @IBAction func onClickCancel(_ sender: UIButton) {
         dismiss(animated: true) {
             //
         }
@@ -34,35 +41,33 @@ class MapViewController: UIViewController {
   
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
         mockPosition = CLLocationCoordinate2D(latitude: 37.785834000000001, longitude: -122.406417)
+        // Create a GMSCameraPosition that tells the map to display the
+        // coordinate -33.86,151.20 at zoom level 6.
+        camera = GMSCameraPosition.camera(withLatitude: 37.785834000000001, longitude: -122.406417, zoom: 8.0)
+        mapView = GMSMapView.map(withFrame: view.bounds, camera: camera)
+        mapView.delegate = self
+        view.addSubview(mapView)
+        controll.layer.cornerRadius = controll.frame.height/2
+        controll.clipsToBounds = true
+        view.addSubview(controll)
+                getStrangerList()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    override func loadView() {
-        // Create a GMSCameraPosition that tells the map to display the
-        // coordinate -33.86,151.20 at zoom level 6.
-        camera = GMSCameraPosition.camera(withLatitude: 37.785834000000001, longitude: -122.406417, zoom: 8.0)
-        mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-        view = mapView
-        
-        // Creates a marker in the center of the map.
-//        let marker = GMSMarker()
-//        marker.position = CLLocationCoordinate2D(latitude: 37.785834000000001, longitude: -122.406417)
-//        marker.title = "Sydney"
-//        marker.snippet = "Australia"
-//        marker.map = mapView
-        getStrangerList()
-    }
-
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if(segue.identifier == "UserDetail"){
+//            let vc = segue.destination as! UserDetailViewController
+//            vc.user = user
+//            vc.showCloseButton = true
+//        }
+//    }
 }
-extension MapViewController{
+extension MapViewController: GMSMapViewDelegate{
     func getStrangerList() {
         Api.shared().getMyStrangerList().subscribe(onNext: { (user) in
             self.allUsers.append(user)
@@ -73,15 +78,17 @@ extension MapViewController{
         }, onCompleted: nil, onDisposed: nil)
     }
     func addUserToMap(_ user:User) {
-        if user.name != "Donald Trump" {
+        if user.name != "Pikalong"{
             return
         }
         // Creates a marker in the the map.
         let position = CLLocationCoordinate2D(latitude: mockPosition.latitude, longitude: mockPosition.longitude)
+//        let position = CLLocationCoordinate2D(latitude: user.lat, longitude: user.lon)
+        
         let marker = GMSMarker(position: position)
         
         marker.isFlat = true
-        marker.title = user.name
+        marker.title = user.id
         
         marker.downloadedFrom(link: user.avatar!)
         marker.tracksViewChanges = true
@@ -89,10 +96,24 @@ extension MapViewController{
         marker.map = mapView
         marker.appearAnimation = GMSMarkerAnimation.pop
     }
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+        print("You tapped at \(coordinate.latitude), \(coordinate.longitude)")
+    }
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        Api.shared().getUser(id: marker.title!).subscribe(onNext: { (user) in
+            self.selectedUser = user
+        }, onError: { (error) in
+            utilities.log(error)
+        }, onCompleted: nil, onDisposed: nil)
+        
+        utilities.log(marker.title)
+        return true
+    }
     
 }
 
 extension GMSMarker {
+    
     func downloadedFrom(url: URL) {
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
@@ -105,13 +126,12 @@ extension GMSMarker {
                 
                 let imageView = UIImageView(image: tempImage)
                 imageView.layer.cornerRadius = (imageView.frame.height)/2 //set corner for image
+                imageView.layer.borderColor = UIColor( red: 255/255, green: 255/255, blue:255/255, alpha: 1).cgColor
+                imageView.layer.borderWidth = 2
                 imageView.clipsToBounds = true
-//                imageView.frame.size = CGSize(width: 20, height: 20)
-//                imageView.contentMode = .scaleAspectFill
                 
                 self.iconView = imageView
-//
-//                self.iconView = imageView
+                
             }
             }.resume()
     }
