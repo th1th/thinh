@@ -26,12 +26,11 @@ class MapViewController: UIViewController {
         set(selecteduser){
             user = selecteduser!
             utilities.log(selectedUser?.avatar)
-//            performSegue(withIdentifier: "UserDetail", sender: view)
+            performSegue(withIdentifier: "UserDetail", sender: view)
         }
     }
     
 
-    @IBOutlet weak var controll: UIView!
 
     @IBAction func onClickCancel(_ sender: UIButton) {
         dismiss(animated: true) {
@@ -41,31 +40,36 @@ class MapViewController: UIViewController {
   
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Customize navigation controller
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.barStyle = .black
+        self.navigationController?.navigationBar.tintColor = UIColor(red: 78/255.0, green: 221/255.0, blue: 200/255.0, alpha: 1.0)
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 217/255.0, green: 243/255.0, blue: 239/255.0, alpha: 1.0)
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.black]
+        
         // Do any additional setup after loading the view.
         mockPosition = CLLocationCoordinate2D(latitude: 10.778, longitude: 106.700)
         // Create a GMSCameraPosition that tells the map to display the
         // coordinate -33.86,151.20 at zoom level 6.
-        camera = GMSCameraPosition.camera(withLatitude: (User.currentUser?.lat)!, longitude: (User.currentUser?.lon)!, zoom: 8.0)
+        camera = GMSCameraPosition.camera(withLatitude: (User.currentUser?.lat)!, longitude: (User.currentUser?.lon)!, zoom: 12.0)
         mapView = GMSMapView.map(withFrame: view.bounds, camera: camera)
         mapView.delegate = self
         view.addSubview(mapView)
-        controll.layer.cornerRadius = controll.frame.height/2
-        controll.clipsToBounds = true
-        view.addSubview(controll)
-                getStrangerList()
+        getStrangerList()
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if(segue.identifier == "UserDetail"){
-//            let vc = segue.destination as! UserDetailViewController
-//            vc.user = user
-//            vc.showCloseButton = true
-//        }
-//    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "UserDetail"){
+            let vc = segue.destination as! UserDetailViewController
+            vc.user = user
+            vc.showCloseButton = false
+        }
+    }
 }
 extension MapViewController: GMSMapViewDelegate{
     func getStrangerList() {

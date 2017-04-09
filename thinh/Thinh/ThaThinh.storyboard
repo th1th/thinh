@@ -124,7 +124,7 @@
                                 </connections>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pull to refresh" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ySh-64-dvg">
-                                <rect key="frame" x="12" y="40" width="151" height="21"/>
+                                <rect key="frame" x="12" y="40" width="150.5" height="20"/>
                                 <fontDescription key="fontDescription" name="Ailerons-Regular" family="Ailerons" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -171,7 +171,7 @@
                         <outlet property="UserImage4" destination="MgO-03-I80" id="e2h-0l-IIU"/>
                         <outlet property="cacheImage" destination="MyD-iS-yd6" id="Cvf-Qe-0t0"/>
                         <outlet property="refreshLabe" destination="ySh-64-dvg" id="k0B-nT-0dl"/>
-                        <segue destination="Yok-yK-2yS" kind="presentation" identifier="showMap" id="ifu-0C-4zc"/>
+                        <segue destination="FNU-tO-qi8" kind="presentation" identifier="showMap" id="ifu-0C-4zc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XVM-6V-ZDI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -243,10 +243,10 @@
             </objects>
             <point key="canvasLocation" x="-103" y="193"/>
         </scene>
-        <!--Find-->
+        <!--Find Friends-->
         <scene sceneID="NNL-CZ-FZx">
             <objects>
-                <viewController id="Yok-yK-2yS" customClass="MapViewController" customModule="Thinh" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Yok-yK-2yS" customClass="MapViewController" customModule="Thinh" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hDN-jd-W5D"/>
                         <viewControllerLayoutGuide type="bottom" id="FeP-II-3Ej"/>
@@ -254,51 +254,23 @@
                     <view key="view" contentMode="scaleToFill" id="x09-ss-SeV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cEg-f8-WFo">
-                                <rect key="frame" x="20" y="40" width="40" height="40"/>
-                                <subviews>
-                                    <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QZN-Fg-H1k">
-                                        <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
-                                        <state key="normal" image="close"/>
-                                        <connections>
-                                            <action selector="onClickCancel:" destination="Yok-yK-2yS" eventType="touchUpInside" id="kRm-nk-aHv"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="QZN-Fg-H1k" secondAttribute="trailing" id="HSY-oR-Fnr"/>
-                                    <constraint firstAttribute="width" constant="40" id="Haa-tM-LBP"/>
-                                    <constraint firstAttribute="height" constant="40" id="gdC-Tq-OyA"/>
-                                    <constraint firstItem="QZN-Fg-H1k" firstAttribute="top" secondItem="cEg-f8-WFo" secondAttribute="top" id="gkm-Lz-RcC"/>
-                                    <constraint firstItem="QZN-Fg-H1k" firstAttribute="leading" secondItem="cEg-f8-WFo" secondAttribute="leading" id="hGL-Nv-ORE"/>
-                                    <constraint firstAttribute="bottom" secondItem="QZN-Fg-H1k" secondAttribute="bottom" id="sO8-T5-wxM"/>
-                                </constraints>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="cEg-f8-WFo" firstAttribute="leading" secondItem="x09-ss-SeV" secondAttribute="leading" constant="20" id="I9v-eD-Aqz"/>
-                            <constraint firstItem="cEg-f8-WFo" firstAttribute="top" secondItem="hDN-jd-W5D" secondAttribute="bottom" constant="20" id="MAY-m0-kBp"/>
-                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Find" id="Dwd-pN-neM">
+                    <navigationItem key="navigationItem" title="Find Friends" id="Dwd-pN-neM">
                         <barButtonItem key="backBarButtonItem" title="Back" id="Lhy-PG-PLd"/>
                         <barButtonItem key="leftBarButtonItem" systemItem="done" id="2HL-ZZ-oHw">
                             <connections>
                                 <action selector="onClickCancel:" destination="Yok-yK-2yS" id="5zi-Zm-L5Y"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="T5h-lK-w9X"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="controll" destination="cEg-f8-WFo" id="OVW-QC-t4n"/>
                         <segue destination="nF9-ea-Vlk" kind="show" identifier="UserDetail" id="uPF-dM-otY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="smM-lc-7ff" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1471.875" y="193.30985915492957"/>
+            <point key="canvasLocation" x="2469.375" y="193.30985915492957"/>
         </scene>
         <!--UserDetail-->
         <scene sceneID="u9n-Vl-8Uu">
@@ -306,13 +278,30 @@
                 <viewControllerPlaceholder storyboardName="UserDetail" id="nF9-ea-Vlk" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qnd-3c-d79" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2257" y="123"/>
+            <point key="canvasLocation" x="3253.125" y="122.53521126760563"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="gpA-Af-udQ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FNU-tO-qi8" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dxl-OD-sOG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Yok-yK-2yS" kind="relationship" relationship="rootViewController" id="RoQ-nf-qkX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cbg-gl-Ik1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1471.875" y="193.30985915492957"/>
         </scene>
     </scenes>
     <resources>
         <image name="LocationIcon" width="7498" height="7560"/>
         <image name="ThaThinh" width="558" height="200"/>
-        <image name="close" width="48" height="48"/>
         <image name="hot-girl-han-quoc-xinh-dep-song-o-sai-gon-gay-sot" width="639" height="633"/>
         <image name="photo-36-1465292669338" width="650" height="649"/>
         <image name="pull" width="512" height="512"/>

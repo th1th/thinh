@@ -38,5 +38,6 @@ target 'Thinh' do
   pod 'NoticeBar'
   pod 'GoogleMaps'
   pod 'GooglePlaces'
+  pod 'BWWalkthrough'
 
 end
