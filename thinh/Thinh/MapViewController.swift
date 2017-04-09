@@ -42,10 +42,10 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        mockPosition = CLLocationCoordinate2D(latitude: 37.785834000000001, longitude: -122.406417)
+        mockPosition = CLLocationCoordinate2D(latitude: 10.778, longitude: 106.700)
         // Create a GMSCameraPosition that tells the map to display the
         // coordinate -33.86,151.20 at zoom level 6.
-        camera = GMSCameraPosition.camera(withLatitude: 37.785834000000001, longitude: -122.406417, zoom: 8.0)
+        camera = GMSCameraPosition.camera(withLatitude: (User.currentUser?.lat)!, longitude: (User.currentUser?.lon)!, zoom: 8.0)
         mapView = GMSMapView.map(withFrame: view.bounds, camera: camera)
         mapView.delegate = self
         view.addSubview(mapView)
@@ -78,12 +78,12 @@ extension MapViewController: GMSMapViewDelegate{
         }, onCompleted: nil, onDisposed: nil)
     }
     func addUserToMap(_ user:User) {
-        if user.name != "Pikalong"{
-            return
-        }
+//        if user.name != "Pikalong"{
+//            return
+//        }
         // Creates a marker in the the map.
-        let position = CLLocationCoordinate2D(latitude: mockPosition.latitude, longitude: mockPosition.longitude)
-//        let position = CLLocationCoordinate2D(latitude: user.lat, longitude: user.lon)
+//        let position = CLLocationCoordinate2D(latitude: mockPosition.latitude, longitude: mockPosition.longitude)
+        let position = CLLocationCoordinate2D(latitude: user.lat!, longitude: user.lon!)
         
         let marker = GMSMarker(position: position)
         
@@ -122,9 +122,10 @@ extension GMSMarker {
                 let image = UIImage(data: data)
                 else { return }
             DispatchQueue.main.async() { () -> Void in
-                let tempImage = self.resizeImage(image: image, targetSize: CGSize(width: 40, height: 40))
-                
-                let imageView = UIImageView(image: tempImage)
+//                let tempImage = self.resizeImage(image: image, targetSize: CGSize(width: 40, height: 40))
+                let imageView = UIImageView(image: image)
+                imageView.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+                imageView.contentMode = UIViewContentMode.scaleAspectFill
                 imageView.layer.cornerRadius = (imageView.frame.height)/2 //set corner for image
                 imageView.layer.borderColor = UIColor( red: 255/255, green: 255/255, blue:255/255, alpha: 1).cgColor
                 imageView.layer.borderWidth = 2
