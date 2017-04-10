@@ -54,7 +54,7 @@ class LoginViewController: UIViewController {
 ///Core function
 extension LoginViewController{
     func firebaseSigin(_ accessToken: String) {
-        Api.shared().login(accessToken: accessToken).subscribe(onNext: { (user) in
+        _ = Api.shared().login(accessToken: accessToken).subscribe(onNext: { (user) in
             print("Login success")
 //            if let fbUserID = self.defaults.string(forKey: "Thinh_FBuserID"){
 //                

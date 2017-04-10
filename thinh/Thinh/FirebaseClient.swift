@@ -41,7 +41,7 @@ class Api: NSObject {
         return _shared
     }
     
-    override init() {
+    private override init() {
         database = FIRDatabase.database().reference()
         userDb = database.child(FirebaseKey.user)
         thinhDb = database.child(FirebaseKey.thinh)
@@ -56,14 +56,14 @@ class Api: NSObject {
     }
     
     func userId() -> String? {
-//        return FIRAuth.auth()?.currentUser?.uid   // me
+        return FIRAuth.auth()?.currentUser?.uid   // me
 //        return "WR3OioP6R0UTPUoWItWyJX5g4p62" // Linh Le
 //        return "S5cirBWXUiOGnareVEEWbjaIJN02" // Harley
 //        return "VUoc532PABTXwHAc5ceaIAtem9D2" // Mark
 //        return "3JqA5vuaFhMbd8bS5Y82RSB9G092"   // Donald Trump
 //        return "SyHSwBEV7zYR1FEzuqBTevOJVsH3"
 //        return "cdP7J0LNP2gUG3BeEq29N8JHDt72" // Dang Viet
-        return "tpe0qfm577eZ3VgCaatP42cPk2n2"    // Kim Lien
+//        return "tpe0qfm577eZ3rVgCaatP42cPk2n2"    // Kim Lien
     }
 
     /*

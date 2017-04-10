@@ -251,8 +251,8 @@ class User: NSObject, Glossy {
     static let desc7 = "Yêu là phải nói cũng như đói là phải ăn"
     static let sex7 = Sex.male
     static let prefer7 = Sex.female
-    static let lat7 = 10.7527067
-    static let lon7 = 106.6688146
+    static let lat7 = 10.7527069
+    static let lon7 = 106.6688169
     
     static let user8 = "3JqA5vuaFhMbd8bS5Y82RSB9G092"
     static let name8 = "Donald Trump"

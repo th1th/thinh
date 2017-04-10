@@ -90,22 +90,6 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Thinh/LoginViewController.swift"
-            timestampString = "513400318.86084"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "firebaseSigin(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Thinh/LoginViewController.swift"
             timestampString = "513358273.815384"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
@@ -137,13 +121,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Thinh/FirebaseClient.swift"
-            timestampString = "513401322.934476"
+            filePath = "Thinh/LoginViewController.swift"
+            timestampString = "513520681.408776"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "235"
-            endingLineNumber = "235"
-            landmarkName = "getCurrentUser()"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "loginViaFb()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -154,7 +138,23 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Thinh/FirebaseClient.swift"
-            timestampString = "513401322.934476"
+            timestampString = "513520801.800389"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "214"
+            endingLineNumber = "214"
+            landmarkName = "getUser(id:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Thinh/FirebaseClient.swift"
+            timestampString = "513520890.739577"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "212"
@@ -170,11 +170,11 @@
                   moduleName = "Thinh"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/dattran/Desktop/CoderSchool%20iOs/thinh/thinh/Thinh/FirebaseClient.swift"
-                  timestampString = "513359022.840046"
+                  timestampString = "513521260.957636"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "193"
-                  endingLineNumber = "193"
+                  startingLineNumber = "212"
+                  endingLineNumber = "212"
                   offsetFromSymbolStart = "372">
                </Location>
                <Location
@@ -185,60 +185,12 @@
                   moduleName = "Thinh"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/dattran/Desktop/CoderSchool%20iOs/thinh/thinh/Thinh/FirebaseClient.swift"
-                  timestampString = "513359022.841614"
+                  timestampString = "513521260.959311"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "193"
-                  endingLineNumber = "193"
+                  startingLineNumber = "212"
+                  endingLineNumber = "212"
                   offsetFromSymbolStart = "92">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Thinh/FirebaseClient.swift"
-            timestampString = "513401322.934476"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "213"
-            endingLineNumber = "213"
-            landmarkName = "getUser(id:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Thinh.Api.(getUser (id : Swift.String) -&gt; RxSwift.Observable&lt;Thinh.User&gt;).(closure #1)"
-                  moduleName = "Thinh"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dattran/Desktop/CoderSchool%20iOs/thinh/thinh/Thinh/FirebaseClient.swift"
-                  timestampString = "513359022.844834"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "194"
-                  endingLineNumber = "194"
-                  offsetFromSymbolStart = "440">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Thinh.Api.(getUser (id : Swift.String) -&gt; RxSwift.Observable&lt;Thinh.User&gt;).(closure #1).(closure #1)"
-                  moduleName = "Thinh"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dattran/Desktop/CoderSchool%20iOs/thinh/thinh/Thinh/FirebaseClient.swift"
-                  timestampString = "513359022.846286"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "194"
-                  endingLineNumber = "194"
-                  offsetFromSymbolStart = "148">
                </Location>
             </Locations>
          </BreakpointContent>
