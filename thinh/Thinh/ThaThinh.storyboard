@@ -130,20 +130,21 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tgl-oZ-AWh">
-                                <rect key="frame" x="265" y="35" width="30" height="40"/>
+                                <rect key="frame" x="255" y="35" width="40" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="6lC-YX-5GU"/>
+                                    <constraint firstAttribute="width" constant="40" id="6lC-YX-5GU"/>
                                     <constraint firstAttribute="height" constant="40" id="wv2-0g-fXS"/>
                                 </constraints>
-                                <state key="normal" image="Pin Icon"/>
+                                <state key="normal" image="LocationIcon">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
-                                    <segue destination="L6W-1E-kzR" kind="presentation" id="KLs-jl-mjz"/>
+                                    <action selector="showMap:" destination="90z-SF-7AG" eventType="touchUpInside" id="9FN-NF-FRP"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="9FG-xu-BEv" secondAttribute="trailing" constant="25" id="3fj-s9-m4R"/>
                             <constraint firstItem="dLr-ba-lIU" firstAttribute="leading" secondItem="grI-nf-agt" secondAttribute="leadingMargin" constant="180" id="4J2-bB-FTb"/>
                             <constraint firstItem="tgl-oZ-AWh" firstAttribute="top" secondItem="S3n-Uy-Gmh" secondAttribute="bottom" constant="15" id="9Fu-Vk-O4T"/>
                             <constraint firstItem="ySh-64-dvg" firstAttribute="leading" secondItem="grI-nf-agt" secondAttribute="leading" constant="12" id="AoO-bS-7Mm"/>
@@ -154,7 +155,7 @@
                             <constraint firstAttribute="trailing" secondItem="d5w-e0-154" secondAttribute="trailing" id="g9S-q4-8tE"/>
                             <constraint firstItem="d5w-e0-154" firstAttribute="top" secondItem="S3n-Uy-Gmh" secondAttribute="bottom" id="nH2-Hg-CPn"/>
                             <constraint firstItem="EJf-q8-yp0" firstAttribute="top" secondItem="d5w-e0-154" secondAttribute="bottom" id="pep-T1-CS4"/>
-                            <constraint firstItem="9FG-xu-BEv" firstAttribute="top" secondItem="S3n-Uy-Gmh" secondAttribute="bottom" constant="15" id="sRY-J6-oIg"/>
+                            <constraint firstAttribute="top" secondItem="S3n-Uy-Gmh" secondAttribute="bottom" constant="15" id="sRY-J6-oIg"/>
                             <constraint firstItem="d5w-e0-154" firstAttribute="leading" secondItem="grI-nf-agt" secondAttribute="leading" id="vMa-kc-izB"/>
                             <constraint firstAttribute="trailing" secondItem="MyD-iS-yd6" secondAttribute="trailing" id="wD4-w2-mXp"/>
                         </constraints>
@@ -170,6 +171,7 @@
                         <outlet property="UserImage4" destination="MgO-03-I80" id="e2h-0l-IIU"/>
                         <outlet property="cacheImage" destination="MyD-iS-yd6" id="Cvf-Qe-0t0"/>
                         <outlet property="refreshLabe" destination="ySh-64-dvg" id="k0B-nT-0dl"/>
+                        <segue destination="FNU-tO-qi8" kind="presentation" identifier="showMap" id="ifu-0C-4zc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XVM-6V-ZDI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -239,12 +241,12 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-187.5" y="327.46478873239437"/>
+            <point key="canvasLocation" x="-103" y="193"/>
         </scene>
-        <!--Map View Controller-->
+        <!--Find Friends-->
         <scene sceneID="NNL-CZ-FZx">
             <objects>
-                <viewController id="Yok-yK-2yS" customClass="MapViewController" customModule="Thinh" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Yok-yK-2yS" customClass="MapViewController" customModule="Thinh" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hDN-jd-W5D"/>
                         <viewControllerLayoutGuide type="bottom" id="FeP-II-3Ej"/>
@@ -252,58 +254,53 @@
                     <view key="view" contentMode="scaleToFill" id="x09-ss-SeV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vnq-lh-1kR">
-                                <rect key="frame" x="0.0" y="64" width="0.0" height="0.0"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" id="3hT-dh-1oQ"/>
-                                    <constraint firstAttribute="width" id="xta-4F-1ve"/>
-                                </constraints>
-                            </imageView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="Vnq-lh-1kR" firstAttribute="top" secondItem="x09-ss-SeV" secondAttribute="top" constant="64" id="NxU-DT-xNW"/>
-                            <constraint firstItem="Vnq-lh-1kR" firstAttribute="leading" secondItem="x09-ss-SeV" secondAttribute="leading" id="eRb-TP-EjX"/>
-                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Dwd-pN-neM">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="NJI-6k-PfU">
+                    <navigationItem key="navigationItem" title="Find Friends" id="Dwd-pN-neM">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="Lhy-PG-PLd"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="2HL-ZZ-oHw">
                             <connections>
-                                <action selector="onClickCancel:" destination="Yok-yK-2yS" id="opH-jY-a1y"/>
+                                <action selector="onClickCancel:" destination="Yok-yK-2yS" id="5zi-Zm-L5Y"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="tempAvatar" destination="Vnq-lh-1kR" id="9A8-Pv-eg3"/>
+                        <segue destination="nF9-ea-Vlk" kind="show" identifier="UserDetail" id="uPF-dM-otY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="smM-lc-7ff" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1689.375" y="194.36619718309859"/>
+            <point key="canvasLocation" x="2469.375" y="193.30985915492957"/>
+        </scene>
+        <!--UserDetail-->
+        <scene sceneID="u9n-Vl-8Uu">
+            <objects>
+                <viewControllerPlaceholder storyboardName="UserDetail" id="nF9-ea-Vlk" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qnd-3c-d79" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3253.125" y="122.53521126760563"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="DTZ-Wb-htW">
+        <scene sceneID="gpA-Af-udQ">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="L6W-1E-kzR" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FNU-tO-qi8" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="735-Uq-xLu">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dxl-OD-sOG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Yok-yK-2yS" kind="relationship" relationship="rootViewController" id="XYC-2D-AnD"/>
+                        <segue destination="Yok-yK-2yS" kind="relationship" relationship="rootViewController" id="RoQ-nf-qkX"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tjZ-mf-SpT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cbg-gl-Ik1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="691.875" y="194.36619718309859"/>
-
+            <point key="canvasLocation" x="1471.875" y="193.30985915492957"/>
         </scene>
     </scenes>
     <resources>
-        <image name="Pin Icon" width="54" height="70"/>
+        <image name="LocationIcon" width="7498" height="7560"/>
         <image name="ThaThinh" width="558" height="200"/>
         <image name="hot-girl-han-quoc-xinh-dep-song-o-sai-gon-gay-sot" width="639" height="633"/>
         <image name="photo-36-1465292669338" width="650" height="649"/>

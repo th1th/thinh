@@ -12,21 +12,27 @@ import GoogleMaps
 
 
 class MapViewController: UIViewController {
-
     
     var allUsers: [User]! = []
     var camera:GMSCameraPosition!
     var mapView:GMSMapView!
     var mockPosition:CLLocationCoordinate2D!
+    var user:User!
+    
+    var selectedUser:User?{
+        get{
+            return user
+        }
+        set(selecteduser){
+            user = selecteduser!
+            utilities.log(selectedUser?.avatar)
+            performSegue(withIdentifier: "UserDetail", sender: view)
+        }
+    }
+    
 
-    
-    
-    @IBOutlet weak var tempAvatar: UIImageView!
 
-    
-    
-    
-    @IBAction func onClickCancel(_ sender: UIBarButtonItem) {
+    @IBAction func onClickCancel(_ sender: UIButton) {
         dismiss(animated: true) {
             //
         }
@@ -34,35 +40,38 @@ class MapViewController: UIViewController {
   
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        // Customize navigation controller
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.barStyle = .black
+        self.navigationController?.navigationBar.tintColor = UIColor(red: 78/255.0, green: 221/255.0, blue: 200/255.0, alpha: 1.0)
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 217/255.0, green: 243/255.0, blue: 239/255.0, alpha: 1.0)
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.black]
+        
         // Do any additional setup after loading the view.
-        mockPosition = CLLocationCoordinate2D(latitude: 37.785834000000001, longitude: -122.406417)
+        mockPosition = CLLocationCoordinate2D(latitude: 10.778, longitude: 106.700)
+        // Create a GMSCameraPosition that tells the map to display the
+        // coordinate -33.86,151.20 at zoom level 6.
+        camera = GMSCameraPosition.camera(withLatitude: (User.currentUser?.lat)!, longitude: (User.currentUser?.lon)!, zoom: 12.0)
+        mapView = GMSMapView.map(withFrame: view.bounds, camera: camera)
+        mapView.delegate = self
+        view.addSubview(mapView)
+        getStrangerList()
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    override func loadView() {
-        // Create a GMSCameraPosition that tells the map to display the
-        // coordinate -33.86,151.20 at zoom level 6.
-        camera = GMSCameraPosition.camera(withLatitude: 37.785834000000001, longitude: -122.406417, zoom: 8.0)
-        mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-        view = mapView
-        
-        // Creates a marker in the center of the map.
-//        let marker = GMSMarker()
-//        marker.position = CLLocationCoordinate2D(latitude: 37.785834000000001, longitude: -122.406417)
-//        marker.title = "Sydney"
-//        marker.snippet = "Australia"
-//        marker.map = mapView
-        getStrangerList()
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "UserDetail"){
+            let vc = segue.destination as! UserDetailViewController
+            vc.user = user
+            vc.showCloseButton = false
+        }
     }
-
 }
-extension MapViewController{
+extension MapViewController: GMSMapViewDelegate{
     func getStrangerList() {
         Api.shared().getMyStrangerList().subscribe(onNext: { (user) in
             self.allUsers.append(user)
@@ -73,15 +82,17 @@ extension MapViewController{
         }, onCompleted: nil, onDisposed: nil)
     }
     func addUserToMap(_ user:User) {
-        if user.name != "Donald Trump" {
-            return
-        }
+//        if user.name != "Pikalong"{
+//            return
+//        }
         // Creates a marker in the the map.
-        let position = CLLocationCoordinate2D(latitude: mockPosition.latitude, longitude: mockPosition.longitude)
+//        let position = CLLocationCoordinate2D(latitude: mockPosition.latitude, longitude: mockPosition.longitude)
+        let position = CLLocationCoordinate2D(latitude: user.lat!, longitude: user.lon!)
+        
         let marker = GMSMarker(position: position)
         
         marker.isFlat = true
-        marker.title = user.name
+        marker.title = user.id
         
         marker.downloadedFrom(link: user.avatar!)
         marker.tracksViewChanges = true
@@ -89,10 +100,24 @@ extension MapViewController{
         marker.map = mapView
         marker.appearAnimation = GMSMarkerAnimation.pop
     }
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+        print("You tapped at \(coordinate.latitude), \(coordinate.longitude)")
+    }
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        Api.shared().getUser(id: marker.title!).subscribe(onNext: { (user) in
+            self.selectedUser = user
+        }, onError: { (error) in
+            utilities.log(error)
+        }, onCompleted: nil, onDisposed: nil)
+        
+        utilities.log(marker.title)
+        return true
+    }
     
 }
 
 extension GMSMarker {
+    
     func downloadedFrom(url: URL) {
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
@@ -101,17 +126,17 @@ extension GMSMarker {
                 let image = UIImage(data: data)
                 else { return }
             DispatchQueue.main.async() { () -> Void in
-                let tempImage = self.resizeImage(image: image, targetSize: CGSize(width: 40, height: 40))
-                
-                let imageView = UIImageView(image: tempImage)
+//                let tempImage = self.resizeImage(image: image, targetSize: CGSize(width: 40, height: 40))
+                let imageView = UIImageView(image: image)
+                imageView.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+                imageView.contentMode = UIViewContentMode.scaleAspectFill
                 imageView.layer.cornerRadius = (imageView.frame.height)/2 //set corner for image
+                imageView.layer.borderColor = UIColor( red: 255/255, green: 255/255, blue:255/255, alpha: 1).cgColor
+                imageView.layer.borderWidth = 2
                 imageView.clipsToBounds = true
-//                imageView.frame.size = CGSize(width: 20, height: 20)
-//                imageView.contentMode = .scaleAspectFill
                 
                 self.iconView = imageView
-//
-//                self.iconView = imageView
+                
             }
             }.resume()
     }

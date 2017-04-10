@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05063DE31E9A55520012512B /* Libs in Resources */ = {isa = PBXBuildFile; fileRef = 05063DE21E9A55520012512B /* Libs */; };
 		050DD2A61E98D6FC00FDF653 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050DD2A51E98D6FC00FDF653 /* MapViewController.swift */; };
 		051EBECD1E864BB6002BA6B7 /* PopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 051EBECC1E864BB6002BA6B7 /* PopupView.xib */; };
 		051EBED11E864F87002BA6B7 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051EBED01E864F87002BA6B7 /* PopupView.swift */; };
@@ -15,7 +16,6 @@
 		055024281E7CFA3700175FED /* utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055024271E7CFA3700175FED /* utilities.swift */; };
 		0550242D1E7D278500175FED /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0550242C1E7D278500175FED /* User.swift */; };
 		0550242F1E7D2D3900175FED /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0550242E1E7D2D3900175FED /* ChatListViewController.swift */; };
-		05503F551E97DD5E008ACF0B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05503F541E97DD5E008ACF0B /* MapViewController.swift */; };
 		0555D5B71E82CAF60058F9CD /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0555D5B61E82CAF60058F9CD /* UserDetailViewController.swift */; };
 		0555D5BB1E82CB520058F9CD /* ThinhList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0555D5BA1E82CB520058F9CD /* ThinhList.storyboard */; };
 		0555D5BD1E82CB710058F9CD /* ThinhListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0555D5BC1E82CB710058F9CD /* ThinhListViewController.swift */; };
@@ -62,6 +62,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		05063DE21E9A55520012512B /* Libs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Libs; sourceTree = "<group>"; };
 		050DD2A51E98D6FC00FDF653 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		051EBECC1E864BB6002BA6B7 /* PopupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopupView.xib; sourceTree = "<group>"; };
 		051EBED01E864F87002BA6B7 /* PopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
@@ -240,6 +241,7 @@
 		948C1F321E7E360A000F20E5 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				05063DE21E9A55520012512B /* Libs */,
 				9446FC8F1E97C50F00C4E7FD /* Assets.xcassets */,
 				05F8ACBF1E85609F00A9B281 /* Fonts */,
 				94C71F0C1E7444E400D63A95 /* Info.plist */,
@@ -357,7 +359,7 @@
 				TargetAttributes = {
 					94C71EFC1E7444E300D63A95 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = A2S8X674GE;
+						DevelopmentTeam = 8D5SZ9A5H3;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -403,6 +405,7 @@
 				94C71F061E7444E400D63A95 /* Main.storyboard in Resources */,
 				057886C11E91108F000B818D /* MODERNE SANS.ttf in Resources */,
 				0555D5BF1E82DE1C0058F9CD /* Setting.storyboard in Resources */,
+				05063DE31E9A55520012512B /* Libs in Resources */,
 				057886C51E9117A5000B818D /* MANIFESTO.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -618,7 +621,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = A2S8X674GE;
+				DEVELOPMENT_TEAM = 8D5SZ9A5H3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -626,7 +629,7 @@
 				INFOPLIST_FILE = Thinh/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.codee.Thinh;
+				PRODUCT_BUNDLE_IDENTIFIER = com.coderschool.Thinh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -639,7 +642,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = A2S8X674GE;
+				DEVELOPMENT_TEAM = 8D5SZ9A5H3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -647,7 +650,7 @@
 				INFOPLIST_FILE = Thinh/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.codee.Thinh;
+				PRODUCT_BUNDLE_IDENTIFIER = com.coderschool.Thinh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
