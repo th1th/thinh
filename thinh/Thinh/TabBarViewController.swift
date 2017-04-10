@@ -101,8 +101,12 @@ class TabBarViewController: UIViewController {
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.startUpdatingLocation()
+            User.currentUser?.lon = locationManager.location?.coordinate.longitude
+            User.currentUser?.lon = locationManager.location?.coordinate.longitude
+            
             utilities.log("Location services are not enabled")
             utilities.log(locationManager.location?.coordinate)
+            locationManager.stopUpdatingLocation()
         }
 
         

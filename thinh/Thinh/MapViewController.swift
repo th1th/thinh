@@ -9,7 +9,8 @@
 
 import UIKit
 import GoogleMaps
-
+import RxCocoa
+import RxSwift
 
 class MapViewController: UIViewController {
     
@@ -18,6 +19,7 @@ class MapViewController: UIViewController {
     var mapView:GMSMapView!
     var mockPosition:CLLocationCoordinate2D!
     var user:User!
+    var disposeBag = DisposeBag()
     
     var selectedUser:User?{
         get{
@@ -33,7 +35,13 @@ class MapViewController: UIViewController {
 
 
     @IBAction func onClickCancel(_ sender: UIButton) {
-        dismiss(animated: true) {
+        
+        mapView.removeFromSuperview()
+        view.removeFromSuperview()
+        view = nil
+        
+        
+        self.dismiss(animated: true) {
             //
         }
     }
@@ -58,6 +66,15 @@ class MapViewController: UIViewController {
         getStrangerList()
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        return .default
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        mapView.removeFromSuperview()
+        view.removeFromSuperview()
+        view = nil
+        self.dismiss(animated: true, completion: {})
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -79,7 +96,9 @@ extension MapViewController: GMSMapViewDelegate{
             utilities.log("getUserFromServer--  get \(self.allUsers.count) users")
         }, onError: { (error) in
             utilities.log("getUserFromServer--\(error.localizedDescription)")
-        }, onCompleted: nil, onDisposed: nil)
+        }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
+//        disposeBag.insert(dispose)
+        
     }
     func addUserToMap(_ user:User) {
 //        if user.name != "Pikalong"{
@@ -108,7 +127,7 @@ extension MapViewController: GMSMapViewDelegate{
             self.selectedUser = user
         }, onError: { (error) in
             utilities.log(error)
-        }, onCompleted: nil, onDisposed: nil)
+        }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
         
         utilities.log(marker.title)
         return true

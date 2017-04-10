@@ -108,8 +108,12 @@ class UserDetailViewController: UIViewController {
         PreferLabel.text =      "\((user!.prefer)!.rawValue)"
         GenderImage.image = sex[(user?.gender?.hashValue)!]
         PreferImage.image = sex[(user?.prefer?.hashValue)!]
-        
-        UserBackgroundImage.image = #imageLiteral(resourceName: "Background")
+        UserBackgroundImage.image = #imageLiteral(resourceName: "gray")
+        if let cover = user?.cover {
+            UserBackgroundImage.setImageWith(cover)
+        }else{
+            UserBackgroundImage.image = #imageLiteral(resourceName: "Background")
+        }
         
         AvatarImage.layer.cornerRadius = AvatarImage.frame.height/2
         AvatarImage.clipsToBounds = true
