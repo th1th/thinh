@@ -73,9 +73,10 @@ class Api: NSObject {
         return loginWithFacebook(accessToken)
     }
 
-    // TODO: get user info from facebook
+    
     fileprivate func loginWithFacebook(_ accessToken: String) -> Observable<User> {
-        return Observable<User>.create({ (obsever) -> Disposable in
+        var fbUser: FIRUser!
+        return Observable<FIRUser>.create({ (obsever) -> Disposable in
             let credential = FIRFacebookAuthProvider.credential(withAccessToken: accessToken)
             FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) in
                 guard error == nil else {
@@ -86,25 +87,18 @@ class Api: NSObject {
                     obsever.onError(ThinhError.unknownUser)
                     return
                 }
-                _ = self.isUserExist(user.uid).subscribe(onNext: { (exist) in
-                    if !exist {
-                        _ = self.createUser(user.uid, user: User(user: user)).subscribe(onNext: { (user) in
-                            User.currentUser = user
-                            obsever.onNext(user)
-                        }, onError: { (error) in
-                            print(error)
-                        }, onCompleted: nil, onDisposed: nil)
-                    } else {
-                        _ = self.getCurrentUser().subscribe(onNext: { (user) in
-                            User.currentUser = user
-                            obsever.onNext(user)
-                        }, onError: { (error) in
-                            print(error)
-                        }, onCompleted: nil, onDisposed: nil)
-                    }
-                })
+                obsever.onNext(user)
             })
             return Disposables.create()
+        }).flatMap({ (user) -> Observable<Bool> in
+            fbUser = user
+            return self.isUserExist(user.uid)
+        }).flatMap({ (exist) -> Observable<User> in
+            if exist {
+                return self.createUser(fbUser.uid, user: User(user: fbUser))
+            } else {
+                return self.getCurrentUser()
+            }
         })
     }
     
@@ -222,7 +216,6 @@ class Api: NSObject {
                 }
                 
                 subcriber.onNext(user)
-                
             })
             return Disposables.create()
         })
@@ -271,6 +264,7 @@ class Api: NSObject {
     func updateMyLocation(_ location: CLLocation) {
         updateUserLocation(userId()!, location)
     }
+    
     /*
      update user location
     */
@@ -434,7 +428,6 @@ class Api: NSObject {
     func getAllUser() -> Observable<User> {
         return Observable<User>.create({ (subcriber) -> Disposable in
             self.userDb.observeSingleEvent(of: .value, with: { (snapshot) in
-//                var users = [User]()
                 for child in snapshot.children {
                     guard let data = child as? FIRDataSnapshot else {
                         return
@@ -444,7 +437,6 @@ class Api: NSObject {
                         subcriber.onNext(user!)
                     }
                 }
-//                subcriber.onNext(users)
             })
             return Disposables.create()
         })
@@ -461,22 +453,9 @@ class Api: NSObject {
      get friend list of specific user, maybe public in the future
     */
     fileprivate func getFriendList(id: UserId) -> Observable<User> {
-        return Observable<User>.create({ (subcriber) -> Disposable in
-            _ = self.getFriendIdOf(user: id).subscribe(onNext: { (id) in
-                self.userDb.child(id).observe(.value, with: { (snapshot) in
-                    guard let data = snapshot.value as? JSON else {
-                        subcriber.onError(ThinhError.unknownUser)
-                        return
-                    }
-                    guard let user = User(json: data) else {
-                        subcriber.onError(ThinhError.unknownUser)
-                        return
-                    }
-                    subcriber.onNext(user)
-                })
-            })
-            return Disposables.create()
-        })
+        return getFriendIdOf(user: id).flatMap { (friend: UserId) -> Observable<User> in
+            return self.getUser(id: friend)
+        }
     }
     
     /*
@@ -524,16 +503,10 @@ class Api: NSObject {
      get stranger related to user id
     */
     fileprivate func getStrangerOf(_ id: UserId) -> Observable<User> {
-        return Observable<User>.create({ (subcriber) -> Disposable in
-            _ = self.getFriendIdsOf(user: id).subscribe(onNext: { (users) in
-                
-                _ = self.getAllUser().subscribe(onNext: { (user) in
-                    if !users.contains(user.id!) && user.id! != User.botId {
-                        subcriber.onNext(user)
-                    }
-                })
-            })
-            return Disposables.create()
+        return self.getFriendIdsOf(user: id).flatMap({ (users) -> Observable<UserId> in
+            return Observable.from(users)
+        }).flatMap({ (id) -> Observable<User> in
+            return self.getUser(id: id)
         })
     }
     
