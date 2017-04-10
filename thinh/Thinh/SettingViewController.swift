@@ -138,7 +138,12 @@ extension SettingViewController{
         PreferLabel.text =      "\((user!.prefer)!.rawValue)"
         GenderImage.image = sex[(user?.gender?.hashValue) ?? 3]
         PreferImage.image = sex[(user?.prefer?.hashValue) ?? 3]
-        UserBackgroundImage.image = #imageLiteral(resourceName: "Background")
+        UserBackgroundImage.image = #imageLiteral(resourceName: "gray")
+        if let cover = user?.cover {
+            UserBackgroundImage.setImageWith(cover)
+        }else{
+            UserBackgroundImage.image = #imageLiteral(resourceName: "Background")
+        }
         
         
         //
