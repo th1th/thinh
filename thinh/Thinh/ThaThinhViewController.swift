@@ -28,7 +28,6 @@ class ThaThinhViewController: UIViewController {
 
     @IBOutlet weak var cacheImage: UIImageView!
     
-    @IBOutlet weak var refreshLabe: UILabel!
     
     var images: [UIImageView]! = []
     var buttons: [UIButton]! = []
@@ -84,7 +83,6 @@ class ThaThinhViewController: UIViewController {
             
         } else if sender.state == UIGestureRecognizerState.ended {
             print("refresh ended at \(point)")
-            refreshLabe.alpha = 0
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 0.1, options: [], animations: {
                 sender.view?.center = self.RefreshImageCenter
                 var numberOfShowedUser = 4
@@ -97,7 +95,6 @@ class ThaThinhViewController: UIViewController {
                     }
                 }
                 
-                self.refreshLabe.alpha = 1
             }, completion: { (_) in
                 self.view.sendSubview(toBack: sender.view!)
                 self.reloadUserToShowUser()

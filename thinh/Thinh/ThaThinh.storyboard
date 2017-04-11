@@ -5,14 +5,8 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Ailerons-Typeface.otf">
-            <string>Ailerons-Regular</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Tha Thinh View Controller-->
         <scene sceneID="Fbg-83-m7l">
@@ -26,9 +20,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="d5w-e0-154">
-                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
-                            </imageView>
                             <imageView tag="1" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="photo-36-1465292669338" translatesAutoresizingMaskIntoConstraints="NO" id="yw0-pP-pQJ">
                                 <rect key="frame" x="17" y="95" width="130" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
@@ -112,51 +103,51 @@
                                     <constraint firstAttribute="width" id="xdG-lc-BgR"/>
                                 </constraints>
                             </imageView>
-                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pull" translatesAutoresizingMaskIntoConstraints="NO" id="dLr-ba-lIU">
-                                <rect key="frame" x="196" y="20" width="30" height="60"/>
-                                <gestureRecognizers/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b6k-X2-S0D">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tgl-oZ-AWh">
+                                        <rect key="frame" x="135" y="20" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="7a2-F4-K64"/>
+                                            <constraint firstAttribute="width" constant="50" id="tsM-59-fjA"/>
+                                        </constraints>
+                                        <state key="normal" image="gps">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="showMap:" destination="90z-SF-7AG" eventType="touchUpInside" id="9FN-NF-FRP"/>
+                                        </connections>
+                                    </button>
+                                    <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pull" translatesAutoresizingMaskIntoConstraints="NO" id="dLr-ba-lIU">
+                                        <rect key="frame" x="274" y="34" width="26" height="36"/>
+                                        <gestureRecognizers/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="36" id="9FT-kg-ZB0"/>
+                                            <constraint firstAttribute="width" constant="26" id="kc8-tg-zha"/>
+                                        </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="bFb-er-Feh" appends="YES" id="WDs-cO-rWm"/>
+                                        </connections>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.85490196078431369" green="0.95294117647058818" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="NzG-wW-a6K"/>
-                                    <constraint firstAttribute="height" constant="60" id="rga-s3-vuu"/>
+                                    <constraint firstItem="tgl-oZ-AWh" firstAttribute="top" secondItem="b6k-X2-S0D" secondAttribute="top" constant="20" id="478-7d-QOm"/>
+                                    <constraint firstAttribute="trailing" secondItem="dLr-ba-lIU" secondAttribute="trailing" constant="20" id="Jl4-1V-NW0"/>
+                                    <constraint firstAttribute="height" constant="75" id="Ynq-0i-tlW"/>
+                                    <constraint firstAttribute="bottom" secondItem="dLr-ba-lIU" secondAttribute="bottom" constant="5" id="lI8-OL-RJc"/>
+                                    <constraint firstItem="tgl-oZ-AWh" firstAttribute="centerX" secondItem="b6k-X2-S0D" secondAttribute="centerX" id="ufQ-FF-Jxl"/>
                                 </constraints>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="bFb-er-Feh" appends="YES" id="WDs-cO-rWm"/>
-                                </connections>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pull to refresh" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ySh-64-dvg">
-                                <rect key="frame" x="12" y="40" width="150.5" height="20"/>
-                                <fontDescription key="fontDescription" name="Ailerons-Regular" family="Ailerons" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tgl-oZ-AWh">
-                                <rect key="frame" x="255" y="35" width="40" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="6lC-YX-5GU"/>
-                                    <constraint firstAttribute="height" constant="40" id="wv2-0g-fXS"/>
-                                </constraints>
-                                <state key="normal" image="LocationIcon">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="showMap:" destination="90z-SF-7AG" eventType="touchUpInside" id="9FN-NF-FRP"/>
-                                </connections>
-                            </button>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="dLr-ba-lIU" firstAttribute="leading" secondItem="grI-nf-agt" secondAttribute="leadingMargin" constant="180" id="4J2-bB-FTb"/>
-                            <constraint firstItem="tgl-oZ-AWh" firstAttribute="top" secondItem="S3n-Uy-Gmh" secondAttribute="bottom" constant="15" id="9Fu-Vk-O4T"/>
-                            <constraint firstItem="ySh-64-dvg" firstAttribute="leading" secondItem="grI-nf-agt" secondAttribute="leading" constant="12" id="AoO-bS-7Mm"/>
+                            <constraint firstAttribute="trailing" secondItem="b6k-X2-S0D" secondAttribute="trailing" id="CHq-f3-5iu"/>
                             <constraint firstAttribute="bottom" secondItem="MyD-iS-yd6" secondAttribute="bottom" id="Fxd-IK-Ybb"/>
-                            <constraint firstItem="ySh-64-dvg" firstAttribute="top" secondItem="S3n-Uy-Gmh" secondAttribute="bottom" constant="20" id="NM6-Ir-yVN"/>
-                            <constraint firstItem="dLr-ba-lIU" firstAttribute="top" secondItem="S3n-Uy-Gmh" secondAttribute="bottom" id="fCQ-n6-uiu"/>
-                            <constraint firstAttribute="trailing" secondItem="tgl-oZ-AWh" secondAttribute="trailing" constant="25" id="fn8-Cn-4ed"/>
-                            <constraint firstAttribute="trailing" secondItem="d5w-e0-154" secondAttribute="trailing" id="g9S-q4-8tE"/>
-                            <constraint firstItem="d5w-e0-154" firstAttribute="top" secondItem="S3n-Uy-Gmh" secondAttribute="bottom" id="nH2-Hg-CPn"/>
-                            <constraint firstItem="EJf-q8-yp0" firstAttribute="top" secondItem="d5w-e0-154" secondAttribute="bottom" id="pep-T1-CS4"/>
+                            <constraint firstItem="b6k-X2-S0D" firstAttribute="leading" secondItem="grI-nf-agt" secondAttribute="leading" id="aUn-3h-GB2"/>
+                            <constraint firstItem="b6k-X2-S0D" firstAttribute="top" secondItem="grI-nf-agt" secondAttribute="top" id="nlG-s2-qiB"/>
                             <constraint firstAttribute="top" secondItem="S3n-Uy-Gmh" secondAttribute="bottom" constant="15" id="sRY-J6-oIg"/>
-                            <constraint firstItem="d5w-e0-154" firstAttribute="leading" secondItem="grI-nf-agt" secondAttribute="leading" id="vMa-kc-izB"/>
                             <constraint firstAttribute="trailing" secondItem="MyD-iS-yd6" secondAttribute="trailing" id="wD4-w2-mXp"/>
                         </constraints>
                     </view>
@@ -170,7 +161,6 @@
                         <outlet property="UserImage3" destination="ju5-Pv-LJh" id="2tJ-PF-rFn"/>
                         <outlet property="UserImage4" destination="MgO-03-I80" id="e2h-0l-IIU"/>
                         <outlet property="cacheImage" destination="MyD-iS-yd6" id="Cvf-Qe-0t0"/>
-                        <outlet property="refreshLabe" destination="ySh-64-dvg" id="k0B-nT-0dl"/>
                         <segue destination="FNU-tO-qi8" kind="presentation" identifier="showMap" id="ifu-0C-4zc"/>
                     </connections>
                 </viewController>
@@ -241,7 +231,7 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-103" y="193"/>
+            <point key="canvasLocation" x="-103.125" y="192.25352112676057"/>
         </scene>
         <!--Find Friends-->
         <scene sceneID="NNL-CZ-FZx">
@@ -300,8 +290,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="LocationIcon" width="7498" height="7560"/>
         <image name="ThaThinh" width="558" height="200"/>
+        <image name="gps" width="512" height="512"/>
         <image name="hot-girl-han-quoc-xinh-dep-song-o-sai-gon-gay-sot" width="639" height="633"/>
         <image name="photo-36-1465292669338" width="650" height="649"/>
         <image name="pull" width="512" height="512"/>
