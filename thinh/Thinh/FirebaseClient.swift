@@ -744,6 +744,7 @@ class Api: NSObject {
      call this when close the app
     */
     func stop() {
+        
         database.removeAllObservers()
     }
     
