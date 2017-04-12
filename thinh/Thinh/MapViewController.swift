@@ -35,15 +35,14 @@ class MapViewController: UIViewController {
 
 
     @IBAction func onClickCancel(_ sender: UIButton) {
-        
         mapView.removeFromSuperview()
         view.removeFromSuperview()
         view = nil
-        
-        
-        self.dismiss(animated: true) {
-            //
-        }
+        self.dismiss(animated: true) {}
+        mapView.removeFromSuperview()
+        view.removeFromSuperview()
+        view = nil
+        self.dismiss(animated: true, completion: {})
     }
   
     override func viewDidLoad() {
@@ -70,10 +69,7 @@ class MapViewController: UIViewController {
         return .default
     }
     override func viewDidDisappear(_ animated: Bool) {
-        mapView.removeFromSuperview()
-        view.removeFromSuperview()
-        view = nil
-        self.dismiss(animated: true, completion: {})
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -90,14 +86,14 @@ class MapViewController: UIViewController {
 }
 extension MapViewController: GMSMapViewDelegate{
     func getStrangerList() {
-        Api.shared().getMyStrangerList().subscribe(onNext: { (user) in
+        let dispose = Api.shared().getMyStrangerList().subscribe(onNext: { (user) in
             self.allUsers.append(user)
             self.addUserToMap(user)
             utilities.log("getUserFromServer--  get \(self.allUsers.count) users")
         }, onError: { (error) in
             utilities.log("getUserFromServer--\(error.localizedDescription)")
         }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
-//        disposeBag.insert(dispose)
+        disposeBag.insert(dispose as! Disposable)
         
     }
     func addUserToMap(_ user:User) {
@@ -145,7 +141,6 @@ extension GMSMarker {
                 let image = UIImage(data: data)
                 else { return }
             DispatchQueue.main.async() { () -> Void in
-//                let tempImage = self.resizeImage(image: image, targetSize: CGSize(width: 40, height: 40))
                 let imageView = UIImageView(image: image)
                 imageView.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
                 imageView.contentMode = UIViewContentMode.scaleAspectFill
