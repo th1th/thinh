@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 protocol ThinhListViewControllerDelegate {
     func numberOfStrangerThinh(_ n: Int)
@@ -56,7 +57,7 @@ class ThinhListViewController: UIViewController {
     var delegate: ThinhListViewControllerDelegate?
     fileprivate var numberOfThinh: Int = 0
     
-    
+    fileprivate var disposeBag = DisposeBag()
     
     @IBAction func onClickGetDetail(_ sender: UITapGestureRecognizer) {
         sender.numberOfTapsRequired = 1
@@ -147,21 +148,20 @@ extension ThinhListViewController{
         hideUnuseThinhView()
         //GET ALL THINH HERE:
         utilities.log("reloadThinhList---   \(User.currentUser!.id)")
-        Api.shared().getMyStrangerThinh().subscribe(onNext: { (thinh:Thinh) in
-            utilities.log("reloadThinhList--\(thinh)")
+
+        Api.shared().getMyStrangerThinh().flatMap { (thinh) -> Observable<User> in
             self.numberOfThinh += 1
             self.delegate?.numberOfStrangerThinh(self.numberOfThinh)
-            Api.shared().getUser(id: thinh.from!).subscribe(onNext: { (user) in
-                self.thinhs.append(thinh)
-                self.users.append(user)
-                utilities.log("reloadThinhList--- number of thinh:\(self.users.count)")
-                self.loadUserToView()
-                self.hideUnuseThinhView()
-            }, onError: nil, onCompleted: nil, onDisposed: nil)
-            //            self.indexTracking =
+            self.thinhs.append(thinh)
+            return Api.shared().getUser(id: thinh.from!)
+        }.subscribe(onNext: { (user) in
+            self.users.append(user)
+            utilities.log("reloadThinhList--- number of thinh:\(self.users.count)")
+            self.loadUserToView()
+            self.hideUnuseThinhView()
         }, onError: { (error) in
             print(error.localizedDescription)
-        }, onCompleted: nil, onDisposed: nil)
+        }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
     }
 
     //Load all image of users (when fisrt load Thinh list view)

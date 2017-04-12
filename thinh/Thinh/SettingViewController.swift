@@ -111,7 +111,6 @@ extension SettingViewController{
         }, onError: { (error) in
             utilities.log(error)
         }, onCompleted: nil, onDisposed: nil)
-
     }
 
     func loadInfo() {
