@@ -31,6 +31,7 @@ class Api: NSObject {
     fileprivate var conversationStorage: FIRStorageReference
     fileprivate var matchDb: FIRDatabaseReference
     fileprivate var dataStorage: FIRStorageReference
+    fileprivate var disposeBag = DisposeBag()
     
     static private var _shared: Api!
     
@@ -181,22 +182,22 @@ class Api: NSObject {
      update user image
     */
     func updateAvatar(_ avatar: UIImage) {
-        _ = uploadImage(avatar).subscribe(onNext: { (url) in
+        uploadImage(avatar).subscribe(onNext: { (url) in
             self.userDb.child(self.userId()!).updateChildValues([FirebaseKey.avatar: url.absoluteString])
         }, onError: { (error) in
             print(error.localizedDescription)
-        }, onCompleted: nil, onDisposed: nil)
+        }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
     }
     
     /*
      update user cover
     */
     func updateUserCover(_ cover: UIImage) {
-        _ = uploadImage(cover).subscribe(onNext: { (url) in
+        uploadImage(cover).subscribe(onNext: { (url) in
             self.userDb.child(self.userId()!).updateChildValues([FirebaseKey.cover: url.absoluteString])
         }, onError: { (error) in
             print(error.localizedDescription)
-        }, onCompleted: nil, onDisposed: nil)
+        }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
     }
     
     /*
@@ -254,11 +255,11 @@ class Api: NSObject {
      update cover for conversation
     */
     func updateCover(_ cover: UIImage, forConversation id: ConversationId) {
-        _ = uploadImage(cover).subscribe(onNext: { (url) in
+        uploadImage(cover).subscribe(onNext: { (url) in
             self.conversationDb.child(id).child(FirebaseKey.cover).setValue(url.absoluteString)
         }, onError: { (error) in
             print(error.localizedDescription)
-        }, onCompleted: nil, onDisposed: nil)
+        }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
     }
     
     func updateMyLocation(_ location: CLLocation) {
@@ -393,12 +394,12 @@ class Api: NSObject {
      send message with image
     */
     func sendMessage(to A: UserId, conversation: ConversationId, image: UIImage) {
-        _ = uploadImage(image).subscribe(onNext: { (url) in
+        uploadImage(image).subscribe(onNext: { (url) in
             let message = Message(from: self.userId()!, to: A, media: url)
             _ = self.sendMessage(id: conversation, message: message)
         }, onError: { (error) in
             print(error.localizedDescription)
-        }, onCompleted: nil, onDisposed: nil)
+        }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
     }
     
     /*
@@ -574,18 +575,22 @@ class Api: NSObject {
      current user tha thinh user A with image
      */
     func thathinh(_ A: UserId, image: UIImage) {
-        _ = uploadImage(image).subscribe(onNext: { (url) in
+        uploadImage(image).subscribe(onNext: { (url) in
             let message = Message(from: self.userId()!, to: A, media: url)
             self.thathinh(A: A, B: self.userId()!, message: message)
         }, onError: { (error) in
             print("thathing \(error.localizedDescription)")
         }, onCompleted: {
             print("thathinh complete")
-        }, onDisposed: nil)
+        }, onDisposed: nil).addDisposableTo(disposeBag)
     }
     
-    func thathinh(_ A: UserId, video: String) {
-        // TODO: implement
+    func thathinh(_ A: UserId, videoPath: URL) {
+        uploadVideo(videoPath).subscribe(onNext: { (url) in
+            let message = Message(from: self.userId()!, to: A, media: url)
+        }, onError: { (error) in
+            print("thathinh \(error.localizedDescription)")
+        }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
     }
     
     /*
@@ -597,21 +602,21 @@ class Api: NSObject {
     }
     
     func thathinh(_ A: UserId, message: String, image: UIImage) {
-        _ = uploadImage(image).subscribe(onNext: { (url) in
+        uploadImage(image).subscribe(onNext: { (url) in
             let sms = Message(from: self.userId()!, to: A, message: message, media: url)
             self.thathinh(A: A, B: self.userId()!, message: sms)
         }, onError: { (error) in
             print("thathing \(error.localizedDescription)")
         }, onCompleted: { 
             print("thathinh complete")
-        }, onDisposed: nil)
+        }, onDisposed: nil).addDisposableTo(disposeBag)
     }
     
     /*
      user B tha thinh user A, also for test, with message as wrapper
     */
     fileprivate func thathinh(A: UserId, B: UserId, message: Message?) {
-        _ = has(B, recievedThinhFrom: A).subscribe(onNext: { (thinh) in
+        has(B, recievedThinhFrom: A).subscribe(onNext: { (thinh) in
             if let thinh = thinh {
                 _ = self.checkIfConversationExist(between: A, B: B).subscribe(onNext: { (conversationId) in
                     var id: ConversationId!
@@ -639,7 +644,7 @@ class Api: NSObject {
                     self.setThinhPackage(thinh)
                 })
             }
-        })
+        }).addDisposableTo(disposeBag)
     }
     
     
@@ -702,8 +707,22 @@ class Api: NSObject {
         
     }
     
-    fileprivate func uploadVideo(_ video: String) {
-        // TODO: upload video from file path
+    fileprivate func uploadVideo(_ videoPath: URL) -> Observable<URL>{
+        return Observable<URL>.create({ (subcriber) -> Disposable in
+            let name = "\(Date.currentTimeInMillis()).mov"
+            self.dataStorage.child(name).putFile(videoPath, metadata: nil, completion: { (metadata, error) in
+                guard error == nil else {
+                    subcriber.onError(error!)
+                    return
+                }
+                
+                guard let url = metadata?.downloadURL() else {
+                    return
+                }
+                subcriber.onNext(url)
+            })
+            return Disposables.create()
+        })
         
     }
     
