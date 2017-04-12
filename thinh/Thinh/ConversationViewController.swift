@@ -9,6 +9,7 @@
 import UIKit
 import DGElasticPullToRefresh
 import DZNEmptyDataSet
+import RxSwift
 
 protocol ConversationViewControllerDelegate : class {
     func gotNewThinh(_ conversation: Conversation)
@@ -24,6 +25,8 @@ class ConversationViewController: UIViewController {
     var lastThinhTime:TimeInterval = 0
     
     weak var delegate : ConversationViewControllerDelegate?
+    
+    fileprivate var disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +62,7 @@ class ConversationViewController: UIViewController {
         conversationTable.dg_setPullToRefreshFillColor(UIColor(red: 217/255.0, green: 243/255.0, blue: 239/255.0, alpha: 1.0))
         conversationTable.dg_setPullToRefreshBackgroundColor(conversationTable.backgroundColor!)
         
-        let disposable = Api.shared().getAllConversation().subscribe(onNext: { conversations in
+        Api.shared().getAllConversation().subscribe(onNext: { conversations in
             
             var unseenConversation:Int = 0
             
@@ -84,7 +87,7 @@ class ConversationViewController: UIViewController {
                 }
             }
             self.conversationTable.reloadData()
-        })
+        }).addDisposableTo(disposeBag)
     }
     
     deinit {

@@ -677,61 +677,6 @@ class Api: NSObject {
         thinhDb.child(thinh.to!).child(thinh.from!).setValue(thinh.toJSON())
     }
     
-    /*
-     send the match notification to both user
-    */
-//    fileprivate func sendMatchNotification(for thinh: Thinh, message: Message?) {
-//        let key = matchDb.childByAutoId().key
-//        let match = Match(key).withAMessage(thinh.message).withAMedia(thinh.media).withBMessage(message?.message).withBMedia(message?.media)
-//        
-//        self.getUser(id: thinh.from!).flatMap { (user) -> Observable<User> in
-//            match.withAName(user.name!).withAAvatar(user.avatar!)
-//            return self.getUser(id: thinh.to!)
-//        }.subscribe(onNext: { (user) in
-//            match.withBName(user.name!).withBAvatar(user.avatar!)
-//            self.matchDb.child(thinh.to!).child(match.id!).setValue(match.toJSON())
-//            self.matchDb.child(thinh.from!).child(match.id!).setValue(match.toJSON())
-//        })
-//        
-//    }
-    
-    /*
-     observe match notification of me
-    */
-//    func observeMyMatchNotification() -> Observable<Match> {
-//        return observeMatchNotification(userId()!)
-//    }
-    
-    
-    /*
-     observe match notification
-    */
-//    fileprivate func observeMatchNotification(_ userId: UserId) -> Observable<Match> {
-//        return Observable<Match>.create({ (subcriber) -> Disposable in
-//            self.matchDb.child(userId).observe(.childAdded, with: { (snapshot) in
-//                guard let match = Match(json: snapshot.value as! JSON) else {
-//                    return
-//                }
-//                subcriber.onNext(match)
-//            })
-//            return Disposables.create()
-//        })
-//    }
-    
-    /*
-     delete match notification of current user
-    */
-//    func deleteMyMatch(_ matchId: MatchId) {
-//        deleteMatch(userId()!, matchId)
-//    }
-//    
-//    /*
-//     delete match notification of user
-//    */
-//    fileprivate func deleteMatch(_ userId: UserId, _ matchId: MatchId) {
-//        matchDb.child(userId).child(matchId).setValue(nil)
-//    }
-    
     
     /*
      upload image and return back an url

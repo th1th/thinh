@@ -12,6 +12,7 @@ import Firebase
 import DGElasticPullToRefresh
 import DZNEmptyDataSet
 import FacebookLogin
+import RxSwift
 //import FacebookCore
 
 class SettingViewController: UIViewController {
@@ -69,6 +70,8 @@ class SettingViewController: UIViewController {
     @IBOutlet weak var genderSegment: UISegmentedControl!
     @IBOutlet weak var preferSegment: UISegmentedControl!
     
+    fileprivate var disposeBag = DisposeBag()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,10 +102,11 @@ class SettingViewController: UIViewController {
 extension SettingViewController{
     
     func loadUser() {
-        user = User.currentUser
+//        self.user = User.currentUser
+//        self.loadInfo()
         utilities.log("current user id: \(User.currentUser!.id)")
         Api.shared().getCurrentUser().subscribe(onNext: { (user) in
-            if let userID = user.id{
+            if user.id != nil{
                 self.user = user
             }else{
                 self.user = User.currentUser
@@ -110,7 +114,7 @@ extension SettingViewController{
             self.loadInfo()
         }, onError: { (error) in
             utilities.log(error)
-        }, onCompleted: nil, onDisposed: nil)
+        }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
     }
 
     func loadInfo() {

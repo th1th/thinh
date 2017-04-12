@@ -13,6 +13,7 @@ import AVFoundation
 import MediaPlayer
 import MobileCoreServices
 import ImagePicker
+import RxSwift
 
 class ContactListViewController: UIViewController {
 
@@ -45,6 +46,8 @@ class ContactListViewController: UIViewController {
     var contactDict = [String:[User]]()
     var sectionTitles = [String]()
     let indexTitles = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+    
+    fileprivate var disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,7 +120,7 @@ extension ContactListViewController{
             self.contactListTable.reloadData()
         }, onError: { (Error) in
             print(Error.localizedDescription)
-        }, onCompleted: nil, onDisposed: nil)
+        }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
     }
 }
 
