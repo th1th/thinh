@@ -95,9 +95,9 @@ class Api: NSObject {
             return self.isUserExist(user.uid)
         }).flatMap({ (exist) -> Observable<User> in
             if exist {
-                return self.createUser(fbUser.uid, user: User(user: fbUser))
+                return self.getCurrentUser()  
             } else {
-                return self.getCurrentUser()
+                return self.createUser(fbUser.uid, user: User(user: fbUser))
             }
         })
     }

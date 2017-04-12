@@ -192,17 +192,16 @@ extension SettingViewController{
     }
     func updateUserInfo() {
         let sex = ["male","female","unknown"]
-        
-        user?.caption = captionTextView.text
-        user?.gender = User.Sex(rawValue: sex[genderSegment.selectedSegmentIndex])
-        user?.prefer = User.Sex(rawValue: sex[preferSegment.selectedSegmentIndex])
-        user?.phone = phoneTextView.text
+//        
+//        user?.caption = captionTextView.text
+//        user?.gender = User.Sex(rawValue: sex[genderSegment.selectedSegmentIndex])
+//        user?.prefer = User.Sex(rawValue: sex[preferSegment.selectedSegmentIndex])
+//        user?.phone = phoneTextView.text
         user?.withCaption(captionTextView.text).withGender(User.Sex(rawValue: sex[genderSegment.selectedSegmentIndex])!).withPrefer(User.Sex(rawValue: sex[preferSegment.selectedSegmentIndex])!).withPhone(phoneTextView.text)
         Api.shared().updateUser(user!)
     }
     func signOut() {
-        Api.shared().logout()
-        
+        Api.shared().logout()  
     }
 }
 
