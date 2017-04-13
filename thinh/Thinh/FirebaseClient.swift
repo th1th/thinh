@@ -64,7 +64,7 @@ class Api: NSObject {
 //        return "3JqA5vuaFhMbd8bS5Y82RSB9G092"   // Donald Trump
 //        return "SyHSwBEV7zYR1FEzuqBTevOJVsH3"
 //        return "cdP7J0LNP2gUG3BeEq29N8JHDt72" // Dang Viet
-//        return "tpe0qfm577eZ3rVgCaatP42cPk2n2"    // Kim Lien
+        return "tpe0qfm577eZ3rVgCaatP42cPk2n2"    // Kim Lien
     }
 
     /*
@@ -88,6 +88,7 @@ class Api: NSObject {
                     obsever.onError(ThinhError.unknownUser)
                     return
                 }
+                
                 obsever.onNext(user)
             })
             return Disposables.create()
@@ -504,11 +505,14 @@ class Api: NSObject {
      get stranger related to user id
     */
     fileprivate func getStrangerOf(_ id: UserId) -> Observable<User> {
-        return self.getFriendIdsOf(user: id).flatMap({ (users) -> Observable<UserId> in
-            return Observable.from(users)
-        }).flatMap({ (id) -> Observable<User> in
-            return self.getUser(id: id)
+        var ids = [UserId]()
+        return self.getFriendIdsOf(user: id).flatMap { (users) -> Observable<User> in
+            ids = users
+            return self.getAllUser()
+        }.filter({ (user) -> Bool in
+            return !ids.contains(user.id!)
         })
+        
     }
     
     /*
@@ -744,6 +748,7 @@ class Api: NSObject {
      call this when close the app
     */
     func stop() {
+        
         database.removeAllObservers()
     }
     
@@ -782,11 +787,11 @@ extension Api {
     
     private func createMockUser()  -> [User] {
         let bot = User.createBot()
-        createUser(bot.id!, user: bot)
+        _ = createUser(bot.id!, user: bot)
         let users = User.mock()
         for user in users {
             userDb.child(user.id!).setValue(user.toJSON()!)
-            createUser(user.id!,
+            _ = createUser(user.id!,
                        user: user)
         }
         return users

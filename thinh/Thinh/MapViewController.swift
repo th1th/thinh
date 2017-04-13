@@ -63,6 +63,7 @@ class MapViewController: UIViewController {
             User.currentUser?.lat = mockPosition.latitude
             User.currentUser?.lon = mockPosition.longitude
         }
+
         camera = GMSCameraPosition.camera(withLatitude: (User.currentUser?.lat)!, longitude: (User.currentUser?.lon)!, zoom: 12.0)
 //        camera = GMSCameraPosition.camera(withLatitude: (mockPosition.latitude), longitude: (mockPosition.longitude), zoom: 15.0)
         mapView = GMSMapView.map(withFrame: view.bounds, camera: camera)
@@ -99,6 +100,7 @@ extension MapViewController: GMSMapViewDelegate{
         }, onError: { (error) in
             utilities.log("getUserFromServer--\(error.localizedDescription)")
         }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
+
     }
     func addUserToMap(_ user:User) {
 //        if user.name != "Pikalong"{

@@ -11,6 +11,7 @@ import FacebookLogin
 import FacebookCore
 import AFNetworking
 import Firebase
+import RxSwift
 
 class LoginViewController: UIViewController {
     
@@ -19,6 +20,7 @@ class LoginViewController: UIViewController {
     var user: FIRUser?
     var loginState = false
     var fbUserID: String?
+    fileprivate var disposeBag = DisposeBag()
     
     
     let defaults = UserDefaults.standard
@@ -54,14 +56,14 @@ class LoginViewController: UIViewController {
 ///Core function
 extension LoginViewController{
     func firebaseSigin(_ accessToken: String) {
-        _ = Api.shared().login(accessToken: accessToken).subscribe(onNext: { (user) in
+        Api.shared().login(accessToken: accessToken).subscribe(onNext: { (user) in
             print("Login success")
             User.currentUser = user
             self.updateAvatar(user.avatar!)
             self.blurEffect()
         }, onError: { (error) in
             print("Login failed")
-        })
+        }).addDisposableTo(disposeBag)
     }
 }
 
@@ -81,6 +83,7 @@ extension LoginViewController{
                 self.defaults.set(accessToken.userId, forKey: "Thinh_FBuserID")
                 self.defaults.set(accessToken.authenticationToken, forKey: "Thinh_CurrentUser")
                 self.firebaseSigin(accessToken.authenticationToken)
+                print("fb id \(accessToken.userId)")
             }
         }
     }

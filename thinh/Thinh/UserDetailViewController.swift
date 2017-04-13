@@ -31,8 +31,8 @@ class UserDetailViewController: UIViewController {
     @IBOutlet weak var closeButton: UIButton!
     
     @IBOutlet weak var ScrollView: UIScrollView!
-    var user:User? = nil
-    var sex:[UIImage]! = []
+    weak var user: User? = nil
+    private let sex = [#imageLiteral(resourceName: "male"),#imageLiteral(resourceName: "female"),#imageLiteral(resourceName: "biosex")]
     
     var showCloseButton: Bool = true
     
@@ -42,6 +42,7 @@ class UserDetailViewController: UIViewController {
         vc.willMove(toParentViewController: nil)
         vc.view.removeFromSuperview()
         vc.removeFromParentViewController()
+        
     }
     
     
@@ -91,7 +92,7 @@ class UserDetailViewController: UIViewController {
         UserCaptionView.alpha = 0
         InfoView.alpha = 0
         
-        sex = [#imageLiteral(resourceName: "male"),#imageLiteral(resourceName: "female"),#imageLiteral(resourceName: "biosex")]
+
         //UserBackgroundImage.setImageWith(URL(string: (user?.avatar)!)!)
         AvatarImage.setImageWith(URL(string: (user?.avatar)!)!)
         UserNameLabel.text = user?.name
