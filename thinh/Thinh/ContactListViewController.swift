@@ -35,12 +35,17 @@ class ContactListViewController: UIViewController {
         hidePopupView()
     }
     
+    @IBAction func onClickUpdateAvatar(_ sender: UIButton) {
+        updateAvatarFlag = true
+        takePhoto()
+    }
     var contactList = [User]()
     let refreshController = UIRefreshControl()
     var thathinhUser: User?
     var thathinhMessage: String!
     
     var thathinhImage: UIImage!
+    var updateAvatarFlag = false
     
     
     var contactDict = [String:[User]]()
@@ -242,10 +247,18 @@ extension ContactListViewController:ContactTableViewCellDelegate,ImagePickerDele
     }
     public func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
         imagePicker.dismiss(animated: true, completion: nil)
-        thathinhImage = images[0]
-        //show popup to user input the message
-        showPopupView()
-        //Api.shared().thathinh((thathinhUser?.id)!, image: image)
+        
+        if updateAvatarFlag == true {
+            /* Update avatar */
+            updateAvatarFlag = false
+            Api.shared().updateAvatar(images[0])
+        }else{
+            /* tha thinh with image */
+            thathinhImage = images[0]
+            //show popup to user input the message
+            showPopupView()
+            //Api.shared().thathinh((thathinhUser?.id)!, image: image)
+        }
     }
     func cancelButtonDidPress(_ imagePicker: ImagePickerController) {
         
