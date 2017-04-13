@@ -58,6 +58,7 @@ class MapViewController: UIViewController {
         mockPosition = CLLocationCoordinate2D(latitude: 10.778, longitude: 106.700)
         // Create a GMSCameraPosition that tells the map to display the
         // coordinate -33.86,151.20 at zoom level 6.
+        camera = GMSCameraPosition.camera(withLatitude: (mockPosition.latitude), longitude: (mockPosition.longitude), zoom: 12.0)
         camera = GMSCameraPosition.camera(withLatitude: (User.currentUser?.lat)!, longitude: (User.currentUser?.lon)!, zoom: 12.0)
         mapView = GMSMapView.map(withFrame: view.bounds, camera: camera)
         mapView.delegate = self
@@ -86,14 +87,14 @@ class MapViewController: UIViewController {
 }
 extension MapViewController: GMSMapViewDelegate{
     func getStrangerList() {
-        let dispose = Api.shared().getMyStrangerList().subscribe(onNext: { (user) in
+        Api.shared().getMyStrangerList().subscribe(onNext: { (user) in
             self.allUsers.append(user)
             self.addUserToMap(user)
             utilities.log("getUserFromServer--  get \(self.allUsers.count) users")
         }, onError: { (error) in
             utilities.log("getUserFromServer--\(error.localizedDescription)")
         }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
-        disposeBag.insert(dispose as! Disposable)
+        
         
     }
     func addUserToMap(_ user:User) {
