@@ -19,7 +19,7 @@ class PhotoCaptureDelegate: NSObject, AVCapturePhotoCaptureDelegate {
     
     private let completed: (PhotoCaptureDelegate) -> ()
     
-    private var photoData: Data? = nil
+    public var photoData: Data? = nil
     
     private var livePhotoCompanionMovieURL: URL? = nil
     

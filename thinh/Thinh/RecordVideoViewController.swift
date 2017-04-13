@@ -760,6 +760,7 @@ class RecordVideoViewController: UIViewController,AVCaptureFileOutputRecordingDe
                         let creationRequest = PHAssetCreationRequest.forAsset()
                         creationRequest.addResource(with: .video, fileURL: outputFileURL, options: options)
                     }, completionHandler: { success, error in
+                        utilities.log(outputFileURL)
                         if !success {
                             print("Could not save movie to photo library: \(error)")
                         }

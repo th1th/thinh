@@ -28,7 +28,8 @@ class MapViewController: UIViewController {
         set(selecteduser){
             user = selecteduser!
             utilities.log(selectedUser?.avatar)
-            performSegue(withIdentifier: "UserDetail", sender: view)
+            Api.shared().thathinh(user.id!)
+            //performSegue(withIdentifier: "UserDetail", sender: view)
         }
     }
     
@@ -55,10 +56,15 @@ class MapViewController: UIViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.black]
         
         // Do any additional setup after loading the view.
-        mockPosition = CLLocationCoordinate2D(latitude: 10.778, longitude: 106.700)
+        mockPosition = CLLocationCoordinate2D(latitude: 10.7765393472489, longitude: 106.683258935809)//10.7765393472489, 106.683258935809
         // Create a GMSCameraPosition that tells the map to display the
         // coordinate -33.86,151.20 at zoom level 6.
+        if ((User.currentUser?.lat == nil)||((User.currentUser?.lon) == nil)){
+            User.currentUser?.lat = mockPosition.latitude
+            User.currentUser?.lon = mockPosition.longitude
+        }
         camera = GMSCameraPosition.camera(withLatitude: (User.currentUser?.lat)!, longitude: (User.currentUser?.lon)!, zoom: 12.0)
+//        camera = GMSCameraPosition.camera(withLatitude: (mockPosition.latitude), longitude: (mockPosition.longitude), zoom: 15.0)
         mapView = GMSMapView.map(withFrame: view.bounds, camera: camera)
         mapView.delegate = self
         view.addSubview(mapView)
@@ -86,15 +92,13 @@ class MapViewController: UIViewController {
 }
 extension MapViewController: GMSMapViewDelegate{
     func getStrangerList() {
-        let dispose = Api.shared().getMyStrangerList().subscribe(onNext: { (user) in
+        Api.shared().getMyStrangerList().subscribe(onNext: { (user) in
             self.allUsers.append(user)
             self.addUserToMap(user)
             utilities.log("getUserFromServer--  get \(self.allUsers.count) users")
         }, onError: { (error) in
             utilities.log("getUserFromServer--\(error.localizedDescription)")
         }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
-        disposeBag.insert(dispose as! Disposable)
-        
     }
     func addUserToMap(_ user:User) {
 //        if user.name != "Pikalong"{
@@ -102,7 +106,12 @@ extension MapViewController: GMSMapViewDelegate{
 //        }
         // Creates a marker in the the map.
 //        let position = CLLocationCoordinate2D(latitude: mockPosition.latitude, longitude: mockPosition.longitude)
-        let position = CLLocationCoordinate2D(latitude: user.lat!, longitude: user.lon!)
+        guard let latitude = user.lat,
+              let longtitude = user.lon
+        else {
+            return
+        }
+        let position = CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
         
         let marker = GMSMarker(position: position)
         
@@ -114,6 +123,10 @@ extension MapViewController: GMSMapViewDelegate{
 
         marker.map = mapView
         marker.appearAnimation = GMSMarkerAnimation.pop
+        
+        
+        marker.snippet = user.name
+        marker.infoWindowAnchor = CGPoint(x: 0.5, y: 0.5)
     }
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         print("You tapped at \(coordinate.latitude), \(coordinate.longitude)")
@@ -124,9 +137,13 @@ extension MapViewController: GMSMapViewDelegate{
         }, onError: { (error) in
             utilities.log(error)
         }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
-        
+        marker.opacity = 0
+        marker.map = mapView
         utilities.log(marker.title)
         return true
+    }
+    func mapView(_ mapView: GMSMapView, didLongPressInfoWindowOf marker: GMSMarker) {
+        print(marker.title)
     }
     
 }
