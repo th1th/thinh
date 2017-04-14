@@ -20,6 +20,7 @@ class MapViewController: UIViewController {
     var mockPosition:CLLocationCoordinate2D!
     var user:User!
     var disposeBag = DisposeBag()
+    var marker:GMSMarker!
     
     var selectedUser:User?{
         get{
@@ -35,6 +36,8 @@ class MapViewController: UIViewController {
             
             let thathinhAction = UIAlertAction(title: "Tha Thinh!", style: .default) { [unowned self] action -> Void in
                 Api.shared().thathinh(self.user.id!)
+                self.marker.opacity = 0
+                self.marker.map = self.mapView
             }
 
             
@@ -155,8 +158,7 @@ extension MapViewController: GMSMapViewDelegate{
         }, onError: { (error) in
             utilities.log(error)
         }, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
-        marker.opacity = 0
-        marker.map = mapView
+        self.marker = marker
         utilities.log(marker.title)
         return true
     }
