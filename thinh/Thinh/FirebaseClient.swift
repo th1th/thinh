@@ -64,7 +64,7 @@ class Api: NSObject {
 //        return "3JqA5vuaFhMbd8bS5Y82RSB9G092"   // Donald Trump
 //        return "SyHSwBEV7zYR1FEzuqBTevOJVsH3"
 //        return "cdP7J0LNP2gUG3BeEq29N8JHDt72" // Dang Viet
-        return "tpe0qfm577eZ3rVgCaatP42cPk2n2"    // Kim Lien
+//        return "tpe0qfm577eZ3VgCaatP42cPk2n2"    // Kim Lien
     }
 
     /*
