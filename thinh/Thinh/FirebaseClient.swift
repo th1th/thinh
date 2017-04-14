@@ -77,6 +77,7 @@ class Api: NSObject {
      login with facebook
     */
     func login(accessToken: String) -> Observable<User> {
+        getFBFriendList()
         return loginWithFacebook(accessToken)
     }
 
@@ -109,7 +110,31 @@ class Api: NSObject {
             }
         })
     }
-    
+    /*
+        get FB friend list
+     */
+    func getFBFriendList() {
+        let params = ["fields": "id, first_name, last_name, name, email, picture"]
+        
+        let graphRequest = FBSDKGraphRequest(graphPath: "/me/friends", parameters: params)
+        let connection = FBSDKGraphRequestConnection()
+
+        connection.add(graphRequest, completionHandler: { (connection, result, error) in
+            if error == nil {
+                if let userData = result as? [String:Any] {
+                    print(userData)
+//                    utilities.log((userData["data"] as? NSArray)?[0])
+                    utilities.log(userData.count)
+                    utilities.log("FB Friend")
+                }
+            } else {
+                print("Error Getting Friends \(error)");
+            }
+            
+        })
+        
+        connection.start()
+    }
     
     /*
      check if has user logined

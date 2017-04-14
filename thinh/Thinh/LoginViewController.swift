@@ -70,7 +70,7 @@ extension LoginViewController{
 ///Animation
 extension LoginViewController{
     func loginViaFb() {
-        LoginManager().logIn([ .publicProfile ], viewController: self) { loginResult in
+        LoginManager().logIn([.publicProfile,.userFriends ], viewController: self) { loginResult in
             switch loginResult {
             case .failed(let error):
                 print("[fb] \(error)")
