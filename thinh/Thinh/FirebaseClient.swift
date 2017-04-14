@@ -122,10 +122,11 @@ class Api: NSObject {
             LoginManager().logOut()
             try FIRAuth.auth()?.signOut()
             UserDefaults.standard.set(nil, forKey: "Thinh_CurrentUser")
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "didLogOut"), object: nil)
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "didLogOut"), object: nil)
+        
     }
     
     /*
@@ -227,8 +228,25 @@ class Api: NSObject {
      get current user info
     */
     func getCurrentUser() -> Observable<User> {
-        return getUser(id: userId()!)
+        return Observable<User>.create({ (subcriber) -> Disposable in
+            self.userDb.child(self.userId()!).observeSingleEvent(of: .value, with: { (snapshot) in
+                guard let json = snapshot.value as? JSON else {
+                    subcriber.onError(ThinhError.unknownUser)
+                    return
+                }
+                
+                guard let user = User(json: json) else {
+                    subcriber.onError(ThinhError.unknownUser)
+                    return
+                }
+                
+                subcriber.onNext(user)
+                subcriber.onCompleted()
+            })
+            return Disposables.create()
+        })
     }
+    
     
     /*
      get all conversation of current login user

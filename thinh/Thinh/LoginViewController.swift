@@ -20,7 +20,7 @@ class LoginViewController: UIViewController {
     var user: FIRUser?
     var loginState = false
     var fbUserID: String?
-    fileprivate var disposeBag = DisposeBag()
+    fileprivate var disposeBag: DisposeBag! = DisposeBag()
     
     
     let defaults = UserDefaults.standard
@@ -49,8 +49,7 @@ class LoginViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
+    }    
     
 }
 ///Core function
@@ -59,8 +58,9 @@ extension LoginViewController{
         Api.shared().login(accessToken: accessToken).subscribe(onNext: { (user) in
             print("Login success")
             User.currentUser = user
-            self.updateAvatar(user.avatar!)
+            self.updateAvatar(user.avatar ?? "")
             self.blurEffect()
+            
         }, onError: { (error) in
             print("Login failed")
         }).addDisposableTo(disposeBag)
