@@ -28,8 +28,24 @@ class MapViewController: UIViewController {
         set(selecteduser){
             user = selecteduser!
             utilities.log(selectedUser?.avatar)
-            Api.shared().thathinh(user.id!)
-            //performSegue(withIdentifier: "UserDetail", sender: view)
+            // Add action
+            let viewProfileAction = UIAlertAction(title: "View User Profile", style: .default) { [unowned self] action -> Void in
+                self.performSegue(withIdentifier: "UserDetail", sender: self)
+            }
+            
+            let thathinhAction = UIAlertAction(title: "Tha Thinh!", style: .default) { [unowned self] action -> Void in
+                Api.shared().thathinh(self.user.id!)
+            }
+
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            
+            let controller = UIAlertController(title: user.name, message: nil, preferredStyle: .actionSheet)
+            for action in [viewProfileAction, thathinhAction, cancelAction] {
+                controller.addAction(action)
+            }
+            self.present(controller, animated: true, completion: nil)
+        
         }
     }
     

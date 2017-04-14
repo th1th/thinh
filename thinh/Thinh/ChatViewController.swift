@@ -11,6 +11,8 @@ import JSQMessagesViewController
 import AFNetworking
 import Photos
 import ImagePicker
+import RxSwift
+import RxCocoa
 
 
 
@@ -33,6 +35,8 @@ class ChatViewController: JSQMessagesViewController {
     var messages = [JSQMessage]()
     
     var selectedImage : UIImage?
+    
+    var disposeBag = DisposeBag()
     
     private var localTyping = false
     var isTyping: Bool {
@@ -162,7 +166,7 @@ class ChatViewController: JSQMessagesViewController {
     
     private func observeMessages() {
         // Query messages
-        Api.shared().getMessageOfConversation(id: (self.conversation?.id)!).subscribe(onNext: { message in
+         let messageDispose = Api.shared().getMessageOfConversation(id: (self.conversation?.id)!).subscribe(onNext: { message in
             
             var message_sender_name:String?
             
@@ -188,6 +192,7 @@ class ChatViewController: JSQMessagesViewController {
             self.finishReceivingMessage()
 
         })
+        self.disposeBag.insert(messageDispose)
         
     }
     
@@ -352,7 +357,7 @@ class ChatViewController: JSQMessagesViewController {
         // Inside observe block
         // set self.showTypingIndicator
         // scroll to bottom
-        Api.shared().observeIsTyping((self.conversation?.id!)!).subscribe(onNext: { (user, typing) in
+        let typingDispose = Api.shared().observeIsTyping((self.conversation?.id!)!).subscribe(onNext: { (user, typing) in
             print("User ID \(user)")
             if(user == self.conversation?.partnerID){
                 self.showTypingIndicator = typing
@@ -360,6 +365,7 @@ class ChatViewController: JSQMessagesViewController {
             }
         })
     
+        self.disposeBag.insert(typingDispose)
     }
     override func textViewDidChange(_ textView: UITextView) {
         super.textViewDidChange(textView)
