@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="5lh-nZ-YER">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="5lh-nZ-YER">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -53,9 +53,9 @@
                                                     <constraint firstAttribute="height" constant="60" id="Z09-Ct-TlM"/>
                                                 </constraints>
                                             </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nbn-cb-9FS">
+                                            <button opaque="NO" alpha="0.59999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nbn-cb-9FS">
                                                 <rect key="frame" x="280" y="30" width="30" height="30"/>
-                                                <color key="backgroundColor" red="0.807924859067217" green="0.95921779613371483" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="I0z-jh-7QY"/>
                                                     <constraint firstAttribute="width" constant="30" id="KF9-wl-Ccy"/>
@@ -224,6 +224,7 @@
                         <outlet property="PreferImage" destination="IPt-3Z-EgU" id="F1c-te-qZO"/>
                         <outlet property="PreferLabel" destination="UWD-TB-wrg" id="qdZ-Rv-uoh"/>
                         <outlet property="ScrollView" destination="H6c-br-HrT" id="d8b-vQ-Qjy"/>
+                        <outlet property="SettingButton" destination="nbn-cb-9FS" id="p3N-dY-0bS"/>
                         <outlet property="UserBackgroundImage" destination="e4v-5l-zbG" id="4MT-HE-CsN"/>
                         <outlet property="UserCaptionLabel" destination="m8D-To-9Hv" id="MYy-e5-Cdt"/>
                         <outlet property="UserCaptionView" destination="873-OZ-fQl" id="VTD-5N-iVK"/>

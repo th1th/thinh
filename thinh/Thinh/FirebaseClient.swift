@@ -58,12 +58,13 @@ class Api: NSObject {
     
     func userId() -> String? {
 //        return "WR3OioP6R0UTPUoWItWyJX5g4p62" // Linh Le
-        if FIRAuth.auth()?.currentUser?.uid == nil {
-            if User.currentUser?.id == nil {
-                return "WR3OioP6R0UTPUoWItWyJX5g4p62" // Linh Le
-            }
-            return User.currentUser?.id   // me
-        }
+//        if FIRAuth.auth()?.currentUser?.uid == nil {
+//            if User.currentUser?.id == nil {
+//
+//            }
+//            return User.currentUser?.id   // me
+//        }
+//          return "WR3OioP6R0UTPUoWItWyJX5g4p62" // Linh Le
         return FIRAuth.auth()?.currentUser?.uid
 //        return "S5cirBWXUiOGnareVEEWbjaIJN02" // Harley
 //        return "VUoc532PABTXwHAc5ceaIAtem9D2" // Mark

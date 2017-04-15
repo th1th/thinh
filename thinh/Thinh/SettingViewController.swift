@@ -23,6 +23,7 @@ class SettingViewController: UIViewController {
     var constX:NSLayoutConstraint?
     var constY:NSLayoutConstraint?
     
+    @IBOutlet weak var SettingButton: UIButton!
     @IBOutlet weak var UserBackgroundImage: UIImageView!
     @IBOutlet weak var AvatarImage: UIImageView!
     @IBOutlet weak var UserNameLabel: UILabel!
@@ -147,10 +148,11 @@ extension SettingViewController{
         }else{
             UserBackgroundImage.image = #imageLiteral(resourceName: "Background")
         }
-        
+        SettingButton.layer.cornerRadius = SettingButton.frame.height/2 + 2
+        SettingButton.clipsToBounds = true
         
         //
-        AvatarImage.layer.cornerRadius = AvatarImage.frame.height/2
+        AvatarImage.layer.cornerRadius = AvatarImage.frame.height/2+2
         AvatarImage.clipsToBounds = true
         AvatarImage.layer.borderColor = UIColor( red: 255/255, green: 255/255, blue:255/255, alpha: 0.5).cgColor
         AvatarImage.layer.borderWidth = 1.0

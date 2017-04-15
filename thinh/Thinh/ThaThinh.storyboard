@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="90z-SF-7AG">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="90z-SF-7AG">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -112,14 +112,14 @@
                                             <constraint firstAttribute="height" constant="50" id="7a2-F4-K64"/>
                                             <constraint firstAttribute="width" constant="50" id="tsM-59-fjA"/>
                                         </constraints>
-                                        <state key="normal" image="gps">
+                                        <state key="normal" image="SexyMap">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="showMap:" destination="90z-SF-7AG" eventType="touchUpInside" id="9FN-NF-FRP"/>
                                         </connections>
                                     </button>
-                                    <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pull" translatesAutoresizingMaskIntoConstraints="NO" id="dLr-ba-lIU">
+                                    <imageView hidden="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pull" translatesAutoresizingMaskIntoConstraints="NO" id="dLr-ba-lIU">
                                         <rect key="frame" x="274" y="34" width="26" height="36"/>
                                         <gestureRecognizers/>
                                         <constraints>
@@ -290,8 +290,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="SexyMap" width="101" height="113"/>
         <image name="ThaThinh" width="558" height="200"/>
-        <image name="gps" width="512" height="512"/>
         <image name="hot-girl-han-quoc-xinh-dep-song-o-sai-gon-gay-sot" width="639" height="633"/>
         <image name="photo-36-1465292669338" width="650" height="649"/>
         <image name="pull" width="512" height="512"/>
